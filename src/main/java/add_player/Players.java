@@ -19,4 +19,12 @@ public class Players {
     public boolean contains(String playerName) {
         return players.contains(playerName);
     }
+
+    public int positionOf(String playerName) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void move(String playerName, int position) {
+        throw new UnsupportedOperationException();
+    }
 }
