@@ -1,12 +1,22 @@
-import add_player.AddPlayerUseCase;
 import configuration.GooseGameApp;
 import configuration.GooseGameAppBuilder;
-import configuration.InputBoundary;
+import configuration_test.GooseGameAppBuilderForTest;
+
+import java.util.Arrays;
 
 public class Main {
+    public static final String[] ARGS_FOR_TEST = {"configuration_test"};
 
     public static void main(String[] args) {
-        GooseGameApp app = new GooseGameAppBuilder(args).buildApplication();
+        GooseGameAppBuilder appBuilder = isApplicationToTest(args) ?
+                new GooseGameAppBuilderForTest() :
+                new GooseGameAppBuilder();
+
+        GooseGameApp app = appBuilder.buildApplication();
         app.run();
+    }
+
+    private static boolean isApplicationToTest(String[] args) {
+        return Arrays.equals(ARGS_FOR_TEST, args);
     }
 }

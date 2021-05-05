@@ -1,13 +1,11 @@
-import configuration.GooseGameApp;
 import configuration_test.TestSystemInputOuput;
 
 public class ApplicationRunner {
-
     private TestSystemInputOuput inputOuput = TestSystemInputOuput.instance();
     private Thread thread;
 
     public void runApplication() {
-        thread = new Thread(() -> Main.main(new String[]{"configuration_test"}));
+        thread = new Thread(() -> Main.main(Main.ARGS_FOR_TEST));
         thread.setDaemon(true);
         thread.start();
     }
