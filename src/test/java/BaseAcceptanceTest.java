@@ -14,4 +14,8 @@ public abstract class BaseAcceptanceTest {
     static void tearDown() {
         gooseGame.stopApplication();
     }
+
+    protected String addPlayer(String playerName) {
+        return gooseGame.acceptInput("add player " + playerName);
+    }
 }
