@@ -1,15 +1,16 @@
 package configuration;
 
 import add_player.AddPlayerUseCase;
+import dispatcher.UseCaseDispatcher;
 
 public class GooseGameApp {
 
     private InputBoundary input;
-    private AddPlayerUseCase addPlayerUseCase;
+    private UseCaseDispatcher useCaseDispatcher;
 
-    public GooseGameApp(InputBoundary input, AddPlayerUseCase addPlayerUseCase) {
+    public GooseGameApp(InputBoundary input, UseCaseDispatcher useCaseDispatcher) {
         this.input = input;
-        this.addPlayerUseCase = addPlayerUseCase;
+        this.useCaseDispatcher = useCaseDispatcher;
     }
 
     public void run() {
@@ -21,7 +22,7 @@ public class GooseGameApp {
                 System.out.println("Application stopped");
                 break;
             }
-            addPlayerUseCase.acceptCommand(line);
+            useCaseDispatcher.acceptCommand(line);
         }
     }
 
