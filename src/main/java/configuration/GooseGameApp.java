@@ -12,12 +12,7 @@ public class GooseGameApp {
         this.addPlayerUseCase = addPlayerUseCase;
     }
 
-    public static void main(String[] args) {
-        GooseGameApp app = new GooseGameAppBuilder(args).buildApplication();
-        app.run();
-    }
-
-    private void run() {
+    public void run() {
         System.out.println("Application runned");
         while(true) {
             String line = input.readInputLine();

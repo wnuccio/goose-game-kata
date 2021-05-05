@@ -7,7 +7,7 @@ public class ApplicationRunner {
     private Thread thread;
 
     public void runApplication() {
-        thread = new Thread(() -> GooseGameApp.main(new String[]{"configuration_test"}));
+        thread = new Thread(() -> Main.main(new String[]{"configuration_test"}));
         thread.setDaemon(true);
         thread.start();
     }
