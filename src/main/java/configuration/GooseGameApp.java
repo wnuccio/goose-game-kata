@@ -1,5 +1,6 @@
+package configuration;
+
 import add_player.AddPlayerUseCase;
-import add_player.OutputBoundary;
 
 public class GooseGameApp {
 

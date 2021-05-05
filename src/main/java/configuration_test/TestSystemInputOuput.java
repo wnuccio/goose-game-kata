@@ -1,9 +1,12 @@
+package configuration_test;
+
 import add_player.OutputBoundary;
+import configuration.InputBoundary;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class TestSystemInputOuput implements InputBoundary, OutputBoundary {
+public class TestSystemInputOuput implements InputBoundary, OutputBoundary {
     private static TestSystemInputOuput instance = new TestSystemInputOuput();
 
     private String inputString = null;

@@ -1,4 +1,5 @@
-import org.junit.jupiter.api.Test;
+import configuration.GooseGameApp;
+import configuration_test.TestSystemInputOuput;
 
 public class ApplicationRunner {
 
@@ -6,7 +7,7 @@ public class ApplicationRunner {
     private Thread thread;
 
     public void runApplication() {
-        thread = new Thread(() -> GooseGameApp.main(new String[]{"test"}));
+        thread = new Thread(() -> GooseGameApp.main(new String[]{"configuration_test"}));
         thread.setDaemon(true);
         thread.start();
     }

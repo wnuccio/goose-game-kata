@@ -1,6 +1,9 @@
+package configuration;
+
 import add_player.AddPlayerUseCase;
 import add_player.OutputBoundary;
 import add_player.Players;
+import configuration_test.TestSystemInputOuput;
 
 public class GooseGameAppBuilder {
     private String[] args;
@@ -10,18 +13,18 @@ public class GooseGameAppBuilder {
     }
 
     private boolean isTest() {
-        return args.length > 0 && args[0].equals("test");
+        return args.length > 0 && args[0].equals("configuration_test");
     }
 
-    private InputBoundary getInputBoundary() {
+    protected InputBoundary getInputBoundary() {
         return (isTest()) ? TestSystemInputOuput.instance() : new SystemInput();
     }
 
-    private OutputBoundary getOutputBoundary() {
+    protected OutputBoundary getOutputBoundary() {
         return (isTest()) ? TestSystemInputOuput.instance() : new SystemOutput();
     }
 
-    public GooseGameApp buildApplication() {
+    public final GooseGameApp buildApplication() {
         InputBoundary inputBoundary = getInputBoundary();
         OutputBoundary outputBoundary = getOutputBoundary();
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(new Players(), outputBoundary);
