@@ -9,18 +9,19 @@ public class Movement {
     private int secondDice;
     private int fromPosition;
     private int toPosition;
+    private boolean victory = false;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Movement movement = (Movement) o;
-        return firstDice == movement.firstDice && secondDice == movement.secondDice && fromPosition == movement.fromPosition && toPosition == movement.toPosition && player.equals(movement.player);
+        return firstDice == movement.firstDice && secondDice == movement.secondDice && fromPosition == movement.fromPosition && toPosition == movement.toPosition && victory == movement.victory && player.equals(movement.player);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(player, firstDice, secondDice, fromPosition, toPosition);
+        return Objects.hash(player, firstDice, secondDice, fromPosition, toPosition, victory);
     }
 
     public Movement(String player) {
@@ -75,6 +76,16 @@ public class Movement {
                 ", secondDice=" + secondDice +
                 ", fromPosition=" + fromPosition +
                 ", toPosition=" + toPosition +
+                ", victory=" + victory +
                 '}';
+    }
+
+    public Movement beVictory() {
+        this.victory = true;
+        return this;
+    }
+
+    public boolean isVictory() {
+        return this.victory;
     }
 }

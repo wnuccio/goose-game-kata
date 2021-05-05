@@ -22,6 +22,9 @@ public class ConsolePresenter implements Presenter {
                 movement.fromPosition(),
                 movement.toPosition());
 
+        if (movement.isVictory())
+            output += ". " + movement.player() + " Wins!!";
+
         outputBoundary.writeOutputLine(output);
     }
 

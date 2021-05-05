@@ -27,6 +27,9 @@ public class MovePlayerUseCase {
                 .givenRoll(firstDice, secondDice)
                 .from(prevPosition).to(newPosition);
 
+        if (newPosition == 63)
+            movement.beVictory();
+
         presenter.presentMovement(movement);
     }
 }
