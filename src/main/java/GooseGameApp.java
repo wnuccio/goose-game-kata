@@ -9,7 +9,7 @@ public class GooseGameApp {
     }
 
     public static void main(String[] args) {
-        GooseGameApp app = new GooseGameAppBuilder().buildApplication(args);
+        GooseGameApp app = new GooseGameAppBuilder(args).buildApplication();
         app.run();
     }
 
