@@ -1,3 +1,6 @@
+import add_player.AddPlayerUseCase;
+import add_player.OutputBoundary;
+
 public class GooseGameAppBuilder {
     private String[] args;
 
@@ -20,7 +23,8 @@ public class GooseGameAppBuilder {
     public GooseGameApp buildApplication() {
         InputBoundary inputBoundary = getInputBoundary();
         OutputBoundary outputBoundary = getOutputBoundary();
+        AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(outputBoundary);
 
-        return new GooseGameApp(inputBoundary, outputBoundary);
+        return new GooseGameApp(inputBoundary, addPlayerUseCase);
     }
 }

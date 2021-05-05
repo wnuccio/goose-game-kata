@@ -1,11 +1,14 @@
+import add_player.AddPlayerUseCase;
+import add_player.OutputBoundary;
+
 public class GooseGameApp {
 
     private InputBoundary input;
-    private OutputBoundary output;
+    private AddPlayerUseCase addPlayerUseCase;
 
-    public GooseGameApp(InputBoundary input, OutputBoundary output) {
+    public GooseGameApp(InputBoundary input, AddPlayerUseCase addPlayerUseCase) {
         this.input = input;
-        this.output = output;
+        this.addPlayerUseCase = addPlayerUseCase;
     }
 
     public static void main(String[] args) {
@@ -22,7 +25,7 @@ public class GooseGameApp {
                 System.out.println("Application stopped");
                 break;
             }
-            output.writeOutputLine("Wrong output: " + line);
+            addPlayerUseCase.acceptCommand(line);
         }
     }
 

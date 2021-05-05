@@ -1,3 +1,5 @@
+import add_player.OutputBoundary;
+
 class SystemOutput implements OutputBoundary {
 
     @Override
