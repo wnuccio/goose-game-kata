@@ -23,5 +23,11 @@ public class AddPlayerAcceptanceTest {
         String output = applicationRunner.waitForOutput();
 
         assertThat(output).isEqualTo("players: Pippo");
+
+        applicationRunner.acceptInput("add player Pluto");
+
+        output = applicationRunner.waitForOutput();
+        assertThat(output).isEqualTo("players: Pippo, Pluto");
+
     }
 }
