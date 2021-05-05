@@ -23,7 +23,10 @@ public class Players {
         return players.get(playerName);
     }
 
-    public void move(String playerName, int position) {
-        players.put(playerName, position);
+    public int moveOnRoll(String playerName, int firstDice, int secondDice) {
+        int totalRoll = firstDice + secondDice;
+        int newPosition = positionOf(playerName) + totalRoll;
+        players.put(playerName, newPosition);
+        return newPosition;
     }
 }

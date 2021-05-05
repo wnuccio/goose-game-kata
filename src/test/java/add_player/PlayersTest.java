@@ -27,9 +27,9 @@ class PlayersTest {
                 .addPlayer("Paperino");
 
         String playerList = players.allNamesSeparatedByComma();
-        assertThat(playerList.contains("Pippo"));
-        assertThat(playerList.contains("Pluto"));
-        assertThat(playerList.contains("Paperino"));
+        assertThat(playerList.contains("Pippo")).isEqualTo(true);
+        assertThat(playerList.contains("Pluto")).isEqualTo(true);
+        assertThat(playerList.contains("Paperino")).isEqualTo(true);
     }
 
     @Test
@@ -40,11 +40,15 @@ class PlayersTest {
     }
 
     @Test
-    void change_position_of_a_player() {
+    void change_position_of_a_player_given_two_dice() {
         Players players = new Players().addPlayer("Pippo");
 
-        players.move("Pippo", 6);
+        int newPosition = players.moveOnRoll("Pippo", 6, 4);
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(6);
+        assertThat(newPosition).isEqualTo(10);
+
+        newPosition = players.moveOnRoll("Pippo", 3, 1);
+
+        assertThat(newPosition).isEqualTo(14);
     }
 }

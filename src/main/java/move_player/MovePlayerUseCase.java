@@ -22,9 +22,7 @@ public class MovePlayerUseCase {
         int secondDice = command.secondDice();
 
         int prevPosition = players.positionOf(playerName);
-        int newPosition = newPosition(firstDice, secondDice, prevPosition);
-
-        players.move(playerName, newPosition);
+        int newPosition = players.moveOnRoll(playerName, firstDice, secondDice);
 
         String output = buildOutputFrom(playerName, firstDice, secondDice, prevPosition, newPosition);
         outputBoundary.writeOutputLine(output);
@@ -35,10 +33,5 @@ public class MovePlayerUseCase {
         String playerRolls = String.format("%s rolls %s, %s", playerName, firstDice, secondDice);
         String playerMoves = String.format("%s moves from %s to %s", playerName, prevPositionString, newPosition);
         return playerRolls + ". " + playerMoves;
-    }
-
-    private int newPosition(int firstDice, int secondDice, int prevPosition) {
-        int totalRoll = firstDice + secondDice;
-        return prevPosition + totalRoll;
     }
 }

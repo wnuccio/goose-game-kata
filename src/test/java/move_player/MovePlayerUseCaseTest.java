@@ -4,23 +4,20 @@ import add_player.OutputBoundary;
 import add_player.Players;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class MovePlayerUseCaseTest {
 
     @Test
     void moves_a_player_from_start_to_the_specified_position() {
-
-        Players players = mock(Players.class);
         OutputBoundary outputBoundary = mock(OutputBoundary.class);
-        MovePlayerUseCase useCase = new MovePlayerUseCase(players, outputBoundary);
+        Players players = new Players().addPlayer("Pippo");
 
-        when(players.positionOf("Pippo")).thenReturn(0);
+        MovePlayerUseCase useCase = new MovePlayerUseCase(players, outputBoundary);
 
         useCase.acceptCommand("move Pippo 4, 2");
 
-        verify(players).move("Pippo", 6);
         verify(outputBoundary).writeOutputLine ("Pippo rolls 4, 2. Pippo moves from Start to 6");
     }
 }
