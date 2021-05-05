@@ -18,7 +18,7 @@ test {
     useJUnitPlatform()
 }
 
-sourceCompatibility = 13 // for java8 set '1.8'
+sourceCompatibility = 1.8 // for java8 set '1.8'
 targetCompatibility = sourceCompatibility
 
 dependencies {
