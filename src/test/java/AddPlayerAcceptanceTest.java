@@ -28,6 +28,16 @@ public class AddPlayerAcceptanceTest {
 
         output = applicationRunner.waitForOutput();
         assertThat(output).isEqualTo("players: Pippo, Pluto");
+    }
 
+    @Test
+    void app_rejected_a_duplicated_add_player_command_with_an_error_message() {
+        applicationRunner.acceptInput("add player Pippo");
+        applicationRunner.acceptInput("add player Pippo");
+
+        applicationRunner.waitForOutput(); // ignore first output
+        String secondOutput = applicationRunner.waitForOutput();
+
+        assertThat(secondOutput).isEqualTo("Pippo: already existing player");
     }
 }

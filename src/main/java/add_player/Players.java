@@ -15,4 +15,8 @@ public class Players {
     public String allNamesSeparatedByComma() {
         return String.join(", ", players);
     }
+
+    public boolean contains(String playerName) {
+        return players.contains(playerName);
+    }
 }

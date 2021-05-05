@@ -11,6 +11,12 @@ public class AddPlayerUseCase {
 
     public void acceptCommand(String commandLine) {
         String playerName = extractPlayerNameFrom(commandLine);
+
+        if (players.contains(playerName)) {
+            outputBoundary.writeOutputLine("" + playerName + ": already existing player");
+            return;
+        }
+
         players.addPlayer(playerName);
         outputBoundary.writeOutputLine("players: " + players.allNamesSeparatedByComma());
     }

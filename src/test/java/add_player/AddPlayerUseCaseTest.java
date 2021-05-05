@@ -1,10 +1,12 @@
 package add_player;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
 import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -27,5 +29,15 @@ class AddPlayerUseCaseTest {
         useCase.acceptCommand("add player Pluto");
 
         verify(outputBoundary).writeOutputLine("players: Pippo, Pluto");
+    }
+
+    @Test
+    void do_not_add_the_same_player_more_times() {
+        useCase.acceptCommand("add player Pippo");
+        useCase.acceptCommand("add player Pippo");
+
+        InOrder inOrder = Mockito.inOrder(outputBoundary);
+        inOrder.verify(outputBoundary).writeOutputLine("players: Pippo");
+        inOrder.verify(outputBoundary).writeOutputLine("Pippo: already existing player");
     }
 }
