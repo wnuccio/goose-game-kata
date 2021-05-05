@@ -14,11 +14,8 @@ public class ApplicationRunner {
         inputOuput.writeInput("exit");
     }
 
-    public void acceptInput(String inputString) {
+    public String acceptInput(String inputString) {
         inputOuput.writeInput(inputString);
-    }
-
-    public String waitForOutput() {
         waitSomeSeconds();
         return inputOuput.readOutput();
     }
