@@ -3,7 +3,6 @@ package move_player;
 import add_player.OutputBoundary;
 import add_player.Players;
 
-import static java.lang.Integer.parseInt;
 import static java.lang.String.valueOf;
 
 public class MovePlayerUseCase {
@@ -16,19 +15,18 @@ public class MovePlayerUseCase {
     }
 
     public void acceptCommand(String commandLine) {
-        String[] tokens = commandLine.split(" ");
+        MoveCommand command = new MoveCommand(commandLine);
 
-        String playerName = tokens[1];
-        int firstDice = parseInt(tokens[2].substring(0, 1));
-        int secondDice = parseInt(tokens[3]);
+        String playerName = command.playerName();
+        int firstDice = command.firstDice();
+        int secondDice = command.secondDice();
+
         int prevPosition = players.positionOf(playerName);
-
         int newPosition = newPosition(firstDice, secondDice, prevPosition);
 
         players.move(playerName, newPosition);
 
         String output = buildOutputFrom(playerName, firstDice, secondDice, prevPosition, newPosition);
-
         outputBoundary.writeOutputLine(output);
     }
 
