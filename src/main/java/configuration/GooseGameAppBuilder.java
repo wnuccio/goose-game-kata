@@ -1,10 +1,8 @@
 package configuration;
 
-import usecase.AddPlayerUseCase;
-import usecase.OutputBoundary;
+import console.ConsolePresenter;
+import usecase.*;
 import player.Players;
-import usecase.UseCaseDispatcher;
-import usecase.MovePlayerUseCase;
 
 import java.util.Scanner;
 
@@ -22,9 +20,10 @@ public class GooseGameAppBuilder {
     public final GooseGameApp buildApplication() {
         InputBoundary inputBoundary = getInputBoundary();
         OutputBoundary outputBoundary = getOutputBoundary();
+        ConsolePresenter presenter = new ConsolePresenter(outputBoundary);
         Players players = new Players();
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, outputBoundary);
-        MovePlayerUseCase movePlayerUseCase = new MovePlayerUseCase(players, outputBoundary);
+        MovePlayerUseCase movePlayerUseCase = new MovePlayerUseCase(players, presenter);
         UseCaseDispatcher useCaseDispatcher = new UseCaseDispatcher(addPlayerUseCase, movePlayerUseCase);
 
         return new GooseGameApp(inputBoundary, useCaseDispatcher);

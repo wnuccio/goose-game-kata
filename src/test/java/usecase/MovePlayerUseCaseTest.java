@@ -10,13 +10,14 @@ class MovePlayerUseCaseTest {
 
     @Test
     void moves_a_player_from_start_to_the_specified_position() {
-        OutputBoundary outputBoundary = mock(OutputBoundary.class);
         Players players = new Players().addPlayer("Pippo");
+        Presenter presenter = mock(Presenter.class);
 
-        MovePlayerUseCase useCase = new MovePlayerUseCase(players, outputBoundary);
+        MovePlayerUseCase useCase = new MovePlayerUseCase(players, presenter);
 
         useCase.acceptCommand("move Pippo 4, 2");
 
-        verify(outputBoundary).writeOutputLine ("Pippo rolls 4, 2. Pippo moves from Start to 6");
+        Movement movement = new Movement("Pippo").givenRoll(4, 2).from(0).to(6);
+        verify(presenter).presentMovement(movement);
     }
 }
