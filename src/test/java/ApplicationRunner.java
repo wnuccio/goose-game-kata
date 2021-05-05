@@ -14,14 +14,6 @@ public class ApplicationRunner {
         inputOuput.writeInput("exit");
     }
 
-    private void waitSomeSeconds() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void acceptInput(String inputString) {
         inputOuput.writeInput(inputString);
     }
@@ -29,5 +21,13 @@ public class ApplicationRunner {
     public String waitForOutput() {
         waitSomeSeconds();
         return inputOuput.readOutput();
+    }
+
+    private void waitSomeSeconds() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

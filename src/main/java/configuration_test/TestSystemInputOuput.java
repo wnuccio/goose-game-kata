@@ -36,6 +36,8 @@ public class TestSystemInputOuput implements InputBoundary, OutputBoundary {
     }
 
     synchronized public String readOutput() {
+        if (outputStrings == null || outputStrings.isEmpty()) return "";
+
         String result = outputStrings.get(0);
         outputStrings.remove(0);
         return result;
