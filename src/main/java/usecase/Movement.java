@@ -66,4 +66,15 @@ public class Movement {
     public int toPosition() {
         return toPosition;
     }
+
+    @Override
+    public String toString() {
+        return "Movement{" +
+                "player='" + player + '\'' +
+                ", firstDice=" + firstDice +
+                ", secondDice=" + secondDice +
+                ", fromPosition=" + fromPosition +
+                ", toPosition=" + toPosition +
+                '}';
+    }
 }

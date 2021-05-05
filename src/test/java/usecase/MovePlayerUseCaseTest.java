@@ -1,23 +1,25 @@
 package usecase;
 
+import org.junit.jupiter.api.BeforeEach;
 import player.Players;
 import org.junit.jupiter.api.Test;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
+import static usecase.Movement.of;
 
 class MovePlayerUseCaseTest {
 
+    private Players players = mock(Players.class);
+    private Presenter presenter = mock(Presenter.class);
+    private MovePlayerUseCase useCase = new MovePlayerUseCase(players, presenter);
+
     @Test
     void moves_a_player_from_start_to_the_specified_position() {
-        Players players = new Players().addPlayer("Pippo");
-        Presenter presenter = mock(Presenter.class);
-
-        MovePlayerUseCase useCase = new MovePlayerUseCase(players, presenter);
+        when(players.positionOf("Pippo")).thenReturn(0);
+        when(players.moveOnRoll("Pippo", 4, 2)).thenReturn(6);
 
         useCase.acceptCommand("move Pippo 4, 2");
 
-        Movement movement = new Movement("Pippo").givenRoll(4, 2).from(0).to(6);
-        verify(presenter).presentMovement(movement);
+        verify(presenter).presentMovement(of("Pippo").givenRoll(4, 2).from(0).to(6));
     }
 }
