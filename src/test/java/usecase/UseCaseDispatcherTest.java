@@ -1,8 +1,9 @@
-package dispatcher;
+package usecase;
 
-import add_player.AddPlayerUseCase;
-import move_player.MovePlayerUseCase;
+import usecase.AddPlayerUseCase;
+import usecase.MovePlayerUseCase;
 import org.junit.jupiter.api.Test;
+import usecase.UseCaseDispatcher;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

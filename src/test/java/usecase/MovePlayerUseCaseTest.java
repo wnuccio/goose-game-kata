@@ -1,7 +1,6 @@
-package move_player;
+package usecase;
 
-import add_player.OutputBoundary;
-import add_player.Players;
+import player.Players;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.mock;

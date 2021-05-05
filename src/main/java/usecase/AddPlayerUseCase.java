@@ -1,4 +1,6 @@
-package add_player;
+package usecase;
+
+import player.Players;
 
 public class AddPlayerUseCase {
     private Players players;

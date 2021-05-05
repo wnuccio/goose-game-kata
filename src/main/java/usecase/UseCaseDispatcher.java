@@ -1,7 +1,4 @@
-package dispatcher;
-
-import add_player.AddPlayerUseCase;
-import move_player.MovePlayerUseCase;
+package usecase;
 
 public class UseCaseDispatcher {
     private AddPlayerUseCase addPlayerUseCase;

@@ -1,4 +1,4 @@
-package add_player;
+package usecase;
 
 public interface OutputBoundary {
     void writeOutputLine(String string);

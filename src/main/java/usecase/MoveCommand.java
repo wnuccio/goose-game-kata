@@ -1,4 +1,4 @@
-package move_player;
+package usecase;
 
 import static java.lang.Integer.parseInt;
 

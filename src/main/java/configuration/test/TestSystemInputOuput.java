@@ -1,6 +1,6 @@
-package configuration_test;
+package configuration.test;
 
-import add_player.OutputBoundary;
+import usecase.OutputBoundary;
 import configuration.InputBoundary;
 
 import java.util.ArrayList;

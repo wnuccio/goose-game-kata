@@ -1,7 +1,6 @@
 package configuration;
 
-import add_player.AddPlayerUseCase;
-import dispatcher.UseCaseDispatcher;
+import usecase.UseCaseDispatcher;
 
 public class GooseGameApp {
 

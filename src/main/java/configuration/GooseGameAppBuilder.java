@@ -1,10 +1,10 @@
 package configuration;
 
-import add_player.AddPlayerUseCase;
-import add_player.OutputBoundary;
-import add_player.Players;
-import dispatcher.UseCaseDispatcher;
-import move_player.MovePlayerUseCase;
+import usecase.AddPlayerUseCase;
+import usecase.OutputBoundary;
+import player.Players;
+import usecase.UseCaseDispatcher;
+import usecase.MovePlayerUseCase;
 
 import java.util.Scanner;
 
