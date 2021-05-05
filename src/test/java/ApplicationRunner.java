@@ -11,13 +11,13 @@ public class ApplicationRunner {
     }
 
     public void stopApplication() {
-        inputOuput.writeInput("exit");
+        inputOuput.writeInputByTest("exit");
     }
 
     public String acceptInput(String inputString) {
-        inputOuput.writeInput(inputString);
+        inputOuput.writeInputByTest(inputString);
         waitSomeSeconds();
-        return inputOuput.readOutput();
+        return inputOuput.readOutputByTest();
     }
 
     private void waitSomeSeconds() {

@@ -31,11 +31,11 @@ public class TestSystemInputOuput implements InputBoundary, OutputBoundary {
         outputStrings.add(string);
     }
 
-    synchronized public void writeInput(String inputString) {
+    synchronized public void writeInputByTest(String inputString) {
         this.inputString = inputString;
     }
 
-    synchronized public String readOutput() {
+    synchronized public String readOutputByTest() {
         if (outputStrings == null || outputStrings.isEmpty()) return "";
 
         String result = outputStrings.get(0);
