@@ -26,6 +26,25 @@ class PlayersTest {
                 .addPlayer("Pluto")
                 .addPlayer("Paperino");
 
-        assertThat(players.allNamesSeparatedByComma()).isEqualTo("Pippo, Pluto, Paperino");
+        String playerList = players.allNamesSeparatedByComma();
+        assertThat(playerList.contains("Pippo"));
+        assertThat(playerList.contains("Pluto"));
+        assertThat(playerList.contains("Paperino"));
+    }
+
+    @Test
+    void position_of_a_new_player_is_zero() {
+        Players players = new Players().addPlayer("Pippo");
+
+        assertThat(players.positionOf("Pippo")).isEqualTo(0);
+    }
+
+    @Test
+    void change_position_of_a_player() {
+        Players players = new Players().addPlayer("Pippo");
+
+        players.move("Pippo", 6);
+
+        assertThat(players.positionOf("Pippo")).isEqualTo(6);
     }
 }

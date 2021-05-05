@@ -1,30 +1,29 @@
 package add_player;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Players {
-    private List<String> players = new ArrayList<>();
+    private Map<String, Integer> players = new HashMap<>();
 
     public Players addPlayer(String playerName) {
-        players.add(playerName);
+        players.put(playerName, 0);
         return this;
     }
 
     public String allNamesSeparatedByComma() {
-        return String.join(", ", players);
+        return String.join(", ", players.keySet());
     }
 
     public boolean contains(String playerName) {
-        return players.contains(playerName);
+        return players.containsKey(playerName);
     }
 
     public int positionOf(String playerName) {
-        throw new UnsupportedOperationException();
+        return players.get(playerName);
     }
 
     public void move(String playerName, int position) {
-        throw new UnsupportedOperationException();
+        players.put(playerName, position);
     }
 }
