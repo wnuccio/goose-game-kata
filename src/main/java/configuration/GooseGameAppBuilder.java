@@ -4,6 +4,7 @@ import add_player.AddPlayerUseCase;
 import add_player.OutputBoundary;
 import add_player.Players;
 import dispatcher.UseCaseDispatcher;
+import move_player.MovePlayerUseCase;
 
 import java.util.Scanner;
 
@@ -23,7 +24,8 @@ public class GooseGameAppBuilder {
         OutputBoundary outputBoundary = getOutputBoundary();
         Players players = new Players();
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, outputBoundary);
-        UseCaseDispatcher useCaseDispatcher = new UseCaseDispatcher(addPlayerUseCase);
+        MovePlayerUseCase movePlayerUseCase = new MovePlayerUseCase();
+        UseCaseDispatcher useCaseDispatcher = new UseCaseDispatcher(addPlayerUseCase, movePlayerUseCase);
 
         return new GooseGameApp(inputBoundary, useCaseDispatcher);
     }

@@ -13,7 +13,14 @@ public class Main {
                 new GooseGameAppBuilder();
 
         GooseGameApp app = appBuilder.buildApplication();
-        app.run();
+
+        try {
+            app.run();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            app.run();
+        }
     }
 
     private static boolean isApplicationToTest(String[] args) {
