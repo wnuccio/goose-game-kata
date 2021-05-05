@@ -7,11 +7,12 @@ import java.util.List;
 public class Players {
     private List<String> players = new ArrayList<>();
 
-    public void addPlayer(String playerName) {
+    public Players addPlayer(String playerName) {
         players.add(playerName);
+        return this;
     }
 
-    public List<String> all() {
-        return Collections.unmodifiableList(players);
+    public String allNamesSeparatedByComma() {
+        return String.join(", ", players);
     }
 }

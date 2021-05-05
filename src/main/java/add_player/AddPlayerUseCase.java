@@ -1,7 +1,5 @@
 package add_player;
 
-import java.util.List;
-
 public class AddPlayerUseCase {
     private Players players;
     private OutputBoundary outputBoundary;
@@ -14,12 +12,7 @@ public class AddPlayerUseCase {
     public void acceptCommand(String commandLine) {
         String playerName = extractPlayerNameFrom(commandLine);
         players.addPlayer(playerName);
-        outputBoundary.writeOutputLine("players: " + allPlayerNames());
-    }
-
-    private String allPlayerNames() {
-        List<String> allPlayers = players.all();
-        return String.join(", ", allPlayers);
+        outputBoundary.writeOutputLine("players: " + players.allNamesSeparatedByComma());
     }
 
     private String extractPlayerNameFrom(String line) {
