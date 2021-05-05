@@ -19,4 +19,14 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
         String output3 = gooseGame.acceptInput("move Pippo 2, 3");
         assertThat(output3).isEqualTo("Pippo rolls 2, 3. Pippo moves from 6 to 11");
     }
+
+    @Test
+    void a_player_wins_when_lands_on_position_63() {
+        addPlayer("Pippo");
+
+        for (int i=0; i<6; i++) gooseGame.acceptInput("move Pippo 5, 5");
+
+        String output = gooseGame.acceptInput("move Pippo 1, 2");
+        assertThat(output).isEqualTo("Pippo rolls 1, 2. Pippo moves from 60 to 63. Pippo Wins!!");
+    }
 }
