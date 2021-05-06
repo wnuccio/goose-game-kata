@@ -50,4 +50,17 @@ class PlayersTest {
 
         assertThat(newPosition).isEqualTo(14);
     }
+
+    @Test
+    void remove_all_players_on_clear() {
+        Players players = new Players().addPlayer("Pippo").addPlayer("Pluto");
+
+        assertThat(players.contains("Pippo")).isEqualTo(true);
+        assertThat(players.contains("Pluto")).isEqualTo(true);
+
+        players.clear();
+
+        assertThat(players.contains("Pippo")).isEqualTo(false);
+        assertThat(players.contains("Pluto")).isEqualTo(false);
+    }
 }

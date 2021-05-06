@@ -31,6 +31,6 @@ public class Players {
     }
 
     public void clear() {
-        throw new UnsupportedOperationException();
+        players.clear();
     }
 }
