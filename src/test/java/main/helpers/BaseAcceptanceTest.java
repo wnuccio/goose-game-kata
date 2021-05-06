@@ -1,4 +1,4 @@
-package main;
+package main.helpers;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;

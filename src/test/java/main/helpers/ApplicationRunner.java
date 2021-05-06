@@ -1,5 +1,6 @@
-package main;
+package main.helpers;
 
+import main.Main;
 import main.test.TestSystemInputOuput;
 
 public class ApplicationRunner {
