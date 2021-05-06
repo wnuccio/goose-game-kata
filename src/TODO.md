@@ -1,7 +1,3 @@
-- correggere l'esecuzione degli AT:
-    c'è un effetto memoria dovuto al fatto
-  che l'Applicazione ricorda la posizione di "Pippo" dal test precedente
-  
 - semplificare e generalizzare lo UseCaseDispatcher 
 
 - aggiungere il Presenter anche allo use case di AddPlayer
