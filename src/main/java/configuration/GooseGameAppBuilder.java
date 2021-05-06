@@ -1,8 +1,8 @@
 package configuration;
 
 import console.ConsolePresenter;
-import usecase.*;
 import player.Players;
+import usecase.*;
 
 import java.util.Scanner;
 
@@ -24,7 +24,8 @@ public class GooseGameAppBuilder {
         Players players = new Players();
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, outputBoundary);
         MovePlayerUseCase movePlayerUseCase = new MovePlayerUseCase(players, presenter);
-        UseCaseDispatcher useCaseDispatcher = new UseCaseDispatcher(addPlayerUseCase, movePlayerUseCase, null);
+        ResetGameUseCase resetGameUseCase = new ResetGameUseCase(players);
+        UseCaseDispatcher useCaseDispatcher = new UseCaseDispatcher(addPlayerUseCase, movePlayerUseCase, resetGameUseCase);
 
         return new GooseGameApp(inputBoundary, useCaseDispatcher);
     }

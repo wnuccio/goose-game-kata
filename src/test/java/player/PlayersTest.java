@@ -2,7 +2,10 @@ package player;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PlayersTest {
 
@@ -36,6 +39,15 @@ class PlayersTest {
         Players players = new Players().addPlayer("Pippo");
 
         assertThat(players.positionOf("Pippo")).isEqualTo(0);
+    }
+
+    @Test
+    void raises_an_exception_when_asked_for_a_position_of_an_absent_players() {
+        assertThrows(NoSuchElementException.class, () -> {
+            Players emptyPlayerCollection = new Players();
+
+            emptyPlayerCollection.positionOf("anyPlayer");
+        });
     }
 
     @Test

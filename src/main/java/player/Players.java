@@ -2,6 +2,7 @@ package player;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class Players {
     private Map<String, Integer> players = new HashMap<>();
@@ -20,6 +21,8 @@ public class Players {
     }
 
     public int positionOf(String playerName) {
+        if (! contains(playerName)) throw new NoSuchElementException("No such player: " + playerName);
+
         return players.get(playerName);
     }
 
