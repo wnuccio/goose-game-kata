@@ -13,20 +13,16 @@ public class AddPlayerUseCase implements UseCase {
 
     @Override
     public void acceptCommand(String commandLine) {
-        String playerName = extractPlayerNameFrom(commandLine);
-
-        if (players.contains(playerName)) {
-            presenter.presentExistingPlayerError(playerName);
+        AddPlayerCommand command = new AddPlayerCommand(commandLine);
+        String player = command.playerName();
+        
+        if (players.contains(player)) {
+            presenter.presentExistingPlayerError(player);
             return;
         }
 
-        players.addPlayer(playerName);
+        players.addPlayer(player);
         presenter.presentPlayers(players.all());
-    }
-
-    private String extractPlayerNameFrom(String line) {
-        String[] tokens = line.split(" ");
-        return tokens[2];
     }
 }
 
