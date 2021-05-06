@@ -3,10 +3,12 @@ package usecase;
 public class UseCaseDispatcher {
     private AddPlayerUseCase addPlayerUseCase;
     private MovePlayerUseCase movePlayerUseCase;
+    private ResetGameUseCase resetGameUseCase;
 
-    public UseCaseDispatcher(AddPlayerUseCase addPlayerUseCase, MovePlayerUseCase movePlayerUseCase) {
+    public UseCaseDispatcher(AddPlayerUseCase addPlayerUseCase, MovePlayerUseCase movePlayerUseCase, ResetGameUseCase resetGameUseCase) {
         this.addPlayerUseCase = addPlayerUseCase;
         this.movePlayerUseCase = movePlayerUseCase;
+        this.resetGameUseCase = resetGameUseCase;
     }
 
     public void acceptCommand(String commandLine) {
@@ -14,6 +16,8 @@ public class UseCaseDispatcher {
             addPlayerUseCase.acceptCommand(commandLine);
         else if ("move".equals(operation((commandLine))))
             movePlayerUseCase.acceptCommand(commandLine);
+        else if ("reset".equals(operation((commandLine))))
+            resetGameUseCase.acceptCommand(commandLine);
         else
             throw new IllegalArgumentException("Error in command line: " + commandLine);
     }

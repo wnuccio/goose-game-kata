@@ -24,7 +24,7 @@ public class GooseGameAppBuilder {
         Players players = new Players();
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, outputBoundary);
         MovePlayerUseCase movePlayerUseCase = new MovePlayerUseCase(players, presenter);
-        UseCaseDispatcher useCaseDispatcher = new UseCaseDispatcher(addPlayerUseCase, movePlayerUseCase);
+        UseCaseDispatcher useCaseDispatcher = new UseCaseDispatcher(addPlayerUseCase, movePlayerUseCase, null);
 
         return new GooseGameApp(inputBoundary, useCaseDispatcher);
     }

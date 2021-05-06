@@ -2,6 +2,8 @@
     c'è un effetto memoria dovuto al fatto
   che l'Applicazione ricorda la posizione di "Pippo" dal test precedente
   
+- semplificare e generalizzare lo UseCaseDispatcher 
+
 - aggiungere il Presenter anche allo use case di AddPlayer
 
 - spostare la logica che verifica la vittoria (magic number 63)
