@@ -14,20 +14,20 @@ public class MovePlayerUseCase implements UseCase {
     public void acceptCommand(String commandLine) {
         MoveCommand command = new MoveCommand(commandLine);
 
-        String playerName = command.playerName();
+        String player = command.playerName();
 
-        if ( ! players.contains(playerName)) {
-            presenter.presentNoSuchPlayerError(playerName);
+        if ( ! players.contains(player)) {
+            presenter.presentNoSuchPlayerError(player);
             return;
         }
 
         int firstDice = command.firstDice();
         int secondDice = command.secondDice();
 
-        int prevPosition = players.positionOf(playerName);
-        int newPosition = players.moveOnRoll(playerName, firstDice, secondDice);
+        int prevPosition = players.positionOf(player);
+        int newPosition = players.moveOnRoll(player, firstDice, secondDice);
 
-        Movement movement = Movement.of(playerName)
+        Movement movement = Movement.of(player)
                 .givenRoll(firstDice, secondDice)
                 .from(prevPosition).to(newPosition);
 
