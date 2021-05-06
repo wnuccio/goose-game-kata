@@ -9,7 +9,7 @@ public class ResetGameAcceptanceTest extends BaseAcceptanceTest {
 
     @Test
     void after_the_previous_test_a_player_is_newly_on_start() {
-        resetGame();
+        gooseGame.resetGame();
 
         String output = gooseGame.acceptInput("move Pippo 2, 2");
 
