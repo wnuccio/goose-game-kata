@@ -13,7 +13,7 @@ public abstract class BaseAcceptanceTest {
 
     @AfterAll
     static void stopApplication() {
-        gooseGame.stopApplication();
+        gooseGame.acceptInput("exit");
     }
 
     @BeforeEach

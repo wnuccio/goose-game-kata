@@ -10,10 +10,6 @@ public class ApplicationRunner {
         thread.start();
     }
 
-    public void stopApplication() {
-        inputOuput.writeInputByTest("exit");
-    }
-
     public String acceptInput(String inputString) {
         inputOuput.writeInputByTest(inputString);
         waitSomeSeconds();
