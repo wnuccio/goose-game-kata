@@ -15,17 +15,7 @@ public class ConsolePresenter implements Presenter {
 
     @Override
     public void presentMovement(Movement movement) {
-        String output = buildOutputFrom(
-                movement.player(),
-                movement.firstDice(),
-                movement.secondDice(),
-                movement.fromPosition(),
-                movement.toPosition());
-
-        if (movement.isVictory())
-            output += ". " + movement.player() + " Wins!!";
-
-        outputBoundary.writeOutputLine(output);
+        outputBoundary.writeOutputLine(buildStringFrom(movement));
     }
 
     @Override
@@ -44,10 +34,23 @@ public class ConsolePresenter implements Presenter {
         outputBoundary.writeOutputLine(player + ": already existing player");
     }
 
-    private String buildOutputFrom(String playerName, int firstDice, int secondDice, int prevPosition, int newPosition) {
-        String prevPositionString = prevPosition == 0 ? "Start" : valueOf(prevPosition);
-        String playerRolls = String.format("%s rolls %s, %s", playerName, firstDice, secondDice);
-        String playerMoves = String.format("%s moves from %s to %s", playerName, prevPositionString, newPosition);
-        return playerRolls + ". " + playerMoves;
+    private String buildStringFrom(Movement movement) {
+        String playerRolls = String.format("%s rolls %s, %s" + ". ",
+                movement.player(),
+                movement.firstDice(),
+                movement.secondDice());
+
+        String playerMoves = String.format("%s moves from %s to %s",
+                movement.player(),
+                positionString(movement.fromPosition()),
+                movement.toPosition());
+
+        String playerVictory = movement.isVictory() ? ". " + movement.player() + " Wins!!" : "";
+
+        return playerRolls + playerMoves + playerVictory;
+    }
+
+    private String positionString(int position) {
+        return position == 0 ? "Start" : valueOf(position);
     }
 }
