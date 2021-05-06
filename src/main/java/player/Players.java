@@ -3,6 +3,7 @@ package player;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 public class Players {
     private Map<String, Integer> players = new HashMap<>();
@@ -10,10 +11,6 @@ public class Players {
     public Players addPlayer(String playerName) {
         players.put(playerName, 0);
         return this;
-    }
-
-    public String allNamesSeparatedByComma() {
-        return String.join(", ", players.keySet());
     }
 
     public boolean contains(String playerName) {
@@ -35,5 +32,11 @@ public class Players {
 
     public void clear() {
         players.clear();
+    }
+
+    public String[] all() {
+        Set<String> nameSet = players.keySet();
+        String[] stringArray = new String[nameSet.size()];
+        return nameSet.toArray(stringArray);
     }
 }

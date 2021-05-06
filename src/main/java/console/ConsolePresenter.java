@@ -33,6 +33,17 @@ public class ConsolePresenter implements Presenter {
         outputBoundary.writeOutputLine(player + ": no such player");
     }
 
+    @Override
+    public void presentPlayers(String... players) {
+        String playersSeparatedByComma = String.join(", ", players);
+        outputBoundary.writeOutputLine("players: " + playersSeparatedByComma);
+    }
+
+    @Override
+    public void presentExistingPlayerError(String player) {
+        outputBoundary.writeOutputLine(player + ": already existing player");
+    }
+
     private String buildOutputFrom(String playerName, int firstDice, int secondDice, int prevPosition, int newPosition) {
         String prevPositionString = prevPosition == 0 ? "Start" : valueOf(prevPosition);
         String playerRolls = String.format("%s rolls %s, %s", playerName, firstDice, secondDice);

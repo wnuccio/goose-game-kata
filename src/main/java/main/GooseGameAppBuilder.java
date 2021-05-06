@@ -24,13 +24,13 @@ public class GooseGameAppBuilder {
         ConsolePresenter presenter = new ConsolePresenter(outputBoundary);
         Players players = new Players();
 
-        UseCaseDispatcher useCaseDispatcher = useCaseDispatcher(outputBoundary, presenter, players);
+        UseCaseDispatcher useCaseDispatcher = useCaseDispatcher(presenter, players);
 
         return new GooseGameApp(inputBoundary, useCaseDispatcher);
     }
 
-    private UseCaseDispatcher useCaseDispatcher(OutputBoundary outputBoundary, ConsolePresenter presenter, Players players) {
-        AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, outputBoundary);
+    private UseCaseDispatcher useCaseDispatcher(ConsolePresenter presenter, Players players) {
+        AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
         MovePlayerUseCase movePlayerUseCase = new MovePlayerUseCase(players, presenter);
         ResetGameUseCase resetGameUseCase = new ResetGameUseCase(players);
 

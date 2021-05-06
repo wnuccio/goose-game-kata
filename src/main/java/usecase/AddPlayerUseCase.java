@@ -4,11 +4,11 @@ import player.Players;
 
 public class AddPlayerUseCase implements UseCase {
     private Players players;
-    private OutputBoundary outputBoundary;
+    private Presenter presenter;
 
-    public AddPlayerUseCase(Players players, OutputBoundary outputBoundary) {
+    public AddPlayerUseCase(Players players, Presenter presenter) {
         this.players = players;
-        this.outputBoundary = outputBoundary;
+        this.presenter = presenter;
     }
 
     @Override
@@ -16,12 +16,12 @@ public class AddPlayerUseCase implements UseCase {
         String playerName = extractPlayerNameFrom(commandLine);
 
         if (players.contains(playerName)) {
-            outputBoundary.writeOutputLine("" + playerName + ": already existing player");
+            presenter.presentExistingPlayerError(playerName);
             return;
         }
 
         players.addPlayer(playerName);
-        outputBoundary.writeOutputLine("players: " + players.allNamesSeparatedByComma());
+        presenter.presentPlayers(players.all());
     }
 
     private String extractPlayerNameFrom(String line) {
