@@ -80,8 +80,8 @@ public class Movement {
                 '}';
     }
 
-    public Movement beVictory() {
-        this.victory = true;
+    public Movement setVictory(boolean isVictory) {
+        this.victory = isVictory;
         return this;
     }
 

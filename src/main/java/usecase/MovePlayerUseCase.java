@@ -13,7 +13,6 @@ public class MovePlayerUseCase implements UseCase {
 
     public void acceptCommand(String commandLine) {
         MoveCommand command = new MoveCommand(commandLine);
-
         String player = command.playerName();
 
         if ( ! players.contains(player)) {
@@ -21,22 +20,20 @@ public class MovePlayerUseCase implements UseCase {
             return;
         }
 
-        int firstDice = command.firstDice();
-        int secondDice = command.secondDice();
+        Movement movement = computeMovement(player, command.firstDice(), command.secondDice());
 
+        players.setPositionOf(player, movement.toPosition());
+        presenter.presentMovement(movement);
+    }
+
+    private Movement computeMovement(String player, int firstDice, int secondDice) {
         int prevPosition = players.positionOf(player);
         int newPosition = newPositionAfterRoll(player, firstDice, secondDice);
 
-        players.setPositionOf(player, newPosition);
-
-        Movement movement = Movement.of(player)
+        return Movement.of(player)
                 .givenRoll(firstDice, secondDice)
-                .from(prevPosition).to(newPosition);
-
-        if (playerHasReachedWinningPosition(newPosition))
-            movement.beVictory();
-
-        presenter.presentMovement(movement);
+                .from(prevPosition).to(newPosition)
+                .setVictory(isWinningPosition(newPosition));
     }
 
     private int newPositionAfterRoll(String player, int firstDice, int secondDice) {
@@ -44,7 +41,7 @@ public class MovePlayerUseCase implements UseCase {
         return players.positionOf(player) + totalRoll;
     }
 
-    private boolean playerHasReachedWinningPosition(int newPosition) {
+    private boolean isWinningPosition(int newPosition) {
         return newPosition == 63;
     }
 }

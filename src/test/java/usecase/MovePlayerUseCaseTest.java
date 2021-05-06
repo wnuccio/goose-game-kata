@@ -31,7 +31,7 @@ class MovePlayerUseCaseTest {
         useCase.acceptCommand("move Pippo 1, 2");
 
         verify(players).setPositionOf("Pippo", 63);
-        verify(presenter).presentMovement(of("Pippo").givenRoll(1, 2).from(60).to(63).beVictory());
+        verify(presenter).presentMovement(of("Pippo").givenRoll(1, 2).from(60).to(63).setVictory(true));
     }
 
     @Test
