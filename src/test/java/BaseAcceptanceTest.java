@@ -18,4 +18,6 @@ public abstract class BaseAcceptanceTest {
     protected String addPlayer(String playerName) {
         return gooseGame.acceptInput("add player " + playerName);
     }
+
+    protected void resetGame() { gooseGame.acceptInput("reset game"); }
 }
