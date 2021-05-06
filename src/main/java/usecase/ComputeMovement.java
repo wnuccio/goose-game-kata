@@ -2,8 +2,9 @@ package usecase;
 
 import player.Players;
 
+import static usecase.Movement.WIN_POSITION;
+
 public class ComputeMovement {
-    private static final int WIN_POSITION = 63;
     private Players players;
 
     public ComputeMovement(Players players) {
