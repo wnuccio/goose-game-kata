@@ -1,11 +1,11 @@
-import configuration.GooseGameApp;
-import configuration.GooseGameAppBuilder;
-import configuration.test.GooseGameAppBuilderForTest;
+package main;
+
+import main.test.GooseGameAppBuilderForTest;
 
 import java.util.Arrays;
 
 public class Main {
-    public static final String[] ARGS_FOR_TEST = {"configuration/test"};
+    public static final String[] ARGS_FOR_TEST = {"main/test"};
 
     public static void main(String[] args) {
         GooseGameAppBuilder appBuilder = isApplicationToTest(args) ?

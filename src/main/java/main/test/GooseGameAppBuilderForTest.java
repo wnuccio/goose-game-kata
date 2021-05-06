@@ -1,8 +1,8 @@
-package configuration.test;
+package main.test;
 
+import main.GooseGameAppBuilder;
+import main.InputBoundary;
 import usecase.OutputBoundary;
-import configuration.GooseGameAppBuilder;
-import configuration.InputBoundary;
 
 public class GooseGameAppBuilderForTest extends GooseGameAppBuilder {
 

@@ -1,4 +1,6 @@
-import configuration.test.TestSystemInputOuput;
+package main;
+
+import main.test.TestSystemInputOuput;
 
 public class ApplicationRunner {
     private TestSystemInputOuput inputOuput = TestSystemInputOuput.instance();

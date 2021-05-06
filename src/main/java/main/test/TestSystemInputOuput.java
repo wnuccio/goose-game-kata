@@ -1,7 +1,7 @@
-package configuration.test;
+package main.test;
 
+import main.InputBoundary;
 import usecase.OutputBoundary;
-import configuration.InputBoundary;
 
 import java.util.ArrayList;
 import java.util.List;

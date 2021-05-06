@@ -1,4 +1,4 @@
-package configuration;
+package main;
 
 import console.ConsolePresenter;
 import player.Players;
