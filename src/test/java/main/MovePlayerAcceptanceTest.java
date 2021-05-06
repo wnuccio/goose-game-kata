@@ -25,10 +25,22 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
     @Test
     void a_player_wins_when_lands_on_position_63() {
         addPlayer("Pippo");
-
-        for (int i=0; i<6; i++) game.movePlayer("Pippo", 5, 5);
+        moveOnPosition60("Pippo");
 
         String output = game.movePlayer("Pippo", 1, 2);
         assertThat(output).isEqualTo("Pippo rolls 1, 2. Pippo moves from 60 to 63. Pippo Wins!!");
+    }
+
+    @Test
+    void a_player_bounces_when_does_not_lands_exactly_on_the_last_position() {
+        addPlayer("Pippo");
+        moveOnPosition60("Pippo");
+
+        String output = game.movePlayer("Pippo", 3, 2);
+        assertThat(output).isEqualTo("Pippo rolls 3, 2. Pippo moves from 60 to 63. Pippo bounces! Pippo returns to 61");
+    }
+
+    private void moveOnPosition60(String pippo) {
+        for (int i = 0; i < 6; i++) game.movePlayer(pippo, 5, 5);
     }
 }
