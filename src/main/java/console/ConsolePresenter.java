@@ -30,7 +30,7 @@ public class ConsolePresenter implements Presenter {
 
     @Override
     public void presentNoSuchPlayerError(String player) {
-
+        outputBoundary.writeOutputLine(player + ": no such player");
     }
 
     private String buildOutputFrom(String playerName, int firstDice, int secondDice, int prevPosition, int newPosition) {
