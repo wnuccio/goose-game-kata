@@ -25,7 +25,9 @@ public class MovePlayerUseCase implements UseCase {
         int secondDice = command.secondDice();
 
         int prevPosition = players.positionOf(player);
-        int newPosition = players.moveOnRoll(player, firstDice, secondDice);
+        int newPosition = newPositionAfterRoll(player, firstDice, secondDice);
+
+        players.setPositionOf(player, newPosition);
 
         Movement movement = Movement.of(player)
                 .givenRoll(firstDice, secondDice)
@@ -35,6 +37,11 @@ public class MovePlayerUseCase implements UseCase {
             movement.beVictory();
 
         presenter.presentMovement(movement);
+    }
+
+    private int newPositionAfterRoll(String player, int firstDice, int secondDice) {
+        int totalRoll = firstDice + secondDice;
+        return players.positionOf(player) + totalRoll;
     }
 
     private boolean playerHasReachedWinningPosition(int newPosition) {

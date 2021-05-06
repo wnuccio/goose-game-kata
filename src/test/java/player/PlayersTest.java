@@ -26,19 +26,6 @@ class PlayersTest {
     }
 
     @Test
-    void change_position_of_a_player_given_two_dice() {
-        Players players = new Players().addPlayer("Pippo");
-
-        int newPosition = players.moveOnRoll("Pippo", 6, 4);
-
-        assertThat(newPosition).isEqualTo(10);
-
-        newPosition = players.moveOnRoll("Pippo", 3, 1);
-
-        assertThat(newPosition).isEqualTo(14);
-    }
-
-    @Test
     void change_position_of_a_player() {
         Players players = new Players().addPlayer("Pippo");
 
