@@ -29,4 +29,8 @@ public class Players {
         players.put(playerName, newPosition);
         return newPosition;
     }
+
+    public void clear() {
+        throw new UnsupportedOperationException();
+    }
 }
