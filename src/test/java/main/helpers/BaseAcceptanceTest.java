@@ -5,26 +5,26 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 public abstract class BaseAcceptanceTest {
-    protected static ApplicationDriver gooseGame;
+    protected static ApplicationDriver game;
 
     @BeforeAll
     static void runApplication() {
-        gooseGame = new ApplicationDriver(new ApplicationRunner());
-        gooseGame.runApplication();
+        game = new ApplicationDriver(new ApplicationRunner());
+        game.runApplication();
     }
 
     @AfterAll
     static void stopApplication() {
-        gooseGame.stopApplication();
+        game.stopApplication();
     }
 
     @BeforeEach
     void setUp() {
-        gooseGame.resetGame();
+        game.resetGame();
     }
 
     protected String addPlayer(String playerName) {
-        return gooseGame.addPlayer(playerName);
+        return game.addPlayer(playerName);
     }
 
 }

@@ -9,9 +9,9 @@ public class ResetGameAcceptanceTest extends BaseAcceptanceTest {
 
     @Test
     void after_the_previous_test_a_player_is_newly_on_start() {
-        gooseGame.resetGame();
+        game.resetGame();
 
-        String output = gooseGame.movePlayer("Pippo", 2, 1);
+        String output = game.movePlayer("Pippo", 2, 1);
 
         assertThat(output).isEqualTo("Pippo: no such player");
     }
