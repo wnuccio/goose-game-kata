@@ -5,6 +5,7 @@ import usecase.MovePlayerUseCase;
 import org.junit.jupiter.api.Test;
 import usecase.UseCaseDispatcher;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -27,5 +28,9 @@ class UseCaseDispatcherTest {
         verify(movePlayerUseCase).acceptCommand("move Pippo 4, 2");
     }
 
-
+    @Test
+    void raise_an_exception_when_command_is_not_recognized() {
+        assertThrows(Exception.class,
+                () -> dispatcher.acceptCommand("unknown command"));
+    }
 }

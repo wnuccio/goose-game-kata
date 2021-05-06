@@ -12,8 +12,10 @@ public class UseCaseDispatcher {
     public void acceptCommand(String commandLine) {
         if ("add".equals(operation(commandLine)))
             addPlayerUseCase.acceptCommand(commandLine);
-        else
+        else if ("move".equals(operation((commandLine))))
             movePlayerUseCase.acceptCommand(commandLine);
+        else
+            throw new IllegalArgumentException("Error in command line: " + commandLine);
     }
 
     private String operation(String commandLine) {
