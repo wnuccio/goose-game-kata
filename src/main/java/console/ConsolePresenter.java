@@ -28,6 +28,11 @@ public class ConsolePresenter implements Presenter {
         outputBoundary.writeOutputLine(output);
     }
 
+    @Override
+    public void presentNoSuchPlayerError(String player) {
+
+    }
+
     private String buildOutputFrom(String playerName, int firstDice, int secondDice, int prevPosition, int newPosition) {
         String prevPositionString = prevPosition == 0 ? "Start" : valueOf(prevPosition);
         String playerRolls = String.format("%s rolls %s, %s", playerName, firstDice, secondDice);

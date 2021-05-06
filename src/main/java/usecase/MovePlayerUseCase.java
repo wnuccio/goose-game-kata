@@ -2,8 +2,6 @@ package usecase;
 
 import player.Players;
 
-import static java.lang.String.valueOf;
-
 public class MovePlayerUseCase {
     private Players players;
     private Presenter presenter;
@@ -17,6 +15,12 @@ public class MovePlayerUseCase {
         MoveCommand command = new MoveCommand(commandLine);
 
         String playerName = command.playerName();
+
+        if ( ! players.contains(playerName)) {
+            presenter.presentNoSuchPlayerError(playerName);
+            return;
+        }
+
         int firstDice = command.firstDice();
         int secondDice = command.secondDice();
 
