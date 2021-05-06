@@ -3,6 +3,7 @@ package usecase;
 import player.Players;
 
 public class ComputeMovement {
+    private static final int WIN_POSITION = 63;
     private Players players;
 
     public ComputeMovement(Players players) {
@@ -13,10 +14,17 @@ public class ComputeMovement {
         int prevPosition = players.positionOf(player);
         int newPosition = newPositionAfterRoll(player, firstDice, secondDice);
 
-        return Movement.of(player)
+        Movement movement = Movement
+                .of(player)
                 .givenRoll(firstDice, secondDice)
-                .from(prevPosition).to(newPosition)
-                .setVictory(isWinningPosition(newPosition));
+                .from(prevPosition)
+                .to(newPosition);
+
+        recomputeNewPositionConsideringBouncing(movement);
+
+        movement.setVictory(isWinningPosition(newPosition));
+
+        return movement;
     }
 
     private int newPositionAfterRoll(String player, int firstDice, int secondDice) {
@@ -24,7 +32,18 @@ public class ComputeMovement {
         return players.positionOf(player) + totalRoll;
     }
 
+    private void recomputeNewPositionConsideringBouncing(Movement movement) {
+        if (movement.toPosition() <= WIN_POSITION) return;
+
+        int surplus = movement.toPosition() - WIN_POSITION;
+        int rightPosition = WIN_POSITION - surplus;
+
+        movement
+                .to(rightPosition)
+                .setBouncing(true);
+    }
+
     private boolean isWinningPosition(int newPosition) {
-        return newPosition == 63;
+        return newPosition == WIN_POSITION;
     }
 }

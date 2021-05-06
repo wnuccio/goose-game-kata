@@ -27,4 +27,13 @@ public class ComputeMovementTest {
 
         assertThat(movement).isEqualTo(of("Pippo").givenRoll(1, 2).from(60).to(63).setVictory(true));
     }
+    
+    @Test
+    void compute_movement_with_bouncing() {
+        when(players.positionOf("Pippo")).thenReturn(60);
+
+        Movement movement = computeMovement.doComputationFor("Pippo", 2, 3);
+
+        assertThat(movement).isEqualTo(of("Pippo").givenRoll(2, 3).from(60).to(61).setVictory(false).setBouncing(true));
+    }
 }
