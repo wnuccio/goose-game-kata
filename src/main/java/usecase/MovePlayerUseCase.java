@@ -31,9 +31,13 @@ public class MovePlayerUseCase implements UseCase {
                 .givenRoll(firstDice, secondDice)
                 .from(prevPosition).to(newPosition);
 
-        if (newPosition == 63)
+        if (playerHasReachedWinningPosition(newPosition))
             movement.beVictory();
 
         presenter.presentMovement(movement);
+    }
+
+    private boolean playerHasReachedWinningPosition(int newPosition) {
+        return newPosition == 63;
     }
 }
