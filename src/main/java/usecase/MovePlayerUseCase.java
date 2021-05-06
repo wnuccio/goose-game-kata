@@ -2,7 +2,7 @@ package usecase;
 
 import player.Players;
 
-public class MovePlayerUseCase {
+public class MovePlayerUseCase implements UseCase {
     private Players players;
     private Presenter presenter;
 

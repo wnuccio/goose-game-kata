@@ -1,28 +1,33 @@
 package usecase;
 
-public class UseCaseDispatcher {
-    private AddPlayerUseCase addPlayerUseCase;
-    private MovePlayerUseCase movePlayerUseCase;
-    private ResetGameUseCase resetGameUseCase;
+import java.util.Map;
+import java.util.Optional;
 
-    public UseCaseDispatcher(AddPlayerUseCase addPlayerUseCase, MovePlayerUseCase movePlayerUseCase, ResetGameUseCase resetGameUseCase) {
-        this.addPlayerUseCase = addPlayerUseCase;
-        this.movePlayerUseCase = movePlayerUseCase;
-        this.resetGameUseCase = resetGameUseCase;
+public class UseCaseDispatcher {
+
+    private Map<String, UseCase> useCaseMap;
+
+    public UseCaseDispatcher(Map<String, UseCase> useCaseMap) {
+        this.useCaseMap = useCaseMap;
+    }
+
+    private Optional<UseCase> selectUseCaseBy(String command) {
+        return Optional.ofNullable(useCaseMap.get(command));
     }
 
     public void acceptCommand(String commandLine) {
-        if ("add".equals(operation(commandLine)))
-            addPlayerUseCase.acceptCommand(commandLine);
-        else if ("move".equals(operation((commandLine))))
-            movePlayerUseCase.acceptCommand(commandLine);
-        else if ("reset".equals(operation((commandLine))))
-            resetGameUseCase.acceptCommand(commandLine);
-        else
-            throw new IllegalArgumentException("Error in command line: " + commandLine);
+        String command = firstTokenOf(commandLine);
+
+        UseCase useCase =
+                selectUseCaseBy(command)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Error in command line: " + commandLine));
+
+        useCase.acceptCommand(commandLine);
+
     }
 
-    private String operation(String commandLine) {
+    private String firstTokenOf(String commandLine) {
         return commandLine.split(" ")[0];
     }
 }

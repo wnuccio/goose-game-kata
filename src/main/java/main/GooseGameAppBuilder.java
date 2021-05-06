@@ -4,6 +4,7 @@ import console.ConsolePresenter;
 import player.Players;
 import usecase.*;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class GooseGameAppBuilder {
@@ -22,11 +23,22 @@ public class GooseGameAppBuilder {
         OutputBoundary outputBoundary = getOutputBoundary();
         ConsolePresenter presenter = new ConsolePresenter(outputBoundary);
         Players players = new Players();
+
+        UseCaseDispatcher useCaseDispatcher = useCaseDispatcher(outputBoundary, presenter, players);
+
+        return new GooseGameApp(inputBoundary, useCaseDispatcher);
+    }
+
+    private UseCaseDispatcher useCaseDispatcher(OutputBoundary outputBoundary, ConsolePresenter presenter, Players players) {
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, outputBoundary);
         MovePlayerUseCase movePlayerUseCase = new MovePlayerUseCase(players, presenter);
         ResetGameUseCase resetGameUseCase = new ResetGameUseCase(players);
-        UseCaseDispatcher useCaseDispatcher = new UseCaseDispatcher(addPlayerUseCase, movePlayerUseCase, resetGameUseCase);
 
-        return new GooseGameApp(inputBoundary, useCaseDispatcher);
+        HashMap<String, UseCase> useCaseMap = new HashMap<>();
+        useCaseMap.put("add", addPlayerUseCase);
+        useCaseMap.put("move", movePlayerUseCase);
+        useCaseMap.put("reset", resetGameUseCase);
+
+        return new UseCaseDispatcher(useCaseMap);
     }
 }

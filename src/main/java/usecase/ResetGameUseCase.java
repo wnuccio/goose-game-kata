@@ -2,7 +2,7 @@ package usecase;
 
 import player.Players;
 
-public class ResetGameUseCase {
+public class ResetGameUseCase implements UseCase {
 
     private Players players;
 

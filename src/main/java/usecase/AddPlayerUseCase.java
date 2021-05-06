@@ -2,7 +2,7 @@ package usecase;
 
 import player.Players;
 
-public class AddPlayerUseCase {
+public class AddPlayerUseCase implements UseCase {
     private Players players;
     private OutputBoundary outputBoundary;
 
@@ -11,6 +11,7 @@ public class AddPlayerUseCase {
         this.outputBoundary = outputBoundary;
     }
 
+    @Override
     public void acceptCommand(String commandLine) {
         String playerName = extractPlayerNameFrom(commandLine);
 

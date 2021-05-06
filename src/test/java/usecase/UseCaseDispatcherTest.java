@@ -1,44 +1,41 @@
 package usecase;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 class UseCaseDispatcherTest {
-    AddPlayerUseCase addPlayerUseCase = mock(AddPlayerUseCase.class);
-    MovePlayerUseCase movePlayerUseCase = mock(MovePlayerUseCase.class);
-    ResetGameUseCase resetGameUseCase = mock(ResetGameUseCase.class);
-    UseCaseDispatcher dispatcher = new UseCaseDispatcher(
-            addPlayerUseCase,
-            movePlayerUseCase,
-            resetGameUseCase);
+    UseCaseDispatcher dispatcher;
+    UseCase useCaseOne = mock(UseCase.class);
+    UseCase useCaseTwo = mock(UseCase.class);
 
-    @Test
-    void invoke_add_player_use_case_for_the_matching_command() {
-        dispatcher.acceptCommand("add player Pippo");
+    @BeforeEach
+    void setUp() {
+        Map<String, UseCase> map = new HashMap<>();
+        map.put("one", useCaseOne);
+        map.put("two", useCaseTwo);
 
-        verify(addPlayerUseCase).acceptCommand("add player Pippo");
+        dispatcher = new UseCaseDispatcher(map);
     }
 
     @Test
-    void invoke_move_player_use_case_for_the_matching_command() {
-        dispatcher.acceptCommand("move Pippo 4, 2");
+    void invokes_the_use_case_matching_the_first_token_of_commmand_line() {
+        dispatcher.acceptCommand("one xxx yyy");
+        verify(useCaseOne).acceptCommand("one xxx yyy");
 
-        verify(movePlayerUseCase).acceptCommand("move Pippo 4, 2");
+        dispatcher.acceptCommand("two xxx yyy");
+        verify(useCaseTwo).acceptCommand("two xxx yyy");
     }
 
     @Test
     void raise_an_exception_when_command_is_not_recognized() {
         assertThrows(Exception.class,
-                () -> dispatcher.acceptCommand("unknown command"));
-    }
-
-    @Test
-    void invoke_reset_game_use_case_for_the_matching_command() {
-        dispatcher.acceptCommand("reset game");
-
-        verify(resetGameUseCase).acceptCommand("reset game");
+                () -> dispatcher.acceptCommand("unknown xxx yyy"));
     }
 }

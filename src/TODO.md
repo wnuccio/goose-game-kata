@@ -1,5 +1,3 @@
-- semplificare e generalizzare lo UseCaseDispatcher 
-
 - aggiungere il Presenter anche allo use case di AddPlayer
 
 - spostare la logica che verifica la vittoria (magic number 63)
