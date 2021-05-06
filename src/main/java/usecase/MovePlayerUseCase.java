@@ -4,10 +4,12 @@ import player.Players;
 
 public class MovePlayerUseCase implements UseCase {
     private Players players;
+    private ComputeMovement computeMovement;
     private Presenter presenter;
 
-    public MovePlayerUseCase(Players players, Presenter presenter) {
+    public MovePlayerUseCase(Players players, ComputeMovement computeMovement, Presenter presenter) {
         this.players = players;
+        this.computeMovement = computeMovement;
         this.presenter = presenter;
     }
 
@@ -20,28 +22,17 @@ public class MovePlayerUseCase implements UseCase {
             return;
         }
 
-        Movement movement = computeMovement(player, command.firstDice(), command.secondDice());
+        Movement movement = computeMovement(command);
 
         players.setPositionOf(player, movement.toPosition());
         presenter.presentMovement(movement);
     }
 
-    private Movement computeMovement(String player, int firstDice, int secondDice) {
-        int prevPosition = players.positionOf(player);
-        int newPosition = newPositionAfterRoll(player, firstDice, secondDice);
-
-        return Movement.of(player)
-                .givenRoll(firstDice, secondDice)
-                .from(prevPosition).to(newPosition)
-                .setVictory(isWinningPosition(newPosition));
+    private Movement computeMovement(MoveCommand command) {
+        return computeMovement.doComputationFor(
+                command.playerName(),
+                command.firstDice(),
+                command.secondDice());
     }
 
-    private int newPositionAfterRoll(String player, int firstDice, int secondDice) {
-        int totalRoll = firstDice + secondDice;
-        return players.positionOf(player) + totalRoll;
-    }
-
-    private boolean isWinningPosition(int newPosition) {
-        return newPosition == 63;
-    }
 }
