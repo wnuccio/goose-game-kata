@@ -8,18 +8,19 @@ public class Main {
     public static final String[] ARGS_FOR_TEST = {"main/test"};
 
     public static void main(String[] args) {
-        GooseGameAppBuilder appBuilder = isApplicationToTest(args) ?
+        GooseGameApp app;
+
+        try {
+            GooseGameAppBuilder appBuilder = isApplicationToTest(args) ?
                 new GooseGameAppBuilderForTest() :
                 new GooseGameAppBuilder();
 
-        GooseGameApp app = appBuilder.buildApplication();
-
-        try {
+            app = appBuilder.buildApplication();
             app.run();
 
         } catch (Exception e) {
             e.printStackTrace();
-            app.run();
+//            app.run();
         }
     }
 
