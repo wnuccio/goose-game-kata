@@ -39,6 +39,15 @@ class PlayersTest {
     }
 
     @Test
+    void change_position_of_a_player() {
+        Players players = new Players().addPlayer("Pippo");
+
+        players.setPositionOf("Pippo", 60);
+
+        assertThat(players.positionOf("Pippo")).isEqualTo(60);
+    }
+
+    @Test
     void remove_all_players_on_clear() {
         Players players = new Players().addPlayer("Pippo").addPlayer("Pluto");
 
