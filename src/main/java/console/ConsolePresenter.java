@@ -4,6 +4,7 @@ import usecase.Movement;
 import usecase.OutputBoundary;
 import usecase.Presenter;
 
+import static java.lang.String.format;
 import static java.lang.String.valueOf;
 
 public class ConsolePresenter implements Presenter {
@@ -35,19 +36,30 @@ public class ConsolePresenter implements Presenter {
     }
 
     private String buildStringFrom(Movement movement) {
-        String playerRolls = String.format("%s rolls %s, %s" + ". ",
+        String playerRolls = format("%s rolls %s, %s" + ". ",
                 movement.player(),
                 movement.firstDice(),
                 movement.secondDice());
 
-        String playerMoves = String.format("%s moves from %s to %s",
+        int newPosition = movement.isBouncing() ? Movement.WIN_POSITION : movement.toPosition();
+
+        String playerMoves = format("%s moves from %s to %s",
                 movement.player(),
                 positionString(movement.fromPosition()),
-                movement.toPosition());
+                newPosition);
 
-        String playerVictory = movement.isVictory() ? ". " + movement.player() + " Wins!!" : "";
+        String specialCase = "";
+        if (movement.isVictory()) {
+            specialCase = format(". %s Wins!!", movement.player());
 
-        return playerRolls + playerMoves + playerVictory;
+        } else if (movement.isBouncing()) {
+            specialCase = format(". %s bounces! %s returns to %d",
+                    movement.player(),
+                    movement.player(),
+                    movement.toPosition());
+        }
+
+        return playerRolls + playerMoves + specialCase;
     }
 
     private String positionString(int position) {

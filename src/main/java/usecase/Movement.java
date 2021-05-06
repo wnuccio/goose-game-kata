@@ -3,6 +3,7 @@ package usecase;
 import java.util.Objects;
 
 public class Movement {
+    public static final int WIN_POSITION = 63;
 
     private String player;
     private int firstDice;
@@ -100,5 +101,9 @@ public class Movement {
     public Movement setBouncing(boolean isBouncing) {
         this.bouncing = isBouncing;
         return this;
+    }
+
+    public boolean isBouncing() {
+        return this.bouncing;
     }
 }
