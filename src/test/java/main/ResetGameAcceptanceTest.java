@@ -11,7 +11,7 @@ public class ResetGameAcceptanceTest extends BaseAcceptanceTest {
     void after_the_previous_test_a_player_is_newly_on_start() {
         gooseGame.resetGame();
 
-        String output = gooseGame.acceptInput("move Pippo 2, 2");
+        String output = gooseGame.movePlayer("Pippo", 2, 1);
 
         assertThat(output).isEqualTo("Pippo: no such player");
     }
