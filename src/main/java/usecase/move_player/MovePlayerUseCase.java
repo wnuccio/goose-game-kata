@@ -27,9 +27,7 @@ public class MovePlayerUseCase implements UseCase {
             return;
         }
 
-        if (command.hasNoDice()) {
-            command.setDice(dice.roll());
-        }
+        command.setDiceIfAbsent(dice.roll());
 
         Movement movement = computeMovement.doComputationFor(command.player(), command.dice());
 
@@ -46,7 +44,7 @@ public class MovePlayerUseCase implements UseCase {
         if (hasDiceValues) {
             int firstDice = parser.digitAtToken(2);
             int secondDice = parser.digitAtToken(3);
-            result.setDice(dice.from(firstDice, secondDice));
+            result = new MoveCommand(player, dice.from(firstDice, secondDice));
         }
         return result;
     }

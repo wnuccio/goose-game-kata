@@ -5,19 +5,22 @@ public class MoveCommand {
     private Dice dice;
 
     public MoveCommand(String player) {
+        this(player, null);
+    }
+
+    public MoveCommand(String player, Dice dice) {
         this.player = player;
+        this.dice = dice;
     }
 
     public String player() {
         return player;
     }
 
-    public boolean hasNoDice() {
-        return dice == null;
-    }
-
-    public void setDice(Dice dice) {
-        this.dice = dice;
+    public void setDiceIfAbsent(Dice dice) {
+        if (this.dice == null) {
+            this.dice = dice.roll();
+        }
     }
 
     public Dice dice() {
