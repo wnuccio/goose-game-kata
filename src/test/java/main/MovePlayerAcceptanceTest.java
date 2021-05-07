@@ -1,16 +1,25 @@
 package main;
 
+import main.helpers.AddPlayerDriver;
 import main.helpers.BaseAcceptanceTest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
+    private AddPlayerDriver addPlayerDriver;
+
+    @BeforeEach
+    void setUp() {
+        driver().resetGame();
+        addPlayerDriver = new AddPlayerDriver(driver());
+    }
 
     @Test
     void a_player_moves_from_start_to_a_new_position() {
-        game.addPlayer("Pippo");
-        game.addPlayer("Pluto");
+        addPlayerDriver.addPlayer("Pippo");
+        addPlayerDriver.addPlayer("Pluto");
 
         String output = game.movePlayer("Pippo", 4, 2);
         assertThat(output).isEqualTo("Pippo rolls 4, 2. Pippo moves from Start to 6");
@@ -24,7 +33,7 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
 
     @Test
     void a_player_wins_when_lands_on_position_63() {
-        game.addPlayer("Pippo");
+        addPlayerDriver.addPlayer("Pippo");
         moveOnPosition60("Pippo");
 
         String output = game.movePlayer("Pippo", 1, 2);
@@ -33,7 +42,7 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
 
     @Test
     void a_player_bounces_when_does_not_lands_exactly_on_the_last_position() {
-        game.addPlayer("Pippo");
+        addPlayerDriver.addPlayer("Pippo");
         moveOnPosition60("Pippo");
 
         String output = game.movePlayer("Pippo", 3, 2);

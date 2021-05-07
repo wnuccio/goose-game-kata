@@ -7,12 +7,15 @@ public abstract class BaseAcceptanceTest {
 
     @BeforeEach
     void setUp() {
+        driver().resetGame();
+    }
+
+    final protected ApplicationDriver driver() {
         if (game == null) {
             ApplicationRunner applicationRunner = new ApplicationRunner();
             applicationRunner.runApplication();
             game = new ApplicationDriver();
-        } else
-
-        game.resetGame();
+        }
+        return game;
     }
 }
