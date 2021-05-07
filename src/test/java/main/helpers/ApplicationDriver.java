@@ -1,21 +1,33 @@
 package main.helpers;
 
+import main.test.TestSystemInputOuput;
+
 import java.util.stream.Stream;
 
 import static java.lang.String.format;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class ApplicationDriver {
-    private ApplicationRunner applicationRunner;
+    private TestSystemInputOuput inputOuput = TestSystemInputOuput.instance();
 
-    public ApplicationDriver(ApplicationRunner applicationRunner) {
-        this.applicationRunner = applicationRunner;
+    public String acceptInput(String inputString) {
+        inputOuput.writeInputByTest(inputString);
+        waitSomeSeconds();
+        return inputOuput.readOutputByTest();
     }
 
-    public void resetGame() { applicationRunner.acceptInput("reset game"); }
+    private void waitSomeSeconds() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void resetGame() { acceptInput("reset game"); }
 
     public String addPlayer(String playerName) {
-        return applicationRunner.acceptInput("add player " + playerName);
+        return acceptInput("add player " + playerName);
     }
 
     public void verifyAddPlayer(String output, String... players) {
@@ -24,7 +36,7 @@ public class ApplicationDriver {
     }
 
     public String movePlayer(String player, int firstDice, int secondDice) {
-        return applicationRunner.acceptInput(format("move %s %d, %d", player, firstDice, secondDice));
+        return acceptInput(format("move %s %d, %d", player, firstDice, secondDice));
     }
 
     public void verifyExistingPlayer(String output, String player) {

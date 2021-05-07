@@ -10,7 +10,7 @@ public abstract class BaseAcceptanceTest {
         if (game == null) {
             ApplicationRunner applicationRunner = new ApplicationRunner();
             applicationRunner.runApplication();
-            game = new ApplicationDriver(applicationRunner);
+            game = new ApplicationDriver();
         } else
 
         game.resetGame();
