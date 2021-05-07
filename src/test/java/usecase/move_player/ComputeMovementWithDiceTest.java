@@ -10,15 +10,9 @@ public class ComputeMovementWithDiceTest {
 
     @Test
     void compute_movement_throwing_dice() {
-        Dice constantDice = new Dice(1, 2) {
-            @Override
-            public Dice roll() {
-                return this;
-            }
-        };
-
+        Dice fixedDice = new FixedDice(1, 2);
         ComputeMovement computeMovement = mock(ComputeMovement.class);
-        ComputeMovementWithDice computeMovementWithDice = new ComputeMovementWithDice(computeMovement, constantDice);
+        ComputeMovementWithDice computeMovementWithDice = new ComputeMovementWithDice(computeMovement, fixedDice);
 
         Movement computedMovement = Movement.of("Pippo");
 
