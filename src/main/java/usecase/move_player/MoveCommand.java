@@ -29,4 +29,9 @@ public class MoveCommand {
     public boolean hasNoDice() {
         return firstDice == null;
     }
+
+    public void setDice(Dice dice) {
+        firstDice = dice.first();
+        secondDice = dice.second();
+    }
 }

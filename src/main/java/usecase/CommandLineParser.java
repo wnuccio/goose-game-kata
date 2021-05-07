@@ -10,13 +10,12 @@ public class CommandLineParser {
     }
 
     public String token(int i) {
-        String[] tokens = commandLine.split(" ");
-        return tokens[i];
+        return tokens()[i];
     }
 
-    public int numberAt(int i) {
+    public int digitAtToken(int i) {
         String character = token(i).substring(0, 1);
-        return parseInt( character);
+        return parseInt(character);
     }
 
     public int tokenNumber() {

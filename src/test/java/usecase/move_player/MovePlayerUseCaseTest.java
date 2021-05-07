@@ -73,7 +73,5 @@ class MovePlayerUseCaseTest {
         when(computeMovement.doComputationFor("Pippo", 5, 6)).thenReturn(movement);
 
         useCase.acceptCommand("move Pippo");
-
     }
-
 }

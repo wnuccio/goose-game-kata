@@ -40,8 +40,8 @@ public class MovePlayerUseCase implements UseCase {
 
         MoveCommand result = new MoveCommand(player);
         if (hasDiceValues) {
-            int firstDice = parser.numberAt(2);
-            int secondDice = parser.numberAt(3);
+            int firstDice = parser.digitAtToken(2);
+            int secondDice = parser.digitAtToken(3);
             result.dice(firstDice, secondDice);
         }
         return result;
@@ -49,7 +49,8 @@ public class MovePlayerUseCase implements UseCase {
 
     private Movement computeMovement(MoveCommand command) {
         if (command.hasNoDice()) {
-            return new ComputeMovementWithDice(computeMovement, dice).doComputationFor(command.playerName());
+            Dice dice = this.dice.roll();
+            command.setDice(dice);
         }
 
         return computeMovement.doComputationFor(
