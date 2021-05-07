@@ -7,7 +7,7 @@ public abstract class BaseAcceptanceTest {
 
     @BeforeEach
     final void init() {
-        ApplicationRunner.runApplication();
+        ApplicationRunner.runApplicationOnFirstDemand();
         game = new ApplicationDriver();
         new ResetGameDriver(game).resetGame();
     }
