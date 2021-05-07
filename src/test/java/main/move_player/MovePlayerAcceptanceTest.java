@@ -1,8 +1,7 @@
-package main;
+package main.move_player;
 
-import main.helpers.AddPlayerDriver;
-import main.helpers.BaseAcceptanceTest;
-import main.helpers.MovePlayerDriver;
+import main.BaseAcceptanceTest;
+import main.add_player.AddPlayerDriver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

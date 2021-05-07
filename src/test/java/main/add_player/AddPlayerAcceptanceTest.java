@@ -1,7 +1,6 @@
-package main;
+package main.add_player;
 
-import main.helpers.AddPlayerDriver;
-import main.helpers.BaseAcceptanceTest;
+import main.BaseAcceptanceTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

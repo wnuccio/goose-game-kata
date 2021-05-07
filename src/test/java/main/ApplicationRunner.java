@@ -1,6 +1,4 @@
-package main.helpers;
-
-import main.Main;
+package main;
 
 public class ApplicationRunner {
     private static Thread thread = null;

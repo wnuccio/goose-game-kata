@@ -1,4 +1,4 @@
-package main.helpers;
+package main;
 
 import main.test.TestSystemInputOuput;
 

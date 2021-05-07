@@ -1,9 +1,8 @@
-package main;
+package main.reset_game;
 
-import main.helpers.AddPlayerDriver;
-import main.helpers.ApplicationDriver;
-import main.helpers.BaseAcceptanceTest;
-import main.helpers.ResetGameDriver;
+import main.ApplicationDriver;
+import main.BaseAcceptanceTest;
+import main.add_player.AddPlayerDriver;
 import org.junit.jupiter.api.Test;
 
 public class ResetGameAcceptanceTest extends BaseAcceptanceTest {

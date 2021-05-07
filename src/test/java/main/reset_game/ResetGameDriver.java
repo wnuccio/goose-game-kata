@@ -1,4 +1,6 @@
-package main.helpers;
+package main.reset_game;
+
+import main.ApplicationDriver;
 
 public class ResetGameDriver {
     private ApplicationDriver applicationDriver;

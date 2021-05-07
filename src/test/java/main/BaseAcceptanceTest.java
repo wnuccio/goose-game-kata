@@ -1,5 +1,6 @@
-package main.helpers;
+package main;
 
+import main.reset_game.ResetGameDriver;
 import org.junit.jupiter.api.BeforeEach;
 
 public abstract class BaseAcceptanceTest {

@@ -1,4 +1,6 @@
-package main.helpers;
+package main.move_player;
+
+import main.ApplicationDriver;
 
 import static java.lang.String.format;
 
