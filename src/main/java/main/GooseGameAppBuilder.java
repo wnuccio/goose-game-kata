@@ -1,8 +1,8 @@
 package main;
 
 import console.ConsolePresenter;
+import console.OutputBoundary;
 import player.Players;
-import usecase.OutputBoundary;
 import usecase.UseCase;
 import usecase.UseCaseDispatcher;
 import usecase.add_player.AddPlayerUseCase;

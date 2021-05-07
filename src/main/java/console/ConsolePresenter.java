@@ -1,6 +1,5 @@
 package console;
 
-import usecase.OutputBoundary;
 import usecase.Presenter;
 import usecase.move_player.Movement;
 

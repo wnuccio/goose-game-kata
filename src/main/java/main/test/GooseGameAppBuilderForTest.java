@@ -1,8 +1,8 @@
 package main.test;
 
+import console.OutputBoundary;
 import main.GooseGameAppBuilder;
 import main.InputBoundary;
-import usecase.OutputBoundary;
 
 public class GooseGameAppBuilderForTest extends GooseGameAppBuilder {
 
