@@ -2,24 +2,24 @@ package usecase;
 
 import static java.lang.Integer.parseInt;
 
-public abstract class AbstractCommand {
+public class AbstractCommand {
     private String commandLine;
 
-    protected AbstractCommand(String commandLine) {
+    public AbstractCommand(String commandLine) {
         this.commandLine = commandLine;
     }
 
-    protected String token(int i) {
+    public String token(int i) {
         String[] tokens = commandLine.split(" ");
         return tokens[i];
     }
 
-    protected int numberAt(int i) {
+    public int numberAt(int i) {
         String character = token(i).substring(0, 1);
         return parseInt( character);
     }
 
-    protected int tokenNumber() {
+    public int tokenNumber() {
         return tokens().length;
     }
 

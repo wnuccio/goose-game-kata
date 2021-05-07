@@ -1,5 +1,6 @@
 package usecase.move_player;
 
+import usecase.AbstractCommand;
 import usecase.Presenter;
 import usecase.UseCase;
 import usecase.add_player.Players;
@@ -18,7 +19,7 @@ public class MovePlayerUseCase implements UseCase {
     }
 
     public void acceptCommand(String commandLine) {
-        MoveCommand command = new MoveCommand(commandLine);
+        MoveCommand command = parseMoveCommand(commandLine);
         String player = command.playerName();
 
         if ( ! players.contains(player)) {
@@ -30,6 +31,20 @@ public class MovePlayerUseCase implements UseCase {
 
         players.setPositionOf(player, movement.toPosition());
         presenter.presentMovement(movement);
+    }
+
+    private MoveCommand parseMoveCommand(String commandLine) {
+        AbstractCommand parser = new AbstractCommand(commandLine);
+        String player = parser.token(1);
+        boolean hasDiceValues = parser.tokenNumber() != 2;
+
+        MoveCommand result = new MoveCommand(player);
+        if (hasDiceValues) {
+            int firstDice = parser.numberAt(2);
+            int secondDice = parser.numberAt(3);
+            result.dice(firstDice, secondDice);
+        }
+        return result;
     }
 
     private Movement computeMovement(MoveCommand command) {

@@ -1,24 +1,32 @@
 package usecase.move_player;
 
-import usecase.AbstractCommand;
+public class MoveCommand {
+    private String player;
+    private Integer firstDice;
+    private Integer secondDice;
 
-public class MoveCommand extends AbstractCommand {
-
-    public MoveCommand(String commandLine) {
-        super(commandLine);
+    public MoveCommand(String player) {
+        this.player = player;
     }
 
-    public String playerName() { return token(1); }
+    public void dice(int firstDice, int secondDice) {
+        this.firstDice = firstDice;
+        this.secondDice = secondDice;
+    }
+
+    public String playerName() {
+        return player;
+    }
 
     public int firstDice() {
-        return numberAt(2);
+        return firstDice;
     }
 
     public int secondDice() {
-        return numberAt(3);
+        return secondDice;
     }
 
     public boolean hasNoDice() {
-        return super.tokenNumber() == 2;
+        return firstDice == null;
     }
 }
