@@ -11,8 +11,8 @@ public class AddPlayerDriver  {
         this.driver = driver;
     }
 
-    public String addPlayer(String playerName) {
-        return driver.acceptInput("add player " + playerName);
+    public String addPlayer(String player) {
+        return driver.acceptInput("add player " + player);
     }
 
     public void verifyPlayersAdded(String output, String player1, String... players) {
@@ -23,5 +23,9 @@ public class AddPlayerDriver  {
 
     public void verifyAlreadyExistingPlayer(String output, String player) {
         assertThat(output).isEqualTo(String.format("%s: already existing player", player));
+    }
+
+    public void addPlayers(String... players) {
+        for (String p : players) { addPlayer(p); }
     }
 }
