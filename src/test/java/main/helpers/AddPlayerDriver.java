@@ -15,8 +15,9 @@ public class AddPlayerDriver  {
         return driver.acceptInput("add player " + playerName);
     }
 
-    public void verifyAddPlayer(String output, String... players) {
+    public void verifyAddPlayer(String output, String player1, String... players) {
         assertThat(output.startsWith("players: ")).isTrue();
+        assertThat(output.contains(player1)).isTrue();
         Stream.of(players).forEach(player -> assertThat(output.contains(player)).isTrue());
     }
 

@@ -1,23 +1,26 @@
 package main;
 
+import main.helpers.AddPlayerDriver;
+import main.helpers.ApplicationDriver;
 import main.helpers.BaseAcceptanceTest;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResetGameAcceptanceTest extends BaseAcceptanceTest {
 
-    @BeforeEach
-    void setUp() {
-    }
+    private ApplicationDriver appDriver = new ApplicationDriver();
+    private AddPlayerDriver driver = new AddPlayerDriver(appDriver);
 
     @Test
-    void after_the_previous_test_a_player_is_newly_on_start() {
-        game.resetGame();
+    void after_reset_an_existing_player_becomes_a_new_player() {
+        String output = driver.addPlayer("Pippo");
+        driver.verifyAddPlayer(output, "Pippo");
 
-        String output = game.movePlayer("Pippo", 2, 1);
+        output = driver.addPlayer("Pippo");
+        driver.verifyExistingPlayer(output, "Pippo");
 
-        assertThat(output).isEqualTo("Pippo: no such player");
+        appDriver.resetGame();
+
+        output = driver.addPlayer("Pippo");
+        driver.verifyAddPlayer(output, "Pippo");
     }
 }
