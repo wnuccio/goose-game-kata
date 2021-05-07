@@ -21,8 +21,6 @@ public class ApplicationDriver {
         }
     }
 
-    public void resetGame() { acceptInput("reset game"); }
-
     public String movePlayer(String player, int firstDice, int secondDice) {
         return acceptInput(format("move %s %d, %d", player, firstDice, secondDice));
     }

@@ -9,6 +9,6 @@ public abstract class BaseAcceptanceTest {
     final void init() {
         ApplicationRunner.runApplication();
         game = new ApplicationDriver();
-        game.resetGame();
+        new ResetGameDriver(game).resetGame();
     }
 }
