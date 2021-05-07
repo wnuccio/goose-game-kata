@@ -2,8 +2,8 @@ package usecase.move_player;
 
 import main.test.DiceForTest;
 import org.junit.jupiter.api.Test;
-import player.Players;
 import usecase.Presenter;
+import usecase.add_player.Players;
 
 import static org.mockito.Mockito.*;
 import static usecase.move_player.Movement.of;

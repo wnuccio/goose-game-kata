@@ -1,7 +1,7 @@
 package usecase.move_player;
 
 import org.junit.jupiter.api.Test;
-import player.Players;
+import usecase.add_player.Players;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

@@ -1,6 +1,6 @@
 package main.test;
 
-import console.OutputBoundary;
+import boundary.OutputBoundary;
 import main.GooseGameAppBuilder;
 import main.InputBoundary;
 import usecase.move_player.Dice;

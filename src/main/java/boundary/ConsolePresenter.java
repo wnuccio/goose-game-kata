@@ -1,4 +1,4 @@
-package console;
+package boundary;
 
 import usecase.Presenter;
 import usecase.move_player.Movement;

@@ -1,6 +1,6 @@
 package main.test;
 
-import console.OutputBoundary;
+import boundary.OutputBoundary;
 import main.InputBoundary;
 
 import java.util.ArrayList;

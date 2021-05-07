@@ -1,11 +1,11 @@
 package main;
 
-import console.ConsolePresenter;
-import console.OutputBoundary;
-import player.Players;
+import boundary.ConsolePresenter;
+import boundary.OutputBoundary;
 import usecase.UseCase;
 import usecase.UseCaseDispatcher;
 import usecase.add_player.AddPlayerUseCase;
+import usecase.add_player.Players;
 import usecase.move_player.ComputeMovement;
 import usecase.move_player.Dice;
 import usecase.move_player.MovePlayerUseCase;

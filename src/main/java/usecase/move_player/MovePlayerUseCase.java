@@ -1,8 +1,8 @@
 package usecase.move_player;
 
-import player.Players;
 import usecase.Presenter;
 import usecase.UseCase;
+import usecase.add_player.Players;
 
 public class MovePlayerUseCase implements UseCase {
     private Players players;

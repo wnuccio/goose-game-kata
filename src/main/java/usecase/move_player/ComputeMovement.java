@@ -1,6 +1,6 @@
 package usecase.move_player;
 
-import player.Players;
+import usecase.add_player.Players;
 
 import static usecase.move_player.Movement.WIN_POSITION;
 

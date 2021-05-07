@@ -1,4 +1,4 @@
-package player;
+package usecase.add_player;
 
 import org.junit.jupiter.api.Test;
 

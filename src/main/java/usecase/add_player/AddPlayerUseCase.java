@@ -1,6 +1,5 @@
 package usecase.add_player;
 
-import player.Players;
 import usecase.Presenter;
 import usecase.UseCase;
 

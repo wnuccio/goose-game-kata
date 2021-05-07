@@ -1,4 +1,4 @@
-package player;
+package usecase.add_player;
 
 import java.util.HashMap;
 import java.util.Map;
