@@ -2,6 +2,7 @@ package main;
 
 import main.helpers.AddPlayerDriver;
 import main.helpers.BaseAcceptanceTest;
+import main.helpers.MovePlayerDriver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,10 +10,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
     private AddPlayerDriver addPlayerDriver;
+    private MovePlayerDriver movePlayerDriver;
 
     @BeforeEach
     void setUp() {
         addPlayerDriver = new AddPlayerDriver(game);
+        movePlayerDriver = new MovePlayerDriver(game);
     }
 
     @Test
@@ -20,13 +23,13 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
         addPlayerDriver.addPlayer("Pippo");
         addPlayerDriver.addPlayer("Pluto");
 
-        String output = game.movePlayer("Pippo", 4, 2);
+        String output = movePlayerDriver.movePlayer("Pippo", 4, 2);
         assertThat(output).isEqualTo("Pippo rolls 4, 2. Pippo moves from Start to 6");
 
-        String output2 = game.movePlayer("Pluto", 2, 2);
+        String output2 = movePlayerDriver.movePlayer("Pluto", 2, 2);
         assertThat(output2).isEqualTo("Pluto rolls 2, 2. Pluto moves from Start to 4");
 
-        String output3 = game.movePlayer("Pippo", 2, 3);
+        String output3 = movePlayerDriver.movePlayer("Pippo", 2, 3);
         assertThat(output3).isEqualTo("Pippo rolls 2, 3. Pippo moves from 6 to 11");
     }
 
@@ -35,7 +38,7 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
         addPlayerDriver.addPlayer("Pippo");
         moveOnPosition60("Pippo");
 
-        String output = game.movePlayer("Pippo", 1, 2);
+        String output = movePlayerDriver.movePlayer("Pippo", 1, 2);
         assertThat(output).isEqualTo("Pippo rolls 1, 2. Pippo moves from 60 to 63. Pippo Wins!!");
     }
 
@@ -44,11 +47,11 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
         addPlayerDriver.addPlayer("Pippo");
         moveOnPosition60("Pippo");
 
-        String output = game.movePlayer("Pippo", 3, 2);
+        String output = movePlayerDriver.movePlayer("Pippo", 3, 2);
         assertThat(output).isEqualTo("Pippo rolls 3, 2. Pippo moves from 60 to 63. Pippo bounces! Pippo returns to 61");
     }
 
     private void moveOnPosition60(String pippo) {
-        for (int i = 0; i < 6; i++) game.movePlayer(pippo, 5, 5);
+        for (int i = 0; i < 6; i++) movePlayerDriver.movePlayer(pippo, 5, 5);
     }
 }

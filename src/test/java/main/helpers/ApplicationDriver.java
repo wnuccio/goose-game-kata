@@ -2,8 +2,6 @@ package main.helpers;
 
 import main.test.TestSystemInputOuput;
 
-import static java.lang.String.format;
-
 public class ApplicationDriver {
     private TestSystemInputOuput inputOuput = TestSystemInputOuput.instance();
 
@@ -20,9 +18,4 @@ public class ApplicationDriver {
             e.printStackTrace();
         }
     }
-
-    public String movePlayer(String player, int firstDice, int secondDice) {
-        return acceptInput(format("move %s %d, %d", player, firstDice, secondDice));
-    }
-
 }
