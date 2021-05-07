@@ -14,7 +14,7 @@ public class AddPlayerUseCase implements UseCase {
 
     @Override
     public void acceptCommand(String commandLine) {
-        AddPlayerCommand command = new AddPlayerCommand(commandLine);
+        AddPlayerCommandLineParser command = new AddPlayerCommandLineParser(commandLine);
         String player = command.playerName();
         
         if (players.contains(player)) {

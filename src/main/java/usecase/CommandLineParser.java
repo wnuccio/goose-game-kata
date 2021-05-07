@@ -2,10 +2,10 @@ package usecase;
 
 import static java.lang.Integer.parseInt;
 
-public class AbstractCommand {
+public class CommandLineParser {
     private String commandLine;
 
-    public AbstractCommand(String commandLine) {
+    public CommandLineParser(String commandLine) {
         this.commandLine = commandLine;
     }
 

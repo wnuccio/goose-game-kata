@@ -1,6 +1,6 @@
 package usecase.move_player;
 
-import usecase.AbstractCommand;
+import usecase.CommandLineParser;
 import usecase.Presenter;
 import usecase.UseCase;
 import usecase.add_player.Players;
@@ -34,7 +34,7 @@ public class MovePlayerUseCase implements UseCase {
     }
 
     private MoveCommand parseMoveCommand(String commandLine) {
-        AbstractCommand parser = new AbstractCommand(commandLine);
+        CommandLineParser parser = new CommandLineParser(commandLine);
         String player = parser.token(1);
         boolean hasDiceValues = parser.tokenNumber() != 2;
 
