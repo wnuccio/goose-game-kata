@@ -10,11 +10,16 @@ public class ComputeMovementWithDiceTest {
 
     @Test
     void compute_movement_throwing_dice() {
-        DiceThrower diceThrower = mock(DiceThrower.class);
-        ComputeMovement computeMovement = mock(ComputeMovement.class);
-        ComputeMovementWithDice computeMovementWithDice = new ComputeMovementWithDice(computeMovement, diceThrower);
+        Dice constantDice = new Dice(1, 2) {
+            @Override
+            public Dice roll() {
+                return this;
+            }
+        };
 
-        when(diceThrower.throwDice()).thenReturn(new Dice(1, 2));
+        ComputeMovement computeMovement = mock(ComputeMovement.class);
+        ComputeMovementWithDice computeMovementWithDice = new ComputeMovementWithDice(computeMovement, constantDice);
+
         Movement computedMovement = Movement.of("Pippo");
 
         when(computeMovement.doComputationFor("Pippo", 1, 2)).thenReturn(computedMovement);

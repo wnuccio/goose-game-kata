@@ -2,15 +2,15 @@ package usecase.move_player;
 
 public class ComputeMovementWithDice {
     private ComputeMovement computeMovement;
-    private DiceThrower diceThrower;
+    private Dice dice;
 
-    public ComputeMovementWithDice(ComputeMovement computeMovement, DiceThrower diceThrower) {
+    public ComputeMovementWithDice(ComputeMovement computeMovement, Dice dice) {
         this.computeMovement = computeMovement;
-        this.diceThrower = diceThrower;
+        this.dice = dice;
     }
 
     public Movement doComputationFor(String player) {
-        Dice dice = diceThrower.throwDice();
+        Dice dice = this.dice.roll();
         return computeMovement.doComputationFor(player, dice.first(), dice.second());
     }
 }

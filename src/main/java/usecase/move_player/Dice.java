@@ -16,4 +16,8 @@ public class Dice {
     public int second() {
         return second;
     }
+
+    public Dice roll() {
+        throw new UnsupportedOperationException();
+    }
 }
