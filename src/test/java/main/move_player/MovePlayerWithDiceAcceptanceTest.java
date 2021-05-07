@@ -25,7 +25,7 @@ public class MovePlayerWithDiceAcceptanceTest extends BaseAcceptanceTest {
 //    the system responds: "Pippo rolls 1, 2. Pippo moves from 4 to 7"
 
     @Test
-    void a_player_moves_from_start_to_a_new_position() {
+    void a_player_moves_by_throwing_dice() {
         addPlayerDriver.addPlayer("Pippo");
         movePlayerDriver.movePlayer("Pippo", 2, 2);
         diceDriver.onNextRollReturns(1, 2);
