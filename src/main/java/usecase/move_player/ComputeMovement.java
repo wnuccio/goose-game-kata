@@ -1,8 +1,8 @@
-package usecase;
+package usecase.move_player;
 
 import player.Players;
 
-import static usecase.Movement.WIN_POSITION;
+import static usecase.move_player.Movement.WIN_POSITION;
 
 public class ComputeMovement {
     private Players players;

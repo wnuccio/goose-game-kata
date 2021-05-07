@@ -1,4 +1,4 @@
-package usecase;
+package usecase.move_player;
 
 import org.junit.jupiter.api.Test;
 import player.Players;
@@ -6,7 +6,7 @@ import player.Players;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static usecase.Movement.of;
+import static usecase.move_player.Movement.of;
 
 public class ComputeMovementTest {
     Players players = mock(Players.class);

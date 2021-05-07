@@ -1,4 +1,6 @@
-package usecase;
+package usecase.add_player;
+
+import usecase.AbstractCommand;
 
 public class AddPlayerCommand extends AbstractCommand {
     public AddPlayerCommand(String commandLine) {

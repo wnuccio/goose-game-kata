@@ -1,4 +1,6 @@
-package usecase;
+package usecase.move_player;
+
+import usecase.AbstractCommand;
 
 public class MoveCommand extends AbstractCommand {
 

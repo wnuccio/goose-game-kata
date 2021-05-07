@@ -1,6 +1,7 @@
-package usecase;
+package usecase.reset_game;
 
 import player.Players;
+import usecase.UseCase;
 
 public class ResetGameUseCase implements UseCase {
 

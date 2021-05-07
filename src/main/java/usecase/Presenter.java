@@ -1,5 +1,7 @@
 package usecase;
 
+import usecase.move_player.Movement;
+
 public interface Presenter {
     void presentMovement(Movement movement);
 

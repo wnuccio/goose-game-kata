@@ -2,7 +2,13 @@ package main;
 
 import console.ConsolePresenter;
 import player.Players;
-import usecase.*;
+import usecase.OutputBoundary;
+import usecase.UseCase;
+import usecase.UseCaseDispatcher;
+import usecase.add_player.AddPlayerUseCase;
+import usecase.move_player.ComputeMovement;
+import usecase.move_player.MovePlayerUseCase;
+import usecase.reset_game.ResetGameUseCase;
 
 import java.util.HashMap;
 import java.util.Scanner;

@@ -1,8 +1,8 @@
 package console;
 
-import usecase.Movement;
 import usecase.OutputBoundary;
 import usecase.Presenter;
+import usecase.move_player.Movement;
 
 import static java.lang.String.format;
 import static java.lang.String.valueOf;

@@ -1,4 +1,4 @@
-package usecase;
+package usecase.move_player;
 
 import java.util.Objects;
 

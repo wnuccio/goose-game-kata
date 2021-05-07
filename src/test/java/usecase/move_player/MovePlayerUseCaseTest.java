@@ -1,10 +1,11 @@
-package usecase;
+package usecase.move_player;
 
 import org.junit.jupiter.api.Test;
 import player.Players;
+import usecase.Presenter;
 
 import static org.mockito.Mockito.*;
-import static usecase.Movement.of;
+import static usecase.move_player.Movement.of;
 
 class MovePlayerUseCaseTest {
 

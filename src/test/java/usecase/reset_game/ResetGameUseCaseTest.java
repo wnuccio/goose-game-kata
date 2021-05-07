@@ -1,4 +1,4 @@
-package usecase;
+package usecase.reset_game;
 
 import org.junit.jupiter.api.Test;
 import player.Players;
