@@ -11,7 +11,7 @@ public class AddPlayerAcceptanceTest extends BaseAcceptanceTest {
 
     @BeforeEach
     void setUp() {
-        driver = new AddPlayerDriver(super.driver());
+        driver = new AddPlayerDriver(game);
     }
 
     @Test

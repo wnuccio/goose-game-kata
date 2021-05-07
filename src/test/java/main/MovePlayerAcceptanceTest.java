@@ -12,8 +12,7 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
 
     @BeforeEach
     void setUp() {
-        driver().resetGame();
-        addPlayerDriver = new AddPlayerDriver(driver());
+        addPlayerDriver = new AddPlayerDriver(game);
     }
 
     @Test

@@ -3,19 +3,12 @@ package main.helpers;
 import org.junit.jupiter.api.BeforeEach;
 
 public abstract class BaseAcceptanceTest {
-    protected static ApplicationDriver game;
+    protected ApplicationDriver game;
 
     @BeforeEach
-    void setUp() {
-        driver().resetGame();
-    }
-
-    final protected ApplicationDriver driver() {
-        if (game == null) {
-            ApplicationRunner applicationRunner = new ApplicationRunner();
-            applicationRunner.runApplication();
-            game = new ApplicationDriver();
-        }
-        return game;
+    final void init() {
+        ApplicationRunner.runApplication();
+        game = new ApplicationDriver();
+        game.resetGame();
     }
 }
