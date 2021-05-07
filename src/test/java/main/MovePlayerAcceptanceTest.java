@@ -20,8 +20,7 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
 
     @Test
     void a_player_moves_from_start_to_a_new_position() {
-        addPlayerDriver.addPlayer("Pippo");
-        addPlayerDriver.addPlayer("Pluto");
+        addPlayerDriver.addPlayers("Pippo", "Pluto");
 
         String output = movePlayerDriver.movePlayer("Pippo", 4, 2);
         assertThat(output).isEqualTo("Pippo rolls 4, 2. Pippo moves from Start to 6");
@@ -36,7 +35,7 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
     @Test
     void a_player_wins_when_lands_on_position_63() {
         addPlayerDriver.addPlayer("Pippo");
-        moveOnPosition60("Pippo");
+        movePlayerDriver.moveOnPosition60("Pippo");
 
         String output = movePlayerDriver.movePlayer("Pippo", 1, 2);
         assertThat(output).isEqualTo("Pippo rolls 1, 2. Pippo moves from 60 to 63. Pippo Wins!!");
@@ -45,13 +44,9 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
     @Test
     void a_player_bounces_when_does_not_lands_exactly_on_the_last_position() {
         addPlayerDriver.addPlayer("Pippo");
-        moveOnPosition60("Pippo");
+        movePlayerDriver.moveOnPosition60("Pippo");
 
         String output = movePlayerDriver.movePlayer("Pippo", 3, 2);
         assertThat(output).isEqualTo("Pippo rolls 3, 2. Pippo moves from 60 to 63. Pippo bounces! Pippo returns to 61");
-    }
-
-    private void moveOnPosition60(String pippo) {
-        for (int i = 0; i < 6; i++) movePlayerDriver.movePlayer(pippo, 5, 5);
     }
 }
