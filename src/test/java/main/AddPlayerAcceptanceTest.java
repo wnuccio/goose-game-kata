@@ -17,10 +17,10 @@ public class AddPlayerAcceptanceTest extends BaseAcceptanceTest {
     @Test
     void app_accepts_add_player_command_and_responds_with_an_output() {
         String output = driver.addPlayer("Pippo");
-        driver.verifyAddPlayer(output,"Pippo");
+        driver.verifyPlayersAdded(output,"Pippo");
 
         output = driver.addPlayer("Pluto");
-        driver.verifyAddPlayer(output,"Pippo", "Pluto");
+        driver.verifyPlayersAdded(output,"Pippo", "Pluto");
     }
 
     @Test
@@ -28,6 +28,6 @@ public class AddPlayerAcceptanceTest extends BaseAcceptanceTest {
         driver.addPlayer("Pippo");
         String output = driver.addPlayer("Pippo");
 
-        driver.verifyExistingPlayer(output, "Pippo");
+        driver.verifyAlreadyExistingPlayer(output, "Pippo");
     }
 }

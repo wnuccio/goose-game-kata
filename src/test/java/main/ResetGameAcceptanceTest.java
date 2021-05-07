@@ -13,14 +13,14 @@ public class ResetGameAcceptanceTest extends BaseAcceptanceTest {
     @Test
     void after_reset_an_existing_player_becomes_a_new_player() {
         String output = driver.addPlayer("Pippo");
-        driver.verifyAddPlayer(output, "Pippo");
+        driver.verifyPlayersAdded(output, "Pippo");
 
         output = driver.addPlayer("Pippo");
-        driver.verifyExistingPlayer(output, "Pippo");
+        driver.verifyAlreadyExistingPlayer(output, "Pippo");
 
         appDriver.resetGame();
 
         output = driver.addPlayer("Pippo");
-        driver.verifyAddPlayer(output, "Pippo");
+        driver.verifyPlayersAdded(output, "Pippo");
     }
 }
