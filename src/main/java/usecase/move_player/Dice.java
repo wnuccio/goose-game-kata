@@ -1,23 +1,9 @@
 package usecase.move_player;
 
-public class Dice {
-    private int first;
-    private int second;
+public interface Dice {
+    int first();
 
-    public Dice(int first, int second) {
-        this.first = first;
-        this.second = second;
-    }
+    int second();
 
-    public int first() {
-        return first;
-    }
-
-    public int second() {
-        return second;
-    }
-
-    public Dice roll() {
-        throw new UnsupportedOperationException();
-    }
+    Dice roll();
 }

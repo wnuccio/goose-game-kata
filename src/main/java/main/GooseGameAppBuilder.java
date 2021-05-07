@@ -2,6 +2,7 @@ package main;
 
 import boundary.ConsolePresenter;
 import boundary.OutputBoundary;
+import boundary.RandomDice;
 import usecase.UseCase;
 import usecase.UseCaseDispatcher;
 import usecase.add_player.AddPlayerUseCase;
@@ -26,7 +27,7 @@ public class GooseGameAppBuilder {
     }
 
     protected Dice dice() {
-        return new Dice(1, 1);
+        return new RandomDice(1, 1);
     }
 
     public final GooseGameApp buildApplication() {

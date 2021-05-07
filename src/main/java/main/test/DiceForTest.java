@@ -2,7 +2,7 @@ package main.test;
 
 import usecase.move_player.Dice;
 
-public class DiceForTest extends Dice {
+public class DiceForTest implements Dice {
     private static DiceForTest instance = new DiceForTest(1, 1);
 
     public static Dice instance() {
@@ -17,7 +17,6 @@ public class DiceForTest extends Dice {
     private int modifiableSecond;
 
     public DiceForTest(int first, int second) {
-        super(first, second);
         this.modifiableFirst = first;
         this.modifiableSecond = second;
     }
