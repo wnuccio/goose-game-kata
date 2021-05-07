@@ -13,15 +13,15 @@ public class ComputeMovement {
 
 
     public Movement doComputationFor(String player, Dice dice) {
-        int prevPosition = players.positionOf(player);
+        int currentPosition = players.positionOf(player);
         int firstDice = dice.first();
         int secondDice = dice.second();
-        int newPosition = newPositionAfterRoll(player, firstDice, secondDice);
+        int newPosition = currentPosition + dice.total();
 
         Movement movement = Movement
                 .of(player)
                 .givenRoll(firstDice, secondDice)
-                .from(prevPosition)
+                .from(currentPosition)
                 .to(newPosition);
 
         recomputeNewPositionConsideringBouncing(movement);
@@ -29,11 +29,6 @@ public class ComputeMovement {
         movement.setVictory(isWinningPosition(newPosition));
 
         return movement;
-    }
-
-    private int newPositionAfterRoll(String player, int firstDice, int secondDice) {
-        int totalRoll = firstDice + secondDice;
-        return players.positionOf(player) + totalRoll;
     }
 
     private void recomputeNewPositionConsideringBouncing(Movement movement) {
