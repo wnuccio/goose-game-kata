@@ -3,19 +3,15 @@ package main;
 import main.helpers.BaseAcceptanceTest;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-
 public class AddPlayerAcceptanceTest extends BaseAcceptanceTest {
 
     @Test
     void app_accepts_add_player_command_and_responds_with_an_output() {
         String output = game.addPlayer("Pippo");
-
-        assertThat(output).isEqualTo("players: Pippo");
+        game.verifyAddPlayer(output,"Pippo");
 
         output = game.addPlayer("Pluto");
-
-        assertThat(output).isEqualTo("players: Pippo, Pluto");
+        game.verifyAddPlayer(output,"Pippo", "Pluto");
     }
 
     @Test
@@ -23,6 +19,6 @@ public class AddPlayerAcceptanceTest extends BaseAcceptanceTest {
         game.addPlayer("Pippo");
         String output = game.addPlayer("Pippo");
 
-        assertThat(output).isEqualTo("Pippo: already existing player");
+        game.verifyExistingPlayer(output, "Pippo");
     }
 }
