@@ -15,9 +15,4 @@ public abstract class BaseAcceptanceTest {
 
         game.resetGame();
     }
-
-    protected String addPlayer(String playerName) {
-        return game.addPlayer(playerName);
-    }
-
 }

@@ -9,8 +9,8 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
 
     @Test
     void a_player_moves_from_start_to_a_new_position() {
-        addPlayer("Pippo");
-        addPlayer("Pluto");
+        game.addPlayer("Pippo");
+        game.addPlayer("Pluto");
 
         String output = game.movePlayer("Pippo", 4, 2);
         assertThat(output).isEqualTo("Pippo rolls 4, 2. Pippo moves from Start to 6");
@@ -24,7 +24,7 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
 
     @Test
     void a_player_wins_when_lands_on_position_63() {
-        addPlayer("Pippo");
+        game.addPlayer("Pippo");
         moveOnPosition60("Pippo");
 
         String output = game.movePlayer("Pippo", 1, 2);
@@ -33,7 +33,7 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
 
     @Test
     void a_player_bounces_when_does_not_lands_exactly_on_the_last_position() {
-        addPlayer("Pippo");
+        game.addPlayer("Pippo");
         moveOnPosition60("Pippo");
 
         String output = game.movePlayer("Pippo", 3, 2);
