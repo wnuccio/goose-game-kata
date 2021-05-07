@@ -11,8 +11,11 @@ public class ComputeMovement {
         this.players = players;
     }
 
-    public Movement doComputationFor(String player, int firstDice, int secondDice) {
+
+    public Movement doComputationFor(String player, Dice dice) {
         int prevPosition = players.positionOf(player);
+        int firstDice = dice.first();
+        int secondDice = dice.second();
         int newPosition = newPositionAfterRoll(player, firstDice, secondDice);
 
         Movement movement = Movement

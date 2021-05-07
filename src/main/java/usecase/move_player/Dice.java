@@ -6,4 +6,6 @@ public interface Dice {
     int second();
 
     Dice roll();
+
+    Dice from(int first, int second);
 }

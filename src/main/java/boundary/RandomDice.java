@@ -22,4 +22,9 @@ public class RandomDice implements Dice {
     public RandomDice roll() {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public Dice from(int first, int second) {
+        return new RandomDice(first, second);
+    }
 }

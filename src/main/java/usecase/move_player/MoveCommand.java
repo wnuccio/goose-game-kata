@@ -2,16 +2,10 @@ package usecase.move_player;
 
 public class MoveCommand {
     private String player;
-    private Integer firstDice;
-    private Integer secondDice;
+    private Dice dice;
 
     public MoveCommand(String player) {
         this.player = player;
-    }
-
-    public void dice(int firstDice, int secondDice) {
-        this.firstDice = firstDice;
-        this.secondDice = secondDice;
     }
 
     public String playerName() {
@@ -19,19 +13,22 @@ public class MoveCommand {
     }
 
     public int firstDice() {
-        return firstDice;
+        return dice.first();
     }
 
     public int secondDice() {
-        return secondDice;
+        return dice.second();
     }
 
     public boolean hasNoDice() {
-        return firstDice == null;
+        return dice == null;
     }
 
     public void setDice(Dice dice) {
-        firstDice = dice.first();
-        secondDice = dice.second();
+        this.dice = dice;
+    }
+
+    public Dice dice() {
+        return dice;
     }
 }

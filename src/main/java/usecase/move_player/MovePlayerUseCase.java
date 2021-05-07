@@ -31,7 +31,7 @@ public class MovePlayerUseCase implements UseCase {
             command.setDice(dice.roll());
         }
 
-        Movement movement = computeMovement(command);
+        Movement movement = computeMovement.doComputationFor(command.playerName(), command.dice());
 
         players.setPositionOf(player, movement.toPosition());
         presenter.presentMovement(movement);
@@ -46,16 +46,9 @@ public class MovePlayerUseCase implements UseCase {
         if (hasDiceValues) {
             int firstDice = parser.digitAtToken(2);
             int secondDice = parser.digitAtToken(3);
-            result.dice(firstDice, secondDice);
+            result.setDice(dice.from(firstDice, secondDice));
         }
         return result;
-    }
-
-    private Movement computeMovement(MoveCommand command) {
-        return computeMovement.doComputationFor(
-                command.playerName(),
-                command.firstDice(),
-                command.secondDice());
     }
 
 }

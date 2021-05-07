@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import usecase.Presenter;
 import usecase.add_player.Players;
 
+import static main.test.DiceForTest.dice;
 import static org.mockito.Mockito.*;
 import static usecase.move_player.Movement.of;
 
@@ -20,7 +21,7 @@ class MovePlayerUseCaseTest {
     void moves_a_player_from_start_to_the_specified_position() {
         when(players.contains("Pippo")).thenReturn(true);
         Movement movement = of("Pippo").givenRoll(4, 2).from(0).to(6);
-        when(computeMovement.doComputationFor("Pippo", 4, 2)).thenReturn(movement);
+        when(computeMovement.doComputationFor("Pippo", dice(4, 2))).thenReturn(movement);
 
         useCase.acceptCommand("move Pippo 4, 2");
 
@@ -32,7 +33,7 @@ class MovePlayerUseCaseTest {
     void present_a_victory_when_player_moves_to_the_ending_position() {
         when(players.contains("Pippo")).thenReturn(true);
         Movement movement = of("Pippo").givenRoll(1, 2).from(60).to(63).setVictory(true);
-        when(computeMovement.doComputationFor("Pippo", 1, 2)).thenReturn(movement);
+        when(computeMovement.doComputationFor("Pippo", dice(1, 2))).thenReturn(movement);
 
         useCase.acceptCommand("move Pippo 1, 2");
 
@@ -56,7 +57,7 @@ class MovePlayerUseCaseTest {
                 .from(60).to(61)
                 .setVictory(false)
                 .setBouncing(true);
-        when(computeMovement.doComputationFor("Pippo", 2, 3)).thenReturn(movement);
+        when(computeMovement.doComputationFor("Pippo", dice(2, 3))).thenReturn(movement);
 
         useCase.acceptCommand("move Pippo 2, 3");
 
@@ -70,7 +71,7 @@ class MovePlayerUseCaseTest {
 
         when(players.contains("Pippo")).thenReturn(true);
         Movement movement = of("Pippo").givenRoll(5, 6).from(0).to(11);
-        when(computeMovement.doComputationFor("Pippo", 5, 6)).thenReturn(movement);
+        when(computeMovement.doComputationFor("Pippo", dice(5, 6))).thenReturn(movement);
 
         useCase.acceptCommand("move Pippo");
     }
