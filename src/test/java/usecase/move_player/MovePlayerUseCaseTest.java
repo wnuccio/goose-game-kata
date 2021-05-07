@@ -1,5 +1,6 @@
 package usecase.move_player;
 
+import main.test.DiceForTest;
 import org.junit.jupiter.api.Test;
 import player.Players;
 import usecase.Presenter;
@@ -10,9 +11,10 @@ import static usecase.move_player.Movement.of;
 class MovePlayerUseCaseTest {
 
     private Players players = mock(Players.class);
+    private DiceForTest dice = new DiceForTest(5, 6);
     private ComputeMovement computeMovement = mock(ComputeMovement.class);
     private Presenter presenter = mock(Presenter.class);
-    private MovePlayerUseCase useCase = new MovePlayerUseCase(players, computeMovement, presenter);
+    private MovePlayerUseCase useCase = new MovePlayerUseCase(players, dice, computeMovement, presenter);
 
     @Test
     void moves_a_player_from_start_to_the_specified_position() {
@@ -60,6 +62,18 @@ class MovePlayerUseCaseTest {
 
         verify(players).setPositionOf("Pippo", 61);
         verify(presenter).presentMovement(movement);
+    }
+
+    @Test
+    void compute_movement_by_rolling_dice_when_command_does_not_specify_any_value() {
+        dice.values(5, 6);
+
+        when(players.contains("Pippo")).thenReturn(true);
+        Movement movement = of("Pippo").givenRoll(5, 6).from(0).to(11);
+        when(computeMovement.doComputationFor("Pippo", 5, 6)).thenReturn(movement);
+
+        useCase.acceptCommand("move Pippo");
+
     }
 
 }

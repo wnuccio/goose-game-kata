@@ -1,5 +1,6 @@
 package usecase.move_player;
 
+import main.test.DiceForTest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -10,7 +11,7 @@ public class ComputeMovementWithDiceTest {
 
     @Test
     void compute_movement_throwing_dice() {
-        Dice fixedDice = new FixedDice(1, 2);
+        Dice fixedDice = new DiceForTest(1, 2);
         ComputeMovement computeMovement = mock(ComputeMovement.class);
         ComputeMovementWithDice computeMovementWithDice = new ComputeMovementWithDice(computeMovement, fixedDice);
 

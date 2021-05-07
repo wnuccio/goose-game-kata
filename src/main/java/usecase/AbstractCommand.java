@@ -18,4 +18,12 @@ public abstract class AbstractCommand {
         String character = token(i).substring(0, 1);
         return parseInt( character);
     }
+
+    protected int tokenNumber() {
+        return tokens().length;
+    }
+
+    private String[] tokens() {
+        return commandLine.split(" ");
+    }
 }

@@ -7,6 +7,7 @@ import usecase.UseCase;
 import usecase.UseCaseDispatcher;
 import usecase.add_player.AddPlayerUseCase;
 import usecase.move_player.ComputeMovement;
+import usecase.move_player.Dice;
 import usecase.move_player.MovePlayerUseCase;
 import usecase.reset_game.ResetGameUseCase;
 
@@ -24,6 +25,10 @@ public class GooseGameAppBuilder {
         return string -> System.out.println(string);
     }
 
+    protected Dice dice() {
+        return new Dice(1, 1);
+    }
+
     public final GooseGameApp buildApplication() {
         InputBoundary inputBoundary = getInputBoundary();
         OutputBoundary outputBoundary = getOutputBoundary();
@@ -38,7 +43,8 @@ public class GooseGameAppBuilder {
     private UseCaseDispatcher useCaseDispatcher(ConsolePresenter presenter, Players players) {
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
         ComputeMovement computeMovement = computeMovement(players);
-        MovePlayerUseCase movePlayerUseCase = new MovePlayerUseCase(players, computeMovement, presenter);
+        Dice dice = dice();
+        MovePlayerUseCase movePlayerUseCase = new MovePlayerUseCase(players, dice, computeMovement, presenter);
         ResetGameUseCase resetGameUseCase = new ResetGameUseCase(players);
 
         HashMap<String, UseCase> useCaseMap = new HashMap<>();

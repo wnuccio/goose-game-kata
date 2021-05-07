@@ -17,4 +17,8 @@ public class MoveCommand extends AbstractCommand {
     public int secondDice() {
         return numberAt(3);
     }
+
+    public boolean hasNoDice() {
+        return super.tokenNumber() == 2;
+    }
 }
