@@ -8,16 +8,8 @@ public class MoveCommand {
         this.player = player;
     }
 
-    public String playerName() {
+    public String player() {
         return player;
-    }
-
-    public int firstDice() {
-        return dice.first();
-    }
-
-    public int secondDice() {
-        return dice.second();
     }
 
     public boolean hasNoDice() {

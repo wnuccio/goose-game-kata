@@ -20,7 +20,7 @@ public class MovePlayerUseCase implements UseCase {
 
     public void acceptCommand(String commandLine) {
         MoveCommand command = parseMoveCommand(commandLine);
-        String player = command.playerName();
+        String player = command.player();
 
         if ( ! players.contains(player)) {
             presenter.presentNoSuchPlayerError(player);
@@ -31,7 +31,7 @@ public class MovePlayerUseCase implements UseCase {
             command.setDice(dice.roll());
         }
 
-        Movement movement = computeMovement.doComputationFor(command.playerName(), command.dice());
+        Movement movement = computeMovement.doComputationFor(command.player(), command.dice());
 
         players.setPositionOf(player, movement.toPosition());
         presenter.presentMovement(movement);
