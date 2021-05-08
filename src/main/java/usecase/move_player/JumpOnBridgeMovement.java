@@ -1,9 +1,9 @@
 package usecase.move_player;
 
-public class JumpOnBridgeMovement extends Movement {
-    private Movement previousMovement;
+public class JumpOnBridgeMovement extends SimpleMovement {
+    private SimpleMovement previousMovement;
 
-    public JumpOnBridgeMovement(Movement previousMovement) {
+    public JumpOnBridgeMovement(SimpleMovement previousMovement) {
         super(previousMovement.player());
         this.previousMovement = previousMovement;
         Dice originalDice = previousMovement.dice;

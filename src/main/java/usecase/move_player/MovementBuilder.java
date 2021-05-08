@@ -2,10 +2,10 @@ package usecase.move_player;
 
 public class MovementBuilder {
 
-    private final Movement movement;
+    private final SimpleMovement movement;
 
     public MovementBuilder(String player) {
-        movement = new Movement(player);
+        movement = new SimpleMovement(player);
     }
 
     public MovementBuilder givenRoll(Dice dice) {
@@ -18,7 +18,7 @@ public class MovementBuilder {
         return this;
     }
 
-    public Movement end() {
+    public SimpleMovement end() {
         return movement;
     }
 }
