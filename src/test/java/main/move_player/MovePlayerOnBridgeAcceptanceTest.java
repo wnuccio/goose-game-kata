@@ -25,7 +25,7 @@ public class MovePlayerOnBridgeAcceptanceTest extends BaseAcceptanceTest {
 //    the system responds: "Pippo rolls 1, 1. Pippo moves from 4 to The Bridge. Pippo jumps to 12"
 
     @Test
-    void a_player_moves_by_throwing_dice() {
+    void a_player_moves_and_lands_on_the_bridge() {
         addPlayerDriver.addPlayer("Pippo");
         movePlayerDriver.moveOnPosition4("Pippo");
         diceDriver.onNextRollReturns(1, 1);
