@@ -32,7 +32,7 @@ class MovePlayerUseCaseTest {
     @Test
     void present_a_victory_when_player_moves_to_the_ending_position() {
         when(players.contains("Pippo")).thenReturn(true);
-        Movement movement = of("Pippo").givenRoll(1, 2).from(60).to(63).setVictory(true);
+        Movement movement = of("Pippo").givenRoll(1, 2).from(60).to(63);
         when(computeMovement.doComputationFor("Pippo", dice(1, 2))).thenReturn(movement);
 
         useCase.acceptCommand("move Pippo 1, 2");
@@ -55,7 +55,6 @@ class MovePlayerUseCaseTest {
         when(players.contains("Pippo")).thenReturn(true);
         Movement movement = of("Pippo").givenRoll(2, 3)
                 .from(60).to(61)
-                .setVictory(false)
                 .setBouncing(true);
         when(computeMovement.doComputationFor("Pippo", dice(2, 3))).thenReturn(movement);
 

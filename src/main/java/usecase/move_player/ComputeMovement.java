@@ -26,8 +26,6 @@ public class ComputeMovement {
 
         recomputeNewPositionConsideringBouncing(movement);
 
-        movement.setVictory(isWinningPosition(newPosition));
-
         return movement;
     }
 
@@ -40,9 +38,5 @@ public class ComputeMovement {
         movement
                 .to(rightPosition)
                 .setBouncing(true);
-    }
-
-    private boolean isWinningPosition(int newPosition) {
-        return newPosition == WIN_POSITION;
     }
 }
