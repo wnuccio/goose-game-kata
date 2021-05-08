@@ -31,4 +31,11 @@ class SimpleMovementTest {
         assertThat(movement.isBouncing()).isTrue();
     }
 
+    @Test
+    void is_to_bridge_when_the_final_position_is_bridge() {
+        SimpleMovement movement = SimpleMovement.of("Pippo")
+                .from(1).givenRoll(dice(2, 3)).end();
+
+        assertThat(movement.isToBridge()).isTrue();
+    }
 }

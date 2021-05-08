@@ -43,6 +43,11 @@ public class JumpOnBridgeMovement implements Movement {
     }
 
     @Override
+    public boolean isToBridge() {
+        return false;
+    }
+
+    @Override
     public boolean isJumpOnBridge() {
         return true;
     }

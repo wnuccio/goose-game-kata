@@ -15,5 +15,7 @@ public interface Movement {
 
     boolean isVictory();
 
+    boolean isToBridge();
+
     boolean isJumpOnBridge();
 }

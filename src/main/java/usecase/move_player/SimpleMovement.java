@@ -2,6 +2,7 @@ package usecase.move_player;
 
 public class SimpleMovement implements Movement {
     public static final int WIN_POSITION = 63;
+    private static final int BRIDGE = 6;
 
     String player;
     int fromPosition;
@@ -71,5 +72,10 @@ public class SimpleMovement implements Movement {
     @Override
     public boolean isJumpOnBridge() {
         return false;
+    }
+
+    @Override
+    public boolean isToBridge() {
+        return toPosition() == BRIDGE;
     }
 }

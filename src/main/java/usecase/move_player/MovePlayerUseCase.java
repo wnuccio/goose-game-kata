@@ -32,7 +32,7 @@ public class MovePlayerUseCase {
     }
 
     private Movement evaluateJumpOnBridge(Movement movement) {
-        if (movement.toPosition() == 6) {
+        if (movement.isToBridge()) {
             return new JumpOnBridgeMovement(movement);
         }
 
