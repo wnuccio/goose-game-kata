@@ -8,13 +8,13 @@ public class MovementBuilder {
         movement = new SimpleMovement(player);
     }
 
-    public MovementBuilder givenRoll(Dice dice) {
-        movement.dice = dice;
+    public MovementBuilder from(int fromPosition) {
+        movement.fromPosition = fromPosition;
         return this;
     }
 
-    public MovementBuilder from(int fromPosition) {
-        movement.fromPosition = fromPosition;
+    public MovementBuilder givenRoll(Dice dice) {
+        movement.dice = dice;
         return this;
     }
 
