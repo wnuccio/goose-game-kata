@@ -9,14 +9,14 @@ import static usecase.move_player.Movement.WIN_POSITION;
 class MovementTest {
 
     @Test
-    void compute_position_in_regular_movement() {
+    void final_position_is_the_sum_of_start_position_and_dice_total() {
         Movement movement = Movement.of("Pippo").givenRoll(dice(4, 2)).from(0).end();
 
         assertThat(movement.toPosition()).isEqualTo(6);
     }
 
     @Test
-    void compute_ending_position() {
+    void is_victory_when_final_position_is_win_position() {
         Movement movement = Movement.of("Pippo").givenRoll(dice(1, 2)).from(60).end();
 
         assertThat(movement.toPosition()).isEqualTo(WIN_POSITION);
@@ -24,7 +24,7 @@ class MovementTest {
     }
 
     @Test
-    void compute_movement_with_bouncing() {
+    void is_bouncing_when_the_movement_goes_over_win_position() {
         Movement movement = Movement.of("Pippo").givenRoll(dice(2, 3)).from(60).end();
 
         assertThat(movement.toPosition()).isEqualTo(61);

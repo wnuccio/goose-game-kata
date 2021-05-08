@@ -1,29 +1,11 @@
 package usecase.move_player;
 
-import java.util.Objects;
-
 public class Movement {
     public static final int WIN_POSITION = 63;
 
     String player;
     int fromPosition;
     Dice dice;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Movement movement = (Movement) o;
-        return firstDice() == movement.firstDice() &&
-                secondDice() == movement.secondDice() &&
-                fromPosition == movement.fromPosition &&
-                player.equals(movement.player);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(player, firstDice(), secondDice(), fromPosition);
-    }
 
     Movement(String player) {
         this.player = player;
