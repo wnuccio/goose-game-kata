@@ -1,5 +1,7 @@
 package usecase.move_player;
 
+import java.util.Optional;
+
 public class MoveCommand {
     private String player;
     private Dice dice;
@@ -17,13 +19,7 @@ public class MoveCommand {
         return player;
     }
 
-    public void setDiceIfAbsent(Dice dice) {
-        if (this.dice == null) {
-            this.dice = dice.roll();
-        }
-    }
-
-    public Dice dice() {
-        return dice;
+    public Optional<Dice> dice() {
+        return Optional.ofNullable(dice);
     }
 }

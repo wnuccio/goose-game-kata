@@ -25,12 +25,12 @@ public class MovePlayerUseCase implements UseCase {
             return;
         }
 
-        command.setDiceIfAbsent(dice.roll());
+        Dice dice = command.dice().orElse(this.dice.roll());
 
         Movement movement = Movement
                 .of(player)
                 .from(players.positionOf(player))
-                .givenRoll(command.dice())
+                .givenRoll(dice)
                 .end();
 
         players.setPositionOf(player, movement.toPosition());
