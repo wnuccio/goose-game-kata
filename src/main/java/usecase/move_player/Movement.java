@@ -18,4 +18,6 @@ public interface Movement {
     boolean isToBridge();
 
     boolean isJumpOnBridge();
+
+    int intermediatePosition();
 }

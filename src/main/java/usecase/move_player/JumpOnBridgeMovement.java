@@ -53,4 +53,9 @@ public class JumpOnBridgeMovement implements Movement {
     public boolean isJumpOnBridge() {
         return true;
     }
+
+    @Override
+    public int intermediatePosition() {
+        return previousMovement.toPosition();
+    }
 }

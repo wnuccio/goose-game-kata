@@ -6,6 +6,7 @@ import usecase.move_player.SimpleMovement;
 
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
+import static usecase.move_player.SimpleMovement.*;
 
 public class ConsolePresenter implements Presenter {
     private OutputBoundary outputBoundary;
@@ -41,14 +42,10 @@ public class ConsolePresenter implements Presenter {
                 movement.firstDice(),
                 movement.secondDice());
 
-
-        int fromPosition = movement.fromPosition();
-        int newPosition = movement.isBouncing() ? SimpleMovement.WIN_POSITION : movement.toPosition();
-
         String playerMoves = format("%s moves from %s to %s",
                 movement.player(),
-                positionName(fromPosition),
-                positionName(newPosition));
+                positionName(movement.fromPosition()),
+                positionName(movement.intermediatePosition()));
 
         String specialCase = "";
         if (movement.isVictory()) {
@@ -61,15 +58,18 @@ public class ConsolePresenter implements Presenter {
                     movement.toPosition());
 
         } else if (movement.isJumpOnBridge()) {
-            specialCase = format(". %s jumps to 12", movement.player());
+            specialCase = format(". %s jumps to 12",
+                    movement.player());
         }
 
         return playerRolls + playerMoves + specialCase;
     }
 
     private String positionName(int position) {
-        if (position == 0) return "Start";
-        if (position == 12) return "The Bridge";
+        if (position == SimpleMovement.START) return "Start";
+        if (position == BRIDGE) return "The Bridge";
+        if (position == BRIDGE_TARGET) return "12";
+        if (position == WIN_POSITION) return "63";
 
         return valueOf(position);
     }
