@@ -5,19 +5,20 @@ import org.junit.jupiter.api.Test;
 import static main.test.DiceForTest.dice;
 import static org.assertj.core.api.Assertions.assertThat;
 import static usecase.move_player.SimpleMovement.WIN_POSITION;
+import static usecase.move_player.SimpleMovement.of;
 
 class SimpleMovementTest {
 
     @Test
     void final_position_is_the_sum_of_start_position_and_dice_total() {
-        SimpleMovement movement = SimpleMovement.of("Pippo").from(0).givenRoll(dice(4, 2)).end();
+        SimpleMovement movement = of("Pippo").from(0).givenRoll(dice(4, 2)).end();
 
         assertThat(movement.toPosition()).isEqualTo(6);
     }
 
     @Test
     void is_victory_when_final_position_is_win_position() {
-        SimpleMovement movement = SimpleMovement.of("Pippo").from(60).givenRoll(dice(1, 2)).end();
+        SimpleMovement movement = of("Pippo").from(60).givenRoll(dice(1, 2)).end();
 
         assertThat(movement.toPosition()).isEqualTo(WIN_POSITION);
         assertThat(movement.isVictory()).isTrue();
@@ -25,7 +26,7 @@ class SimpleMovementTest {
 
     @Test
     void is_bouncing_when_the_movement_goes_over_win_position() {
-        SimpleMovement movement = SimpleMovement.of("Pippo").from(60).givenRoll(dice(2, 3)).end();
+        SimpleMovement movement = of("Pippo").from(60).givenRoll(dice(2, 3)).end();
 
         assertThat(movement.toPosition()).isEqualTo(61);
         assertThat(movement.isBouncing()).isTrue();
@@ -33,9 +34,20 @@ class SimpleMovementTest {
 
     @Test
     void is_to_bridge_when_the_final_position_is_bridge() {
-        SimpleMovement movement = SimpleMovement.of("Pippo")
+        SimpleMovement movement = of("Pippo")
                 .from(1).givenRoll(dice(2, 3)).end();
 
-        assertThat(movement.isToBridge()).isTrue();
+        assertThat(movement.endsOnBridge()).isTrue();
+    }
+
+    @Test
+    void ends_on_goose_when_the_final_position_has_a_goose() {
+        // positions with goose: 5, 9, 14, 18, 23, 27
+        assertThat(of("Pippo").from(3).givenRoll(dice(1, 1)).end().endsOnGoose()).isTrue();
+        assertThat(of("Pippo").from(7).givenRoll(dice(1, 1)).end().endsOnGoose()).isTrue();
+        assertThat(of("Pippo").from(12).givenRoll(dice(1, 1)).end().endsOnGoose()).isTrue();
+        assertThat(of("Pippo").from(16).givenRoll(dice(1, 1)).end().endsOnGoose()).isTrue();
+        assertThat(of("Pippo").from(21).givenRoll(dice(1, 1)).end().endsOnGoose()).isTrue();
+        assertThat(of("Pippo").from(25).givenRoll(dice(1, 1)).end().endsOnGoose()).isTrue();
     }
 }

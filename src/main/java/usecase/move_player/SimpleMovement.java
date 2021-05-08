@@ -1,5 +1,9 @@
 package usecase.move_player;
 
+import java.util.List;
+
+import static java.util.Arrays.asList;
+
 public class SimpleMovement implements Movement {
     public static final int START = 0;
     public static final int BRIDGE = 6;
@@ -77,12 +81,23 @@ public class SimpleMovement implements Movement {
     }
 
     @Override
-    public boolean isToBridge() {
+    public boolean endsOnBridge() {
         return toPosition() == BRIDGE;
     }
 
     @Override
     public int intermediatePosition() {
         return isBouncing() ? WIN_POSITION : toPosition();
+    }
+
+    @Override
+    public boolean isMoveAgainOnGoose() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean endsOnGoose() {
+        List<Integer> positionsWithGoose = asList(5, 9, 14, 18, 23, 27);
+        return positionsWithGoose.contains(toPosition());
     }
 }
