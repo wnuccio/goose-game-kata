@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Movement {
     public static final int WIN_POSITION = 63;
+    public Dice dice;
 
     String player;
     int firstDice;

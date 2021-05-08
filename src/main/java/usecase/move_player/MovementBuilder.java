@@ -8,9 +8,10 @@ public class MovementBuilder {
         movement = new Movement(player);
     }
 
-    public MovementBuilder givenRoll(int firstDice, int secondDice) {
-        movement.firstDice = firstDice;
-        movement.secondDice = secondDice;
+    public MovementBuilder givenRoll(Dice dice) {
+        movement.dice = dice;
+        movement.firstDice = dice.first();
+        movement.secondDice = dice.second();
         return this;
     }
 

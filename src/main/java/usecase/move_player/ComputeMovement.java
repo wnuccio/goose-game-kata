@@ -15,7 +15,7 @@ public class ComputeMovement {
     public Movement doComputationFor(String player, Dice dice) {
         MovementBuilder movement = Movement
                 .of(player)
-                .givenRoll(dice.first(), dice.second())
+                .givenRoll(dice)
                 .from(currentPositionOf(player))
                 .to(computePosition(candidatePosition(player, dice)))
                 .isBouncing(isBouncing(candidatePosition(player, dice)));
