@@ -1,9 +1,11 @@
 package usecase.move_player;
 
-public class JumpOnBridgeMovement implements Movement {
-    private Movement previousMovement;
+import static usecase.move_player.SimpleMovement.BRIDGE_TARGET;
 
-    public JumpOnBridgeMovement(Movement previousMovement) {
+public class JumpOnBridgeMovement implements Movement {
+    private SimpleMovement previousMovement;
+
+    public JumpOnBridgeMovement(SimpleMovement previousMovement) {
         this.previousMovement = previousMovement;
     }
 
@@ -29,7 +31,7 @@ public class JumpOnBridgeMovement implements Movement {
 
     @Override
     public int toPosition() {
-        return 12;
+        return BRIDGE_TARGET;
     }
 
     @Override

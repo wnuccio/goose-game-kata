@@ -10,6 +10,7 @@ import static main.test.DiceForTest.dice;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static usecase.move_player.SimpleMovement.BRIDGE_TARGET;
 
 class MovePlayerUseCaseTest {
     private Players players = new Players();
@@ -60,11 +61,10 @@ class MovePlayerUseCaseTest {
 
         useCase.acceptCommand(move("Pippo", 1, 1));
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(12);
+        assertThat(players.positionOf("Pippo")).isEqualTo(BRIDGE_TARGET);
         verify(presenter).presentMovement(movementCaptor.capture());
 
         Movement movement = movementCaptor.getValue();
-        assertThat(movement.toPosition()).isEqualTo(12);
         assertThat(movement.isJumpOnBridge()).isTrue();
     }
 

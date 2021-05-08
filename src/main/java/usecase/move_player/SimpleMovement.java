@@ -2,7 +2,8 @@ package usecase.move_player;
 
 public class SimpleMovement implements Movement {
     public static final int WIN_POSITION = 63;
-    private static final int BRIDGE = 6;
+    public static final int BRIDGE = 6;
+    public static final int BRIDGE_TARGET = 12;
 
     String player;
     int fromPosition;

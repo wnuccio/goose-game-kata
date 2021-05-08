@@ -22,16 +22,16 @@ public class MovePlayerUseCase {
             return;
         }
 
-        Movement movement = buildMovementFor(player, diceFrom(command));
+        SimpleMovement firstMovement = buildMovementFor(player, diceFrom(command));
 
-        movement = evaluateJumpOnBridge(movement);
+        Movement movement = jumpIfToBridge(firstMovement);
 
         players.setPositionOf(player, movement.toPosition());
 
         presenter.presentMovement(movement);
     }
 
-    private Movement evaluateJumpOnBridge(Movement movement) {
+    private Movement jumpIfToBridge(SimpleMovement movement) {
         if (movement.isToBridge()) {
             return new JumpOnBridgeMovement(movement);
         }
