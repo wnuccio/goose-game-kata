@@ -8,13 +8,11 @@ import usecase.add_player.Players;
 public class MovePlayerUseCase implements UseCase {
     private Players players;
     private Dice dice;
-    private ComputeMovement computeMovement;
     private Presenter presenter;
 
-    public MovePlayerUseCase(Players players, Dice dice, ComputeMovement computeMovement, Presenter presenter) {
+    public MovePlayerUseCase(Players players, Dice dice, Presenter presenter) {
         this.players = players;
         this.dice = dice;
-        this.computeMovement = computeMovement;
         this.presenter = presenter;
     }
 
@@ -29,7 +27,11 @@ public class MovePlayerUseCase implements UseCase {
 
         command.setDiceIfAbsent(dice.roll());
 
-        Movement movement = computeMovement.doComputationFor(command.player(), command.dice());
+        Movement movement = Movement
+                .of(player)
+                .from(players.positionOf(player))
+                .givenRoll(command.dice())
+                .end();
 
         players.setPositionOf(player, movement.toPosition());
         presenter.presentMovement(movement);

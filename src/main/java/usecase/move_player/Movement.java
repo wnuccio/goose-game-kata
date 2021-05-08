@@ -4,12 +4,10 @@ import java.util.Objects;
 
 public class Movement {
     public static final int WIN_POSITION = 63;
-    public Dice dice;
 
     String player;
     int fromPosition;
-    int toPosition;
-    boolean bouncing;
+    Dice dice;
 
     @Override
     public boolean equals(Object o) {
@@ -19,14 +17,12 @@ public class Movement {
         return firstDice() == movement.firstDice() &&
                 secondDice() == movement.secondDice() &&
                 fromPosition == movement.fromPosition &&
-                toPosition == movement.toPosition &&
-                bouncing == movement.bouncing &&
                 player.equals(movement.player);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(player, firstDice(), secondDice(), fromPosition, toPosition, bouncing);
+        return Objects.hash(player, firstDice(), secondDice(), fromPosition);
     }
 
     Movement(String player) {
@@ -54,11 +50,11 @@ public class Movement {
     }
 
     public int toPosition() {
-        return toPosition;
+        return isBouncing() ? WIN_POSITION - (candidatePosition() - WIN_POSITION) : candidatePosition();
     }
 
     public boolean isBouncing() {
-        return this.bouncing;
+        return candidatePosition() > WIN_POSITION;
     }
 
     public boolean isVictory() {
@@ -69,12 +65,18 @@ public class Movement {
     public String toString() {
         return "Movement{" +
                 "player='" + player + '\'' +
+                ", fromPosition=" + fromPosition +
                 ", firstDice=" + firstDice() +
                 ", secondDice=" + secondDice() +
-                ", fromPosition=" + fromPosition +
-                ", toPosition=" + toPosition +
+                ", candidatePosition=" + candidatePosition() +
+                ", toPosition=" + toPosition() +
                 ", victory=" + isVictory() +
-                ", bouncing=" + bouncing +
+                ", bouncing=" + isBouncing() +
                 '}';
     }
+
+    private int candidatePosition() {
+        return fromPosition + dice.total();
+    }
+
 }

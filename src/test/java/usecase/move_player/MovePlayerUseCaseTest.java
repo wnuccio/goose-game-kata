@@ -13,32 +13,29 @@ class MovePlayerUseCaseTest {
 
     private Players players = mock(Players.class);
     private DiceForTest dice = new DiceForTest(5, 6);
-    private ComputeMovement computeMovement = mock(ComputeMovement.class);
     private Presenter presenter = mock(Presenter.class);
-    private MovePlayerUseCase useCase = new MovePlayerUseCase(players, dice, computeMovement, presenter);
+    private MovePlayerUseCase useCase = new MovePlayerUseCase(players, dice, presenter);
 
     @Test
     void moves_a_player_from_start_to_the_specified_position() {
         when(players.contains("Pippo")).thenReturn(true);
-        Movement movement = of("Pippo").givenRoll(dice(4, 2)).from(0).to(6).end();
-        when(computeMovement.doComputationFor("Pippo", dice(4, 2))).thenReturn(movement);
+        when(players.positionOf("Pippo")).thenReturn(0);
 
         useCase.acceptCommand("move Pippo 4, 2");
 
         verify(players).setPositionOf("Pippo", 6);
-        verify(presenter).presentMovement(movement);
+        verify(presenter).presentMovement(of("Pippo").givenRoll(dice(4, 2)).from(0).end());
     }
 
     @Test
     void present_a_victory_when_player_moves_to_the_ending_position() {
         when(players.contains("Pippo")).thenReturn(true);
-        Movement movement = of("Pippo").givenRoll(dice(1, 2)).from(60).to(63).end();
-        when(computeMovement.doComputationFor("Pippo", dice(1, 2))).thenReturn(movement);
+        when(players.positionOf("Pippo")).thenReturn(60);
 
         useCase.acceptCommand("move Pippo 1, 2");
 
         verify(players).setPositionOf("Pippo", 63);
-        verify(presenter).presentMovement(movement);
+        verify(presenter).presentMovement(of("Pippo").givenRoll(dice(1, 2)).from(60).end());
     }
 
     @Test
@@ -53,26 +50,21 @@ class MovePlayerUseCaseTest {
     @Test
     void present_a_bouncing_when_player_moves_over_the_ending_position() {
         when(players.contains("Pippo")).thenReturn(true);
-        Movement movement = of("Pippo").givenRoll(dice(2, 3))
-                .from(60).to(61)
-                .isBouncing(true)
-                .end();
-        when(computeMovement.doComputationFor("Pippo", dice(2, 3))).thenReturn(movement);
+        when(players.positionOf("Pippo")).thenReturn(60);
 
         useCase.acceptCommand("move Pippo 2, 3");
 
         verify(players).setPositionOf("Pippo", 61);
-        verify(presenter).presentMovement(movement);
+        verify(presenter).presentMovement(of("Pippo").givenRoll(dice(2, 3)).from(60).end());
     }
 
     @Test
     void compute_movement_by_rolling_dice_when_command_does_not_specify_any_value() {
         dice.values(5, 6);
-
         when(players.contains("Pippo")).thenReturn(true);
-        Movement movement = of("Pippo").givenRoll(dice(5, 6)).from(0).to(11).end();
-        when(computeMovement.doComputationFor("Pippo", dice(5, 6))).thenReturn(movement);
 
         useCase.acceptCommand("move Pippo");
+
+        verify(presenter).presentMovement(of("Pippo").givenRoll(dice(5, 6)).from(0).end());
     }
 }
