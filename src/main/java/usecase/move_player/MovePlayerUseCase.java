@@ -24,16 +24,20 @@ public class MovePlayerUseCase {
 
         SimpleMovement firstMovement = buildMovementFor(player, diceFrom(command));
 
-        Movement movement = jumpIfToBridge(firstMovement);
+        Movement movement = repeatMovementOnSpecialPositions(firstMovement);
 
         players.setPositionOf(player, movement.toPosition());
 
         presenter.presentMovement(movement);
     }
 
-    private Movement jumpIfToBridge(SimpleMovement movement) {
-        if (movement.isToBridge()) {
+    private Movement repeatMovementOnSpecialPositions(SimpleMovement movement) {
+        if (movement.endsOnBridge()) {
             return new JumpOnBridgeMovement(movement);
+        }
+
+        if (movement.endsOnGoose()) {
+            return new RepeatOnGooseMovement(movement);
         }
 
         return movement;

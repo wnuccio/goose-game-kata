@@ -32,14 +32,14 @@ class MovePlayerUseCaseTest {
     void build_a_movement_with_player_name_initial_position_and_dice_values() {
         players.setPositionOf("Pippo", 0);
 
-        useCase.acceptCommand(move("Pippo", 4, 1));
+        useCase.acceptCommand(move("Pippo", 4, 3));
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(5);
+        assertThat(players.positionOf("Pippo")).isEqualTo(7);
         verify(presenter).presentMovement(movementCaptor.capture());
         assertThat(movementCaptor.getValue().player()).isEqualTo("Pippo");
         assertThat(movementCaptor.getValue().fromPosition()).isEqualTo(0);
         assertThat(movementCaptor.getValue().firstDice()).isEqualTo(4);
-        assertThat(movementCaptor.getValue().secondDice()).isEqualTo(1);
+        assertThat(movementCaptor.getValue().secondDice()).isEqualTo(3);
     }
 
     @Test
@@ -56,7 +56,7 @@ class MovePlayerUseCaseTest {
     }
 
     @Test
-    void compute_movement_on_the_bridge() {
+    void repeat_movement_on_the_bridge() {
         players.setPositionOf("Pippo", 4);
 
         useCase.acceptCommand(move("Pippo", 1, 1));
@@ -66,6 +66,19 @@ class MovePlayerUseCaseTest {
 
         Movement movement = movementCaptor.getValue();
         assertThat(movement.isJumpOnBridge()).isTrue();
+    }
+
+    @Test
+    void repeat_movement_on_the_goose() {
+        players.setPositionOf("Pippo", 3);
+
+        useCase.acceptCommand(move("Pippo", 1, 1));
+
+        assertThat(players.positionOf("Pippo")).isEqualTo(7);
+        verify(presenter).presentMovement(movementCaptor.capture());
+
+        Movement movement = movementCaptor.getValue();
+        assertThat(movement.isRepeatOnGoose()).isTrue();
     }
 
     private MoveCommand move(String player, int first, int second) {

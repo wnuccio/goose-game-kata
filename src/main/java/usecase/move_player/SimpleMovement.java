@@ -91,8 +91,8 @@ public class SimpleMovement implements Movement {
     }
 
     @Override
-    public boolean isMoveAgainOnGoose() {
-        throw new UnsupportedOperationException();
+    public boolean isRepeatOnGoose() {
+        return false;
     }
 
     @Override

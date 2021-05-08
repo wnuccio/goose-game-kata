@@ -45,7 +45,7 @@ public class JumpOnBridgeMovement implements Movement {
     }
 
     @Override
-    public boolean isToBridge() {
+    public boolean endsOnBridge() {
         return false;
     }
 
@@ -57,5 +57,15 @@ public class JumpOnBridgeMovement implements Movement {
     @Override
     public int intermediatePosition() {
         return previousMovement.toPosition();
+    }
+
+    @Override
+    public boolean isRepeatOnGoose() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean endsOnGoose() {
+        throw new UnsupportedOperationException();
     }
 }

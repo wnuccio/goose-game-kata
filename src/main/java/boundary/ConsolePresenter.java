@@ -60,6 +60,14 @@ public class ConsolePresenter implements Presenter {
         } else if (movement.isJumpOnBridge()) {
             specialCase = format(". %s jumps to 12",
                     movement.player());
+
+        } else if (movement.isRepeatOnGoose()) {
+            playerMoves = format("%s moves from %s to %s, The Goose. %s moves again and goes to %s",
+                    movement.player(),
+                    positionName(movement.fromPosition()),
+                    positionName(movement.intermediatePosition()),
+                    movement.player(),
+                    positionName(movement.toPosition()));
         }
 
         return playerRolls + playerMoves + specialCase;

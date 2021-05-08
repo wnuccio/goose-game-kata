@@ -20,7 +20,16 @@ public class MovePlayerDriver {
     }
 
     public void moveOnPosition60(String player) {
-        for (int i = 0; i < 6; i++) movePlayer(player, 5, 5);
+        // avoid goose positions: (5, 9, 14, 18, 23, 27);
+        movePlayer(player, 2, 2);
+        movePlayer(player, 2, 2);
+        movePlayer(player, 2, 3);
+        movePlayer(player, 2, 2);
+        movePlayer(player, 2, 3);
+        movePlayer(player, 2, 2);
+        movePlayer(player, 2, 2); // on position 30
+        for (int i = 0; i < 3; i++) movePlayer(player, 5, 5);
+
     }
 
     public void moveOnPosition4(String player) {

@@ -21,14 +21,14 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
     void a_player_moves_from_start_to_a_new_position() {
         addPlayerDriver.addPlayers("Pippo", "Pluto");
 
-        String output = movePlayerDriver.movePlayer("Pippo", 4, 1);
-        assertThat(output).isEqualTo("Pippo rolls 4, 1. Pippo moves from Start to 5");
+        String output = movePlayerDriver.movePlayer("Pippo", 4, 4);
+        assertThat(output).isEqualTo("Pippo rolls 4, 4. Pippo moves from Start to 8");
 
         String output2 = movePlayerDriver.movePlayer("Pluto", 2, 2);
         assertThat(output2).isEqualTo("Pluto rolls 2, 2. Pluto moves from Start to 4");
 
         String output3 = movePlayerDriver.movePlayer("Pippo", 2, 3);
-        assertThat(output3).isEqualTo("Pippo rolls 2, 3. Pippo moves from 5 to 10");
+        assertThat(output3).isEqualTo("Pippo rolls 2, 3. Pippo moves from 8 to 13");
     }
 
     @Test

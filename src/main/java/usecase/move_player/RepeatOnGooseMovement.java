@@ -9,22 +9,22 @@ public class RepeatOnGooseMovement implements Movement {
 
     @Override
     public String player() {
-        throw new UnsupportedOperationException();
+        return previousMovement.player();
     }
 
     @Override
     public int firstDice() {
-        throw new UnsupportedOperationException();
+        return previousMovement.firstDice();
     }
 
     @Override
     public int secondDice() {
-        throw new UnsupportedOperationException();
+        return previousMovement.secondDice();
     }
 
     @Override
     public int fromPosition() {
-        throw new UnsupportedOperationException();
+        return previousMovement.fromPosition;
     }
 
     @Override
@@ -34,12 +34,12 @@ public class RepeatOnGooseMovement implements Movement {
 
     @Override
     public boolean isBouncing() {
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
     public boolean isVictory() {
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
@@ -49,17 +49,17 @@ public class RepeatOnGooseMovement implements Movement {
 
     @Override
     public boolean isJumpOnBridge() {
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
     public int intermediatePosition() {
-        throw new UnsupportedOperationException();
+        return previousMovement.toPosition();
     }
 
     @Override
-    public boolean isMoveAgainOnGoose() {
-        throw new UnsupportedOperationException();
+    public boolean isRepeatOnGoose() {
+        return true;
     }
 
     @Override
