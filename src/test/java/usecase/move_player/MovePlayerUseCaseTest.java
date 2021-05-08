@@ -20,7 +20,7 @@ class MovePlayerUseCaseTest {
     @Test
     void moves_a_player_from_start_to_the_specified_position() {
         when(players.contains("Pippo")).thenReturn(true);
-        Movement movement = of("Pippo").givenRoll(4, 2).from(0).to(6);
+        Movement movement = of("Pippo").givenRoll(4, 2).from(0).to(6).end();
         when(computeMovement.doComputationFor("Pippo", dice(4, 2))).thenReturn(movement);
 
         useCase.acceptCommand("move Pippo 4, 2");
@@ -32,7 +32,7 @@ class MovePlayerUseCaseTest {
     @Test
     void present_a_victory_when_player_moves_to_the_ending_position() {
         when(players.contains("Pippo")).thenReturn(true);
-        Movement movement = of("Pippo").givenRoll(1, 2).from(60).to(63);
+        Movement movement = of("Pippo").givenRoll(1, 2).from(60).to(63).end();
         when(computeMovement.doComputationFor("Pippo", dice(1, 2))).thenReturn(movement);
 
         useCase.acceptCommand("move Pippo 1, 2");
@@ -55,7 +55,8 @@ class MovePlayerUseCaseTest {
         when(players.contains("Pippo")).thenReturn(true);
         Movement movement = of("Pippo").givenRoll(2, 3)
                 .from(60).to(61)
-                .setBouncing(true);
+                .setBouncing(true)
+                .end();
         when(computeMovement.doComputationFor("Pippo", dice(2, 3))).thenReturn(movement);
 
         useCase.acceptCommand("move Pippo 2, 3");
@@ -69,7 +70,7 @@ class MovePlayerUseCaseTest {
         dice.values(5, 6);
 
         when(players.contains("Pippo")).thenReturn(true);
-        Movement movement = of("Pippo").givenRoll(5, 6).from(0).to(11);
+        Movement movement = of("Pippo").givenRoll(5, 6).from(0).to(11).end();
         when(computeMovement.doComputationFor("Pippo", dice(5, 6))).thenReturn(movement);
 
         useCase.acceptCommand("move Pippo");

@@ -5,12 +5,12 @@ import java.util.Objects;
 public class Movement {
     public static final int WIN_POSITION = 63;
 
-    private String player;
-    private int firstDice;
-    private int secondDice;
-    private int fromPosition;
-    private int toPosition;
-    private boolean bouncing;
+    String player;
+    int firstDice;
+    int secondDice;
+    int fromPosition;
+    int toPosition;
+    boolean bouncing;
 
     @Override
     public boolean equals(Object o) {
@@ -30,28 +30,12 @@ public class Movement {
         return Objects.hash(player, firstDice, secondDice, fromPosition, toPosition, bouncing);
     }
 
-    public Movement(String player) {
+    Movement(String player) {
         this.player = player;
     }
 
-    public static Movement of(String player) {
-        return new Movement(player);
-    }
-
-    public Movement givenRoll(int firstDice, int secondDice) {
-        this.firstDice = firstDice;
-        this.secondDice = secondDice;
-        return this;
-    }
-
-    public Movement from(int fromPosition) {
-        this.fromPosition = fromPosition;
-        return this;
-    }
-
-    public Movement to(int toPosition) {
-        this.toPosition = toPosition;
-        return this;
+    public static MovementBuilder of(String player) {
+        return new MovementBuilder(player);
     }
 
     public String player() {
@@ -74,6 +58,14 @@ public class Movement {
         return toPosition;
     }
 
+    public boolean isBouncing() {
+        return this.bouncing;
+    }
+
+    public boolean isVictory() {
+        return toPosition() == WIN_POSITION;
+    }
+
     @Override
     public String toString() {
         return "Movement{" +
@@ -87,16 +79,13 @@ public class Movement {
                 '}';
     }
 
-    public boolean isVictory() {
-        return toPosition() == WIN_POSITION;
-    }
-
     public Movement setBouncing(boolean isBouncing) {
         this.bouncing = isBouncing;
         return this;
     }
 
-    public boolean isBouncing() {
-        return this.bouncing;
+    public Movement to(int toPosition) {
+        this.toPosition = toPosition;
+        return this;
     }
 }

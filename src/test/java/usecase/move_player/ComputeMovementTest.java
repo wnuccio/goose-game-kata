@@ -17,7 +17,7 @@ public class ComputeMovementTest {
     void compute_regular_movement() {
         Movement movement = computeMovement.doComputationFor("Pippo", dice(4, 2));
 
-        assertThat(movement).isEqualTo(of("Pippo").givenRoll(4, 2).from(0).to(6));
+        assertThat(movement).isEqualTo(of("Pippo").givenRoll(4, 2).from(0).to(6).end());
     }
 
     @Test
@@ -26,7 +26,7 @@ public class ComputeMovementTest {
 
         Movement movement = computeMovement.doComputationFor("Pippo", dice(1, 2));
 
-        assertThat(movement).isEqualTo(of("Pippo").givenRoll(1, 2).from(60).to(63));
+        assertThat(movement).isEqualTo(of("Pippo").givenRoll(1, 2).from(60).to(63).end());
     }
     
     @Test
@@ -35,6 +35,6 @@ public class ComputeMovementTest {
 
         Movement movement = computeMovement.doComputationFor("Pippo", dice(2, 3));
 
-        assertThat(movement).isEqualTo(of("Pippo").givenRoll(2, 3).from(60).to(61).setBouncing(true));
+        assertThat(movement).isEqualTo(of("Pippo").givenRoll(2, 3).from(60).to(61).setBouncing(true).end());
     }
 }

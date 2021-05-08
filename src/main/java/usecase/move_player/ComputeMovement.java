@@ -22,7 +22,8 @@ public class ComputeMovement {
                 .of(player)
                 .givenRoll(firstDice, secondDice)
                 .from(currentPosition)
-                .to(newPosition);
+                .to(newPosition)
+                .end();
 
         recomputeNewPositionConsideringBouncing(movement);
 

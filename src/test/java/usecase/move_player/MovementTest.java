@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MovementTest {
     @Test
     void movement_is_victory_when_towards_win_position() {
-        Movement movement = Movement.of("aPlayer").from(60).to(Movement.WIN_POSITION);
+        Movement movement = Movement.of("aPlayer").from(60).to(Movement.WIN_POSITION).end();
 
         assertThat(movement.isVictory()).isTrue();
     }
