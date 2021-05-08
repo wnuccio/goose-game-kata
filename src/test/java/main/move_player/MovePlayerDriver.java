@@ -26,4 +26,8 @@ public class MovePlayerDriver {
     public void moveOnPosition4(String player) {
         movePlayer(player, 2, 2);
     }
+
+    public void moveOnPosition3(String player) {
+        movePlayer(player, 2, 1);
+    }
 }
