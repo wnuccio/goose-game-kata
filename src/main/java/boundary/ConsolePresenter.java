@@ -46,8 +46,8 @@ public class ConsolePresenter implements Presenter {
 
         String playerMoves = format("%s moves from %s to %s",
                 movement.player(),
-                positionString(fromPosition),
-                positionString(newPosition));
+                positionName(fromPosition),
+                positionName(newPosition));
 
         String specialCase = "";
         if (movement.isVictory()) {
@@ -66,10 +66,10 @@ public class ConsolePresenter implements Presenter {
         return playerRolls + playerMoves + specialCase;
     }
 
-    private String positionString(int position) {
+    private String positionName(int position) {
         if (position == 0) return "Start";
         if (position == 12) return "The Bridge";
 
-        return position == 0 ? "Start" : valueOf(position);
+        return valueOf(position);
     }
 }
