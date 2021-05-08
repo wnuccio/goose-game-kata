@@ -22,4 +22,8 @@ public class MovePlayerDriver {
     public void moveOnPosition60(String pippo) {
         for (int i = 0; i < 6; i++) movePlayer(pippo, 5, 5);
     }
+
+    public void moveOnPosition4(String player) {
+        movePlayer("Pippo", 2, 2);
+    }
 }
