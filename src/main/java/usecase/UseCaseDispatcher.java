@@ -1,14 +1,22 @@
 package usecase;
 
+import boundary.MoveCommandParser;
+import usecase.move_player.MoveCommand;
+import usecase.move_player.MovePlayerUseCase;
+
 import java.util.Map;
 import java.util.Optional;
 
 public class UseCaseDispatcher {
 
     private Map<String, UseCase> useCaseMap;
+    private MovePlayerUseCase movePlayerUseCase;
+    private MoveCommandParser moveCommandParser;
 
-    public UseCaseDispatcher(Map<String, UseCase> useCaseMap) {
+    public UseCaseDispatcher(Map<String, UseCase> useCaseMap, MovePlayerUseCase movePlayerUseCase, MoveCommandParser moveCommandParser) {
         this.useCaseMap = useCaseMap;
+        this.movePlayerUseCase = movePlayerUseCase;
+        this.moveCommandParser = moveCommandParser;
     }
 
     private Optional<UseCase> selectUseCaseBy(String command) {
@@ -17,6 +25,12 @@ public class UseCaseDispatcher {
 
     public void acceptCommand(String commandLine) {
         String command = firstTokenOf(commandLine);
+
+        if ("move".equals(command)) {
+            MoveCommand moveCommand = moveCommandParser.parse(commandLine);
+            movePlayerUseCase.acceptCommand(moveCommand);
+            return;
+        }
 
         UseCase useCase =
                 selectUseCaseBy(command)

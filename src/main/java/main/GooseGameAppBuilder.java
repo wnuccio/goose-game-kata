@@ -1,6 +1,7 @@
 package main;
 
 import boundary.ConsolePresenter;
+import boundary.MoveCommandParser;
 import boundary.OutputBoundary;
 import boundary.RandomDice;
 import usecase.UseCase;
@@ -44,13 +45,14 @@ public class GooseGameAppBuilder {
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
         Dice dice = dice();
         MovePlayerUseCase movePlayerUseCase = new MovePlayerUseCase(players, dice, presenter);
+        MoveCommandParser moveCommandParser = new MoveCommandParser(dice);
         ResetGameUseCase resetGameUseCase = new ResetGameUseCase(players);
 
         HashMap<String, UseCase> useCaseMap = new HashMap<>();
         useCaseMap.put("add", addPlayerUseCase);
-        useCaseMap.put("move", movePlayerUseCase);
         useCaseMap.put("reset", resetGameUseCase);
 
-        return new UseCaseDispatcher(useCaseMap);
+
+        return new UseCaseDispatcher(useCaseMap, movePlayerUseCase, moveCommandParser);
     }
 }

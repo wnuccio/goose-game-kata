@@ -21,7 +21,7 @@ class MovePlayerUseCaseTest {
         when(players.contains("Pippo")).thenReturn(true);
         when(players.positionOf("Pippo")).thenReturn(0);
 
-        useCase.acceptCommand("move Pippo 4, 2");
+        useCase.acceptCommand(move("Pippo", 4, 2));
 
         verify(players).setPositionOf("Pippo", 6);
         verify(presenter).presentMovement(of("Pippo").givenRoll(dice(4, 2)).from(0).end());
@@ -32,7 +32,7 @@ class MovePlayerUseCaseTest {
         when(players.contains("Pippo")).thenReturn(true);
         when(players.positionOf("Pippo")).thenReturn(60);
 
-        useCase.acceptCommand("move Pippo 1, 2");
+        useCase.acceptCommand(move("Pippo", 1, 2));
 
         verify(players).setPositionOf("Pippo", 63);
         verify(presenter).presentMovement(of("Pippo").givenRoll(dice(1, 2)).from(60).end());
@@ -42,7 +42,7 @@ class MovePlayerUseCaseTest {
     void present_an_error_when_the_command_specifies_a_not_present_player() {
         when(players.contains("Pippo")).thenReturn(false);
 
-        useCase.acceptCommand("move Pippo 1, 2");
+        useCase.acceptCommand(move("Pippo", 1, 2));
 
         verify(presenter).presentNoSuchPlayerError("Pippo");
     }
@@ -52,7 +52,7 @@ class MovePlayerUseCaseTest {
         when(players.contains("Pippo")).thenReturn(true);
         when(players.positionOf("Pippo")).thenReturn(60);
 
-        useCase.acceptCommand("move Pippo 2, 3");
+        useCase.acceptCommand(move("Pippo", 2, 3));
 
         verify(players).setPositionOf("Pippo", 61);
         verify(presenter).presentMovement(of("Pippo").givenRoll(dice(2, 3)).from(60).end());
@@ -63,8 +63,16 @@ class MovePlayerUseCaseTest {
         dice.values(5, 6);
         when(players.contains("Pippo")).thenReturn(true);
 
-        useCase.acceptCommand("move Pippo");
+        useCase.acceptCommand(move("Pippo"));
 
         verify(presenter).presentMovement(of("Pippo").givenRoll(dice(5, 6)).from(0).end());
+    }
+
+    private MoveCommand move(String player, int first, int second) {
+        return new MoveCommand(player, dice(first, second));
+    }
+
+    private MoveCommand move(String player) {
+        return new MoveCommand(player);
     }
 }

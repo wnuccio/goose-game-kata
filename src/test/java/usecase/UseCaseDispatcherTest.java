@@ -21,7 +21,7 @@ class UseCaseDispatcherTest {
         map.put("one", useCaseOne);
         map.put("two", useCaseTwo);
 
-        dispatcher = new UseCaseDispatcher(map);
+        dispatcher = new UseCaseDispatcher(map, null, null);
     }
 
     @Test
