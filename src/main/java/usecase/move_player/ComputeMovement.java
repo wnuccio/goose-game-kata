@@ -13,31 +13,30 @@ public class ComputeMovement {
 
 
     public Movement doComputationFor(String player, Dice dice) {
-        int currentPosition = players.positionOf(player);
-        int firstDice = dice.first();
-        int secondDice = dice.second();
-        int newPosition = currentPosition + dice.total();
-
         MovementBuilder movement = Movement
                 .of(player)
-                .givenRoll(firstDice, secondDice)
-                .from(currentPosition)
-                .to(newPosition);
-
-        recomputeToPositionConsideringBouncing(movement);
+                .givenRoll(dice.first(), dice.second())
+                .from(currentPositionOf(player))
+                .to(computePosition(candidatePosition(player, dice)))
+                .isBouncing(isBouncing(candidatePosition(player, dice)));
 
         return movement.end();
     }
 
-    private void recomputeToPositionConsideringBouncing(MovementBuilder movement) {
-        Movement tempMovement = movement.end();
-        if (tempMovement.toPosition() <= WIN_POSITION) return;
+    private int computePosition(int candidatePosition) {
+        return isBouncing(candidatePosition) ?
+                WIN_POSITION - (candidatePosition - WIN_POSITION) : candidatePosition;
+    }
 
-        int surplus = tempMovement.toPosition() - WIN_POSITION;
-        int rightPosition = WIN_POSITION - surplus;
+    private int candidatePosition(String player, Dice dice) {
+        return currentPositionOf(player) + dice.total();
+    }
 
-        movement
-                .to(rightPosition)
-                .isBouncing(true);
+    private boolean isBouncing(int candidatePosition) {
+        return candidatePosition > WIN_POSITION;
+    }
+
+    private int currentPositionOf(String player) {
+        return players.positionOf(player);
     }
 }
