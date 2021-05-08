@@ -1,9 +1,9 @@
 package usecase;
 
-import usecase.move_player.SimpleMovement;
+import usecase.move_player.Movement;
 
 public interface Presenter {
-    void presentMovement(SimpleMovement movement);
+    void presentMovement(Movement movement);
 
     void presentNoSuchPlayerError(String player);
 

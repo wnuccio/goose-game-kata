@@ -1,13 +1,25 @@
 package usecase.move_player;
 
-public class JumpOnBridgeMovement extends SimpleMovement {
-    private SimpleMovement previousMovement;
+public class JumpOnBridgeMovement implements Movement {
+    private Movement previousMovement;
 
-    public JumpOnBridgeMovement(SimpleMovement previousMovement) {
-        super(previousMovement.player());
+    public JumpOnBridgeMovement(Movement previousMovement) {
         this.previousMovement = previousMovement;
-        Dice originalDice = previousMovement.dice;
-        super.dice = originalDice.from(originalDice.first(), originalDice.second());
+    }
+
+    @Override
+    public String player() {
+        return previousMovement.player();
+    }
+
+    @Override
+    public int firstDice() {
+        return previousMovement.firstDice();
+    }
+
+    @Override
+    public int secondDice() {
+        return previousMovement.secondDice();
     }
 
     @Override
@@ -18,6 +30,16 @@ public class JumpOnBridgeMovement extends SimpleMovement {
     @Override
     public int toPosition() {
         return 12;
+    }
+
+    @Override
+    public boolean isBouncing() {
+        return false;
+    }
+
+    @Override
+    public boolean isVictory() {
+        return false;
     }
 
     @Override

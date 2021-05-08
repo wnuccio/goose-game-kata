@@ -16,7 +16,7 @@ class MovePlayerUseCaseTest {
     private DiceForTest dice = new DiceForTest(5, 6);
     private Presenter presenter = mock(Presenter.class);
     private MovePlayerUseCase useCase = new MovePlayerUseCase(players, dice, presenter);
-    private ArgumentCaptor<SimpleMovement> movementCaptor = ArgumentCaptor.forClass(SimpleMovement.class);
+    private ArgumentCaptor<Movement> movementCaptor = ArgumentCaptor.forClass(Movement.class);
 
     @Test
     void present_an_error_when_the_command_specifies_a_not_present_player() {
@@ -63,7 +63,7 @@ class MovePlayerUseCaseTest {
         assertThat(players.positionOf("Pippo")).isEqualTo(12);
         verify(presenter).presentMovement(movementCaptor.capture());
 
-        SimpleMovement movement = movementCaptor.getValue();
+        Movement movement = movementCaptor.getValue();
         assertThat(movement.toPosition()).isEqualTo(12);
         assertThat(movement.isJumpOnBridge()).isTrue();
     }

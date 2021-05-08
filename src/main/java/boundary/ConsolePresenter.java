@@ -1,6 +1,7 @@
 package boundary;
 
 import usecase.Presenter;
+import usecase.move_player.Movement;
 import usecase.move_player.SimpleMovement;
 
 import static java.lang.String.format;
@@ -14,7 +15,7 @@ public class ConsolePresenter implements Presenter {
     }
 
     @Override
-    public void presentMovement(SimpleMovement movement) {
+    public void presentMovement(Movement movement) {
         outputBoundary.writeOutputLine(buildStringFrom(movement));
     }
 
@@ -34,7 +35,7 @@ public class ConsolePresenter implements Presenter {
         outputBoundary.writeOutputLine(player + ": already existing player");
     }
 
-    private String buildStringFrom(SimpleMovement movement) {
+    private String buildStringFrom(Movement movement) {
         String playerRolls = format("%s rolls %s, %s" + ". ",
                 movement.player(),
                 movement.firstDice(),

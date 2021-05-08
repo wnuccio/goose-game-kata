@@ -22,7 +22,7 @@ public class MovePlayerUseCase {
             return;
         }
 
-        SimpleMovement movement = buildMovementFor(player, diceFrom(command));
+        Movement movement = buildMovementFor(player, diceFrom(command));
 
         movement = evaluateJumpOnBridge(movement);
 
@@ -31,7 +31,7 @@ public class MovePlayerUseCase {
         presenter.presentMovement(movement);
     }
 
-    private SimpleMovement evaluateJumpOnBridge(SimpleMovement movement) {
+    private Movement evaluateJumpOnBridge(Movement movement) {
         if (movement.toPosition() == 6) {
             return new JumpOnBridgeMovement(movement);
         }
