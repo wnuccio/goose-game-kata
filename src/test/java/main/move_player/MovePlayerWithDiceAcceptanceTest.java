@@ -27,7 +27,7 @@ public class MovePlayerWithDiceAcceptanceTest extends BaseAcceptanceTest {
     @Test
     void a_player_moves_by_throwing_dice() {
         addPlayerDriver.addPlayer("Pippo");
-        movePlayerDriver.movePlayer("Pippo", 2, 2);
+        movePlayerDriver.moveOnPosition4("Pippo");
         diceDriver.onNextRollReturns(1, 2);
 
         String output = movePlayerDriver.movePlayer("Pippo");

@@ -19,11 +19,11 @@ public class MovePlayerDriver {
         return driver.acceptInput(format("move %s", player));
     }
 
-    public void moveOnPosition60(String pippo) {
-        for (int i = 0; i < 6; i++) movePlayer(pippo, 5, 5);
+    public void moveOnPosition60(String player) {
+        for (int i = 0; i < 6; i++) movePlayer(player, 5, 5);
     }
 
     public void moveOnPosition4(String player) {
-        movePlayer("Pippo", 2, 2);
+        movePlayer(player, 2, 2);
     }
 }
