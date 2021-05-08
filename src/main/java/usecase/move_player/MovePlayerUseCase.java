@@ -22,15 +22,23 @@ public class MovePlayerUseCase {
             return;
         }
 
-        Dice dice = command.dice().orElse(this.dice.roll());
+        Movement movement = buildMovementFor(player, diceFrom(command));
 
-        Movement movement = Movement
+        players.setPositionOf(player, movement.toPosition());
+
+        presenter.presentMovement(movement);
+    }
+
+    private Movement buildMovementFor(String player, Dice dice) {
+        return Movement
                 .of(player)
                 .from(players.positionOf(player))
                 .givenRoll(dice)
                 .end();
-
-        players.setPositionOf(player, movement.toPosition());
-        presenter.presentMovement(movement);
     }
+
+    private Dice diceFrom(MoveCommand command) {
+        return command.dice().orElse(dice.roll());
+    }
+
 }
