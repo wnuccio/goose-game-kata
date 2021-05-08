@@ -35,6 +35,6 @@ public class ComputeMovementTest {
 
         Movement movement = computeMovement.doComputationFor("Pippo", dice(2, 3));
 
-        assertThat(movement).isEqualTo(of("Pippo").givenRoll(2, 3).from(60).to(61).setBouncing(true).end());
+        assertThat(movement).isEqualTo(of("Pippo").givenRoll(2, 3).from(60).to(61).isBouncing(true).end());
     }
 }

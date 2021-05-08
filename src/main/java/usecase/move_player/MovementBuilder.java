@@ -24,7 +24,7 @@ public class MovementBuilder {
         return this;
     }
 
-    public MovementBuilder setBouncing(boolean isBouncing) {
+    public MovementBuilder isBouncing(boolean isBouncing) {
         movement.bouncing = isBouncing;
         return this;
     }

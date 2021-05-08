@@ -78,14 +78,4 @@ public class Movement {
                 ", bouncing=" + bouncing +
                 '}';
     }
-
-    public Movement setBouncing(boolean isBouncing) {
-        this.bouncing = isBouncing;
-        return this;
-    }
-
-    public Movement to(int toPosition) {
-        this.toPosition = toPosition;
-        return this;
-    }
 }

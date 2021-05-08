@@ -55,7 +55,7 @@ class MovePlayerUseCaseTest {
         when(players.contains("Pippo")).thenReturn(true);
         Movement movement = of("Pippo").givenRoll(2, 3)
                 .from(60).to(61)
-                .setBouncing(true)
+                .isBouncing(true)
                 .end();
         when(computeMovement.doComputationFor("Pippo", dice(2, 3))).thenReturn(movement);
 

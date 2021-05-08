@@ -18,26 +18,26 @@ public class ComputeMovement {
         int secondDice = dice.second();
         int newPosition = currentPosition + dice.total();
 
-        Movement movement = Movement
+        MovementBuilder movement = Movement
                 .of(player)
                 .givenRoll(firstDice, secondDice)
                 .from(currentPosition)
-                .to(newPosition)
-                .end();
+                .to(newPosition);
 
         recomputeNewPositionConsideringBouncing(movement);
 
-        return movement;
+        return movement.end();
     }
 
-    private void recomputeNewPositionConsideringBouncing(Movement movement) {
-        if (movement.toPosition() <= WIN_POSITION) return;
+    private void recomputeNewPositionConsideringBouncing(MovementBuilder movement) {
+        Movement tempMovement = movement.end();
+        if (tempMovement.toPosition() <= WIN_POSITION) return;
 
-        int surplus = movement.toPosition() - WIN_POSITION;
+        int surplus = tempMovement.toPosition() - WIN_POSITION;
         int rightPosition = WIN_POSITION - surplus;
 
         movement
                 .to(rightPosition)
-                .setBouncing(true);
+                .isBouncing(true);
     }
 }
