@@ -24,9 +24,19 @@ public class MovePlayerUseCase {
 
         Movement movement = buildMovementFor(player, diceFrom(command));
 
+        movement = evaluateJumpOnBridge(movement);
+
         players.setPositionOf(player, movement.toPosition());
 
         presenter.presentMovement(movement);
+    }
+
+    private Movement evaluateJumpOnBridge(Movement movement) {
+        if (movement.toPosition() == 6) {
+            return new JumpOnBridgeMovement(movement);
+        }
+
+        return movement;
     }
 
     private Movement buildMovementFor(String player, Dice dice) {

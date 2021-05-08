@@ -40,12 +40,14 @@ public class ConsolePresenter implements Presenter {
                 movement.firstDice(),
                 movement.secondDice());
 
+
+        int fromPosition = movement.fromPosition();
         int newPosition = movement.isBouncing() ? Movement.WIN_POSITION : movement.toPosition();
 
         String playerMoves = format("%s moves from %s to %s",
                 movement.player(),
-                positionString(movement.fromPosition()),
-                newPosition);
+                positionString(fromPosition),
+                positionString(newPosition));
 
         String specialCase = "";
         if (movement.isVictory()) {
@@ -56,12 +58,18 @@ public class ConsolePresenter implements Presenter {
                     movement.player(),
                     movement.player(),
                     movement.toPosition());
+
+        } else if (movement.isJumpOnBridge()) {
+            specialCase = format(". %s jumps to 12", movement.player());
         }
 
         return playerRolls + playerMoves + specialCase;
     }
 
     private String positionString(int position) {
+        if (position == 0) return "Start";
+        if (position == 12) return "The Bridge";
+
         return position == 0 ? "Start" : valueOf(position);
     }
 }

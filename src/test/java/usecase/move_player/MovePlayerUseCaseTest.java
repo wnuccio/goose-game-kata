@@ -2,6 +2,7 @@ package usecase.move_player;
 
 import main.test.DiceForTest;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import usecase.Presenter;
 import usecase.add_player.Players;
 
@@ -21,10 +22,10 @@ class MovePlayerUseCaseTest {
     void moves_a_player_from_start_to_the_specified_position() {
         players.setPositionOf("Pippo", 0);
 
-        useCase.acceptCommand(move("Pippo", 4, 2));
+        useCase.acceptCommand(move("Pippo", 4, 1));
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(6);
-        verify(presenter).presentMovement(of("Pippo").givenRoll(dice(4, 2)).from(0).end());
+        assertThat(players.positionOf("Pippo")).isEqualTo(5);
+        verify(presenter).presentMovement(of("Pippo").givenRoll(dice(4, 1)).from(0).end());
     }
 
     @Test
@@ -65,6 +66,20 @@ class MovePlayerUseCaseTest {
 
         assertThat(players.positionOf("Pippo")).isEqualTo(11);
         verify(presenter).presentMovement(of("Pippo").givenRoll(dice(5, 6)).from(0).end());
+    }
+
+    @Test
+    void compute_movement_on_the_bridge() {
+        players.setPositionOf("Pippo", 4);
+
+        useCase.acceptCommand(move("Pippo", 1, 1));
+
+        assertThat(players.positionOf("Pippo")).isEqualTo(12);
+        ArgumentCaptor<Movement> movementCaptor = ArgumentCaptor.forClass(Movement.class);
+        verify(presenter).presentMovement(movementCaptor.capture());
+        Movement movement = movementCaptor.getValue();
+        assertThat(movement.toPosition()).isEqualTo(12);
+        assertThat(movement.isJumpOnBridge()).isTrue();
     }
 
     private MoveCommand move(String player, int first, int second) {

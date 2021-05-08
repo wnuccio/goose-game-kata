@@ -79,4 +79,7 @@ public class Movement {
         return fromPosition + dice.total();
     }
 
+    public boolean isJumpOnBridge() {
+        return false;
+    }
 }
