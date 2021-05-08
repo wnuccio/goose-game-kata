@@ -18,16 +18,6 @@ public class MovementBuilder {
         return this;
     }
 
-    public MovementBuilder to(int toPosition) {
-//        movement.toPosition = toPosition;
-        return this;
-    }
-
-    public MovementBuilder isBouncing(boolean isBouncing) {
-//        movement.bouncing = isBouncing;
-        return this;
-    }
-
     public Movement end() {
         return movement;
     }
