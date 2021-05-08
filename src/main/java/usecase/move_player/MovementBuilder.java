@@ -10,8 +10,6 @@ public class MovementBuilder {
 
     public MovementBuilder givenRoll(Dice dice) {
         movement.dice = dice;
-        movement.firstDice = dice.first();
-        movement.secondDice = dice.second();
         return this;
     }
 

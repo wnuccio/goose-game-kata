@@ -7,8 +7,6 @@ public class Movement {
     public Dice dice;
 
     String player;
-    int firstDice;
-    int secondDice;
     int fromPosition;
     int toPosition;
     boolean bouncing;
@@ -18,8 +16,8 @@ public class Movement {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Movement movement = (Movement) o;
-        return firstDice == movement.firstDice &&
-                secondDice == movement.secondDice &&
+        return firstDice() == movement.firstDice() &&
+                secondDice() == movement.secondDice() &&
                 fromPosition == movement.fromPosition &&
                 toPosition == movement.toPosition &&
                 bouncing == movement.bouncing &&
@@ -28,7 +26,7 @@ public class Movement {
 
     @Override
     public int hashCode() {
-        return Objects.hash(player, firstDice, secondDice, fromPosition, toPosition, bouncing);
+        return Objects.hash(player, firstDice(), secondDice(), fromPosition, toPosition, bouncing);
     }
 
     Movement(String player) {
@@ -44,11 +42,11 @@ public class Movement {
     }
 
     public int firstDice() {
-        return firstDice;
+        return dice.first();
     }
 
     public int secondDice() {
-        return secondDice;
+        return dice.second();
     }
 
     public int fromPosition() {
@@ -71,8 +69,8 @@ public class Movement {
     public String toString() {
         return "Movement{" +
                 "player='" + player + '\'' +
-                ", firstDice=" + firstDice +
-                ", secondDice=" + secondDice +
+                ", firstDice=" + firstDice() +
+                ", secondDice=" + secondDice() +
                 ", fromPosition=" + fromPosition +
                 ", toPosition=" + toPosition +
                 ", victory=" + isVictory() +
