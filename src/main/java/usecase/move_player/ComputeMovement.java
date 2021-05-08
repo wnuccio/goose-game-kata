@@ -24,12 +24,12 @@ public class ComputeMovement {
                 .from(currentPosition)
                 .to(newPosition);
 
-        recomputeNewPositionConsideringBouncing(movement);
+        recomputeToPositionConsideringBouncing(movement);
 
         return movement.end();
     }
 
-    private void recomputeNewPositionConsideringBouncing(MovementBuilder movement) {
+    private void recomputeToPositionConsideringBouncing(MovementBuilder movement) {
         Movement tempMovement = movement.end();
         if (tempMovement.toPosition() <= WIN_POSITION) return;
 
