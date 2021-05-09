@@ -26,4 +26,15 @@ class RollAndMoveTest {
         assertThat(moveCommand.getValue().player()).isEqualTo("Pippo");
         assertThat(moveCommand.getValue().dice()).isEqualTo(Optional.of(rolledDice));
     }
+
+    @Test
+    void preserve_original_dice_when_specified() {
+        DiceForTest originalDice = new DiceForTest(3, 4);
+
+        rollAndMove.acceptCommand(new MoveCommand("Pippo", originalDice));
+
+        ArgumentCaptor<MoveCommand> moveCommand = ArgumentCaptor.forClass(MoveCommand.class);
+        verify(movePlayer).acceptCommand(moveCommand.capture());
+        assertThat(moveCommand.getValue().dice()).isEqualTo(Optional.of(originalDice));
+    }
 }

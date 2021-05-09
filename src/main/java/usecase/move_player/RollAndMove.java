@@ -12,6 +12,11 @@ public class RollAndMove extends MovePlayerUseCase {
 
     @Override
     public void acceptCommand(MoveCommand command) {
+        if (command.dice().isPresent()) {
+            movePlayer.acceptCommand(command);
+            return;
+        }
+
         MoveCommand commandWithDice = new MoveCommand(command.player(), dice.roll());
         movePlayer.acceptCommand(commandWithDice);
     }
