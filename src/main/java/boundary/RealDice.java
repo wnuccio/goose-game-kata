@@ -11,6 +11,10 @@ public class RealDice implements Dice {
         this.second = second;
     }
 
+    public static Dice dice(int first, int second) {
+        return new RealDice(first, second);
+    }
+
     public int first() {
         return first;
     }

@@ -25,10 +25,6 @@ public class DiceForTest implements Dice, DiceRoller {
         this.modifiableSecond = second;
     }
 
-    public static Dice dice(int first, int second) {
-        return new DiceForTest(first, second);
-    }
-
     @Override
     public int first() {
         return modifiableFirst;
