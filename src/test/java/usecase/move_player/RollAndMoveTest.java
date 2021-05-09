@@ -11,7 +11,7 @@ import static org.mockito.Mockito.*;
 
 class RollAndMoveTest {
     Dice dice = mock(Dice.class);
-    MovePlayerUseCase movePlayer = mock(MovePlayerUseCase.class);
+    MovePlayer movePlayer = mock(MovePlayer.class);
     RollAndMove rollAndMove = new RollAndMove(dice, movePlayer);
 
     @Test

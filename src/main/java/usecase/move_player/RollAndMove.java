@@ -1,11 +1,10 @@
 package usecase.move_player;
 
-public class RollAndMove extends MovePlayerUseCase {
+public class RollAndMove implements MovePlayerUseCase {
     private Dice dice;
-    private MovePlayerUseCase movePlayer;
+    private MovePlayer movePlayer;
 
-    public RollAndMove(Dice dice, MovePlayerUseCase movePlayer) {
-        super(null, null, null);
+    public RollAndMove(Dice dice, MovePlayer movePlayer) {
         this.dice = dice;
         this.movePlayer = movePlayer;
     }

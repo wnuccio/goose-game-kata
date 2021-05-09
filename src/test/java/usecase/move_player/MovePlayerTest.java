@@ -12,10 +12,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static usecase.move_player.SimpleMovement.BRIDGE_TARGET;
 
-class MovePlayerUseCaseTest {
+class MovePlayerTest {
     private Players players = new Players();
     private Presenter presenter = mock(Presenter.class);
-    private MovePlayerUseCase useCase = new MovePlayerUseCase(players, null, presenter);
+    private MovePlayer useCase = new MovePlayer(players, null, presenter);
     private ArgumentCaptor<Movement> movementCaptor = ArgumentCaptor.forClass(Movement.class);
 
     @Test
@@ -43,7 +43,7 @@ class MovePlayerUseCaseTest {
 
     @Test
     void build_a_movement_with_a_rolled_dice_when_command_does_not_specify_any_dice() {
-        MovePlayerUseCase useCase = new MovePlayerUseCase(players, new DiceForTest(5, 6), presenter);
+        MovePlayer useCase = new MovePlayer(players, new DiceForTest(5, 6), presenter);
         players.setPositionOf("Pippo", 0);
 
         useCase.acceptCommand(move("Pippo"));
