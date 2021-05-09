@@ -14,9 +14,8 @@ import static usecase.move_player.SimpleMovement.BRIDGE_TARGET;
 
 class MovePlayerUseCaseTest {
     private Players players = new Players();
-    private DiceForTest dice = new DiceForTest(1, 1);
     private Presenter presenter = mock(Presenter.class);
-    private MovePlayerUseCase useCase = new MovePlayerUseCase(players, dice, presenter);
+    private MovePlayerUseCase useCase = new MovePlayerUseCase(players, null, presenter);
     private ArgumentCaptor<Movement> movementCaptor = ArgumentCaptor.forClass(Movement.class);
 
     @Test

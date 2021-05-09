@@ -52,7 +52,9 @@ public class MovePlayerUseCase {
     }
 
     private Dice diceFrom(MoveCommand command) {
-        return command.dice().orElse(dice.roll());
+        if (command.dice().isPresent())
+            return command.dice().get();
+        return dice.roll();
     }
 
 }
