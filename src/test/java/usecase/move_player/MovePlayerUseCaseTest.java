@@ -1,5 +1,6 @@
 package usecase.move_player;
 
+import main.move_player.DiceDriver;
 import main.test.DiceForTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -44,7 +45,7 @@ class MovePlayerUseCaseTest {
 
     @Test
     void build_a_movement_with_a_rolled_dice_when_command_does_not_specify_any_dice() {
-        dice.values(5, 6);
+        new DiceDriver().onNextRollReturns(5, 6);
         players.setPositionOf("Pippo", 0);
 
         useCase.acceptCommand(move("Pippo"));

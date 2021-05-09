@@ -11,8 +11,9 @@ public class DiceForTest implements Dice {
         return instance;
     }
 
-    public static void setValues(int first, int second) {
-        instance.values(first, second);
+    public static void onNextRollReturns(int first, int second) {
+        instance.modifiableFirst = first;
+        instance.modifiableSecond = second;
     }
 
     private int modifiableFirst;
@@ -45,11 +46,6 @@ public class DiceForTest implements Dice {
     @Override
     public Dice from(int first, int second) {
         return new DiceForTest(first, second);
-    }
-
-    public void values(int first, int second) {
-        this.modifiableFirst = first;
-        this.modifiableSecond = second;
     }
 
     @Override
