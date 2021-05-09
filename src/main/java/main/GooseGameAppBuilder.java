@@ -10,6 +10,7 @@ import usecase.add_player.AddPlayerUseCase;
 import usecase.add_player.Players;
 import usecase.move_player.Dice;
 import usecase.move_player.MovePlayerUseCase;
+import usecase.move_player.RollAndMove;
 import usecase.reset_game.ResetGameUseCase;
 
 import java.util.HashMap;
@@ -44,7 +45,7 @@ public class GooseGameAppBuilder {
     private UseCaseDispatcher useCaseDispatcher(ConsolePresenter presenter, Players players) {
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
         Dice dice = dice();
-        MovePlayerUseCase movePlayerUseCase = new MovePlayerUseCase(players, dice, presenter);
+        MovePlayerUseCase movePlayerUseCase = movePlayerUseCase(presenter, players, dice);
         MoveCommandParser moveCommandParser = new MoveCommandParser(dice);
         ResetGameUseCase resetGameUseCase = new ResetGameUseCase(players);
 
@@ -54,5 +55,10 @@ public class GooseGameAppBuilder {
 
 
         return new UseCaseDispatcher(useCaseMap, movePlayerUseCase, moveCommandParser);
+    }
+
+    private MovePlayerUseCase movePlayerUseCase(ConsolePresenter presenter, Players players, Dice dice) {
+        MovePlayerUseCase movePlayer = new MovePlayerUseCase(players, dice, presenter);
+        return new RollAndMove(dice, movePlayer);
     }
 }
