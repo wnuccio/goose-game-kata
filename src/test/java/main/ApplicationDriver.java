@@ -7,13 +7,13 @@ public class ApplicationDriver {
 
     public String acceptInput(String inputString) {
         inputOuput.writeInputByTest(inputString);
-        waitSomeSeconds();
+        waitAbit();
         return inputOuput.readOutputByTest();
     }
 
-    private void waitSomeSeconds() {
+    private void waitAbit() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
