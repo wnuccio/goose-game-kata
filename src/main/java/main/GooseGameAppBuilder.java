@@ -3,7 +3,7 @@ package main;
 import boundary.ConsolePresenter;
 import boundary.MoveCommandParser;
 import boundary.OutputBoundary;
-import boundary.RandomDice;
+import boundary.RealDice;
 import usecase.UseCase;
 import usecase.UseCaseDispatcher;
 import usecase.add_player.AddPlayerUseCase;
@@ -30,7 +30,7 @@ public class GooseGameAppBuilder {
     }
 
     protected Dice dice() {
-        return new RandomDice(1, 1);
+        return new RealDice(1, 1);
     }
 
     public final GooseGameApp buildApplication() {

@@ -2,11 +2,11 @@ package boundary;
 
 import usecase.move_player.Dice;
 
-public class RandomDice implements Dice {
+public class RealDice implements Dice {
     private int first;
     private int second;
 
-    public RandomDice(int first, int second) {
+    public RealDice(int first, int second) {
         this.first = first;
         this.second = second;
     }
@@ -19,12 +19,8 @@ public class RandomDice implements Dice {
         return second;
     }
 
-    public RandomDice roll() {
-        throw new UnsupportedOperationException();
-    }
-
     @Override
     public Dice from(int first, int second) {
-        return new RandomDice(first, second);
+        return new RealDice(first, second);
     }
 }
