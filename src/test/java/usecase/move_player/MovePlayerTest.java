@@ -69,8 +69,4 @@ class MovePlayerTest {
     private MoveCommand move(String player, int first, int second) {
         return new MoveCommand(player, dice(first, second));
     }
-
-    private MoveCommand move(String player) {
-        return new MoveCommand(player);
-    }
 }

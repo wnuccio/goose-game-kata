@@ -13,6 +13,7 @@ class RollAndMoveTest {
     Dice dice = mock(Dice.class);
     MovePlayer movePlayer = mock(MovePlayer.class);
     RollAndMove rollAndMove = new RollAndMove(dice, movePlayer);
+    private ArgumentCaptor<MoveCommand> moveCommand = ArgumentCaptor.forClass(MoveCommand.class);
 
     @Test
     void add_a_rolled_dice_to_move_command_when_not_specified() {
@@ -21,7 +22,6 @@ class RollAndMoveTest {
 
         rollAndMove.acceptCommand(new MoveCommand("Pippo"));
 
-        ArgumentCaptor<MoveCommand> moveCommand = ArgumentCaptor.forClass(MoveCommand.class);
         verify(movePlayer).acceptCommand(moveCommand.capture());
         assertThat(moveCommand.getValue().player()).isEqualTo("Pippo");
         assertThat(moveCommand.getValue().dice()).isEqualTo(Optional.of(rolledDice));
@@ -29,11 +29,10 @@ class RollAndMoveTest {
 
     @Test
     void preserve_original_dice_when_specified() {
-        DiceForTest originalDice = new DiceForTest(3, 4);
+        DiceForTest originalDice = new DiceForTest(5, 6);
 
         rollAndMove.acceptCommand(new MoveCommand("Pippo", originalDice));
 
-        ArgumentCaptor<MoveCommand> moveCommand = ArgumentCaptor.forClass(MoveCommand.class);
         verify(movePlayer).acceptCommand(moveCommand.capture());
         assertThat(moveCommand.getValue().dice()).isEqualTo(Optional.of(originalDice));
     }

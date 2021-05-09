@@ -64,6 +64,3 @@ Use Case, parsing e dispatching
     altrimenti delega all'anello successivo;
     l'ultimo anello della catena non fa nulla (ignora l'input) o lancia un errore, a scelta
 - gestire separatamente i vari use case e rimuovere la loro interfaccia di base
-
-Test
-- semplificare la costruzione di MoveCommand, eliminando i metodi privati nel test
