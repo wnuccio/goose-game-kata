@@ -1,6 +1,5 @@
 package usecase.move_player;
 
-import main.test.DiceForTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import usecase.Presenter;
@@ -15,7 +14,7 @@ import static usecase.move_player.SimpleMovement.BRIDGE_TARGET;
 class MovePlayerTest {
     private Players players = new Players();
     private Presenter presenter = mock(Presenter.class);
-    private MovePlayer useCase = new MovePlayer(players, null, presenter);
+    private MovePlayer useCase = new MovePlayer(players, presenter);
     private ArgumentCaptor<Movement> movementCaptor = ArgumentCaptor.forClass(Movement.class);
 
     @Test
@@ -39,19 +38,6 @@ class MovePlayerTest {
         assertThat(movementCaptor.getValue().fromPosition()).isEqualTo(0);
         assertThat(movementCaptor.getValue().firstDice()).isEqualTo(4);
         assertThat(movementCaptor.getValue().secondDice()).isEqualTo(3);
-    }
-
-    @Test
-    void build_a_movement_with_a_rolled_dice_when_command_does_not_specify_any_dice() {
-        MovePlayer useCase = new MovePlayer(players, new DiceForTest(5, 6), presenter);
-        players.setPositionOf("Pippo", 0);
-
-        useCase.acceptCommand(move("Pippo"));
-
-        assertThat(players.positionOf("Pippo")).isEqualTo(11);
-        verify(presenter).presentMovement(movementCaptor.capture());
-        assertThat(movementCaptor.getValue().firstDice()).isEqualTo(5);
-        assertThat(movementCaptor.getValue().secondDice()).isEqualTo(6);
     }
 
     @Test

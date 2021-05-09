@@ -59,7 +59,7 @@ public class GooseGameAppBuilder {
     }
 
     private MovePlayerUseCase movePlayerUseCase(ConsolePresenter presenter, Players players, Dice dice) {
-        MovePlayer movePlayer = new MovePlayer(players, dice, presenter);
+        MovePlayer movePlayer = new MovePlayer(players, presenter);
         return new RollAndMove(dice, movePlayer);
     }
 }

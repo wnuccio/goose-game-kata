@@ -5,12 +5,10 @@ import usecase.add_player.Players;
 
 public class MovePlayer implements MovePlayerUseCase {
     private Players players;
-    private Dice dice;
     private Presenter presenter;
 
-    public MovePlayer(Players players, Dice dice, Presenter presenter) {
+    public MovePlayer(Players players, Presenter presenter) {
         this.players = players;
-        this.dice = dice;
         this.presenter = presenter;
     }
 
@@ -32,6 +30,10 @@ public class MovePlayer implements MovePlayerUseCase {
         presenter.presentMovement(movement);
     }
 
+    private Dice diceFrom(MoveCommand command) {
+        return command.dice().orElseThrow(() -> new IllegalStateException("No dice"));
+    }
+
     private Movement repeatMovementOnSpecialPositions(SimpleMovement movement) {
         if (movement.endsOnBridge()) {
             return new JumpOnBridgeMovement(movement);
@@ -50,12 +52,6 @@ public class MovePlayer implements MovePlayerUseCase {
                 .from(players.positionOf(player))
                 .givenRoll(dice)
                 .end();
-    }
-
-    private Dice diceFrom(MoveCommand command) {
-        if (command.dice().isPresent())
-            return command.dice().get();
-        return dice.roll();
     }
 
 }
