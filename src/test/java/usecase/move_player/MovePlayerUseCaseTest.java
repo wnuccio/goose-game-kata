@@ -1,6 +1,5 @@
 package usecase.move_player;
 
-import main.move_player.DiceDriver;
 import main.test.DiceForTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -15,7 +14,7 @@ import static usecase.move_player.SimpleMovement.BRIDGE_TARGET;
 
 class MovePlayerUseCaseTest {
     private Players players = new Players();
-    private DiceForTest dice = new DiceForTest(5, 6);
+    private DiceForTest dice = new DiceForTest(1, 1);
     private Presenter presenter = mock(Presenter.class);
     private MovePlayerUseCase useCase = new MovePlayerUseCase(players, dice, presenter);
     private ArgumentCaptor<Movement> movementCaptor = ArgumentCaptor.forClass(Movement.class);
@@ -45,7 +44,7 @@ class MovePlayerUseCaseTest {
 
     @Test
     void build_a_movement_with_a_rolled_dice_when_command_does_not_specify_any_dice() {
-        new DiceDriver().onNextRollReturns(5, 6);
+        MovePlayerUseCase useCase = new MovePlayerUseCase(players, new DiceForTest(5, 6), presenter);
         players.setPositionOf("Pippo", 0);
 
         useCase.acceptCommand(move("Pippo"));
