@@ -18,9 +18,4 @@ public class RealDice implements Dice {
     public int second() {
         return second;
     }
-
-    @Override
-    public Dice from(int first, int second) {
-        return new RealDice(first, second);
-    }
 }
