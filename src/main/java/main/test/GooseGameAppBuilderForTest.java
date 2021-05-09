@@ -4,6 +4,7 @@ import boundary.OutputBoundary;
 import main.GooseGameAppBuilder;
 import main.InputBoundary;
 import usecase.move_player.Dice;
+import usecase.move_player.DiceRoller;
 
 public class GooseGameAppBuilderForTest extends GooseGameAppBuilder {
 
@@ -17,6 +18,11 @@ public class GooseGameAppBuilderForTest extends GooseGameAppBuilder {
 
     @Override
     protected Dice dice() {
+        return DiceForTest.instance();
+    }
+
+    @Override
+    protected DiceRoller diceRoller() {
         return DiceForTest.instance();
     }
 }

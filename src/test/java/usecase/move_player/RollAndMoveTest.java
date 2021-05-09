@@ -10,15 +10,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class RollAndMoveTest {
-    Dice dice = mock(Dice.class);
+    DiceRoller diceRoller = mock(DiceRoller.class);
     MovePlayer movePlayer = mock(MovePlayer.class);
-    RollAndMove rollAndMove = new RollAndMove(dice, movePlayer);
+    RollAndMove rollAndMove = new RollAndMove(diceRoller, movePlayer);
     private ArgumentCaptor<MoveCommand> moveCommand = ArgumentCaptor.forClass(MoveCommand.class);
 
     @Test
     void add_a_rolled_dice_to_move_command_when_not_specified() {
         DiceForTest rolledDice = new DiceForTest(3, 4);
-        when(dice.roll()).thenReturn(rolledDice);
+        when(diceRoller.roll()).thenReturn(rolledDice);
 
         rollAndMove.acceptCommand(new MoveCommand("Pippo"));
 

@@ -1,13 +1,14 @@
 package main.test;
 
 import usecase.move_player.Dice;
+import usecase.move_player.DiceRoller;
 
 import java.util.Objects;
 
-public class DiceForTest implements Dice {
+public class DiceForTest implements Dice, DiceRoller {
     private static DiceForTest instance = new DiceForTest(1, 1);
 
-    public static Dice instance() {
+    public static DiceForTest instance() {
         return instance;
     }
 

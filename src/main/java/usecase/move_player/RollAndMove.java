@@ -1,11 +1,11 @@
 package usecase.move_player;
 
 public class RollAndMove implements MovePlayerUseCase {
-    private Dice dice;
+    private DiceRoller diceRoller;
     private MovePlayer movePlayer;
 
-    public RollAndMove(Dice dice, MovePlayer movePlayer) {
-        this.dice = dice;
+    public RollAndMove(DiceRoller diceRoller, MovePlayer movePlayer) {
+        this.diceRoller = diceRoller;
         this.movePlayer = movePlayer;
     }
 
@@ -16,7 +16,7 @@ public class RollAndMove implements MovePlayerUseCase {
             return;
         }
 
-        MoveCommand commandWithDice = new MoveCommand(command.player(), dice.roll());
+        MoveCommand commandWithDice = new MoveCommand(command.player(), diceRoller.roll());
         movePlayer.acceptCommand(commandWithDice);
     }
 }

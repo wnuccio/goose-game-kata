@@ -8,10 +8,7 @@ import usecase.UseCase;
 import usecase.UseCaseDispatcher;
 import usecase.add_player.AddPlayerUseCase;
 import usecase.add_player.Players;
-import usecase.move_player.Dice;
-import usecase.move_player.MovePlayer;
-import usecase.move_player.MovePlayerUseCase;
-import usecase.move_player.RollAndMove;
+import usecase.move_player.*;
 import usecase.reset_game.ResetGameUseCase;
 
 import java.util.HashMap;
@@ -26,6 +23,10 @@ public class GooseGameAppBuilder {
 
     protected OutputBoundary getOutputBoundary() {
         return string -> System.out.println(string);
+    }
+
+    protected DiceRoller diceRoller() {
+        throw new UnsupportedOperationException();
     }
 
     protected Dice dice() {
@@ -46,7 +47,7 @@ public class GooseGameAppBuilder {
     private UseCaseDispatcher useCaseDispatcher(ConsolePresenter presenter, Players players) {
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
         Dice dice = dice();
-        MovePlayerUseCase movePlayer = movePlayerUseCase(presenter, players, dice);
+        MovePlayerUseCase movePlayer = movePlayerUseCase(presenter, players);
         MoveCommandParser moveCommandParser = new MoveCommandParser(dice);
         ResetGameUseCase resetGameUseCase = new ResetGameUseCase(players);
 
@@ -58,8 +59,8 @@ public class GooseGameAppBuilder {
         return new UseCaseDispatcher(useCaseMap, movePlayer, moveCommandParser);
     }
 
-    private MovePlayerUseCase movePlayerUseCase(ConsolePresenter presenter, Players players, Dice dice) {
+    private MovePlayerUseCase movePlayerUseCase(ConsolePresenter presenter, Players players) {
         MovePlayer movePlayer = new MovePlayer(players, presenter);
-        return new RollAndMove(dice, movePlayer);
+        return new RollAndMove(diceRoller(), movePlayer);
     }
 }
