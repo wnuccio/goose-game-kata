@@ -30,10 +30,6 @@ public abstract class RepeatedMovement implements Movement {
         return previousMovement.startPosition();
     }
 
-    public boolean isBouncing() {
-        return false;
-    }
-
     public boolean isVictory() {
         return false;
     }
