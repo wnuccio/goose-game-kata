@@ -38,8 +38,4 @@ public abstract class RepeatedMovement implements Movement {
     public boolean isRepeatOnGoose() {
         throw new UnsupportedOperationException();
     }
-
-    public boolean endsOnGoose() {
-        throw new UnsupportedOperationException();
-    }
 }

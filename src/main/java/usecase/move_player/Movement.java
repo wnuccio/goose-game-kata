@@ -20,6 +20,4 @@ public interface Movement {
     int intermediatePosition();
 
     boolean isRepeatOnGoose();
-
-    boolean endsOnGoose();
 }
