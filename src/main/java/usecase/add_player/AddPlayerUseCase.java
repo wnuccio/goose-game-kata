@@ -1,5 +1,6 @@
 package usecase.add_player;
 
+import domain.Players;
 import usecase.Presenter;
 
 public class AddPlayerUseCase {

@@ -1,7 +1,7 @@
 package usecase.reset_game;
 
+import domain.Players;
 import org.junit.jupiter.api.Test;
-import usecase.add_player.Players;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

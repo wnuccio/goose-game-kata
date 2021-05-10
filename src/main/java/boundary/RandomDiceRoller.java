@@ -1,6 +1,7 @@
 package boundary;
 
-import usecase.move_player.DiceRoller;
+import domain.Dice;
+import domain.DiceRoller;
 
 public class RandomDiceRoller implements DiceRoller {
     @Override

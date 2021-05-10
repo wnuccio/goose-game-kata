@@ -1,4 +1,4 @@
-package usecase.add_player;
+package domain;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,6 @@
 package usecase.reset_game;
 
-import usecase.add_player.Players;
+import domain.Players;
 
 public class ResetGameService {
 

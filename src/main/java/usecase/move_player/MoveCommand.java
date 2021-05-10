@@ -1,6 +1,6 @@
 package usecase.move_player;
 
-import boundary.Dice;
+import domain.Dice;
 
 import java.util.Optional;
 

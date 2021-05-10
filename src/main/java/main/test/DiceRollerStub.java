@@ -1,7 +1,7 @@
 package main.test;
 
-import boundary.Dice;
-import usecase.move_player.DiceRoller;
+import domain.Dice;
+import domain.DiceRoller;
 
 public class DiceRollerStub implements DiceRoller {
     private static DiceRollerStub instance = new DiceRollerStub();

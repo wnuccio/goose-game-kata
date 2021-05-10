@@ -1,6 +1,7 @@
 package usecase.move_player;
 
-import boundary.Dice;
+import domain.Dice;
+import domain.DiceRoller;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 

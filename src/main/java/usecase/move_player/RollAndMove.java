@@ -1,5 +1,7 @@
 package usecase.move_player;
 
+import domain.DiceRoller;
+
 public class RollAndMove implements MovePlayerUseCase {
     private DiceRoller diceRoller;
     private MovePlayer movePlayer;

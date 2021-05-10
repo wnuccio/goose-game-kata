@@ -1,11 +1,11 @@
 package usecase.move_player;
 
+import domain.Players;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import usecase.Presenter;
-import usecase.add_player.Players;
 
-import static boundary.Dice.dice;
+import static domain.Dice.dice;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

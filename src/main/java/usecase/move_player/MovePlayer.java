@@ -1,8 +1,8 @@
 package usecase.move_player;
 
-import boundary.Dice;
+import domain.Dice;
+import domain.Players;
 import usecase.Presenter;
-import usecase.add_player.Players;
 
 public class MovePlayer implements MovePlayerUseCase {
     private Players players;

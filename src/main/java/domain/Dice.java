@@ -1,4 +1,4 @@
-package boundary;
+package domain;
 
 public class Dice {
     private int first;

@@ -1,7 +1,7 @@
 package boundary.move_player;
 
 import boundary.CommandLineParser;
-import boundary.Dice;
+import domain.Dice;
 import usecase.move_player.MoveCommand;
 
 public class MoveCommandParser {
