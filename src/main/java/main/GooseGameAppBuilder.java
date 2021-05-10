@@ -3,7 +3,7 @@ package main;
 import boundary.ConsolePresenter;
 import boundary.MoveCommandParser;
 import boundary.OutputBoundary;
-import usecase.UseCaseDispatcher;
+import boundary.UseCaseDispatcher;
 import usecase.add_player.AddPlayerUseCase;
 import usecase.add_player.Players;
 import usecase.move_player.DiceRoller;

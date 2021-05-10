@@ -1,6 +1,6 @@
 package main;
 
-import usecase.UseCaseDispatcher;
+import boundary.UseCaseDispatcher;
 
 public class GooseGameApp {
 

@@ -1,6 +1,5 @@
-package usecase;
+package boundary;
 
-import boundary.MoveCommandParser;
 import usecase.add_player.AddPlayerCommandLineParser;
 import usecase.add_player.AddPlayerUseCase;
 import usecase.move_player.MoveCommand;
