@@ -1,4 +1,4 @@
-package usecase;
+package boundary;
 
 import static java.lang.Integer.parseInt;
 
