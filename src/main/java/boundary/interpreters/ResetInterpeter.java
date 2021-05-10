@@ -1,4 +1,4 @@
-package boundary;
+package boundary.interpreters;
 
 import usecase.reset_game.ResetService;
 

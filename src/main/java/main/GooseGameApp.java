@@ -1,6 +1,6 @@
 package main;
 
-import boundary.Interpreter;
+import boundary.interpreters.Interpreter;
 import usecase.reset_game.ApplicationSwitch;
 
 public class GooseGameApp {

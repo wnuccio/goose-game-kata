@@ -1,7 +1,5 @@
-package boundary.move_player;
+package boundary.interpreters;
 
-import boundary.CommandLineParser;
-import boundary.Interpreter;
 import domain.Dice;
 import usecase.move_player.MoveCommand;
 import usecase.move_player.MovePlayerUseCase;

@@ -1,4 +1,4 @@
-package boundary;
+package boundary.interpreters;
 
 public abstract class Interpreter {
     private Interpreter nextInterpreter;

@@ -1,13 +1,13 @@
 package main;
 
-import boundary.Interpreter;
-import boundary.RandomDiceRoller;
-import boundary.ResetInterpeter;
-import boundary.add_player.AddPlayerInterpeter;
 import boundary.console.ConsolePresenter;
 import boundary.console.OutputBoundary;
 import boundary.console.SystemInputOutput;
-import boundary.move_player.MovePlayerInterpreter;
+import boundary.interpreters.AddPlayerInterpeter;
+import boundary.interpreters.Interpreter;
+import boundary.interpreters.MovePlayerInterpreter;
+import boundary.interpreters.ResetInterpeter;
+import boundary.random.RandomDiceRoller;
 import domain.DiceRoller;
 import domain.Players;
 import usecase.add_player.AddPlayerUseCase;

@@ -1,4 +1,4 @@
-package boundary;
+package boundary.interpreters;
 
 import static java.lang.Integer.parseInt;
 

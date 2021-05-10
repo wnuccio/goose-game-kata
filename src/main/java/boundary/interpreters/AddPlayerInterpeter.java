@@ -1,7 +1,5 @@
-package boundary.add_player;
+package boundary.interpreters;
 
-import boundary.CommandLineParser;
-import boundary.Interpreter;
 import usecase.add_player.AddPlayerUseCase;
 
 public class AddPlayerInterpeter extends Interpreter {

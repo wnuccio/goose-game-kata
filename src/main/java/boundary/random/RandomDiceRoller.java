@@ -1,4 +1,4 @@
-package boundary;
+package boundary.random;
 
 import domain.Dice;
 import domain.DiceRoller;
