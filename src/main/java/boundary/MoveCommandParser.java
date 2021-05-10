@@ -1,15 +1,9 @@
 package boundary;
 
 import usecase.CommandLineParser;
-import usecase.move_player.Dice;
 import usecase.move_player.MoveCommand;
 
 public class MoveCommandParser {
-    private Dice dice;
-
-    public MoveCommandParser(Dice dice) {
-        this.dice = dice;
-    }
 
     public MoveCommand parse(String commandLine) {
         CommandLineParser parser = new CommandLineParser(commandLine);

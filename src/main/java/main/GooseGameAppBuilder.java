@@ -46,9 +46,8 @@ public class GooseGameAppBuilder {
 
     private UseCaseDispatcher useCaseDispatcher(ConsolePresenter presenter, Players players) {
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
-        Dice dice = dice();
         MovePlayerUseCase movePlayer = movePlayerUseCase(presenter, players);
-        MoveCommandParser moveCommandParser = new MoveCommandParser(dice);
+        MoveCommandParser moveCommandParser = new MoveCommandParser();
         ResetGameUseCase resetGameUseCase = new ResetGameUseCase(players);
 
         HashMap<String, UseCase> useCaseMap = new HashMap<>();
