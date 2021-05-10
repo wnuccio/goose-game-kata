@@ -4,7 +4,7 @@ import main.ApplicationRunner;
 import main.test.ApplicationDriver;
 import org.junit.jupiter.api.Test;
 
-public class ExitGameAcceptanceTest {
+public class StopGameAcceptanceTest {
     private ResetGameDriver resetGameDriver = new ResetGameDriver(new ApplicationDriver());
 
     @Test
