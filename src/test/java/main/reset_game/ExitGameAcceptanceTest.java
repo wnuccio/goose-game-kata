@@ -8,7 +8,7 @@ public class ExitGameAcceptanceTest {
     private ResetGameDriver resetGameDriver = new ResetGameDriver(new ApplicationDriver());
 
     @Test
-    void after_reset_an_existing_player_becomes_a_new_player() {
+    void after_stop_command_the_application_is_no_more_running() {
         ApplicationRunner.runApplicationOnFirstDemand();
 
         resetGameDriver.verifyGameRunning();

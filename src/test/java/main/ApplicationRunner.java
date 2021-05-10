@@ -14,10 +14,11 @@ public class ApplicationRunner {
     private static void invokeMain() {
         try {
             Main.main(Main.ARGS_FOR_TEST);
+            thread = null; // explicit stop
 
         } catch (Exception e) {
             e.printStackTrace();
-            thread = null;
+            thread = null; // stop due to an error
         }
     }
 

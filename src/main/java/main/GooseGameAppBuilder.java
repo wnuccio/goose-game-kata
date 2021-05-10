@@ -11,6 +11,7 @@ import usecase.add_player.AddPlayerUseCase;
 import usecase.move_player.MovePlayer;
 import usecase.move_player.MovePlayerUseCase;
 import usecase.move_player.RollAndMove;
+import usecase.reset_game.ApplicationSwitch;
 import usecase.reset_game.ResetGameService;
 
 public class GooseGameAppBuilder {
@@ -32,16 +33,16 @@ public class GooseGameAppBuilder {
         OutputBoundary outputBoundary = getOutputBoundary();
         ConsolePresenter presenter = new ConsolePresenter(outputBoundary);
         Players players = new Players();
+        ApplicationSwitch applicationSwitch = new ApplicationSwitch();
+        UseCaseDispatcher useCaseDispatcher = useCaseDispatcher(presenter, players, applicationSwitch);
 
-        UseCaseDispatcher useCaseDispatcher = useCaseDispatcher(presenter, players);
-
-        return new GooseGameApp(inputBoundary, useCaseDispatcher);
+        return new GooseGameApp(applicationSwitch, inputBoundary, useCaseDispatcher);
     }
 
-    private UseCaseDispatcher useCaseDispatcher(ConsolePresenter presenter, Players players) {
+    private UseCaseDispatcher useCaseDispatcher(ConsolePresenter presenter, Players players, ApplicationSwitch applicationSwitch) {
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
         MovePlayerUseCase movePlayer = movePlayerUseCase(presenter, players);
-        ResetGameService resetGameService = new ResetGameService(null, players);
+        ResetGameService resetGameService = new ResetGameService(applicationSwitch, players);
 
         return new UseCaseDispatcher(resetGameService, addPlayerUseCase, movePlayer);
     }

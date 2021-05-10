@@ -22,15 +22,20 @@ public class UseCaseDispatcher {
     public void acceptCommand(String commandLine) {
         String command = firstTokenOf(commandLine);
 
+        if ("reset".equals(command)) {
+            resetGameService.doReset();
+            return;
+        }
+
+        if ("stop".equals(command)) {
+            resetGameService.doStop();
+            return;
+        }
+
         if ("add".equals(command)) {
             AddPlayerCommandParser parser = new AddPlayerCommandParser();
             String player = parser.playerName(commandLine);
             addPlayer.doAdd(player);
-            return;
-        }
-
-        if ("reset".equals(command)) {
-            resetGameService.doReset();
             return;
         }
 
