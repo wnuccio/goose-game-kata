@@ -1,7 +1,7 @@
 package main;
 
-import boundary.console.ConsolePresenter;
 import boundary.console.OutputBoundary;
+import boundary.console.OutputPresenter;
 import boundary.console.SystemInputOutput;
 import boundary.interpreters.AddPlayerInterpeter;
 import boundary.interpreters.Interpreter;
@@ -34,7 +34,7 @@ public class GooseGameAppBuilder {
     public final GooseGameApp buildApplication() {
         InputBoundary inputBoundary = getInputBoundary();
         OutputBoundary outputBoundary = getOutputBoundary();
-        ConsolePresenter presenter = new ConsolePresenter(outputBoundary);
+        OutputPresenter presenter = new OutputPresenter(outputBoundary);
         Players players = new Players();
         ApplicationSwitch applicationSwitch = new ApplicationSwitch();
         Interpreter interpreter = interpretersChain(presenter, players, applicationSwitch);
@@ -42,14 +42,14 @@ public class GooseGameAppBuilder {
         return new GooseGameApp(applicationSwitch, inputBoundary, interpreter);
     }
 
-    private Interpreter interpretersChain(ConsolePresenter presenter, Players players, ApplicationSwitch applicationSwitch) {
+    private Interpreter interpretersChain(OutputPresenter presenter, Players players, ApplicationSwitch applicationSwitch) {
         return new ResetInterpeter(resetService(players, applicationSwitch),
                 new AddPlayerInterpeter(addPlayer(presenter, players),
                         new MovePlayerInterpreter(
                                 movePlayer(presenter, players), null)));
     }
 
-    private AddPlayerUseCase addPlayer(ConsolePresenter presenter, Players players) {
+    private AddPlayerUseCase addPlayer(OutputPresenter presenter, Players players) {
         return new AddPlayerUseCase(players, presenter);
     }
 
@@ -57,7 +57,7 @@ public class GooseGameAppBuilder {
         return new ResetService(applicationSwitch, players);
     }
 
-    private MovePlayerUseCase movePlayer(ConsolePresenter presenter, Players players) {
+    private MovePlayerUseCase movePlayer(OutputPresenter presenter, Players players) {
         MovePlayer movePlayer = new MovePlayer(players, presenter);
         return new RollAndMove(diceRoller(), movePlayer);
     }

@@ -8,10 +8,10 @@ import static java.lang.String.format;
 import static java.lang.String.valueOf;
 import static usecase.move_player.SimpleMovement.*;
 
-public class ConsolePresenter implements Presenter {
+public class OutputPresenter implements Presenter {
     private OutputBoundary outputBoundary;
 
-    public ConsolePresenter(OutputBoundary outputBoundary) {
+    public OutputPresenter(OutputBoundary outputBoundary) {
         this.outputBoundary = outputBoundary;
     }
 
