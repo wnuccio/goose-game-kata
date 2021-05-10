@@ -3,19 +3,21 @@ package usecase.move_player;
 import java.util.function.Supplier;
 
 public class GenericRepeatedMovement extends RepeatedMovement {
-
-    private Supplier<Integer> finalPositionFunction;
     private int intermediatePosition;
+    private Supplier<Integer> finalPositionFunction;
 
     public GenericRepeatedMovement(
             SimpleMovement previousMovement,
             MovementType type,
-            Supplier<Integer> finalPositionFunction,
-            int intermediatePosition) {
+            int intermediatePosition, Supplier<Integer> finalPositionFunction) {
 
         super(previousMovement, type);
         this.finalPositionFunction = finalPositionFunction;
         this.intermediatePosition = intermediatePosition;
+    }
+
+    public static GenericRepeatedMovementBuilder after(SimpleMovement previousMovement) {
+        return new GenericRepeatedMovementBuilder(previousMovement);
     }
 
     @Override

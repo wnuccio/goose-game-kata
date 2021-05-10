@@ -6,6 +6,7 @@ import domain.Position;
 import usecase.Presenter;
 
 import static domain.Position.WIN_POSITION;
+import static usecase.move_player.GenericRepeatedMovement.after;
 
 public class MovePlayer implements MovePlayerUseCase {
     private Players players;
@@ -40,11 +41,10 @@ public class MovePlayer implements MovePlayerUseCase {
 
     private Movement repeatMovementOnSpecialPositions(SimpleMovement movement) {
         if (movement.finalPosition() > WIN_POSITION) {
-            return new GenericRepeatedMovement(
-                    movement,
-                    MovementType.BOUNCING,
-                    () -> WIN_POSITION - (movement.finalPosition() - WIN_POSITION),
-                    WIN_POSITION);
+            return after(movement)
+                    .becauseOf(MovementType.BOUNCING)
+                    .insteadOf(WIN_POSITION)
+                    .goToPosition(() -> WIN_POSITION - (movement.finalPosition() - WIN_POSITION));
         }
 
         if (movement.finalPosition() == Position.BRIDGE) {
