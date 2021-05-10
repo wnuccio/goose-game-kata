@@ -14,5 +14,6 @@ class RepeatOnGooseMovementTest {
         RepeatOnGooseMovement repeatMovement = new RepeatOnGooseMovement(movement);
 
         assertThat(repeatMovement.finalPosition()).isEqualTo(10);
+        assertThat(repeatMovement.intermediatePosition()).isEqualTo(5);
     }
 }
