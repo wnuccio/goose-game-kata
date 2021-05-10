@@ -2,6 +2,7 @@ package main.move_player;
 
 import main.BaseAcceptanceTest;
 import main.add_player.AddPlayerDriver;
+import main.test.DiceRollerStub;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +11,11 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class MovePlayerWithDiceAcceptanceTest extends BaseAcceptanceTest {
     private AddPlayerDriver addPlayerDriver;
     private MovePlayerDriver movePlayerDriver;
-    private DiceDriver diceDriver;
 
     @BeforeEach
     void setUp() {
         addPlayerDriver = new AddPlayerDriver(game);
         movePlayerDriver = new MovePlayerDriver(game);
-        diceDriver = new DiceDriver();
     }
 
 //    If there is one participant "Pippo" on space "4"
@@ -28,7 +27,7 @@ public class MovePlayerWithDiceAcceptanceTest extends BaseAcceptanceTest {
     void a_player_moves_by_throwing_dice() {
         addPlayerDriver.addPlayer("Pippo");
         movePlayerDriver.moveOnPosition4("Pippo");
-        diceDriver.onNextRollReturns(1, 2);
+        DiceRollerStub.onNextRollReturns(1, 2);
 
         String output = movePlayerDriver.movePlayer("Pippo");
         assertThat(output).isEqualTo("Pippo rolls 1, 2. Pippo moves from 4 to 7");
