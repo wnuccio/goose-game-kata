@@ -7,12 +7,14 @@ import usecase.move_player.DiceRoller;
 
 public class GooseGameAppBuilderForTest extends GooseGameAppBuilder {
 
+    @Override
     protected InputBoundary getInputBoundary() {
-        return TestSystemInputOuput.instance();
+        return SharedMemory.instance();
     }
 
+    @Override
     protected OutputBoundary getOutputBoundary() {
-        return TestSystemInputOuput.instance();
+        return SharedMemory.instance();
     }
 
     @Override

@@ -6,16 +6,15 @@ import main.InputBoundary;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestSystemInputOuput implements InputBoundary, OutputBoundary {
-    private static TestSystemInputOuput instance = new TestSystemInputOuput();
+public class SharedMemory implements InputBoundary, OutputBoundary {
+    private static SharedMemory instance = new SharedMemory();
 
     private String inputString = null;
     private List<String> outputStrings = new ArrayList<>();
 
-    private TestSystemInputOuput() {
-    }
+    private SharedMemory() { }
 
-    public static TestSystemInputOuput instance() {
+    public static SharedMemory instance() {
         return instance;
     }
 

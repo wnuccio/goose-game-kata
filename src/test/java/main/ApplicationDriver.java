@@ -1,9 +1,9 @@
 package main;
 
-import main.test.TestSystemInputOuput;
+import main.test.SharedMemory;
 
 public class ApplicationDriver {
-    private TestSystemInputOuput inputOuput = TestSystemInputOuput.instance();
+    private SharedMemory inputOuput = SharedMemory.instance();
 
     public String acceptInput(String inputString) {
         inputOuput.writeInputByTest(inputString);
