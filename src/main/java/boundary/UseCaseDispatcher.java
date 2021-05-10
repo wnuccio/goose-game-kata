@@ -1,6 +1,5 @@
 package boundary;
 
-import usecase.add_player.AddPlayerCommandLineParser;
 import usecase.add_player.AddPlayerUseCase;
 import usecase.move_player.MoveCommand;
 import usecase.move_player.MovePlayerUseCase;
@@ -24,7 +23,7 @@ public class UseCaseDispatcher {
         String command = firstTokenOf(commandLine);
 
         if ("add".equals(command)) {
-            String player = new AddPlayerCommandLineParser(commandLine).playerName();
+            String player = new AddPlayerCommandParser(commandLine).playerName();
             addPlayer.doAdd(player);
             return;
         }
