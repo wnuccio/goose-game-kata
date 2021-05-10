@@ -2,11 +2,11 @@ package usecase.move_player;
 
 import domain.Dice;
 import domain.Players;
-import domain.Position;
 import usecase.Presenter;
 
-import static domain.Position.WIN_POSITION;
+import static domain.Position.*;
 import static usecase.move_player.GenericRepeatedMovement.after;
+import static usecase.move_player.MovementType.*;
 
 public class MovePlayer implements MovePlayerUseCase {
     private Players players;
@@ -39,23 +39,30 @@ public class MovePlayer implements MovePlayerUseCase {
         return command.dice().orElseThrow(() -> new IllegalStateException("No dice"));
     }
 
-    private Movement repeatMovementOnSpecialPositions(SimpleMovement movement) {
-        if (movement.finalPosition() > WIN_POSITION) {
-            return after(movement)
-                    .becauseOf(MovementType.BOUNCING)
+    private Movement repeatMovementOnSpecialPositions(SimpleMovement firstMovement) {
+        if (firstMovement.finalPosition() > WIN_POSITION) {
+            return after(firstMovement)
+                    .becauseOf(BOUNCING)
                     .insteadOf(WIN_POSITION)
-                    .goToPosition(() -> WIN_POSITION - (movement.finalPosition() - WIN_POSITION));
+                    .goToPosition(() -> WIN_POSITION - (firstMovement.finalPosition() - WIN_POSITION));
         }
 
-        if (movement.finalPosition() == Position.BRIDGE) {
-            return new JumpOnBridgeMovement(movement);
+        if (firstMovement.finalPosition() == BRIDGE) {
+            return after(firstMovement)
+                    .becauseOf(JUMP_ON_BRIDGE)
+                    .insteadOf(BRIDGE)
+                    .goToPosition(BRIDGE_TARGET);
         }
 
-        if (movement.endsOnGoose()) {
-            return new RepeatOnGooseMovement(movement);
+        if (firstMovement.endsOnGoose()) {
+            return after(firstMovement)
+                    .becauseOf(REPEAT_ON_GOOSE)
+                    .insteadOf(firstMovement.finalPosition())
+                    .goToPosition(firstMovement.finalPosition() + firstMovement.diceTotal());
+
         }
 
-        return movement;
+        return firstMovement;
     }
 
     private SimpleMovement buildMovementFor(String player, Dice dice) {

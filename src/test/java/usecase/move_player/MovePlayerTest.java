@@ -64,6 +64,9 @@ class MovePlayerTest {
 
         Movement movement = movementCaptor.getValue();
         assertThat(movement.type().isRepeatOnGoose()).isTrue();
+        assertThat(movement.intermediatePosition()).isEqualTo(5);
+        assertThat(movement.finalPosition()).isEqualTo(7);
+
     }
 
     private MoveCommand move(String player, int first, int second) {

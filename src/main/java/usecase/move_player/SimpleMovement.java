@@ -65,4 +65,8 @@ public class SimpleMovement implements Movement {
         List<Integer> positionsWithGoose = asList(5, 9, 14, 18, 23, 27);
         return positionsWithGoose.contains(finalPosition());
     }
+
+    public int diceTotal() {
+        return dice.total();
+    }
 }

@@ -24,4 +24,8 @@ public class GenericRepeatedMovementBuilder {
     public Movement goToPosition(Supplier<Integer> finalPositionFunction) {
         return new GenericRepeatedMovement(previousMovement, type, intermediatePosition, finalPositionFunction);
     }
+
+    public Movement goToPosition(int finalPosition) {
+        return goToPosition(() -> finalPosition);
+    }
 }
