@@ -6,17 +6,17 @@ import main.InputBoundary;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SharedMemory implements InputBoundary, OutputBoundary {
+class SharedMemory implements InputBoundary, OutputBoundary {
     private static SharedMemory instance = new SharedMemory();
 
     private String inputString = null;
     private List<String> outputStrings = new ArrayList<>();
 
-    private SharedMemory() { }
-
     public static SharedMemory instance() {
         return instance;
     }
+
+    private SharedMemory() { }
 
     @Override
     synchronized public String readInputLine() {
@@ -30,11 +30,11 @@ public class SharedMemory implements InputBoundary, OutputBoundary {
         outputStrings.add(string);
     }
 
-    synchronized public void writeInputByTest(String inputString) {
+    synchronized void writeInputByTest(String inputString) {
         this.inputString = inputString;
     }
 
-    synchronized public String readOutputByTest() {
+    synchronized String readOutputByTest() {
         if (outputStrings == null || outputStrings.isEmpty()) return "";
 
         String result = outputStrings.get(0);

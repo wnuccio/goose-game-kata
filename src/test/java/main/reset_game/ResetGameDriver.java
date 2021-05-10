@@ -1,6 +1,6 @@
 package main.reset_game;
 
-import main.ApplicationDriver;
+import main.test.ApplicationDriver;
 
 public class ResetGameDriver {
     private ApplicationDriver applicationDriver;

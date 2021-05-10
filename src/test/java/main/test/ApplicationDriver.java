@@ -1,6 +1,4 @@
-package main;
-
-import main.test.SharedMemory;
+package main.test;
 
 public class ApplicationDriver {
     private SharedMemory inputOuput = SharedMemory.instance();
