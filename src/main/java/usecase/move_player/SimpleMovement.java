@@ -43,21 +43,17 @@ public class SimpleMovement implements Movement {
 
     @Override
     public int finalPosition() {
-        return isBouncing() ? Position.WIN_POSITION - (candidatePosition() - Position.WIN_POSITION) : candidatePosition();
+        return startPosition + dice.total();
     }
 
     @Override
     public boolean isBouncing() {
-        return candidatePosition() > Position.WIN_POSITION;
+        return false;
     }
 
     @Override
     public boolean isVictory() {
         return finalPosition() == Position.WIN_POSITION;
-    }
-
-    private int candidatePosition() {
-        return startPosition + dice.total();
     }
 
     @Override
@@ -67,7 +63,7 @@ public class SimpleMovement implements Movement {
 
     @Override
     public int intermediatePosition() {
-        return isBouncing() ? Position.WIN_POSITION : finalPosition();
+        return finalPosition();
     }
 
     @Override

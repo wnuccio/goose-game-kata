@@ -5,6 +5,8 @@ import domain.Players;
 import domain.Position;
 import usecase.Presenter;
 
+import static domain.Position.WIN_POSITION;
+
 public class MovePlayer implements MovePlayerUseCase {
     private Players players;
     private Presenter presenter;
@@ -37,6 +39,10 @@ public class MovePlayer implements MovePlayerUseCase {
     }
 
     private Movement repeatMovementOnSpecialPositions(SimpleMovement movement) {
+        if (movement.finalPosition() > WIN_POSITION) {
+            return new BouncingMovement(movement);
+        }
+
         if (movement.finalPosition() == Position.BRIDGE) {
             return new JumpOnBridgeMovement(movement);
         }
