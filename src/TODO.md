@@ -1,10 +1,3 @@
-Ripartenza in caso di errore
-- risolvere il problema: il fallimento di un AT per un'eccezione determina il crash dell'app
-  e il fallimento a cascata di tutti gli altri
-- definire un input di errore specifico (es. error) e creare un caso di test
- di doppio AT (senza derivare dal base, ma inviando all'applicazione
-  un input di errore seguito da uno buono)
-  
 Input/Output
 - usare una Queue invece di una list nella SystemIoForTest
 - nel main, eliminare il comando "exit" e gestire invece anche l'output:
