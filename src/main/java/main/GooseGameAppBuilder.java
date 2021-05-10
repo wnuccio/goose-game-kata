@@ -37,24 +37,27 @@ public class GooseGameAppBuilder {
         ConsolePresenter presenter = new ConsolePresenter(outputBoundary);
         Players players = new Players();
         ApplicationSwitch applicationSwitch = new ApplicationSwitch();
-        Interpreter interpreter = interpreter(presenter, players, applicationSwitch);
+        Interpreter interpreter = interpretersChain(presenter, players, applicationSwitch);
 
         return new GooseGameApp(applicationSwitch, inputBoundary, interpreter);
     }
 
-    private Interpreter interpreter(ConsolePresenter presenter, Players players, ApplicationSwitch applicationSwitch) {
-        AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
-        MovePlayerUseCase movePlayer = movePlayerUseCase(presenter, players);
-        ResetService resetService = new ResetService(applicationSwitch, players);
-
-        MovePlayerInterpreter movePlayerInterpreter = new MovePlayerInterpreter(movePlayer, null);
-        AddPlayerInterpeter addPlayerInterpeter = new AddPlayerInterpeter(addPlayerUseCase, movePlayerInterpreter);
-        ResetInterpeter resetInterpeter = new ResetInterpeter(resetService, addPlayerInterpeter);
-
-        return resetInterpeter;
+    private Interpreter interpretersChain(ConsolePresenter presenter, Players players, ApplicationSwitch applicationSwitch) {
+        return new ResetInterpeter(resetService(players, applicationSwitch),
+                new AddPlayerInterpeter(addPlayer(presenter, players),
+                        new MovePlayerInterpreter(
+                                movePlayer(presenter, players), null)));
     }
 
-    private MovePlayerUseCase movePlayerUseCase(ConsolePresenter presenter, Players players) {
+    private AddPlayerUseCase addPlayer(ConsolePresenter presenter, Players players) {
+        return new AddPlayerUseCase(players, presenter);
+    }
+
+    private ResetService resetService(Players players, ApplicationSwitch applicationSwitch) {
+        return new ResetService(applicationSwitch, players);
+    }
+
+    private MovePlayerUseCase movePlayer(ConsolePresenter presenter, Players players) {
         MovePlayer movePlayer = new MovePlayer(players, presenter);
         return new RollAndMove(diceRoller(), movePlayer);
     }

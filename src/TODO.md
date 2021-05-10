@@ -35,11 +35,3 @@ Struttura
     - non collaborano ma sono alternative tra loro (es. un'interfaccia
       che rappresenta una policy con le sue possibili implementazioni)
       
-Use Case, parsing e dispatching
-- rappresentare la logica di parsing e dispatching come una chain of responsibility:
-    ogni anello della catena è un oggetto che contiene 
-    un parser, uno use case e il relativo commmand;
-    l'oggetto interroga il parser: se trova il comando giusto a inizio linea allora
-    completa il parsing costruendo l'intero command e passandolo allo usecase, 
-    altrimenti delega all'anello successivo;
-    l'ultimo anello della catena non fa nulla (ignora l'input) o lancia un errore, a scelta
