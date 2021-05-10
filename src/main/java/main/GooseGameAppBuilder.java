@@ -1,7 +1,6 @@
 package main;
 
 import boundary.ConsolePresenter;
-import boundary.MoveCommandParser;
 import boundary.OutputBoundary;
 import boundary.UseCaseDispatcher;
 import usecase.add_player.AddPlayerUseCase;
@@ -43,10 +42,9 @@ public class GooseGameAppBuilder {
     private UseCaseDispatcher useCaseDispatcher(ConsolePresenter presenter, Players players) {
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
         MovePlayerUseCase movePlayer = movePlayerUseCase(presenter, players);
-        MoveCommandParser moveCommandParser = new MoveCommandParser();
         ResetGameService resetGameService = new ResetGameService(players);
 
-        return new UseCaseDispatcher(resetGameService, addPlayerUseCase, movePlayer, moveCommandParser);
+        return new UseCaseDispatcher(resetGameService, addPlayerUseCase, movePlayer);
     }
 
     private MovePlayerUseCase movePlayerUseCase(ConsolePresenter presenter, Players players) {

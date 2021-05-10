@@ -10,13 +10,11 @@ public class UseCaseDispatcher {
     private ResetGameService resetGameService;
     private AddPlayerUseCase addPlayer;
     private MovePlayerUseCase movePlayerUseCase;
-    private MoveCommandParser moveCommandParser;
 
-    public UseCaseDispatcher(ResetGameService resetGameService, AddPlayerUseCase addPlayer, MovePlayerUseCase movePlayerUseCase, MoveCommandParser moveCommandParser) {
+    public UseCaseDispatcher(ResetGameService resetGameService, AddPlayerUseCase addPlayer, MovePlayerUseCase movePlayerUseCase) {
         this.resetGameService = resetGameService;
         this.addPlayer = addPlayer;
         this.movePlayerUseCase = movePlayerUseCase;
-        this.moveCommandParser = moveCommandParser;
     }
 
     public void acceptCommand(String commandLine) {
@@ -35,6 +33,7 @@ public class UseCaseDispatcher {
         }
 
         if ("move".equals(command)) {
+            MoveCommandParser moveCommandParser = new MoveCommandParser();
             MoveCommand moveCommand = moveCommandParser.parse(commandLine);
             movePlayerUseCase.acceptCommand(moveCommand);
             return;
