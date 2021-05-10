@@ -11,6 +11,10 @@ public class GenericRepeatedMovementBuilder {
         this.previousMovement = previousMovement;
     }
 
+    public static GenericRepeatedMovementBuilder after(SimpleMovement previousMovement) {
+        return new GenericRepeatedMovementBuilder(previousMovement);
+    }
+
     public GenericRepeatedMovementBuilder becauseOf(MovementType type) {
         this.type = type;
         return this;
@@ -22,7 +26,17 @@ public class GenericRepeatedMovementBuilder {
     }
 
     public Movement goToPosition(Supplier<Integer> finalPositionFunction) {
-        return new GenericRepeatedMovement(previousMovement, type, intermediatePosition, finalPositionFunction);
+        return new RepeatedMovement(previousMovement, type) {
+            @Override
+            public int intermediatePosition() {
+                return intermediatePosition;
+            }
+
+            @Override
+            public int finalPosition() {
+                return finalPositionFunction.get();
+            }
+        };
     }
 
     public Movement goToPosition(int finalPosition) {
