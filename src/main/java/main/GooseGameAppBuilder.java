@@ -3,11 +3,11 @@ package main;
 import boundary.Interpreter;
 import boundary.RandomDiceRoller;
 import boundary.ResetInterpeter;
-import boundary.UseCaseDispatcher;
 import boundary.add_player.AddPlayerInterpeter;
 import boundary.console.ConsolePresenter;
 import boundary.console.OutputBoundary;
 import boundary.console.SystemInputOutput;
+import boundary.move_player.MovePlayerInterpreter;
 import domain.DiceRoller;
 import domain.Players;
 import usecase.add_player.AddPlayerUseCase;
@@ -47,8 +47,8 @@ public class GooseGameAppBuilder {
         MovePlayerUseCase movePlayer = movePlayerUseCase(presenter, players);
         ResetService resetService = new ResetService(applicationSwitch, players);
 
-        UseCaseDispatcher useCaseDispatcher = new UseCaseDispatcher(movePlayer);
-        AddPlayerInterpeter addPlayerInterpeter = new AddPlayerInterpeter(addPlayerUseCase, useCaseDispatcher);
+        MovePlayerInterpreter movePlayerInterpreter = new MovePlayerInterpreter(movePlayer, null);
+        AddPlayerInterpeter addPlayerInterpeter = new AddPlayerInterpeter(addPlayerUseCase, movePlayerInterpreter);
         ResetInterpeter resetInterpeter = new ResetInterpeter(resetService, addPlayerInterpeter);
 
         return resetInterpeter;
