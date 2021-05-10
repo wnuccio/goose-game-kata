@@ -2,6 +2,7 @@ package usecase;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import usecase.reset_game.ResetGameService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,7 @@ class UseCaseDispatcherTest {
     UseCaseDispatcher dispatcher;
     UseCase useCaseOne = mock(UseCase.class);
     UseCase useCaseTwo = mock(UseCase.class);
+    ResetGameService resetGameService = mock(ResetGameService.class);
 
     @BeforeEach
     void setUp() {
@@ -21,7 +23,7 @@ class UseCaseDispatcherTest {
         map.put("one", useCaseOne);
         map.put("two", useCaseTwo);
 
-        dispatcher = new UseCaseDispatcher(map, null, null);
+        dispatcher = new UseCaseDispatcher(map, resetGameService, null, null);
     }
 
     @Test

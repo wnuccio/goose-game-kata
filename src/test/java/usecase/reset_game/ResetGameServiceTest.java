@@ -6,12 +6,12 @@ import usecase.add_player.Players;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-class ResetGameUseCaseTest {
+class ResetGameServiceTest {
     @Test
     void clears_players_collection() {
         Players players = mock(Players.class);
 
-        new ResetGameUseCase(players).acceptCommand("reset game");
+        new ResetGameService(players).doReset();
 
         verify(players).clear();
     }
