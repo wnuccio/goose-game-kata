@@ -39,4 +39,10 @@ public class MovePlayerDriver {
     public void moveOnPosition3(String player) {
         movePlayer(player, 2, 1);
     }
+
+    public void moveOnPosition10(String player) {
+        movePlayer(player, 2, 2);
+        movePlayer(player, 2, 2);
+        movePlayer(player, 1, 1);
+    }
 }

@@ -20,11 +20,6 @@ public class MovePlayerOnGooseAcceptanceTest extends BaseAcceptanceTest {
         movePlayerDriver = new MovePlayerDriver(driver);
     }
 
-//    If there is one participant "Pippo" on space "3"
-//    assuming that the dice get 1 and 1
-//    when the user writes: "move Pippo"
-//    the system responds: "Pippo rolls 1, 1. Pippo moves from 3 to 5, The Goose. Pippo moves again and goes to 7"
-
     @Test
     void a_player_repeat_movement_when_lands_on_the_goose() {
         addPlayerDriver.addPlayer("Pippo");
@@ -35,4 +30,19 @@ public class MovePlayerOnGooseAcceptanceTest extends BaseAcceptanceTest {
         assertThat(output).isEqualTo(
                 "Pippo rolls 1, 1. Pippo moves from 3 to 5, The Goose. Pippo moves again and goes to 7");
     }
+
+    @Test
+    void a_player_repeat_movement_more_times_when_lands_on_the_goose() {
+        addPlayerDriver.addPlayer("Pippo");
+        movePlayerDriver.moveOnPosition10("Pippo");
+        DiceRollerStub.onNextRollReturns(2, 2);
+
+        String output = movePlayerDriver.movePlayer("Pippo");
+        assertThat(output).isEqualTo(
+                "Pippo rolls 2, 2. " +
+                "Pippo moves from 10 to 14, The Goose. " +
+                "Pippo moves again and goes to 18, The Goose. " +
+                "Pippo moves again and goes to 22");
+    }
+
 }
