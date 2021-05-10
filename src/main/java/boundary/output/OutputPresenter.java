@@ -1,12 +1,11 @@
 package boundary.output;
 
+import domain.Position;
 import usecase.Presenter;
 import usecase.move_player.Movement;
-import usecase.move_player.SimpleMovement;
 
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
-import static usecase.move_player.SimpleMovement.*;
 
 public class OutputPresenter implements Presenter {
     private OutputBoundary outputBoundary;
@@ -74,10 +73,10 @@ public class OutputPresenter implements Presenter {
     }
 
     private String positionName(int position) {
-        if (position == SimpleMovement.START) return "Start";
-        if (position == BRIDGE) return "The Bridge";
-        if (position == BRIDGE_TARGET) return "12";
-        if (position == WIN_POSITION) return "63";
+        if (position == Position.START) return "Start";
+        if (position == Position.BRIDGE) return "The Bridge";
+        if (position == Position.BRIDGE_TARGET) return "12";
+        if (position == Position.WIN_POSITION) return "63";
 
         return valueOf(position);
     }

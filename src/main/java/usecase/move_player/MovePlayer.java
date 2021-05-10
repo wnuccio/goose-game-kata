@@ -2,6 +2,7 @@ package usecase.move_player;
 
 import domain.Dice;
 import domain.Players;
+import domain.Position;
 import usecase.Presenter;
 
 public class MovePlayer implements MovePlayerUseCase {
@@ -36,7 +37,7 @@ public class MovePlayer implements MovePlayerUseCase {
     }
 
     private Movement repeatMovementOnSpecialPositions(SimpleMovement movement) {
-        if (movement.finalPosition() == SimpleMovement.BRIDGE) {
+        if (movement.finalPosition() == Position.BRIDGE) {
             return new JumpOnBridgeMovement(movement);
         }
 

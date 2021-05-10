@@ -6,10 +6,10 @@ import org.mockito.ArgumentCaptor;
 import usecase.Presenter;
 
 import static domain.Dice.dice;
+import static domain.Position.BRIDGE_TARGET;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static usecase.move_player.SimpleMovement.BRIDGE_TARGET;
 
 class MovePlayerTest {
     private Players players = new Players();

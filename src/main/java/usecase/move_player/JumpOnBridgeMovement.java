@@ -1,6 +1,6 @@
 package usecase.move_player;
 
-import static usecase.move_player.SimpleMovement.BRIDGE_TARGET;
+import static domain.Position.BRIDGE_TARGET;
 
 public class JumpOnBridgeMovement extends RepeatedMovement implements Movement {
 

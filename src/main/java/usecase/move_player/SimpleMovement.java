@@ -1,16 +1,13 @@
 package usecase.move_player;
 
 import domain.Dice;
+import domain.Position;
 
 import java.util.List;
 
 import static java.util.Arrays.asList;
 
 public class SimpleMovement implements Movement {
-    public static final int START = 0;
-    public static final int BRIDGE = 6;
-    public static final int BRIDGE_TARGET = 12;
-    public static final int WIN_POSITION = 63;
 
     String player;
     int startPosition;
@@ -46,17 +43,17 @@ public class SimpleMovement implements Movement {
 
     @Override
     public int finalPosition() {
-        return isBouncing() ? WIN_POSITION - (candidatePosition() - WIN_POSITION) : candidatePosition();
+        return isBouncing() ? Position.WIN_POSITION - (candidatePosition() - Position.WIN_POSITION) : candidatePosition();
     }
 
     @Override
     public boolean isBouncing() {
-        return candidatePosition() > WIN_POSITION;
+        return candidatePosition() > Position.WIN_POSITION;
     }
 
     @Override
     public boolean isVictory() {
-        return finalPosition() == WIN_POSITION;
+        return finalPosition() == Position.WIN_POSITION;
     }
 
     private int candidatePosition() {
@@ -70,7 +67,7 @@ public class SimpleMovement implements Movement {
 
     @Override
     public int intermediatePosition() {
-        return isBouncing() ? WIN_POSITION : finalPosition();
+        return isBouncing() ? Position.WIN_POSITION : finalPosition();
     }
 
     @Override
