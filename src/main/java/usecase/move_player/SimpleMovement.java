@@ -1,5 +1,7 @@
 package usecase.move_player;
 
+import boundary.Dice;
+
 import java.util.List;
 
 import static java.util.Arrays.asList;

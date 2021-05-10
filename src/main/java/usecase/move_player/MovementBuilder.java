@@ -1,5 +1,7 @@
 package usecase.move_player;
 
+import boundary.Dice;
+
 public class MovementBuilder {
 
     private final SimpleMovement movement;

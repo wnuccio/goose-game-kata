@@ -5,7 +5,7 @@ import org.mockito.ArgumentCaptor;
 import usecase.Presenter;
 import usecase.add_player.Players;
 
-import static boundary.RealDice.dice;
+import static boundary.Dice.dice;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

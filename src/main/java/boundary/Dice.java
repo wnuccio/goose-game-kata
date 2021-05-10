@@ -1,18 +1,16 @@
 package boundary;
 
-import usecase.move_player.Dice;
-
-public class RealDice implements Dice {
+public class Dice {
     private int first;
     private int second;
 
-    public RealDice(int first, int second) {
+    public Dice(int first, int second) {
         this.first = first;
         this.second = second;
     }
 
     public static Dice dice(int first, int second) {
-        return new RealDice(first, second);
+        return new Dice(first, second);
     }
 
     public int first() {
@@ -22,4 +20,6 @@ public class RealDice implements Dice {
     public int second() {
         return second;
     }
+
+    public int total() { return first() + second(); }
 }

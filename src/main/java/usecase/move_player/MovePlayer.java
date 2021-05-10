@@ -1,5 +1,6 @@
 package usecase.move_player;
 
+import boundary.Dice;
 import usecase.Presenter;
 import usecase.add_player.Players;
 

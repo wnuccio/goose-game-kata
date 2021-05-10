@@ -14,7 +14,7 @@ public class MoveCommandParser {
         if (hasDiceValues) {
             int firstDice = parser.digitAtToken(2);
             int secondDice = parser.digitAtToken(3);
-            result = new MoveCommand(player, new RealDice(firstDice, secondDice));
+            result = new MoveCommand(player, new Dice(firstDice, secondDice));
         }
         return result;
     }

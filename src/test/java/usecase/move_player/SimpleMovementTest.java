@@ -2,7 +2,7 @@ package usecase.move_player;
 
 import org.junit.jupiter.api.Test;
 
-import static boundary.RealDice.dice;
+import static boundary.Dice.dice;
 import static org.assertj.core.api.Assertions.assertThat;
 import static usecase.move_player.SimpleMovement.WIN_POSITION;
 import static usecase.move_player.SimpleMovement.of;
