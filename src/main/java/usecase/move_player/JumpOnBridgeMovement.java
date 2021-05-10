@@ -1,5 +1,6 @@
 package usecase.move_player;
 
+import static domain.Position.BRIDGE;
 import static domain.Position.BRIDGE_TARGET;
 
 public class JumpOnBridgeMovement extends RepeatedMovement implements Movement {
@@ -20,6 +21,6 @@ public class JumpOnBridgeMovement extends RepeatedMovement implements Movement {
 
     @Override
     public int intermediatePosition() {
-        return previousMovement.finalPosition();
+        return BRIDGE;
     }
 }
