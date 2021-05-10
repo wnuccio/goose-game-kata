@@ -2,6 +2,7 @@ package main.move_player;
 
 import main.BaseAcceptanceTest;
 import main.add_player.AddPlayerDriver;
+import main.test.ApplicationDriver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +14,9 @@ public class MovePlayerAcceptanceTest extends BaseAcceptanceTest {
 
     @BeforeEach
     void setUp() {
-        addPlayerDriver = new AddPlayerDriver(game);
-        movePlayerDriver = new MovePlayerDriver(game);
+        ApplicationDriver driver = new ApplicationDriver();
+        addPlayerDriver = new AddPlayerDriver(driver);
+        movePlayerDriver = new MovePlayerDriver(driver);
     }
 
     @Test

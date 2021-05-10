@@ -1,16 +1,16 @@
 package main.add_player;
 
 import main.BaseAcceptanceTest;
+import main.test.ApplicationDriver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class AddPlayerAcceptanceTest extends BaseAcceptanceTest {
-
     private AddPlayerDriver driver;
 
     @BeforeEach
     void setUp() {
-        driver = new AddPlayerDriver(game);
+        driver = new AddPlayerDriver(new ApplicationDriver());
     }
 
     @Test
