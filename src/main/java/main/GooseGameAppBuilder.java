@@ -1,8 +1,6 @@
 package main;
 
-import boundary.ConsolePresenter;
-import boundary.OutputBoundary;
-import boundary.UseCaseDispatcher;
+import boundary.*;
 import usecase.add_player.AddPlayerUseCase;
 import usecase.add_player.Players;
 import usecase.move_player.DiceRoller;
@@ -11,21 +9,18 @@ import usecase.move_player.MovePlayerUseCase;
 import usecase.move_player.RollAndMove;
 import usecase.reset_game.ResetGameService;
 
-import java.util.Scanner;
-
 public class GooseGameAppBuilder {
 
     protected InputBoundary getInputBoundary() {
-        Scanner inputScanner = new Scanner(System.in);
-        return () -> inputScanner.nextLine();
+        return new SystemInputOutput();
     }
 
     protected OutputBoundary getOutputBoundary() {
-        return string -> System.out.println(string);
+        return new SystemInputOutput();
     }
 
     protected DiceRoller diceRoller() {
-        throw new UnsupportedOperationException();
+        return () -> new Dice(1, 2);
     }
 
     public final GooseGameApp buildApplication() {
