@@ -23,7 +23,7 @@ class UseCaseDispatcherTest {
         map.put("one", useCaseOne);
         map.put("two", useCaseTwo);
 
-        dispatcher = new UseCaseDispatcher(map, resetGameService, null, null);
+        dispatcher = new UseCaseDispatcher(map, resetGameService, null, null, null);
     }
 
     @Test

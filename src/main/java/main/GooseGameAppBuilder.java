@@ -51,7 +51,7 @@ public class GooseGameAppBuilder {
         HashMap<String, UseCase> useCaseMap = new HashMap<>();
         useCaseMap.put("add", addPlayerUseCase);
 
-        return new UseCaseDispatcher(useCaseMap, resetGameService, movePlayer, moveCommandParser);
+        return new UseCaseDispatcher(useCaseMap, resetGameService, addPlayerUseCase, movePlayer, moveCommandParser);
     }
 
     private MovePlayerUseCase movePlayerUseCase(ConsolePresenter presenter, Players players) {

@@ -25,5 +25,15 @@ public class AddPlayerUseCase implements UseCase {
         players.addPlayer(player);
         presenter.presentPlayers(players.all());
     }
+
+    public void doAdd(String player) {
+        if (players.contains(player)) {
+            presenter.presentExistingPlayerError(player);
+            return;
+        }
+
+        players.addPlayer(player);
+        presenter.presentPlayers(players.all());
+    }
 }
 
