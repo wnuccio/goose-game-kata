@@ -1,6 +1,6 @@
 package usecase.move_player;
 
-import main.test.DiceForTest;
+import boundary.RealDice;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -17,7 +17,7 @@ class RollAndMoveTest {
 
     @Test
     void add_a_rolled_dice_to_move_command_when_not_specified() {
-        DiceForTest rolledDice = new DiceForTest(3, 4);
+        RealDice rolledDice = new RealDice(3, 4);
         when(diceRoller.roll()).thenReturn(rolledDice);
 
         rollAndMove.acceptCommand(new MoveCommand("Pippo"));
@@ -29,7 +29,7 @@ class RollAndMoveTest {
 
     @Test
     void preserve_original_dice_when_specified() {
-        DiceForTest originalDice = new DiceForTest(5, 6);
+        RealDice originalDice = new RealDice(5, 6);
 
         rollAndMove.acceptCommand(new MoveCommand("Pippo", originalDice));
 

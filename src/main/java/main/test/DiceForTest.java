@@ -1,11 +1,12 @@
 package main.test;
 
+import boundary.RealDice;
 import usecase.move_player.Dice;
 import usecase.move_player.DiceRoller;
 
 import java.util.Objects;
 
-public class DiceForTest implements Dice, DiceRoller {
+public class DiceForTest implements DiceRoller {
     private static DiceForTest instance = new DiceForTest(1, 1);
 
     public static DiceForTest instance() {
@@ -26,18 +27,8 @@ public class DiceForTest implements Dice, DiceRoller {
     }
 
     @Override
-    public int first() {
-        return modifiableFirst;
-    }
-
-    @Override
-    public int second() {
-        return modifiableSecond;
-    }
-
-    @Override
     public Dice roll() {
-        return this;
+        return new RealDice(modifiableFirst, modifiableSecond);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package main.test;
 
 import boundary.OutputBoundary;
+import boundary.RealDice;
 import main.GooseGameAppBuilder;
 import main.InputBoundary;
 import usecase.move_player.Dice;
@@ -18,7 +19,7 @@ public class GooseGameAppBuilderForTest extends GooseGameAppBuilder {
 
     @Override
     protected Dice dice() {
-        return DiceForTest.instance();
+        return new RealDice(1, 1); // DiceForTest.instance();
     }
 
     @Override
