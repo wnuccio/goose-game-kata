@@ -9,12 +9,15 @@ public class Main {
     public static final String[] ARGS_FOR_TEST = {"main/test"};
 
     public static void main(String[] args) {
-        GooseGameAppBuilder appBuilder = isApplicationToTest(args) ?
-                new GooseGameAppBuilderForTest() :
-                new GooseGameAppBuilder();
-
+        GooseGameAppBuilder appBuilder = selectApplicationBuilder(args);
         GooseGameApp app = appBuilder.buildApplication();
         app.run();
+    }
+
+    private static GooseGameAppBuilder selectApplicationBuilder(String[] args) {
+        return isApplicationToTest(args) ?
+                new GooseGameAppBuilderForTest() :
+                new GooseGameAppBuilder();
     }
 
     private static boolean isApplicationToTest(String[] args) {
