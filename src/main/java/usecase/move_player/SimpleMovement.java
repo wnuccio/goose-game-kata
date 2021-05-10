@@ -59,20 +59,6 @@ public class SimpleMovement implements Movement {
         return finalPosition() == WIN_POSITION;
     }
 
-    @Override
-    public String toString() {
-        return "Movement{" +
-                "player='" + player + '\'' +
-                ", startPosition=" + startPosition +
-                ", firstDice=" + firstDice() +
-                ", secondDice=" + secondDice() +
-                ", candidatePosition=" + candidatePosition() +
-                ", toPosition=" + finalPosition() +
-                ", victory=" + isVictory() +
-                ", bouncing=" + isBouncing() +
-                '}';
-    }
-
     private int candidatePosition() {
         return startPosition + dice.total();
     }
