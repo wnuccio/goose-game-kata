@@ -2,12 +2,8 @@ package boundary;
 
 import usecase.CommandLineParser;
 
-public class AddPlayerCommandParser extends CommandLineParser {
-    public AddPlayerCommandParser(String commandLine) {
-        super(commandLine);
-    }
-
-    public String playerName() {
-        return token(2);
+public class AddPlayerCommandParser {
+    public String playerName(String commandLine) {
+        return new CommandLineParser(commandLine).token(2);
     }
 }

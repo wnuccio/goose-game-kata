@@ -23,7 +23,8 @@ public class UseCaseDispatcher {
         String command = firstTokenOf(commandLine);
 
         if ("add".equals(command)) {
-            String player = new AddPlayerCommandParser(commandLine).playerName();
+            AddPlayerCommandParser parser = new AddPlayerCommandParser();
+            String player = parser.playerName(commandLine);
             addPlayer.doAdd(player);
             return;
         }
