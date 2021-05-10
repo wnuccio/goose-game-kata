@@ -4,17 +4,17 @@ import main.ApplicationRunner;
 import main.test.ApplicationDriver;
 import org.junit.jupiter.api.Test;
 
-public class StopGameAcceptanceTest {
-    private ResetGameDriver resetGameDriver = new ResetGameDriver(new ApplicationDriver());
+public class StopApplicationAcceptanceTest {
+    private ResetDriver resetDriver = new ResetDriver(new ApplicationDriver());
 
     @Test
     void after_stop_command_the_application_is_no_more_running() {
         ApplicationRunner.runApplicationOnFirstDemand();
 
-        resetGameDriver.verifyGameRunning();
+        resetDriver.verifyGameRunning();
 
-        resetGameDriver.stopGame();
+        resetDriver.stopGame();
 
-        resetGameDriver.verifyGameStopped();
+        resetDriver.verifyGameStopped();
     }
 }

@@ -2,12 +2,12 @@ package usecase.reset_game;
 
 import domain.Players;
 
-public class ResetGameService {
+public class ResetService {
 
     private ApplicationSwitch applicationSwitch;
     private Players players;
 
-    public ResetGameService(ApplicationSwitch applicationSwitch, Players players) {
+    public ResetService(ApplicationSwitch applicationSwitch, Players players) {
         this.applicationSwitch = applicationSwitch;
         this.players = players;
     }

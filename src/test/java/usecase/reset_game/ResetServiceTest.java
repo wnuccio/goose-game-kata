@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-class ResetGameServiceTest {
+class ResetServiceTest {
     @Test
     void clears_players_collection() {
         Players players = mock(Players.class);
 
-        new ResetGameService(null, players).doReset();
+        new ResetService(null, players).doReset();
 
         verify(players).clear();
     }
@@ -19,7 +19,7 @@ class ResetGameServiceTest {
     @Test
     void stops_application() {
         ApplicationSwitch applicationSwitch = mock(ApplicationSwitch.class);
-        ResetGameService stopGameService = new ResetGameService(applicationSwitch, null);
+        ResetService stopGameService = new ResetService(applicationSwitch, null);
 
         stopGameService.doStop();
 

@@ -12,7 +12,7 @@ import usecase.move_player.MovePlayer;
 import usecase.move_player.MovePlayerUseCase;
 import usecase.move_player.RollAndMove;
 import usecase.reset_game.ApplicationSwitch;
-import usecase.reset_game.ResetGameService;
+import usecase.reset_game.ResetService;
 
 public class GooseGameAppBuilder {
 
@@ -42,9 +42,9 @@ public class GooseGameAppBuilder {
     private UseCaseDispatcher useCaseDispatcher(ConsolePresenter presenter, Players players, ApplicationSwitch applicationSwitch) {
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
         MovePlayerUseCase movePlayer = movePlayerUseCase(presenter, players);
-        ResetGameService resetGameService = new ResetGameService(applicationSwitch, players);
+        ResetService resetService = new ResetService(applicationSwitch, players);
 
-        return new UseCaseDispatcher(resetGameService, addPlayerUseCase, movePlayer);
+        return new UseCaseDispatcher(resetService, addPlayerUseCase, movePlayer);
     }
 
     private MovePlayerUseCase movePlayerUseCase(ConsolePresenter presenter, Players players) {

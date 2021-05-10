@@ -5,11 +5,11 @@ import main.add_player.AddPlayerDriver;
 import main.test.ApplicationDriver;
 import org.junit.jupiter.api.Test;
 
-public class ResetGameAcceptanceTest extends BaseAcceptanceTest {
+public class ResetAcceptanceTest extends BaseAcceptanceTest {
 
     private ApplicationDriver appDriver = new ApplicationDriver();
     private AddPlayerDriver driver = new AddPlayerDriver(appDriver);
-    private ResetGameDriver resetGameDriver = new ResetGameDriver(appDriver);
+    private ResetDriver resetDriver = new ResetDriver(appDriver);
 
     @Test
     void after_reset_an_existing_player_becomes_a_new_player() {
@@ -19,7 +19,7 @@ public class ResetGameAcceptanceTest extends BaseAcceptanceTest {
         output = driver.addPlayer("Pippo");
         driver.verifyAlreadyExistingPlayer(output, "Pippo");
 
-        resetGameDriver.resetGame();
+        resetDriver.resetGame();
 
         output = driver.addPlayer("Pippo");
         driver.verifyPlayersAdded(output, "Pippo");

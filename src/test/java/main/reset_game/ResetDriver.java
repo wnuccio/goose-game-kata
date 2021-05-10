@@ -5,10 +5,10 @@ import main.test.ApplicationDriver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ResetGameDriver {
+public class ResetDriver {
     private ApplicationDriver applicationDriver;
 
-    public ResetGameDriver(ApplicationDriver applicationDriver) {
+    public ResetDriver(ApplicationDriver applicationDriver) {
         this.applicationDriver = applicationDriver;
     }
 

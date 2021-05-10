@@ -5,16 +5,16 @@ import boundary.move_player.MoveCommandParser;
 import usecase.add_player.AddPlayerUseCase;
 import usecase.move_player.MoveCommand;
 import usecase.move_player.MovePlayerUseCase;
-import usecase.reset_game.ResetGameService;
+import usecase.reset_game.ResetService;
 
 public class UseCaseDispatcher {
 
-    private ResetGameService resetGameService;
+    private ResetService resetService;
     private AddPlayerUseCase addPlayer;
     private MovePlayerUseCase movePlayerUseCase;
 
-    public UseCaseDispatcher(ResetGameService resetGameService, AddPlayerUseCase addPlayer, MovePlayerUseCase movePlayerUseCase) {
-        this.resetGameService = resetGameService;
+    public UseCaseDispatcher(ResetService resetService, AddPlayerUseCase addPlayer, MovePlayerUseCase movePlayerUseCase) {
+        this.resetService = resetService;
         this.addPlayer = addPlayer;
         this.movePlayerUseCase = movePlayerUseCase;
     }
@@ -23,12 +23,12 @@ public class UseCaseDispatcher {
         String command = firstTokenOf(commandLine);
 
         if ("reset".equals(command)) {
-            resetGameService.doReset();
+            resetService.doReset();
             return;
         }
 
         if ("stop".equals(command)) {
-            resetGameService.doStop();
+            resetService.doStop();
             return;
         }
 
