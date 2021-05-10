@@ -3,12 +3,14 @@ package main;
 import boundary.ConsolePresenter;
 import boundary.MoveCommandParser;
 import boundary.OutputBoundary;
-import boundary.RealDice;
 import usecase.UseCase;
 import usecase.UseCaseDispatcher;
 import usecase.add_player.AddPlayerUseCase;
 import usecase.add_player.Players;
-import usecase.move_player.*;
+import usecase.move_player.DiceRoller;
+import usecase.move_player.MovePlayer;
+import usecase.move_player.MovePlayerUseCase;
+import usecase.move_player.RollAndMove;
 import usecase.reset_game.ResetGameUseCase;
 
 import java.util.HashMap;
@@ -27,10 +29,6 @@ public class GooseGameAppBuilder {
 
     protected DiceRoller diceRoller() {
         throw new UnsupportedOperationException();
-    }
-
-    protected Dice dice() {
-        return new RealDice(1, 1);
     }
 
     public final GooseGameApp buildApplication() {
