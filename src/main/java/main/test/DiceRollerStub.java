@@ -3,11 +3,11 @@ package main.test;
 import boundary.Dice;
 import usecase.move_player.DiceRoller;
 
-public class DiceRollerForTest implements DiceRoller {
-    private static DiceRollerForTest instance = new DiceRollerForTest();
+public class DiceRollerStub implements DiceRoller {
+    private static DiceRollerStub instance = new DiceRollerStub();
     private Dice dice;
 
-    public static DiceRollerForTest instance() {
+    public static DiceRollerStub instance() {
         return instance;
     }
 
@@ -20,7 +20,7 @@ public class DiceRollerForTest implements DiceRoller {
         return dice;
     }
 
-    private DiceRollerForTest() {
+    private DiceRollerStub() {
         this.dice = new Dice(1, 1);
     }
 }

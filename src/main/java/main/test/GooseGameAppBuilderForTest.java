@@ -19,6 +19,6 @@ public class GooseGameAppBuilderForTest extends GooseGameAppBuilder {
 
     @Override
     protected DiceRoller diceRoller() {
-        return DiceRollerForTest.instance();
+        return DiceRollerStub.instance();
     }
 }
