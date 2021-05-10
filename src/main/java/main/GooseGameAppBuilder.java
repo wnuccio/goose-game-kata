@@ -3,7 +3,6 @@ package main;
 import boundary.ConsolePresenter;
 import boundary.MoveCommandParser;
 import boundary.OutputBoundary;
-import usecase.UseCase;
 import usecase.UseCaseDispatcher;
 import usecase.add_player.AddPlayerUseCase;
 import usecase.add_player.Players;
@@ -13,7 +12,6 @@ import usecase.move_player.MovePlayerUseCase;
 import usecase.move_player.RollAndMove;
 import usecase.reset_game.ResetGameService;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class GooseGameAppBuilder {
@@ -48,10 +46,7 @@ public class GooseGameAppBuilder {
         MoveCommandParser moveCommandParser = new MoveCommandParser();
         ResetGameService resetGameService = new ResetGameService(players);
 
-        HashMap<String, UseCase> useCaseMap = new HashMap<>();
-        useCaseMap.put("add", addPlayerUseCase);
-
-        return new UseCaseDispatcher(useCaseMap, resetGameService, addPlayerUseCase, movePlayer, moveCommandParser);
+        return new UseCaseDispatcher(resetGameService, addPlayerUseCase, movePlayer, moveCommandParser);
     }
 
     private MovePlayerUseCase movePlayerUseCase(ConsolePresenter presenter, Players players) {
