@@ -1,5 +1,7 @@
-package boundary;
+package boundary.move_player;
 
+import boundary.CommandLineParser;
+import boundary.Dice;
 import usecase.move_player.MoveCommand;
 
 public class MoveCommandParser {

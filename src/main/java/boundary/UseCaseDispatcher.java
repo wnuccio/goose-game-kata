@@ -1,5 +1,7 @@
 package boundary;
 
+import boundary.add_player.AddPlayerCommandParser;
+import boundary.move_player.MoveCommandParser;
 import usecase.add_player.AddPlayerUseCase;
 import usecase.move_player.MoveCommand;
 import usecase.move_player.MovePlayerUseCase;

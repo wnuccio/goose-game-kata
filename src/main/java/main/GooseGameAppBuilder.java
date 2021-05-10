@@ -1,6 +1,10 @@
 package main;
 
-import boundary.*;
+import boundary.RandomDiceRoller;
+import boundary.UseCaseDispatcher;
+import boundary.console.ConsolePresenter;
+import boundary.console.OutputBoundary;
+import boundary.console.SystemInputOutput;
 import usecase.add_player.AddPlayerUseCase;
 import usecase.add_player.Players;
 import usecase.move_player.DiceRoller;
