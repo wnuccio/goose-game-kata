@@ -1,9 +1,9 @@
 package main.test;
 
+import boundary.application.InputBoundary;
 import boundary.console.OutputBoundary;
 import domain.DiceRoller;
 import main.GooseGameAppBuilder;
-import main.InputBoundary;
 
 public class GooseGameAppBuilderForTest extends GooseGameAppBuilder {
 

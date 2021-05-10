@@ -1,5 +1,7 @@
 package main;
 
+import boundary.application.GooseGameApp;
+import boundary.application.InputBoundary;
 import boundary.console.OutputBoundary;
 import boundary.console.OutputPresenter;
 import boundary.console.SystemInputOutput;

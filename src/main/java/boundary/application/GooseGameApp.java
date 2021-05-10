@@ -1,4 +1,4 @@
-package main;
+package boundary.application;
 
 import boundary.interpreters.Interpreter;
 import usecase.reset_game.ApplicationSwitch;

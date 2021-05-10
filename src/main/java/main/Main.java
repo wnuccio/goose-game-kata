@@ -1,5 +1,6 @@
 package main;
 
+import boundary.application.GooseGameApp;
 import main.test.GooseGameAppBuilderForTest;
 
 import java.util.Arrays;

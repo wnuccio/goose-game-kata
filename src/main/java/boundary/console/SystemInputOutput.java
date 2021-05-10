@@ -1,6 +1,6 @@
 package boundary.console;
 
-import main.InputBoundary;
+import boundary.application.InputBoundary;
 
 import java.util.Scanner;
 
