@@ -1,13 +1,13 @@
 package usecase.reset_game;
 
 public class ApplicationSwitch {
-    private boolean isOff = false;
+    private boolean isOn = true;
 
     void turnOff() {
-        isOff = true;
+        isOn = false;
     }
 
     public boolean isOn() {
-        return ! isOff;
+        return isOn;
     }
 }
