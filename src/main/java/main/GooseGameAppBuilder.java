@@ -2,13 +2,13 @@ package main;
 
 import boundary.application.GooseGameApp;
 import boundary.application.InputBoundary;
-import boundary.console.OutputBoundary;
-import boundary.console.OutputPresenter;
-import boundary.console.SystemInputOutput;
 import boundary.interpreters.AddPlayerInterpeter;
 import boundary.interpreters.Interpreter;
 import boundary.interpreters.MovePlayerInterpreter;
 import boundary.interpreters.ResetInterpeter;
+import boundary.output.OutputBoundary;
+import boundary.output.OutputPresenter;
+import boundary.output.SystemInputOutput;
 import boundary.random.RandomDiceRoller;
 import domain.DiceRoller;
 import domain.Players;

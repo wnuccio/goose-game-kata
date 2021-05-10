@@ -1,7 +1,7 @@
 package main.test;
 
 import boundary.application.InputBoundary;
-import boundary.console.OutputBoundary;
+import boundary.output.OutputBoundary;
 import domain.DiceRoller;
 import main.GooseGameAppBuilder;
 

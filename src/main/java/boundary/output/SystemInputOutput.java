@@ -1,4 +1,4 @@
-package boundary.console;
+package boundary.output;
 
 import boundary.application.InputBoundary;
 

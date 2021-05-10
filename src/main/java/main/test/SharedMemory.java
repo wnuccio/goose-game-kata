@@ -1,7 +1,7 @@
 package main.test;
 
 import boundary.application.InputBoundary;
-import boundary.console.OutputBoundary;
+import boundary.output.OutputBoundary;
 
 import java.util.ArrayList;
 import java.util.List;
