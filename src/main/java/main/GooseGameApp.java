@@ -16,12 +16,7 @@ public class GooseGameApp {
     }
 
     public void run() {
-        System.out.println("Application runned");
-        while(true) {
-            if (applicationSwitch.isOff()) {
-                System.out.println("Application stopped");
-                break;
-            }
+        while(applicationSwitch.isOn()) {
             String line = input.readInputLine();
             if (line == null) continue;
             useCaseDispatcher.acceptCommand(line);

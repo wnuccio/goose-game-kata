@@ -7,7 +7,7 @@ public class ApplicationSwitch {
         isOff = true;
     }
 
-    public boolean isOff() {
-        return isOff;
+    public boolean isOn() {
+        return ! isOff;
     }
 }
