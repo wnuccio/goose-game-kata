@@ -1,14 +1,14 @@
 package boundary;
 
 public abstract class Interpreter {
-    private Interpreter nextInterpeter;
+    private Interpreter nextInterpreter;
 
-    public Interpreter(Interpreter nextInterpeter) {
-        this.nextInterpeter = nextInterpeter;
+    public Interpreter(Interpreter nextInterpreter) {
+        this.nextInterpreter = nextInterpreter;
     }
 
     public void acceptCommand(String commandLine) {
-        if (nextInterpeter == null) return;
-        nextInterpeter.acceptCommand(commandLine);
+        if (nextInterpreter == null) return;
+        nextInterpreter.acceptCommand(commandLine);
     }
 }

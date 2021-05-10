@@ -26,9 +26,7 @@ public class CommandLineParser {
         return commandLine.split(" ");
     }
 
-    public boolean lineStartsWith(String firstToken) {
-        if (tokenNumber() == 0) return false;
-
-        return token(0).equals(firstToken);
+    public boolean lineStartsWith(String start) {
+        return commandLine.startsWith(start);
     }
 }
