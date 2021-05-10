@@ -1,6 +1,8 @@
 package main;
 
+import boundary.Interpreter;
 import boundary.RandomDiceRoller;
+import boundary.ResetInterpeter;
 import boundary.UseCaseDispatcher;
 import boundary.console.ConsolePresenter;
 import boundary.console.OutputBoundary;
@@ -34,17 +36,18 @@ public class GooseGameAppBuilder {
         ConsolePresenter presenter = new ConsolePresenter(outputBoundary);
         Players players = new Players();
         ApplicationSwitch applicationSwitch = new ApplicationSwitch();
-        UseCaseDispatcher useCaseDispatcher = useCaseDispatcher(presenter, players, applicationSwitch);
+        Interpreter interpreter = useCaseDispatcher(presenter, players, applicationSwitch);
 
-        return new GooseGameApp(applicationSwitch, inputBoundary, useCaseDispatcher);
+        return new GooseGameApp(applicationSwitch, inputBoundary, interpreter);
     }
 
-    private UseCaseDispatcher useCaseDispatcher(ConsolePresenter presenter, Players players, ApplicationSwitch applicationSwitch) {
+    private Interpreter useCaseDispatcher(ConsolePresenter presenter, Players players, ApplicationSwitch applicationSwitch) {
         AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
         MovePlayerUseCase movePlayer = movePlayerUseCase(presenter, players);
         ResetService resetService = new ResetService(applicationSwitch, players);
 
-        return new UseCaseDispatcher(resetService, addPlayerUseCase, movePlayer);
+        UseCaseDispatcher useCaseDispatcher = new UseCaseDispatcher(resetService, addPlayerUseCase, movePlayer);
+        return new ResetInterpeter(resetService, useCaseDispatcher);
     }
 
     private MovePlayerUseCase movePlayerUseCase(ConsolePresenter presenter, Players players) {

@@ -7,13 +7,14 @@ import usecase.move_player.MoveCommand;
 import usecase.move_player.MovePlayerUseCase;
 import usecase.reset_game.ResetService;
 
-public class UseCaseDispatcher {
+public class UseCaseDispatcher extends Interpreter{
 
     private ResetService resetService;
     private AddPlayerUseCase addPlayer;
     private MovePlayerUseCase movePlayerUseCase;
 
     public UseCaseDispatcher(ResetService resetService, AddPlayerUseCase addPlayer, MovePlayerUseCase movePlayerUseCase) {
+        super(null);
         this.resetService = resetService;
         this.addPlayer = addPlayer;
         this.movePlayerUseCase = movePlayerUseCase;
@@ -21,16 +22,6 @@ public class UseCaseDispatcher {
 
     public void acceptCommand(String commandLine) {
         String command = firstTokenOf(commandLine);
-
-        if ("reset".equals(command)) {
-            resetService.doReset();
-            return;
-        }
-
-        if ("stop".equals(command)) {
-            resetService.doStop();
-            return;
-        }
 
         if ("add".equals(command)) {
             AddPlayerCommandParser parser = new AddPlayerCommandParser();

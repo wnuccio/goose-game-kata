@@ -1,25 +1,25 @@
 package main;
 
-import boundary.UseCaseDispatcher;
+import boundary.Interpreter;
 import usecase.reset_game.ApplicationSwitch;
 
 public class GooseGameApp {
 
     private ApplicationSwitch applicationSwitch;
     private InputBoundary input;
-    private UseCaseDispatcher useCaseDispatcher;
+    private Interpreter interpreter;
 
-    public GooseGameApp(ApplicationSwitch applicationSwitch, InputBoundary input, UseCaseDispatcher useCaseDispatcher) {
+    public GooseGameApp(ApplicationSwitch applicationSwitch, InputBoundary input, Interpreter interpreter) {
         this.applicationSwitch = applicationSwitch;
         this.input = input;
-        this.useCaseDispatcher = useCaseDispatcher;
+        this.interpreter = interpreter;
     }
 
     public void run() {
         while(applicationSwitch.isOn()) {
             String line = input.readInputLine();
             if (line == null) continue;
-            useCaseDispatcher.acceptCommand(line);
+            interpreter.acceptCommand(line);
         }
     }
 

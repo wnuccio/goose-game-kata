@@ -25,4 +25,10 @@ public class CommandLineParser {
     private String[] tokens() {
         return commandLine.split(" ");
     }
+
+    public boolean lineStartsWith(String firstToken) {
+        if (tokenNumber() == 0) return false;
+
+        return token(0).equals(firstToken);
+    }
 }
