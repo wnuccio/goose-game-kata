@@ -44,7 +44,7 @@ public class MovePlayer implements MovePlayerUseCase {
             return after(firstMovement)
                     .becauseOf(BOUNCING)
                     .insteadOf(WIN_POSITION)
-                    .goToPosition(() -> WIN_POSITION - (firstMovement.finalPosition() - WIN_POSITION));
+                    .goToPosition(WIN_POSITION - (firstMovement.finalPosition() - WIN_POSITION));
         }
 
         if (firstMovement.finalPosition() == BRIDGE) {

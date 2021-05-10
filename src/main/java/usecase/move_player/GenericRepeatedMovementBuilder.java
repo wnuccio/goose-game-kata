@@ -1,7 +1,5 @@
 package usecase.move_player;
 
-import java.util.function.Supplier;
-
 public class GenericRepeatedMovementBuilder {
     private SimpleMovement previousMovement;
     private MovementType type;
@@ -25,7 +23,7 @@ public class GenericRepeatedMovementBuilder {
         return this;
     }
 
-    public Movement goToPosition(Supplier<Integer> finalPositionFunction) {
+    public Movement goToPosition(int finalPosition) {
         return new RepeatedMovement(previousMovement, type) {
             @Override
             public int intermediatePosition() {
@@ -34,12 +32,8 @@ public class GenericRepeatedMovementBuilder {
 
             @Override
             public int finalPosition() {
-                return finalPositionFunction.get();
+                return finalPosition;
             }
         };
-    }
-
-    public Movement goToPosition(int finalPosition) {
-        return goToPosition(() -> finalPosition);
     }
 }
