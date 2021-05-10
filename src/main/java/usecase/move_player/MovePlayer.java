@@ -40,7 +40,11 @@ public class MovePlayer implements MovePlayerUseCase {
 
     private Movement repeatMovementOnSpecialPositions(SimpleMovement movement) {
         if (movement.finalPosition() > WIN_POSITION) {
-            return new BouncingMovement(movement);
+            return new GenericRepeatedMovement(
+                    movement,
+                    MovementType.BOUNCING,
+                    () -> WIN_POSITION - (movement.finalPosition() - WIN_POSITION),
+                    WIN_POSITION);
         }
 
         if (movement.finalPosition() == Position.BRIDGE) {
