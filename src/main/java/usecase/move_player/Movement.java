@@ -7,15 +7,13 @@ public interface Movement {
 
     int secondDice();
 
-    int fromPosition();
+    int startPosition();
 
-    int toPosition();
+    int finalPosition();
 
     boolean isBouncing();
 
     boolean isVictory();
-
-    boolean endsOnBridge();
 
     boolean isJumpOnBridge();
 

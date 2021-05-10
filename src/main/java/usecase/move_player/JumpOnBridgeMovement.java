@@ -9,7 +9,7 @@ public class JumpOnBridgeMovement extends RepeatedMovement implements Movement {
     }
 
     @Override
-    public int toPosition() {
+    public int finalPosition() {
         return BRIDGE_TARGET;
     }
 
@@ -20,6 +20,6 @@ public class JumpOnBridgeMovement extends RepeatedMovement implements Movement {
 
     @Override
     public int intermediatePosition() {
-        return previousMovement.toPosition();
+        return previousMovement.finalPosition();
     }
 }

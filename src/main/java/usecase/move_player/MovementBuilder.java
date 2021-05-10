@@ -10,8 +10,8 @@ public class MovementBuilder {
         movement = new SimpleMovement(player);
     }
 
-    public MovementBuilder from(int fromPosition) {
-        movement.fromPosition = fromPosition;
+    public MovementBuilder from(int startPosition) {
+        movement.startPosition = startPosition;
         return this;
     }
 

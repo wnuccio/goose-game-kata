@@ -13,6 +13,6 @@ class RepeatOnGooseMovementTest {
         SimpleMovement movement = of("Pippo").from(0).givenRoll(dice(3, 2)).end();
         RepeatOnGooseMovement repeatMovement = new RepeatOnGooseMovement(movement);
 
-        assertThat(repeatMovement.toPosition()).isEqualTo(10);
+        assertThat(repeatMovement.finalPosition()).isEqualTo(10);
     }
 }

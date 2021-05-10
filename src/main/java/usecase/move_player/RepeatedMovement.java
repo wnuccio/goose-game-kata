@@ -19,8 +19,8 @@ public abstract class RepeatedMovement implements Movement {
         return previousMovement.secondDice();
     }
 
-    public int fromPosition() {
-        return previousMovement.fromPosition();
+    public int startPosition() {
+        return previousMovement.startPosition();
     }
 
     public boolean isBouncing() {
@@ -28,10 +28,6 @@ public abstract class RepeatedMovement implements Movement {
     }
 
     public boolean isVictory() {
-        return false;
-    }
-
-    public boolean endsOnBridge() {
         return false;
     }
 

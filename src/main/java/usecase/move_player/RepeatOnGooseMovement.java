@@ -9,13 +9,13 @@ public class RepeatOnGooseMovement extends RepeatedMovement {
     }
 
     @Override
-    public int toPosition() {
-        return previousMovement.toPosition() + previousMovement.firstDice() + previousMovement.secondDice();
+    public int finalPosition() {
+        return previousMovement.finalPosition() + previousMovement.firstDice() + previousMovement.secondDice();
     }
 
     @Override
     public int intermediatePosition() {
-        return previousMovement.toPosition();
+        return previousMovement.finalPosition();
     }
 
     @Override

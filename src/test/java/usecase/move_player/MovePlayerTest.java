@@ -35,7 +35,7 @@ class MovePlayerTest {
         assertThat(players.positionOf("Pippo")).isEqualTo(7);
         verify(presenter).presentMovement(movementCaptor.capture());
         assertThat(movementCaptor.getValue().player()).isEqualTo("Pippo");
-        assertThat(movementCaptor.getValue().fromPosition()).isEqualTo(0);
+        assertThat(movementCaptor.getValue().startPosition()).isEqualTo(0);
         assertThat(movementCaptor.getValue().firstDice()).isEqualTo(4);
         assertThat(movementCaptor.getValue().secondDice()).isEqualTo(3);
     }

@@ -26,7 +26,7 @@ public class MovePlayer implements MovePlayerUseCase {
 
         Movement movement = repeatMovementOnSpecialPositions(firstMovement);
 
-        players.setPositionOf(player, movement.toPosition());
+        players.setPositionOf(player, movement.finalPosition());
 
         presenter.presentMovement(movement);
     }
@@ -36,7 +36,7 @@ public class MovePlayer implements MovePlayerUseCase {
     }
 
     private Movement repeatMovementOnSpecialPositions(SimpleMovement movement) {
-        if (movement.endsOnBridge()) {
+        if (movement.finalPosition() == SimpleMovement.BRIDGE) {
             return new JumpOnBridgeMovement(movement);
         }
 

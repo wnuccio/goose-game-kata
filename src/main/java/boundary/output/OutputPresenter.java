@@ -44,7 +44,7 @@ public class OutputPresenter implements Presenter {
 
         String playerMoves = format("%s moves from %s to %s",
                 movement.player(),
-                positionName(movement.fromPosition()),
+                positionName(movement.startPosition()),
                 positionName(movement.intermediatePosition()));
 
         String specialCase = "";
@@ -55,7 +55,7 @@ public class OutputPresenter implements Presenter {
             specialCase = format(". %s bounces! %s returns to %d",
                     movement.player(),
                     movement.player(),
-                    movement.toPosition());
+                    movement.finalPosition());
 
         } else if (movement.isJumpOnBridge()) {
             specialCase = format(". %s jumps to 12",
@@ -64,10 +64,10 @@ public class OutputPresenter implements Presenter {
         } else if (movement.isRepeatOnGoose()) {
             playerMoves = format("%s moves from %s to %s, The Goose. %s moves again and goes to %s",
                     movement.player(),
-                    positionName(movement.fromPosition()),
+                    positionName(movement.startPosition()),
                     positionName(movement.intermediatePosition()),
                     movement.player(),
-                    positionName(movement.toPosition()));
+                    positionName(movement.finalPosition()));
         }
 
         return playerRolls + playerMoves + specialCase;

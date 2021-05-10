@@ -13,7 +13,7 @@ public class SimpleMovement implements Movement {
     public static final int WIN_POSITION = 63;
 
     String player;
-    int fromPosition;
+    int startPosition;
     Dice dice;
 
     SimpleMovement(String player) {
@@ -40,12 +40,12 @@ public class SimpleMovement implements Movement {
     }
 
     @Override
-    public int fromPosition() {
-        return fromPosition;
+    public int startPosition() {
+        return startPosition;
     }
 
     @Override
-    public int toPosition() {
+    public int finalPosition() {
         return isBouncing() ? WIN_POSITION - (candidatePosition() - WIN_POSITION) : candidatePosition();
     }
 
@@ -56,25 +56,25 @@ public class SimpleMovement implements Movement {
 
     @Override
     public boolean isVictory() {
-        return toPosition() == WIN_POSITION;
+        return finalPosition() == WIN_POSITION;
     }
 
     @Override
     public String toString() {
         return "Movement{" +
                 "player='" + player + '\'' +
-                ", fromPosition=" + fromPosition +
+                ", startPosition=" + startPosition +
                 ", firstDice=" + firstDice() +
                 ", secondDice=" + secondDice() +
                 ", candidatePosition=" + candidatePosition() +
-                ", toPosition=" + toPosition() +
+                ", toPosition=" + finalPosition() +
                 ", victory=" + isVictory() +
                 ", bouncing=" + isBouncing() +
                 '}';
     }
 
     private int candidatePosition() {
-        return fromPosition + dice.total();
+        return startPosition + dice.total();
     }
 
     @Override
@@ -83,13 +83,8 @@ public class SimpleMovement implements Movement {
     }
 
     @Override
-    public boolean endsOnBridge() {
-        return toPosition() == BRIDGE;
-    }
-
-    @Override
     public int intermediatePosition() {
-        return isBouncing() ? WIN_POSITION : toPosition();
+        return isBouncing() ? WIN_POSITION : finalPosition();
     }
 
     @Override
@@ -100,6 +95,6 @@ public class SimpleMovement implements Movement {
     @Override
     public boolean endsOnGoose() {
         List<Integer> positionsWithGoose = asList(5, 9, 14, 18, 23, 27);
-        return positionsWithGoose.contains(toPosition());
+        return positionsWithGoose.contains(finalPosition());
     }
 }
