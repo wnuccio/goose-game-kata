@@ -20,7 +20,7 @@ public class GooseGameAppBuilder {
     }
 
     protected DiceRoller diceRoller() {
-        return () -> new Dice(1, 2);
+        return new RandomDiceRoller();
     }
 
     public final GooseGameApp buildApplication() {
