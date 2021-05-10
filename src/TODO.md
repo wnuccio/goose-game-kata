@@ -1,7 +1,5 @@
 Input/Output
 - usare una Queue invece di una list nella SystemIoForTest
-- nel main, eliminare il comando "exit" e gestire invece anche l'output:
-  solo in modalità test segnalare che l'applicazione è partita/in errore ecc...
   
 Struttura
 - provare una alberatura di package gerarchica
