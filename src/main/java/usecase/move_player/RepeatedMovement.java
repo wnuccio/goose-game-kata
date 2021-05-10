@@ -1,12 +1,16 @@
 package usecase.move_player;
 
-public abstract class RepeatedMovement implements Movement {
+public class RepeatedMovement implements Movement {
     protected SimpleMovement previousMovement;
     private MovementType type;
+    private int intermediatePosition;
+    private int finalPosition;
 
-    public RepeatedMovement(SimpleMovement previousMovement, MovementType type) {
+    public RepeatedMovement(SimpleMovement previousMovement, MovementType type, int intermediatePosition, int finalPosition) {
         this.previousMovement = previousMovement;
         this.type = type;
+        this.intermediatePosition = intermediatePosition;
+        this.finalPosition = finalPosition;
     }
 
     @Override
@@ -34,4 +38,13 @@ public abstract class RepeatedMovement implements Movement {
         return false;
     }
 
+    @Override
+    public int intermediatePosition() {
+        return intermediatePosition;
+    }
+
+    @Override
+    public int finalPosition() {
+        return finalPosition;
+    }
 }
