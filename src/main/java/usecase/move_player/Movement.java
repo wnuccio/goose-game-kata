@@ -11,13 +11,9 @@ public interface Movement {
 
     int finalPosition();
 
-    boolean isBouncing();
-
     boolean isVictory();
-
-    boolean isJumpOnBridge();
 
     int intermediatePosition();
 
-    boolean isRepeatOnGoose();
+    MovementType type();
 }

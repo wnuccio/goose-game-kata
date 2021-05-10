@@ -47,18 +47,8 @@ public class SimpleMovement implements Movement {
     }
 
     @Override
-    public boolean isBouncing() {
-        return false;
-    }
-
-    @Override
     public boolean isVictory() {
         return finalPosition() == Position.WIN_POSITION;
-    }
-
-    @Override
-    public boolean isJumpOnBridge() {
-        return false;
     }
 
     @Override
@@ -67,8 +57,8 @@ public class SimpleMovement implements Movement {
     }
 
     @Override
-    public boolean isRepeatOnGoose() {
-        return false;
+    public MovementType type() {
+        return MovementType.SIMPLE;
     }
 
     public boolean endsOnGoose() {

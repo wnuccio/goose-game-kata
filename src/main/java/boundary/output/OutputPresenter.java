@@ -50,17 +50,17 @@ public class OutputPresenter implements Presenter {
         if (movement.isVictory()) {
             specialCase = format(". %s Wins!!", movement.player());
 
-        } else if (movement.isBouncing()) {
+        } else if (movement.type().isBouncing()) {
             specialCase = format(". %s bounces! %s returns to %d",
                     movement.player(),
                     movement.player(),
                     movement.finalPosition());
 
-        } else if (movement.isJumpOnBridge()) {
+        } else if (movement.type().isJumpOnBridge()) {
             specialCase = format(". %s jumps to 12",
                     movement.player());
 
-        } else if (movement.isRepeatOnGoose()) {
+        } else if (movement.type().isRepeatOnGoose()) {
             playerMoves = format("%s moves from %s to %s, The Goose. %s moves again and goes to %s",
                     movement.player(),
                     positionName(movement.startPosition()),

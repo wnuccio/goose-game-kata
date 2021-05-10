@@ -5,7 +5,7 @@ import static domain.Position.WIN_POSITION;
 public class BouncingMovement extends RepeatedMovement implements Movement {
 
     public BouncingMovement(SimpleMovement previousMovement) {
-        super(previousMovement);
+        super(previousMovement, MovementType.BOUNCING);
     }
 
     @Override

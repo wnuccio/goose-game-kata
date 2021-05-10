@@ -6,17 +6,12 @@ import static domain.Position.BRIDGE_TARGET;
 public class JumpOnBridgeMovement extends RepeatedMovement implements Movement {
 
     public JumpOnBridgeMovement(SimpleMovement previousMovement) {
-        super(previousMovement);
+        super(previousMovement, MovementType.JUMP_ON_BRIDGE);
     }
 
     @Override
     public int finalPosition() {
         return BRIDGE_TARGET;
-    }
-
-    @Override
-    public boolean isJumpOnBridge() {
-        return true;
     }
 
     @Override

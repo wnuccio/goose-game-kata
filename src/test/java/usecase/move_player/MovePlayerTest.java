@@ -50,7 +50,7 @@ class MovePlayerTest {
         verify(presenter).presentMovement(movementCaptor.capture());
 
         Movement movement = movementCaptor.getValue();
-        assertThat(movement.isJumpOnBridge()).isTrue();
+        assertThat(movement.type().isJumpOnBridge()).isTrue();
     }
 
     @Test
@@ -63,7 +63,7 @@ class MovePlayerTest {
         verify(presenter).presentMovement(movementCaptor.capture());
 
         Movement movement = movementCaptor.getValue();
-        assertThat(movement.isRepeatOnGoose()).isTrue();
+        assertThat(movement.type().isRepeatOnGoose()).isTrue();
     }
 
     private MoveCommand move(String player, int first, int second) {

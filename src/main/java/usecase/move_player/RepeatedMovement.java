@@ -2,9 +2,16 @@ package usecase.move_player;
 
 public abstract class RepeatedMovement implements Movement {
     protected SimpleMovement previousMovement;
+    private MovementType type;
 
-    public RepeatedMovement(SimpleMovement previousMovement) {
+    public RepeatedMovement(SimpleMovement previousMovement, MovementType type) {
         this.previousMovement = previousMovement;
+        this.type = type;
+    }
+
+    @Override
+    public MovementType type() {
+        return type;
     }
 
     public String player() {
@@ -31,11 +38,4 @@ public abstract class RepeatedMovement implements Movement {
         return false;
     }
 
-    public boolean isJumpOnBridge() {
-        return false;
-    }
-
-    public boolean isRepeatOnGoose() {
-        throw new UnsupportedOperationException();
-    }
 }

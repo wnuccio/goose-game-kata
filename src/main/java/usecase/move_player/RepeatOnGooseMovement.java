@@ -4,7 +4,7 @@ public class RepeatOnGooseMovement extends RepeatedMovement {
     private SimpleMovement previousMovement;
 
     public RepeatOnGooseMovement(SimpleMovement previousMovement) {
-        super(previousMovement);
+        super(previousMovement, MovementType.REPEAT_ON_GOOSE);
         this.previousMovement = previousMovement;
     }
 
@@ -18,8 +18,4 @@ public class RepeatOnGooseMovement extends RepeatedMovement {
         return previousMovement.finalPosition();
     }
 
-    @Override
-    public boolean isRepeatOnGoose() {
-        return true;
-    }
 }
