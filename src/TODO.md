@@ -6,9 +6,6 @@ Ripartenza in caso di errore
   un input di errore seguito da uno buono)
   
 Input/Output
-- accorpare per semplicità i due boundary (InputOutput),
-  creare una classe reale apposita e spostarla nel package boundary
-- rinominare la classe di test Shared Memory e renderla privata al package
 - usare una Queue invece di una list nella SystemIoForTest
 - nel main, eliminare il comando "exit" e gestire invece anche l'output:
   solo in modalità test segnalare che l'applicazione è partita/in errore ecc...
@@ -44,14 +41,8 @@ Struttura
       contiene il comando Move, il Player, le eccezioni relative ecc..)
     - non collaborano ma sono alternative tra loro (es. un'interfaccia
       che rappresenta una policy con le sue possibili implementazioni)
-
-Reset Service
-- realizzare il reset come caso a parte gestito solo in modalità test, 
-  eliminando anche lo use case e il test relativo (ma NON il test di accettazione)
-
-
+      
 Use Case, parsing e dispatching
-- spostare la logica di parsing in infrastructure
 - rappresentare la logica di parsing e dispatching come una chain of responsibility:
     ogni anello della catena è un oggetto che contiene 
     un parser, uno use case e il relativo commmand;
@@ -59,4 +50,3 @@ Use Case, parsing e dispatching
     completa il parsing costruendo l'intero command e passandolo allo usecase, 
     altrimenti delega all'anello successivo;
     l'ultimo anello della catena non fa nulla (ignora l'input) o lancia un errore, a scelta
-- gestire separatamente i vari use case e rimuovere la loro interfaccia di base
