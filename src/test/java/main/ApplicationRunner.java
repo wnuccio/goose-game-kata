@@ -4,7 +4,7 @@ public class ApplicationRunner {
     private static Thread thread = null;
 
     public static void runApplicationOnFirstDemand() {
-        if (thread != null) return;
+        if (isApplicationRunning()) return;
 
         thread = new Thread(ApplicationRunner::invokeMain);
         thread.setDaemon(true);
@@ -19,6 +19,10 @@ public class ApplicationRunner {
             e.printStackTrace();
             thread = null;
         }
+    }
+
+    public static boolean isApplicationRunning() {
+        return thread != null;
     }
 
 //    Invokes main in a not safe manner: a crash is not detected
