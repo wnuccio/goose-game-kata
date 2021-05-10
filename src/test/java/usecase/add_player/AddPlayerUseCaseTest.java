@@ -10,13 +10,13 @@ import static org.mockito.Mockito.*;
 class AddPlayerUseCaseTest {
     private Players players = mock(Players.class);
     private Presenter presenter = mock(Presenter.class);
-    private AddPlayerUseCase useCase = new AddPlayerUseCase(players, presenter);
+    private AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
 
     @Test
     void add_a_new_player_when_an_add_player_command_is_provided() {
         when(players.all()).thenReturn(players("Pippo"));
 
-        useCase.acceptCommand("add player Pippo");
+        addPlayerUseCase.doAdd("Pippo");
 
         verify(presenter).presentPlayers("Pippo");
     }
@@ -27,8 +27,8 @@ class AddPlayerUseCaseTest {
                 .thenReturn(players("Pippo"))
                 .thenReturn(players("Pippo", "Pluto"));
 
-        useCase.acceptCommand("add player Pippo");
-        useCase.acceptCommand("add player Pluto");
+        addPlayerUseCase.doAdd("Pippo");
+        addPlayerUseCase.doAdd("Pluto");
 
         verify(presenter).presentPlayers("Pippo");
         verify(presenter).presentPlayers("Pippo", "Pluto");
@@ -41,8 +41,8 @@ class AddPlayerUseCaseTest {
                 .thenReturn(false)
                 .thenReturn(true);
 
-        useCase.acceptCommand("add player Pippo");
-        useCase.acceptCommand("add player Pippo");
+        addPlayerUseCase.doAdd("Pippo");
+        addPlayerUseCase.doAdd("Pippo");
 
         InOrder inOrder = Mockito.inOrder(presenter);
         inOrder.verify(presenter).presentPlayers("Pippo");
