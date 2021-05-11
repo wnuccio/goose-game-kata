@@ -6,7 +6,7 @@ import org.mockito.ArgumentCaptor;
 import usecase.Presenter;
 
 import static domain.Dice.dice;
-import static domain.Position.*;
+import static domain.Position.BRIDGE_TARGET;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -51,7 +51,6 @@ class MovePlayerTest {
 
         MovementView movement = movementCaptor.getValue();
         assertThat(movement.type()).isEqualTo(MovementType.BOUNCING);
-        assertThat(movement.intermediatePosition()).isEqualTo(WIN_POSITION);
         assertThat(movement.finalPosition()).isEqualTo(57);
     }
 
@@ -66,7 +65,6 @@ class MovePlayerTest {
 
         MovementView movement = movementCaptor.getValue();
         assertThat(movement.type()).isEqualTo(MovementType.JUMP_ON_BRIDGE);
-        assertThat(movement.intermediatePosition()).isEqualTo(BRIDGE);
         assertThat(movement.finalPosition()).isEqualTo(BRIDGE_TARGET);
     }
 
@@ -81,7 +79,6 @@ class MovePlayerTest {
 
         MovementView movement = movementCaptor.getValue();
         assertThat(movement.type()).isEqualTo(MovementType.REPEAT_ON_GOOSE);
-        assertThat(movement.intermediatePosition()).isEqualTo(5);
         assertThat(movement.finalPosition()).isEqualTo(7);
 
     }
@@ -97,7 +94,6 @@ class MovePlayerTest {
 
         MovementView movement = movementCaptor.getValue();
         assertThat(movement.finalPosition()).isEqualTo(22);
-        assertThat(movement.intermediatePosition()).isEqualTo(18);
         assertThat(movement.type()).isEqualTo(MovementType.REPEAT_ON_GOOSE);
 
     }

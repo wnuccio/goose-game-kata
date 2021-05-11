@@ -32,11 +32,6 @@ public class SimpleMovement implements Movement {
     }
 
     @Override
-    public int intermediatePosition() {
-        return finalPosition();
-    }
-
-    @Override
     public MovementType type() {
         return MovementType.SIMPLE;
     }

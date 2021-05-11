@@ -3,13 +3,11 @@ package usecase.move_player;
 public class RepeatedMovement implements Movement {
     protected Movement previousMovement;
     private MovementType type;
-    private int intermediatePosition;
     private int finalPosition;
 
-    public RepeatedMovement(Movement previousMovement, MovementType type, int intermediatePosition, int finalPosition) {
+    public RepeatedMovement(Movement previousMovement, MovementType type, int finalPosition) {
         this.previousMovement = previousMovement;
         this.type = type;
-        this.intermediatePosition = intermediatePosition;
         this.finalPosition = finalPosition;
     }
 
@@ -28,11 +26,6 @@ public class RepeatedMovement implements Movement {
 
     public boolean isVictory() {
         return false;
-    }
-
-    @Override
-    public int intermediatePosition() {
-        return intermediatePosition;
     }
 
     @Override

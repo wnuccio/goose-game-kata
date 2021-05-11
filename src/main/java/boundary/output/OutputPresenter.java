@@ -4,6 +4,7 @@ import domain.Position;
 import usecase.Presenter;
 import usecase.move_player.MovementView;
 
+import static domain.Position.WIN_POSITION;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
 import static usecase.move_player.MovementType.*;
@@ -73,7 +74,7 @@ public class OutputPresenter implements Presenter {
         String playerMoves = format("%s moves from %s to %s",
                 movement.player(),
                 positionName(movement.startPosition()),
-                positionName(movement.intermediatePosition()));
+                positionName(Position.BRIDGE));
 
         String specialCase = format(". %s jumps to 12",
                 movement.player());
@@ -90,7 +91,7 @@ public class OutputPresenter implements Presenter {
         String playerMoves = format("%s moves from %s to %s",
                 movement.player(),
                 positionName(movement.startPosition()),
-                positionName(movement.intermediatePosition()));
+                positionName(WIN_POSITION));
 
         String specialCase = format(". %s bounces! %s returns to %d",
                 movement.player(),
@@ -109,7 +110,7 @@ public class OutputPresenter implements Presenter {
         String playerMoves = format("%s moves from %s to %s",
                 movement.player(),
                 positionName(movement.startPosition()),
-                positionName(movement.intermediatePosition()));
+                positionName(movement.finalPosition()));
 
         String specialCase = "";
         if (movement.isVictory()) {
@@ -123,7 +124,7 @@ public class OutputPresenter implements Presenter {
         if (position == Position.START) return "Start";
         if (position == Position.BRIDGE) return "The Bridge";
         if (position == Position.BRIDGE_TARGET) return "12";
-        if (position == Position.WIN_POSITION) return "63";
+        if (position == WIN_POSITION) return "63";
 
         return valueOf(position);
     }

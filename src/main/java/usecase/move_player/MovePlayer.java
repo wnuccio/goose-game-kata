@@ -50,14 +50,12 @@ public class MovePlayer {
         if (firstMovement.finalPosition() > WIN_POSITION) {
             return after(firstMovement)
                     .becauseOf(BOUNCING)
-                    .insteadOf(WIN_POSITION)
                     .goToPosition(WIN_POSITION - (firstMovement.finalPosition() - WIN_POSITION));
         }
 
         if (firstMovement.finalPosition() == BRIDGE) {
             return after(firstMovement)
                     .becauseOf(JUMP_ON_BRIDGE)
-                    .insteadOf(BRIDGE)
                     .goToPosition(BRIDGE_TARGET);
         }
 
@@ -69,7 +67,6 @@ public class MovePlayer {
 
         Movement repeatedMovement = after(previousMovement)
                 .becauseOf(REPEAT_ON_GOOSE)
-                .insteadOf(previousMovement.finalPosition())
                 .goToPosition(previousMovement.finalPosition() + previousMovement.diceTotal());
 
         return repeatIfEndsOnGoose(repeatedMovement);

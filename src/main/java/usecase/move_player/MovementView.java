@@ -37,10 +37,6 @@ public class MovementView {
         return movement.isVictory();
     }
 
-    public int intermediatePosition() {
-        return movement.intermediatePosition();
-    }
-
     public MovementType type() {
         return movement.type();
     }
