@@ -38,11 +38,6 @@ public class FurtherMovement implements Movement {
 
     @Override
     public void present(MovementPresenter movementPresenter) {
-        switch(type) {
-            case BOUNCING: movementPresenter.presentBouncing(this); break;
-            case JUMP_ON_BRIDGE: movementPresenter.presentJumpOnBridge(this); break;
-            case REPEAT_ON_GOOSE: movementPresenter.presentRepeatOnGoose(this); break;
-            default: break;
-        }
+        type.presentMovement(this, movementPresenter);
     }
 }
