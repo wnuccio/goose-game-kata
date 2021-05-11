@@ -35,18 +35,6 @@ public class MovementView {
         return movement.finalPosition();
     }
 
-    public MovementType type() {
-        return movement.type();
-    }
-
-    public MovementView previousMovement() {
-        return new MovementView(movement.previousMovement(), player, firstDice, secondDice);
-    }
-
-    public boolean endsOnGoose() {
-        return movement.endsOnGoose();
-    }
-
     public void present(MovementPresenter movementPresenter) {
         movement.present(movementPresenter);
     }

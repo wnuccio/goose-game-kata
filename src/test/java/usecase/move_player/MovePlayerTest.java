@@ -50,7 +50,6 @@ class MovePlayerTest {
         verify(presenter).presentMovement(movementCaptor.capture());
 
         MovementView movement = movementCaptor.getValue();
-        assertThat(movement.type()).isEqualTo(MovementType.BOUNCING);
         assertThat(movement.finalPosition()).isEqualTo(57);
     }
 
@@ -64,7 +63,6 @@ class MovePlayerTest {
         verify(presenter).presentMovement(movementCaptor.capture());
 
         MovementView movement = movementCaptor.getValue();
-        assertThat(movement.type()).isEqualTo(MovementType.JUMP_ON_BRIDGE);
         assertThat(movement.finalPosition()).isEqualTo(BRIDGE_TARGET);
     }
 
@@ -78,7 +76,6 @@ class MovePlayerTest {
         verify(presenter).presentMovement(movementCaptor.capture());
 
         MovementView movement = movementCaptor.getValue();
-        assertThat(movement.type()).isEqualTo(MovementType.REPEAT_ON_GOOSE);
         assertThat(movement.finalPosition()).isEqualTo(7);
 
     }
@@ -94,8 +91,6 @@ class MovePlayerTest {
 
         MovementView movement = movementCaptor.getValue();
         assertThat(movement.finalPosition()).isEqualTo(22);
-        assertThat(movement.type()).isEqualTo(MovementType.REPEAT_ON_GOOSE);
-
     }
 
     private MoveCommand move(String player, int first, int second) {
