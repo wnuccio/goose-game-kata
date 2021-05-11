@@ -2,7 +2,7 @@ package boundary.output;
 
 import domain.Position;
 import usecase.Presenter;
-import usecase.move_player.Movement;
+import usecase.move_player.MovementView;
 
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
@@ -16,7 +16,7 @@ public class OutputPresenter implements Presenter {
     }
 
     @Override
-    public void presentMovement(Movement movement) {
+    public void presentMovement(MovementView movement) {
         outputBoundary.writeOutputLine(buildStringFrom(movement));
     }
 
@@ -36,7 +36,7 @@ public class OutputPresenter implements Presenter {
         outputBoundary.writeOutputLine(player + ": already existing player");
     }
 
-    private String buildStringFrom(Movement movement) {
+    private String buildStringFrom(MovementView movement) {
         if (movement.type() == SIMPLE) {
             return outputForSimpleMovement(movement);
 
@@ -54,7 +54,7 @@ public class OutputPresenter implements Presenter {
         }
     }
 
-    private String outputForRepeatOnGoose(Movement movement) {
+    private String outputForRepeatOnGoose(MovementView movement) {
         if (movement.type() == SIMPLE) return outputForSimpleMovement(movement) + ", The Goose.";
 
         return outputForRepeatOnGoose(movement.previousMovement())
@@ -64,7 +64,7 @@ public class OutputPresenter implements Presenter {
                 movement.endsOnGoose() ? ", The Goose." : "");
     }
 
-    private String outputForJumpOnBridge(Movement movement) {
+    private String outputForJumpOnBridge(MovementView movement) {
         String playerRolls = format("%s rolls %s, %s" + ". ",
                 movement.player(),
                 movement.firstDice(),
@@ -81,7 +81,7 @@ public class OutputPresenter implements Presenter {
         return playerRolls + playerMoves + specialCase;
     }
 
-    private String outputForBouncing(Movement movement) {
+    private String outputForBouncing(MovementView movement) {
         String playerRolls = format("%s rolls %s, %s" + ". ",
                 movement.player(),
                 movement.firstDice(),
@@ -100,7 +100,7 @@ public class OutputPresenter implements Presenter {
         return playerRolls + playerMoves + specialCase;
     }
 
-    private String outputForSimpleMovement(Movement movement) {
+    private String outputForSimpleMovement(MovementView movement) {
         String playerRolls = format("%s rolls %s, %s" + ". ",
                 movement.player(),
                 movement.firstDice(),

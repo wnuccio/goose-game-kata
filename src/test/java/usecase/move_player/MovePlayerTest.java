@@ -15,7 +15,7 @@ class MovePlayerTest {
     private Players players = new Players();
     private Presenter presenter = mock(Presenter.class);
     private MovePlayer useCase = new MovePlayer(players, presenter);
-    private ArgumentCaptor<Movement> movementCaptor = ArgumentCaptor.forClass(Movement.class);
+    private ArgumentCaptor<MovementView> movementCaptor = ArgumentCaptor.forClass(MovementView.class);
 
     @Test
     void present_an_error_when_the_command_specifies_a_not_present_player() {
@@ -49,7 +49,7 @@ class MovePlayerTest {
         assertThat(players.positionOf("Pippo")).isEqualTo(57);
         verify(presenter).presentMovement(movementCaptor.capture());
 
-        Movement movement = movementCaptor.getValue();
+        MovementView movement = movementCaptor.getValue();
         assertThat(movement.type()).isEqualTo(MovementType.BOUNCING);
         assertThat(movement.intermediatePosition()).isEqualTo(WIN_POSITION);
         assertThat(movement.finalPosition()).isEqualTo(57);
@@ -64,7 +64,7 @@ class MovePlayerTest {
         assertThat(players.positionOf("Pippo")).isEqualTo(BRIDGE_TARGET);
         verify(presenter).presentMovement(movementCaptor.capture());
 
-        Movement movement = movementCaptor.getValue();
+        MovementView movement = movementCaptor.getValue();
         assertThat(movement.type()).isEqualTo(MovementType.JUMP_ON_BRIDGE);
         assertThat(movement.intermediatePosition()).isEqualTo(BRIDGE);
         assertThat(movement.finalPosition()).isEqualTo(BRIDGE_TARGET);
@@ -79,7 +79,7 @@ class MovePlayerTest {
         assertThat(players.positionOf("Pippo")).isEqualTo(7);
         verify(presenter).presentMovement(movementCaptor.capture());
 
-        Movement movement = movementCaptor.getValue();
+        MovementView movement = movementCaptor.getValue();
         assertThat(movement.type()).isEqualTo(MovementType.REPEAT_ON_GOOSE);
         assertThat(movement.intermediatePosition()).isEqualTo(5);
         assertThat(movement.finalPosition()).isEqualTo(7);
@@ -95,7 +95,7 @@ class MovePlayerTest {
         assertThat(players.positionOf("Pippo")).isEqualTo(22);
         verify(presenter).presentMovement(movementCaptor.capture());
 
-        Movement movement = movementCaptor.getValue();
+        MovementView movement = movementCaptor.getValue();
         assertThat(movement.finalPosition()).isEqualTo(22);
         assertThat(movement.intermediatePosition()).isEqualTo(18);
         assertThat(movement.type()).isEqualTo(MovementType.REPEAT_ON_GOOSE);

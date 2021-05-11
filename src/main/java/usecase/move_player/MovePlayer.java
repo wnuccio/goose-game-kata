@@ -31,7 +31,18 @@ public class MovePlayer {
 
         players.setPositionOf(player, movement.finalPosition());
 
-        presenter.presentMovement(movement);
+        MovementView movementView = buildMovementViewFrom(command, movement);
+
+        presenter.presentMovement(movementView);
+    }
+
+    private MovementView buildMovementViewFrom(MoveCommand command, Movement movement) {
+        return new MovementView(
+                movement,
+                command.player(),
+                command.dice().first(),
+                command.dice().second()
+        );
     }
 
     private Movement repeatMovementOnSpecialPositions(SimpleMovement firstMovement) {
