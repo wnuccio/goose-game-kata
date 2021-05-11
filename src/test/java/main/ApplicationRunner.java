@@ -1,35 +1,42 @@
 package main;
 
-public class ApplicationRunner {
-    private static Thread thread = null;
+import main.test.ApplicationDriver;
 
-    public static void runApplicationOnFirstDemand() {
+public class ApplicationRunner {
+    private static boolean applicationRunning  = false;
+
+    public static void runApplication() {
         if (isApplicationRunning()) return;
 
-        thread = new Thread(ApplicationRunner::invokeMain);
+        Thread thread = new Thread(ApplicationRunner::invokeMainDetectingCrash);
         thread.setDaemon(true);
         thread.start();
     }
 
-    private static void invokeMain() {
+    private static void invokeMainDetectingCrash() {
         try {
+            applicationRunning = true;
             Main.main(Main.ARGS_FOR_TEST);
-            thread = null; // explicit stop
+            applicationRunning = false; // explicit stop
 
         } catch (Exception e) {
             e.printStackTrace();
-            thread = null; // stop due to an error
+            applicationRunning = false; // stop due to an error
         }
     }
 
     public static boolean isApplicationRunning() {
-        return thread != null;
+        new ApplicationDriver().waitAbit();
+        return applicationRunning;
     }
 
-//    Invokes main in a not safe manner: a crash is not detected
-//      so the application cannot be restarted
+//    no crash detection
 //
-//    private static void invokeMain_() {
+//    private static void invokeMain() {
+//        applicationRunning = true;
 //        Main.main(Main.ARGS_FOR_TEST);
+//        applicationRunning = false; // explicit stop
 //    }
+
+
 }

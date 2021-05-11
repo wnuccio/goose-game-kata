@@ -9,7 +9,7 @@ public class ApplicationDriver {
         return inputOuput.readOutputByTest();
     }
 
-    private void waitAbit() {
+    public void waitAbit() {
         try {
             Thread.sleep(10);
         } catch (InterruptedException e) {

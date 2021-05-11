@@ -9,7 +9,7 @@ public class StopApplicationAcceptanceTest {
 
     @Test
     void after_stop_command_the_application_is_no_more_running() {
-        ApplicationRunner.runApplicationOnFirstDemand();
+        ApplicationRunner.runApplication();
 
         resetDriver.verifyGameRunning();
 
