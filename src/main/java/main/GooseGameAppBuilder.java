@@ -13,6 +13,7 @@ import boundary.random.RandomDiceRoller;
 import domain.DiceRoller;
 import domain.Players;
 import usecase.add_player.AddPlayerUseCase;
+import usecase.move_player.ComputeMovement;
 import usecase.move_player.MovePlayer;
 import usecase.move_player.RollAndMove;
 import usecase.reset_game.ApplicationSwitch;
@@ -61,11 +62,11 @@ public class GooseGameAppBuilder {
     }
 
     private MovePlayer movePlayer(OutputPresenter presenter, Players players) {
-        return new MovePlayer(players, presenter);
+        return new MovePlayer(players, new ComputeMovement(players), presenter);
     }
 
     private RollAndMove rollAndMove(OutputPresenter presenter, Players players) {
-        MovePlayer movePlayer = new MovePlayer(players, presenter);
+        MovePlayer movePlayer = new MovePlayer(players, new ComputeMovement(players), presenter);
         return new RollAndMove(diceRoller(), movePlayer);
     }
 }

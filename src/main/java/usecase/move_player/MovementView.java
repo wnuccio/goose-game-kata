@@ -38,4 +38,8 @@ public class MovementView {
     public void present(MovementPresenter movementPresenter) {
         movement.present(movementPresenter);
     }
+
+    public Movement movement() {
+        return this.movement;
+    }
 }
