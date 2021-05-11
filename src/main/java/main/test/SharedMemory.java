@@ -28,6 +28,7 @@ class SharedMemory implements InputBoundary, OutputBoundary {
     @Override
     synchronized public void writeOutputLine(String string) {
         outputStrings.add(string);
+        System.out.println(string);
     }
 
     synchronized void writeInputByTest(String inputString) {
