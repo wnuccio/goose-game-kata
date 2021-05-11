@@ -27,7 +27,6 @@ public class SimpleMovement implements Movement {
         return startPosition + dice.total();
     }
 
-    @Override
     public boolean isVictory() {
         return finalPosition() == Position.WIN_POSITION;
     }

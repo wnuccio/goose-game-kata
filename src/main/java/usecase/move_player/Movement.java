@@ -11,8 +11,6 @@ public interface Movement {
 
     int finalPosition();
 
-    boolean isVictory();
-
     MovementType type();
 
     default boolean endsOnGoose() {

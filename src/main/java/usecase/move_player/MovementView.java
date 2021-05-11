@@ -35,10 +35,6 @@ public class MovementView {
         return movement.finalPosition();
     }
 
-    public boolean isVictory() {
-        return movement.isVictory();
-    }
-
     public MovementType type() {
         return movement.type();
     }

@@ -26,10 +26,6 @@ public class RepeatedMovement implements Movement {
         return previousMovement.startPosition();
     }
 
-    public boolean isVictory() {
-        return false;
-    }
-
     @Override
     public int finalPosition() {
         return finalPosition;
