@@ -14,7 +14,6 @@ import domain.DiceRoller;
 import domain.Players;
 import usecase.add_player.AddPlayerUseCase;
 import usecase.move_player.MovePlayer;
-import usecase.move_player.MovePlayerUseCase;
 import usecase.move_player.RollAndMove;
 import usecase.reset_game.ApplicationSwitch;
 import usecase.reset_game.ResetService;
@@ -48,7 +47,9 @@ public class GooseGameAppBuilder {
         return new ResetInterpeter(resetService(players, applicationSwitch),
                 new AddPlayerInterpeter(addPlayer(presenter, players),
                         new MovePlayerInterpreter(
-                                movePlayer(presenter, players), null)));
+                                rollAndMove(presenter, players),
+                                movePlayer(presenter, players),
+                                null)));
     }
 
     private AddPlayerUseCase addPlayer(OutputPresenter presenter, Players players) {
@@ -59,7 +60,11 @@ public class GooseGameAppBuilder {
         return new ResetService(applicationSwitch, players);
     }
 
-    private MovePlayerUseCase movePlayer(OutputPresenter presenter, Players players) {
+    private MovePlayer movePlayer(OutputPresenter presenter, Players players) {
+        return new MovePlayer(players, presenter);
+    }
+
+    private RollAndMove rollAndMove(OutputPresenter presenter, Players players) {
         MovePlayer movePlayer = new MovePlayer(players, presenter);
         return new RollAndMove(diceRoller(), movePlayer);
     }

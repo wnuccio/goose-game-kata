@@ -2,40 +2,49 @@ package boundary.interpreters;
 
 import domain.Dice;
 import usecase.move_player.MoveCommand;
-import usecase.move_player.MovePlayerUseCase;
+import usecase.move_player.MovePlayer;
+import usecase.move_player.RollAndMove;
 
 public class MovePlayerInterpreter extends Interpreter {
 
-    private MovePlayerUseCase movePlayerUseCase;
+    private RollAndMove rollAndMove;
+    private MovePlayer movePlayer;
     private CommandLineParser parser;
 
-    public MovePlayerInterpreter(MovePlayerUseCase movePlayer, Interpreter nextInterpreter) {
+    public MovePlayerInterpreter(RollAndMove rollAndMove, MovePlayer movePlayer, Interpreter nextInterpreter) {
         super(nextInterpreter);
-        this.movePlayerUseCase = movePlayer;
+        this.rollAndMove = rollAndMove;
+        this.movePlayer = movePlayer;
     }
 
     public void acceptCommand(String commandLine) {
         parser = new CommandLineParser(commandLine);
 
-        if (parser.lineStartsWith("move")) {
-            MoveCommand moveCommand = buildMoveCommand();
-            movePlayerUseCase.acceptCommand(moveCommand);
+        if (!parser.lineStartsWith("move")) {
+            super.acceptCommand(commandLine);
             return;
         }
 
-        super.acceptCommand(commandLine);
+        if (diceValuesSpecified()) {
+            movePlayer.acceptCommand(buildMoveCommand());
+            return;
+        }
+
+        rollAndMove.acceptCommand(player());
     }
 
     private MoveCommand buildMoveCommand() {
-        String player = parser.token(1);
-        boolean hasDiceValues = parser.tokenNumber() != 2;
+        int firstDice = parser.digitAtToken(2);
+        int secondDice = parser.digitAtToken(3);
+        Dice dice = new Dice(firstDice, secondDice);
+        return new MoveCommand(player(), dice);
+    }
 
-        MoveCommand result = new MoveCommand(player);
-        if (hasDiceValues) {
-            int firstDice = parser.digitAtToken(2);
-            int secondDice = parser.digitAtToken(3);
-            result = new MoveCommand(player, new Dice(firstDice, secondDice));
-        }
-        return result;
+    private String player() {
+        return parser.token(1);
+    }
+
+    private boolean diceValuesSpecified() {
+        return parser.tokenNumber() != 2;
     }
 }

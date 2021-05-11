@@ -2,15 +2,9 @@ package usecase.move_player;
 
 import domain.Dice;
 
-import java.util.Optional;
-
 public class MoveCommand {
     private String player;
     private Dice dice;
-
-    public MoveCommand(String player) {
-        this(player, null);
-    }
 
     public MoveCommand(String player, Dice dice) {
         this.player = player;
@@ -21,7 +15,7 @@ public class MoveCommand {
         return player;
     }
 
-    public Optional<Dice> dice() {
-        return Optional.ofNullable(dice);
+    public Dice dice() {
+        return dice;
     }
 }

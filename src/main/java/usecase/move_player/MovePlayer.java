@@ -8,7 +8,7 @@ import static domain.Position.*;
 import static usecase.move_player.MovementType.*;
 import static usecase.move_player.RepeatedMovementBuilder.after;
 
-public class MovePlayer implements MovePlayerUseCase {
+public class MovePlayer {
     private Players players;
     private Presenter presenter;
 
@@ -17,7 +17,6 @@ public class MovePlayer implements MovePlayerUseCase {
         this.presenter = presenter;
     }
 
-    @Override
     public void acceptCommand(MoveCommand command) {
         String player = command.player();
 
@@ -26,17 +25,13 @@ public class MovePlayer implements MovePlayerUseCase {
             return;
         }
 
-        SimpleMovement firstMovement = buildMovementFor(player, diceFrom(command));
+        SimpleMovement firstMovement = buildMovementFor(player, command.dice());
 
         Movement movement = repeatMovementOnSpecialPositions(firstMovement);
 
         players.setPositionOf(player, movement.finalPosition());
 
         presenter.presentMovement(movement);
-    }
-
-    private Dice diceFrom(MoveCommand command) {
-        return command.dice().orElseThrow(() -> new IllegalStateException("No dice"));
     }
 
     private Movement repeatMovementOnSpecialPositions(SimpleMovement firstMovement) {

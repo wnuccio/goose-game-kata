@@ -2,7 +2,7 @@ package usecase.move_player;
 
 import domain.DiceRoller;
 
-public class RollAndMove implements MovePlayerUseCase {
+public class RollAndMove {
     private DiceRoller diceRoller;
     private MovePlayer movePlayer;
 
@@ -11,14 +11,8 @@ public class RollAndMove implements MovePlayerUseCase {
         this.movePlayer = movePlayer;
     }
 
-    @Override
-    public void acceptCommand(MoveCommand command) {
-        if (command.dice().isPresent()) {
-            movePlayer.acceptCommand(command);
-            return;
-        }
-
-        MoveCommand commandWithDice = new MoveCommand(command.player(), diceRoller.roll());
+    public void acceptCommand(String player) {
+        MoveCommand commandWithDice = new MoveCommand(player, diceRoller.roll());
         movePlayer.acceptCommand(commandWithDice);
     }
 }

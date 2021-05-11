@@ -5,8 +5,6 @@ import domain.DiceRoller;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -21,20 +19,10 @@ class RollAndMoveTest {
         Dice rolledDice = new Dice(3, 4);
         when(diceRoller.roll()).thenReturn(rolledDice);
 
-        rollAndMove.acceptCommand(new MoveCommand("Pippo"));
+        rollAndMove.acceptCommand("Pippo");
 
         verify(movePlayer).acceptCommand(moveCommand.capture());
         assertThat(moveCommand.getValue().player()).isEqualTo("Pippo");
-        assertThat(moveCommand.getValue().dice()).isEqualTo(Optional.of(rolledDice));
-    }
-
-    @Test
-    void preserve_original_dice_when_specified() {
-        Dice originalDice = new Dice(5, 6);
-
-        rollAndMove.acceptCommand(new MoveCommand("Pippo", originalDice));
-
-        verify(movePlayer).acceptCommand(moveCommand.capture());
-        assertThat(moveCommand.getValue().dice()).isEqualTo(Optional.of(originalDice));
+        assertThat(moveCommand.getValue().dice()).isEqualTo(rolledDice);
     }
 }
