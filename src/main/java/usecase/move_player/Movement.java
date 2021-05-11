@@ -1,5 +1,7 @@
 package usecase.move_player;
 
+import boundary.output.MovementPresenter;
+
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -21,4 +23,6 @@ public interface Movement {
     int diceTotal();
 
     Movement previousMovement();
+
+    void present(MovementPresenter movementPresenter);
 }

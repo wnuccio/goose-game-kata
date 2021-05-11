@@ -1,13 +1,7 @@
 package boundary.output;
 
-import domain.Position;
 import usecase.Presenter;
 import usecase.move_player.MovementView;
-
-import static domain.Position.WIN_POSITION;
-import static java.lang.String.format;
-import static java.lang.String.valueOf;
-import static usecase.move_player.MovementType.*;
 
 public class OutputPresenter implements Presenter {
     private OutputBoundary outputBoundary;
@@ -18,7 +12,7 @@ public class OutputPresenter implements Presenter {
 
     @Override
     public void presentMovement(MovementView movement) {
-        outputBoundary.writeOutputLine(buildStringFrom(movement));
+        movement.present(new MovementPresenter(movement, outputBoundary));
     }
 
     @Override
@@ -35,97 +29,5 @@ public class OutputPresenter implements Presenter {
     @Override
     public void presentExistingPlayerError(String player) {
         outputBoundary.writeOutputLine(player + ": already existing player");
-    }
-
-    private String buildStringFrom(MovementView movement) {
-        if (movement.type() == SIMPLE) {
-            return outputForSimpleMovement(movement);
-
-        } else if (movement.type() == BOUNCING) {
-            return outputForBouncing(movement);
-
-        } else if (movement.type() == JUMP_ON_BRIDGE) {
-            return outputForJumpOnBridge(movement);
-
-        } else if (movement.type().isRepeatOnGoose()) {
-            return outputForRepeatOnGoose(movement);
-
-        } else {
-            throw new IllegalStateException();
-        }
-    }
-
-    private String outputForRepeatOnGoose(MovementView movement) {
-        if (movement.type() == SIMPLE) return outputForSimpleMovement(movement) + ", The Goose.";
-
-        return outputForRepeatOnGoose(movement.previousMovement())
-                + format(" %s moves again and goes to %s%s",
-                movement.player(),
-                movement.finalPosition(),
-                movement.endsOnGoose() ? ", The Goose." : "");
-    }
-
-    private String outputForJumpOnBridge(MovementView movement) {
-        String playerRolls = format("%s rolls %s, %s" + ". ",
-                movement.player(),
-                movement.firstDice(),
-                movement.secondDice());
-
-        String playerMoves = format("%s moves from %s to %s",
-                movement.player(),
-                positionName(movement.startPosition()),
-                positionName(Position.BRIDGE));
-
-        String specialCase = format(". %s jumps to 12",
-                movement.player());
-
-        return playerRolls + playerMoves + specialCase;
-    }
-
-    private String outputForBouncing(MovementView movement) {
-        String playerRolls = format("%s rolls %s, %s" + ". ",
-                movement.player(),
-                movement.firstDice(),
-                movement.secondDice());
-
-        String playerMoves = format("%s moves from %s to %s",
-                movement.player(),
-                positionName(movement.startPosition()),
-                positionName(WIN_POSITION));
-
-        String specialCase = format(". %s bounces! %s returns to %d",
-                movement.player(),
-                movement.player(),
-                movement.finalPosition());
-
-        return playerRolls + playerMoves + specialCase;
-    }
-
-    private String outputForSimpleMovement(MovementView movement) {
-        String playerRolls = format("%s rolls %s, %s" + ". ",
-                movement.player(),
-                movement.firstDice(),
-                movement.secondDice());
-
-        String playerMoves = format("%s moves from %s to %s",
-                movement.player(),
-                positionName(movement.startPosition()),
-                positionName(movement.finalPosition()));
-
-        String specialCase = "";
-        if (movement.isVictory()) {
-            specialCase = format(". %s Wins!!", movement.player());
-        }
-
-        return playerRolls + playerMoves + specialCase;
-    }
-
-    private String positionName(int position) {
-        if (position == Position.START) return "Start";
-        if (position == Position.BRIDGE) return "The Bridge";
-        if (position == Position.BRIDGE_TARGET) return "12";
-        if (position == WIN_POSITION) return "63";
-
-        return valueOf(position);
     }
 }

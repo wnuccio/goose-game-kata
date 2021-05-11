@@ -1,5 +1,6 @@
 package usecase.move_player;
 
+import boundary.output.MovementPresenter;
 import domain.Dice;
 import domain.Position;
 
@@ -40,4 +41,11 @@ public class SimpleMovement implements Movement {
     public Movement previousMovement() {
         throw new IllegalStateException();
     }
+
+    @Override
+    public void present(MovementPresenter movementPresenter) {
+        movementPresenter.presentSimpleMovement(this);
+    }
+
+
 }

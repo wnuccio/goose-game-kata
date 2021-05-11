@@ -1,5 +1,7 @@
 package usecase.move_player;
 
+import boundary.output.MovementPresenter;
+
 public class MovementView {
     private Movement movement;
     private String player;
@@ -47,5 +49,9 @@ public class MovementView {
 
     public boolean endsOnGoose() {
         return movement.endsOnGoose();
+    }
+
+    public void present(MovementPresenter movementPresenter) {
+        movement.present(movementPresenter);
     }
 }
