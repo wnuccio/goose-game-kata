@@ -2,6 +2,8 @@ package usecase.move_player;
 
 import domain.Players;
 
+import java.util.List;
+
 import static domain.Position.*;
 import static usecase.move_player.FurtherMovementBuilder.after;
 import static usecase.move_player.MovementType.*;
@@ -20,6 +22,7 @@ public class ComputeMovement {
         Movement movement = applyBouncingRule(firstMovement);
         movement = applyBridgeRule(movement);
         movement = applyGooseRule(movement);
+        movement = applyPlayerSwitchRule(movement);
 
         players.setPositionOf(command.player(), movement.finalPosition());
         return movement;
@@ -60,5 +63,14 @@ public class ComputeMovement {
                 .goToPosition(previousMovement.finalPosition() + previousMovement.diceTotal());
 
         return applyGooseRule(repeatedMovement);
+    }
+
+    private Movement applyPlayerSwitchRule(Movement movement) {
+        List<String> ecounteredPlayers = players.playersOnPosition(movement.finalPosition());
+        if (ecounteredPlayers.isEmpty()) return movement;
+        String unluckyPlayer = ecounteredPlayers.get(0);
+
+        players.setPositionOf(unluckyPlayer, movement.startPosition());
+        return new MovementWithSwitch(unluckyPlayer, movement);
     }
 }

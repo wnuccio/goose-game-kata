@@ -71,6 +71,30 @@ class ComputeMovementTest {
         assertThat(movement.hasPreviousMovement()).isTrue();
     }
 
+    @Test
+    void switch_players_on_encounter() {
+        players.setPositionOf("Pippo", 15);
+        players.setPositionOf("Pluto", 17);
+
+        Movement movement = computeMovement.fromCommand(move("Pippo", 1, 1));
+
+        assertThat(movement.startPosition()).isEqualTo(15);
+        assertThat(movement.finalPosition()).isEqualTo(17);
+        assertThat(movement instanceof MovementWithSwitch).isTrue();
+
+        MovementWithSwitch movementWithSwitch = (MovementWithSwitch)movement;
+        assertThat(movementWithSwitch.hasPreviousMovement()).isFalse();
+        assertThat(movementWithSwitch.diceTotal()).isEqualTo(2);
+        assertThat(movementWithSwitch.startPosition()).isEqualTo(15);
+        assertThat(movementWithSwitch.finalPosition()).isEqualTo(17);
+        assertThat(movementWithSwitch.switchedPlayer()).isEqualTo("Pluto");
+
+        assertThat(players.positionOf("Pippo")).isEqualTo(17);
+        assertThat(players.positionOf("Pluto")).isEqualTo(15);
+    }
+
+
+
     private MoveCommand move(String player, int first, int second) {
         return new MoveCommand(player, dice(first, second));
     }
