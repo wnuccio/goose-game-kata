@@ -32,8 +32,8 @@ public class SimpleMovement implements Movement {
     }
 
     @Override
-    public MovementType type() {
-        return MovementType.SIMPLE;
+    public boolean hasPreviousMovement() {
+        return false;
     }
 
     @Override

@@ -13,11 +13,6 @@ public class RepeatedMovement implements Movement {
         this.finalPosition = finalPosition;
     }
 
-    @Override
-    public MovementType type() {
-        return type;
-    }
-
     public int diceTotal() {
         return previousMovement.diceTotal();
     }
@@ -29,6 +24,11 @@ public class RepeatedMovement implements Movement {
     @Override
     public int finalPosition() {
         return finalPosition;
+    }
+
+    @Override
+    public boolean hasPreviousMovement() {
+        return true;
     }
 
     @Override

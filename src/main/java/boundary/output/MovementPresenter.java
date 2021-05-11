@@ -9,7 +9,6 @@ import usecase.move_player.SimpleMovement;
 import static domain.Position.WIN_POSITION;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
-import static usecase.move_player.MovementType.SIMPLE;
 
 public class MovementPresenter {
     private MovementView movementView;
@@ -77,7 +76,7 @@ public class MovementPresenter {
     }
 
     private String outputForRepeatOnGoose(Movement movement) {
-        if (movement.type() == SIMPLE) {
+        if (! movement.hasPreviousMovement()) {
             String playerRolls = format("%s rolls %s, %s" + ". ",
                     player(),
                     firstDice(),
