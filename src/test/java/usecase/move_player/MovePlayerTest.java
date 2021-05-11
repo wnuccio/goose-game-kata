@@ -86,6 +86,22 @@ class MovePlayerTest {
 
     }
 
+    @Test
+    void repeat_movement_on_the_goose_more_times() {
+        players.setPositionOf("Pippo", 10);
+
+        useCase.acceptCommand(move("Pippo", 2, 2));
+
+        assertThat(players.positionOf("Pippo")).isEqualTo(22);
+        verify(presenter).presentMovement(movementCaptor.capture());
+
+        Movement movement = movementCaptor.getValue();
+        assertThat(movement.finalPosition()).isEqualTo(22);
+        assertThat(movement.intermediatePosition()).isEqualTo(18);
+        assertThat(movement.type()).isEqualTo(MovementType.REPEAT_ON_GOOSE);
+
+    }
+
     private MoveCommand move(String player, int first, int second) {
         return new MoveCommand(player, dice(first, second));
     }

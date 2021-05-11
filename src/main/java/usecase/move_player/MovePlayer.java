@@ -54,15 +54,18 @@ public class MovePlayer implements MovePlayerUseCase {
                     .goToPosition(BRIDGE_TARGET);
         }
 
-        if (firstMovement.endsOnGoose()) {
-            return after(firstMovement)
-                    .becauseOf(REPEAT_ON_GOOSE)
-                    .insteadOf(firstMovement.finalPosition())
-                    .goToPosition(firstMovement.finalPosition() + firstMovement.diceTotal());
+        return repeatIfEndsOnGoose(firstMovement);
+    }
 
-        }
+    private Movement repeatIfEndsOnGoose(Movement previousMovement) {
+        if (! previousMovement.endsOnGoose()) return previousMovement;
 
-        return firstMovement;
+        Movement repeatedMovement = after(previousMovement)
+                .becauseOf(REPEAT_ON_GOOSE)
+                .insteadOf(previousMovement.finalPosition())
+                .goToPosition(previousMovement.finalPosition() + previousMovement.diceTotal());
+
+        return repeatIfEndsOnGoose(repeatedMovement);
     }
 
     private SimpleMovement buildMovementFor(String player, Dice dice) {

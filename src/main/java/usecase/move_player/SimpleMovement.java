@@ -3,10 +3,6 @@ package usecase.move_player;
 import domain.Dice;
 import domain.Position;
 
-import java.util.List;
-
-import static java.util.Arrays.asList;
-
 public class SimpleMovement implements Movement {
 
     String player;
@@ -61,12 +57,4 @@ public class SimpleMovement implements Movement {
         return MovementType.SIMPLE;
     }
 
-    public boolean endsOnGoose() {
-        List<Integer> positionsWithGoose = asList(5, 9, 14, 18, 23, 27);
-        return positionsWithGoose.contains(finalPosition());
-    }
-
-    public int diceTotal() {
-        return dice.total();
-    }
 }

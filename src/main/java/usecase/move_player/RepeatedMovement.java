@@ -1,12 +1,12 @@
 package usecase.move_player;
 
 public class RepeatedMovement implements Movement {
-    protected SimpleMovement previousMovement;
+    protected Movement previousMovement;
     private MovementType type;
     private int intermediatePosition;
     private int finalPosition;
 
-    public RepeatedMovement(SimpleMovement previousMovement, MovementType type, int intermediatePosition, int finalPosition) {
+    public RepeatedMovement(Movement previousMovement, MovementType type, int intermediatePosition, int finalPosition) {
         this.previousMovement = previousMovement;
         this.type = type;
         this.intermediatePosition = intermediatePosition;

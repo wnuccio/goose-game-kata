@@ -1,15 +1,15 @@
 package usecase.move_player;
 
 public class RepeatedMovementBuilder {
-    private SimpleMovement previousMovement;
+    private Movement previousMovement;
     private MovementType type;
     private int intermediatePosition;
 
-    public RepeatedMovementBuilder(SimpleMovement previousMovement) {
+    public RepeatedMovementBuilder(Movement previousMovement) {
         this.previousMovement = previousMovement;
     }
 
-    public static RepeatedMovementBuilder after(SimpleMovement previousMovement) {
+    public static RepeatedMovementBuilder after(Movement previousMovement) {
         return new RepeatedMovementBuilder(previousMovement);
     }
 
