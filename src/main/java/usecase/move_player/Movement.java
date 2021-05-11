@@ -5,12 +5,6 @@ import java.util.List;
 import static java.util.Arrays.asList;
 
 public interface Movement {
-    String player();
-
-    int firstDice();
-
-    int secondDice();
-
     int startPosition();
 
     int finalPosition();

@@ -18,18 +18,6 @@ public class RepeatedMovement implements Movement {
         return type;
     }
 
-    public String player() {
-        return previousMovement.player();
-    }
-
-    public int firstDice() {
-        return previousMovement.firstDice();
-    }
-
-    public int secondDice() {
-        return previousMovement.secondDice();
-    }
-
     public int diceTotal() {
         return previousMovement.diceTotal();
     }

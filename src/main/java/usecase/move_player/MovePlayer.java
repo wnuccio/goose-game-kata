@@ -7,6 +7,7 @@ import usecase.Presenter;
 import static domain.Position.*;
 import static usecase.move_player.MovementType.*;
 import static usecase.move_player.RepeatedMovementBuilder.after;
+import static usecase.move_player.SimpleMovement.movement;
 
 public class MovePlayer {
     private Players players;
@@ -75,8 +76,7 @@ public class MovePlayer {
     }
 
     private SimpleMovement buildMovementFor(String player, Dice dice) {
-        return SimpleMovement
-                .of(player)
+        return movement()
                 .from(players.positionOf(player))
                 .givenRoll(dice)
                 .end();

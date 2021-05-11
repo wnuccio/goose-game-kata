@@ -4,32 +4,11 @@ import domain.Dice;
 import domain.Position;
 
 public class SimpleMovement implements Movement {
-
-    String player;
     int startPosition;
     Dice dice;
 
-    SimpleMovement(String player) {
-        this.player = player;
-    }
-
-    public static MovementBuilder of(String player) {
-        return new MovementBuilder(player);
-    }
-
-    @Override
-    public String player() {
-        return player;
-    }
-
-    @Override
-    public int firstDice() {
-        return dice.first();
-    }
-
-    @Override
-    public int secondDice() {
-        return dice.second();
+    public static MovementBuilder movement() {
+        return new MovementBuilder();
     }
 
     @Override

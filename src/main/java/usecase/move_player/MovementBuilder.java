@@ -6,8 +6,8 @@ public class MovementBuilder {
 
     private final SimpleMovement movement;
 
-    public MovementBuilder(String player) {
-        movement = new SimpleMovement(player);
+    public MovementBuilder() {
+        movement = new SimpleMovement();
     }
 
     public MovementBuilder from(int startPosition) {
