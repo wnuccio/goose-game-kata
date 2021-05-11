@@ -30,6 +30,10 @@ public class RepeatedMovement implements Movement {
         return previousMovement.secondDice();
     }
 
+    public int diceTotal() {
+        return previousMovement.diceTotal();
+    }
+
     public int startPosition() {
         return previousMovement.startPosition();
     }

@@ -26,9 +26,7 @@ public interface Movement {
         return positionsWithGoose.contains(finalPosition());
     }
 
-    default int diceTotal() {
-        return firstDice() + secondDice();
-    }
+    int diceTotal();
 
     Movement previousMovement();
 }

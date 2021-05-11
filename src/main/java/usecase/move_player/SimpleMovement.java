@@ -38,6 +38,11 @@ public class SimpleMovement implements Movement {
     }
 
     @Override
+    public int diceTotal() {
+        return dice.total();
+    }
+
+    @Override
     public int finalPosition() {
         return startPosition + dice.total();
     }
