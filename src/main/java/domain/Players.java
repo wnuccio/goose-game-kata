@@ -1,9 +1,7 @@
 package domain;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Players {
     private Map<String, Integer> players = new HashMap<>();
@@ -35,5 +33,13 @@ public class Players {
         Set<String> nameSet = players.keySet();
         String[] stringArray = new String[nameSet.size()];
         return nameSet.toArray(stringArray);
+    }
+
+    public List<String> playersOnPosition(int position) {
+        return players.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().equals(position))
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList());
     }
 }
