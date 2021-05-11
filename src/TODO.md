@@ -1,5 +1,6 @@
 Input/Output
 - usare una Queue invece di una list nella SystemIoForTest
+- v. note su test io: https://hackmd.io/84-pe8pHQgio0-qR_nwaBw
   
 Struttura
 - provare una alberatura di package gerarchica
