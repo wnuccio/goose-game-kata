@@ -57,4 +57,8 @@ public class SimpleMovement implements Movement {
         return MovementType.SIMPLE;
     }
 
+    @Override
+    public Movement previousMovement() {
+        throw new IllegalStateException();
+    }
 }

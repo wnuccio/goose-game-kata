@@ -29,4 +29,6 @@ public interface Movement {
     default int diceTotal() {
         return firstDice() + secondDice();
     }
+
+    Movement previousMovement();
 }

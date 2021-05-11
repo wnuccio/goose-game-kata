@@ -55,19 +55,13 @@ public class OutputPresenter implements Presenter {
     }
 
     private String outputForRepeatOnGoose(Movement movement) {
-        String playerRolls = format("%s rolls %s, %s" + ". ",
-                movement.player(),
-                movement.firstDice(),
-                movement.secondDice());
+        if (movement.type() == SIMPLE) return outputForSimpleMovement(movement) + ", The Goose.";
 
-        String playerMoves = format("%s moves from %s to %s, The Goose. %s moves again and goes to %s",
+        return outputForRepeatOnGoose(movement.previousMovement())
+                + format(" %s moves again and goes to %s%s",
                 movement.player(),
-                positionName(movement.startPosition()),
-                positionName(movement.intermediatePosition()),
-                movement.player(),
-                positionName(movement.finalPosition()));
-
-        return playerRolls + playerMoves;
+                movement.finalPosition(),
+                movement.endsOnGoose() ? ", The Goose." : "");
     }
 
     private String outputForJumpOnBridge(Movement movement) {

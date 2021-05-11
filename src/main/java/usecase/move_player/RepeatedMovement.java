@@ -47,4 +47,9 @@ public class RepeatedMovement implements Movement {
     public int finalPosition() {
         return finalPosition;
     }
+
+    @Override
+    public Movement previousMovement() {
+        return previousMovement;
+    }
 }
