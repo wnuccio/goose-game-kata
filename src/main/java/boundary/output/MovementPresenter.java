@@ -1,9 +1,9 @@
 package boundary.output;
 
 import domain.Position;
+import usecase.move_player.FurtherMovement;
 import usecase.move_player.Movement;
 import usecase.move_player.MovementView;
-import usecase.move_player.RepeatedMovement;
 import usecase.move_player.SimpleMovement;
 
 import static domain.Position.WIN_POSITION;
@@ -38,7 +38,7 @@ public class MovementPresenter {
         outputBoundary.writeOutputLine(playerRolls + playerMoves + specialCase);
     }
 
-    public void presentJumpOnBridge(RepeatedMovement movement) {
+    public void presentJumpOnBridge(FurtherMovement movement) {
         String playerRolls = format("%s rolls %s, %s" + ". ",
                 player(),
                 firstDice(),
@@ -55,7 +55,7 @@ public class MovementPresenter {
         outputBoundary.writeOutputLine(playerRolls + playerMoves + specialCase);
     }
 
-    public void presentBouncing(RepeatedMovement movement) {
+    public void presentBouncing(FurtherMovement movement) {
         String playerRolls = format("%s rolls %s, %s" + ". ",
                 player(),
                 firstDice(),
@@ -96,7 +96,7 @@ public class MovementPresenter {
                 movement.endsOnGoose() ? ", The Goose." : "");
     }
 
-    public void presentRepeatOnGoose(RepeatedMovement movement) {
+    public void presentRepeatOnGoose(FurtherMovement movement) {
         outputBoundary.writeOutputLine(outputForRepeatOnGoose(movement));
     }
 

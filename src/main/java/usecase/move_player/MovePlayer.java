@@ -5,8 +5,8 @@ import domain.Players;
 import usecase.Presenter;
 
 import static domain.Position.*;
+import static usecase.move_player.FurtherMovementBuilder.after;
 import static usecase.move_player.MovementType.*;
-import static usecase.move_player.RepeatedMovementBuilder.after;
 import static usecase.move_player.SimpleMovement.movement;
 
 public class MovePlayer {

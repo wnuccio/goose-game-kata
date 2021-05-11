@@ -2,12 +2,12 @@ package usecase.move_player;
 
 import boundary.output.MovementPresenter;
 
-public class RepeatedMovement implements Movement {
+public class FurtherMovement implements Movement {
     protected Movement previousMovement;
     private MovementType type;
     private int finalPosition;
 
-    public RepeatedMovement(Movement previousMovement, MovementType type, int finalPosition) {
+    public FurtherMovement(Movement previousMovement, MovementType type, int finalPosition) {
         this.previousMovement = previousMovement;
         this.type = type;
         this.finalPosition = finalPosition;
