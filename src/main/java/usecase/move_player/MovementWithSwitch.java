@@ -38,7 +38,7 @@ public class MovementWithSwitch implements Movement {
 
     @Override
     public void present(MovementPresenter movementPresenter) {
-
+        movementPresenter.presentPlayerSwitching(this);
     }
 
     public String switchedPlayer() {

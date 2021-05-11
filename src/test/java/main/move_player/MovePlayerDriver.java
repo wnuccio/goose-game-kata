@@ -55,4 +55,12 @@ public class MovePlayerDriver {
         moveOnPosition15(player);
         movePlayer(player, 1, 1);
     }
+
+    public void moveOnPositions15_17(String player1, String player2) {
+        moveOnPosition10(player1);
+        movePlayer(player1, 2, 3);
+
+        movePlayer(player2, 6, 6);
+        movePlayer(player2, 2, 3);
+    }
 }

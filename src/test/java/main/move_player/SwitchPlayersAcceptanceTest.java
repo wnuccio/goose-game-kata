@@ -23,8 +23,7 @@ public class SwitchPlayersAcceptanceTest extends BaseAcceptanceTest {
     @Test
     void switch_players_positions_on_encounter() {
         addPlayerDriver.addPlayers("Pippo", "Pluto");
-        movePlayerDriver.moveOnPosition15("Pippo");
-        movePlayerDriver.moveOnPosition17("Pluto");
+        movePlayerDriver.moveOnPositions15_17("Pippo", "Pluto");
         DiceRollerStub.onNextRollReturns(1, 1);
 
         String output = movePlayerDriver.movePlayer("Pippo");

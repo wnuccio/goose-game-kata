@@ -1,10 +1,7 @@
 package boundary.output;
 
 import domain.Position;
-import usecase.move_player.FurtherMovement;
-import usecase.move_player.Movement;
-import usecase.move_player.MovementView;
-import usecase.move_player.SimpleMovement;
+import usecase.move_player.*;
 
 import static domain.Position.WIN_POSITION;
 import static java.lang.String.format;
@@ -94,6 +91,25 @@ public class MovementPresenter {
                 player(),
                 movement.finalPosition(),
                 movement.endsOnGoose() ? ", The Goose." : "");
+    }
+
+    public void presentPlayerSwitching(MovementWithSwitch movement) {
+        String playerRolls = format("%s rolls %s, %s" + ". ",
+                player(),
+                firstDice(),
+                secondDice());
+
+        String playerMoves = format("%s moves from %s to %s",
+                player(),
+                positionName(movement.startPosition()),
+                positionName(movement.finalPosition()));
+
+        String playerSwitch = format(". On %s there is %s, who returns to %s",
+                positionName(movement.finalPosition()),
+                movement.switchedPlayer(),
+                movement.startPosition());
+
+        outputBoundary.writeOutputLine(playerRolls + playerMoves + playerSwitch);
     }
 
     public void presentRepeatOnGoose(FurtherMovement movement) {
