@@ -20,7 +20,7 @@ public class MovePlayer {
             return;
         }
 
-        Movement movement = computeMovement.acceptCommand(command);
+        Movement movement = computeMovement.fromCommand(command);
         presenter.presentMovement(buildMovementViewFrom(command, movement));
     }
 

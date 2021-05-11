@@ -30,11 +30,11 @@ class MovePlayerTest {
         players.setPositionOf("Pippo", 0);
         MoveCommand moveCommand = move("Pippo", 4, 3);
         Movement movement = mock(Movement.class);
-        when(computeMovement.acceptCommand(moveCommand)).thenReturn(movement);
+        when(computeMovement.fromCommand(moveCommand)).thenReturn(movement);
 
         movePlayer.acceptCommand(moveCommand);
 
-        verify(computeMovement).acceptCommand(moveCommand);
+        verify(computeMovement).fromCommand(moveCommand);
         verify(presenter).presentMovement(movementCaptor.capture());
         assertThat(movementCaptor.getValue().player()).isEqualTo("Pippo");
         assertThat(movementCaptor.getValue().startPosition()).isEqualTo(0);

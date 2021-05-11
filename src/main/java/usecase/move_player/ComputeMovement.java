@@ -14,7 +14,7 @@ public class ComputeMovement {
         this.players = players;
     }
 
-    public Movement acceptCommand(MoveCommand command) {
+    public Movement fromCommand(MoveCommand command) {
         SimpleMovement firstMovement = buildFirstMovement(command);
 
         Movement movement = applyBouncingRule(firstMovement);
