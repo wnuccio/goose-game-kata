@@ -6,6 +6,7 @@ import usecase.move_player.Movement;
 
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
+import static usecase.move_player.MovementType.*;
 
 public class OutputPresenter implements Presenter {
     private OutputBoundary outputBoundary;
@@ -36,6 +37,76 @@ public class OutputPresenter implements Presenter {
     }
 
     private String buildStringFrom(Movement movement) {
+        if (movement.type() == SIMPLE) {
+            return outputForSimpleMovement(movement);
+
+        } else if (movement.type() == BOUNCING) {
+            return outputForBouncing(movement);
+
+        } else if (movement.type() == JUMP_ON_BRIDGE) {
+            return outputForJumpOnBridge(movement);
+
+        } else if (movement.type().isRepeatOnGoose()) {
+            return outputForRepeatOnGoose(movement);
+
+        } else {
+            throw new IllegalStateException();
+        }
+    }
+
+    private String outputForRepeatOnGoose(Movement movement) {
+        String playerRolls = format("%s rolls %s, %s" + ". ",
+                movement.player(),
+                movement.firstDice(),
+                movement.secondDice());
+
+        String playerMoves = format("%s moves from %s to %s, The Goose. %s moves again and goes to %s",
+                movement.player(),
+                positionName(movement.startPosition()),
+                positionName(movement.intermediatePosition()),
+                movement.player(),
+                positionName(movement.finalPosition()));
+
+        return playerRolls + playerMoves;
+    }
+
+    private String outputForJumpOnBridge(Movement movement) {
+        String playerRolls = format("%s rolls %s, %s" + ". ",
+                movement.player(),
+                movement.firstDice(),
+                movement.secondDice());
+
+        String playerMoves = format("%s moves from %s to %s",
+                movement.player(),
+                positionName(movement.startPosition()),
+                positionName(movement.intermediatePosition()));
+
+        String specialCase = format(". %s jumps to 12",
+                movement.player());
+
+        return playerRolls + playerMoves + specialCase;
+    }
+
+    private String outputForBouncing(Movement movement) {
+        String playerRolls = format("%s rolls %s, %s" + ". ",
+                movement.player(),
+                movement.firstDice(),
+                movement.secondDice());
+
+        String playerMoves = format("%s moves from %s to %s",
+                movement.player(),
+                positionName(movement.startPosition()),
+                positionName(movement.intermediatePosition()));
+
+        String specialCase = format(". %s bounces! %s returns to %d",
+                movement.player(),
+                movement.player(),
+                movement.finalPosition());
+
+        return playerRolls + playerMoves + specialCase;
+    }
+
+    private String outputForSimpleMovement(Movement movement) {
         String playerRolls = format("%s rolls %s, %s" + ". ",
                 movement.player(),
                 movement.firstDice(),
@@ -49,24 +120,6 @@ public class OutputPresenter implements Presenter {
         String specialCase = "";
         if (movement.isVictory()) {
             specialCase = format(". %s Wins!!", movement.player());
-
-        } else if (movement.type().isBouncing()) {
-            specialCase = format(". %s bounces! %s returns to %d",
-                    movement.player(),
-                    movement.player(),
-                    movement.finalPosition());
-
-        } else if (movement.type().isJumpOnBridge()) {
-            specialCase = format(". %s jumps to 12",
-                    movement.player());
-
-        } else if (movement.type().isRepeatOnGoose()) {
-            playerMoves = format("%s moves from %s to %s, The Goose. %s moves again and goes to %s",
-                    movement.player(),
-                    positionName(movement.startPosition()),
-                    positionName(movement.intermediatePosition()),
-                    movement.player(),
-                    positionName(movement.finalPosition()));
         }
 
         return playerRolls + playerMoves + specialCase;
