@@ -6,18 +6,18 @@ import usecase.reset_game.ApplicationSwitch;
 public class GooseGameApp {
 
     private ApplicationSwitch applicationSwitch;
-    private InputBoundary input;
+    private InputBoundary inputOutput;
     private Interpreter interpreter;
 
-    public GooseGameApp(ApplicationSwitch applicationSwitch, InputBoundary input, Interpreter interpreter) {
+    public GooseGameApp(ApplicationSwitch applicationSwitch, InputOutput inputOutput, Interpreter interpreter) {
         this.applicationSwitch = applicationSwitch;
-        this.input = input;
+        this.inputOutput = inputOutput;
         this.interpreter = interpreter;
     }
 
     public void run() {
         while(applicationSwitch.isOn()) {
-            String line = input.readInputLine();
+            String line = inputOutput.readInputLine();
             if (line == null) continue;
             interpreter.acceptCommand(line);
         }

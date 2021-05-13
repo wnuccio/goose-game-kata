@@ -1,12 +1,11 @@
 package main;
 
 import boundary.application.GooseGameApp;
-import boundary.application.InputBoundary;
+import boundary.application.InputOutput;
 import boundary.interpreters.AddPlayerInterpeter;
 import boundary.interpreters.Interpreter;
 import boundary.interpreters.MovePlayerInterpreter;
 import boundary.interpreters.ResetInterpeter;
-import boundary.output.OutputBoundary;
 import boundary.output.OutputPresenter;
 import boundary.output.SystemInputOutput;
 import boundary.random.RandomDiceRoller;
@@ -21,11 +20,7 @@ import usecase.reset_game.ResetService;
 
 public class GooseGameAppBuilder {
 
-    protected InputBoundary getInputBoundary() {
-        return new SystemInputOutput();
-    }
-
-    protected OutputBoundary getOutputBoundary() {
+    protected InputOutput getInputOutput() {
         return new SystemInputOutput();
     }
 
@@ -34,14 +29,13 @@ public class GooseGameAppBuilder {
     }
 
     public final GooseGameApp buildApplication() {
-        InputBoundary inputBoundary = getInputBoundary();
-        OutputBoundary outputBoundary = getOutputBoundary();
-        OutputPresenter presenter = new OutputPresenter(outputBoundary);
+        InputOutput inputOutput = getInputOutput();
+        OutputPresenter presenter = new OutputPresenter(inputOutput);
         Players players = new Players();
         ApplicationSwitch applicationSwitch = new ApplicationSwitch();
         Interpreter interpreter = interpretersChain(presenter, players, applicationSwitch);
 
-        return new GooseGameApp(applicationSwitch, inputBoundary, interpreter);
+        return new GooseGameApp(applicationSwitch, inputOutput, interpreter);
     }
 
     private Interpreter interpretersChain(OutputPresenter presenter, Players players, ApplicationSwitch applicationSwitch) {

@@ -1,19 +1,13 @@
 package main.test;
 
-import boundary.application.InputBoundary;
-import boundary.output.OutputBoundary;
+import boundary.application.InputOutput;
 import domain.DiceRoller;
 import main.GooseGameAppBuilder;
 
 public class GooseGameAppBuilderForTest extends GooseGameAppBuilder {
 
     @Override
-    protected InputBoundary getInputBoundary() {
-        return SharedMemory.instance();
-    }
-
-    @Override
-    protected OutputBoundary getOutputBoundary() {
+    protected InputOutput getInputOutput() {
         return SharedMemory.instance();
     }
 

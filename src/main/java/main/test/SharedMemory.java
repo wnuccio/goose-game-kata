@@ -1,9 +1,8 @@
 package main.test;
 
-import boundary.application.InputBoundary;
-import boundary.output.OutputBoundary;
+import boundary.application.InputOutput;
 
-class SharedMemory implements InputBoundary, OutputBoundary {
+class SharedMemory implements InputOutput {
     private String inputString = null;
     private String outputString = null;
 

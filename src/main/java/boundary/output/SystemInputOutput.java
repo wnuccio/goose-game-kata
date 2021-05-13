@@ -1,10 +1,10 @@
 package boundary.output;
 
-import boundary.application.InputBoundary;
+import boundary.application.InputOutput;
 
 import java.util.Scanner;
 
-public class SystemInputOutput implements InputBoundary, OutputBoundary {
+public class SystemInputOutput implements InputOutput {
     @Override
     public void writeOutputLine(String string) {
         System.out.println(string);
