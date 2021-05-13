@@ -4,16 +4,18 @@ import boundary.application.InputBoundary;
 import boundary.output.OutputBoundary;
 
 class SharedMemory implements InputBoundary, OutputBoundary {
-    private static SharedMemory instance = new SharedMemory();
-
     private String inputString = null;
     private String outputString = null;
 
+    private static SharedMemory instance = new SharedMemory();
     public static SharedMemory instance() {
         return instance;
     }
-
     private SharedMemory() { }
+
+    synchronized void writeInputByTest(String inputString) {
+        this.inputString = inputString;
+    }
 
     @Override
     synchronized public String readInputLine() {
@@ -26,10 +28,6 @@ class SharedMemory implements InputBoundary, OutputBoundary {
     synchronized public void writeOutputLine(String string) {
         outputString = string;
         System.out.println(string);
-    }
-
-    synchronized void writeInputByTest(String inputString) {
-        this.inputString = inputString;
     }
 
     synchronized String readOutputByTest() {
