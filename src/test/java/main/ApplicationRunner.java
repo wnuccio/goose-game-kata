@@ -15,13 +15,13 @@ public class ApplicationRunner {
 
     private static void invokeMainDetectingCrash() {
         try {
-            applicationRunning = true;
+            applicationRunning = true; // start: the application thread is running
             Main.main(Main.ARGS_FOR_TEST);
-            applicationRunning = false; // explicit stop
+            applicationRunning = false; // normal termination: the application thread ends
 
         } catch (Exception e) {
             e.printStackTrace();
-            applicationRunning = false; // stop due to an error
+            applicationRunning = false; // crash: the application thread ends
         }
     }
 
