@@ -3,14 +3,11 @@ package main.test;
 import boundary.application.InputBoundary;
 import boundary.output.OutputBoundary;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class SharedMemory implements InputBoundary, OutputBoundary {
     private static SharedMemory instance = new SharedMemory();
 
     private String inputString = null;
-    private List<String> outputStrings = new ArrayList<>();
+    private String outputString = null;
 
     public static SharedMemory instance() {
         return instance;
@@ -27,7 +24,7 @@ class SharedMemory implements InputBoundary, OutputBoundary {
 
     @Override
     synchronized public void writeOutputLine(String string) {
-        outputStrings.add(string);
+        outputString = string;
         System.out.println(string);
     }
 
@@ -36,10 +33,9 @@ class SharedMemory implements InputBoundary, OutputBoundary {
     }
 
     synchronized String readOutputByTest() {
-        if (outputStrings == null || outputStrings.isEmpty()) return "";
-
-        String result = outputStrings.get(0);
-        outputStrings.remove(0);
+        String result = outputString;
+        outputString = null;
         return result;
+
     }
 }
