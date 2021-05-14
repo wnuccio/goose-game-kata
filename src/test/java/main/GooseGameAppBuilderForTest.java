@@ -6,9 +6,11 @@ import domain.DiceRoller;
 public class GooseGameAppBuilderForTest extends GooseGameAppBuilder {
 
     private SharedMemory sharedMemory;
+    private DiceRoller diceRollerStub;
 
-    public GooseGameAppBuilderForTest(SharedMemory sharedMemory) {
+    public GooseGameAppBuilderForTest(SharedMemory sharedMemory, DiceRoller diceRollerStub) {
         this.sharedMemory = sharedMemory;
+        this.diceRollerStub = diceRollerStub;
     }
 
     @Override
@@ -18,6 +20,6 @@ public class GooseGameAppBuilderForTest extends GooseGameAppBuilder {
 
     @Override
     protected DiceRoller diceRoller() {
-        return DiceRollerStub.instance();
+        return diceRollerStub;
     }
 }

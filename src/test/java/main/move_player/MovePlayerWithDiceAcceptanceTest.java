@@ -12,12 +12,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class MovePlayerWithDiceAcceptanceTest extends BaseAcceptanceTest {
     private AddPlayerDriver addPlayerDriver;
     private MovePlayerDriver movePlayerDriver;
+    private DiceRollerStub diceRollerStub;
 
     @BeforeEach
     void setUp() {
         ApplicationDriver driver = driver();
         addPlayerDriver = new AddPlayerDriver(driver);
         movePlayerDriver = new MovePlayerDriver(driver);
+        diceRollerStub = driver.diceRollerStub();
     }
 
 //    If there is one participant "Pippo" on space "4"
@@ -29,7 +31,7 @@ public class MovePlayerWithDiceAcceptanceTest extends BaseAcceptanceTest {
     void a_player_moves_by_throwing_dice() {
         addPlayerDriver.addPlayer("Pippo");
         movePlayerDriver.moveOnPosition4("Pippo");
-        DiceRollerStub.onNextRollReturns(1, 2);
+        diceRollerStub.onNextRollReturns(1, 2);
 
         String output = movePlayerDriver.movePlayer("Pippo");
         assertThat(output).isEqualTo("Pippo rolls 1, 2. Pippo moves from 4 to 7");

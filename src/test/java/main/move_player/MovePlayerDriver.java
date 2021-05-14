@@ -29,7 +29,6 @@ public class MovePlayerDriver {
         movePlayer(player, 2, 2);
         movePlayer(player, 2, 2); // on position 30
         for (int i = 0; i < 3; i++) movePlayer(player, 5, 5);
-
     }
 
     public void moveOnPosition4(String player) {

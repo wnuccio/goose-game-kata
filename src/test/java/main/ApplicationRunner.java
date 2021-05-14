@@ -7,8 +7,10 @@ public class ApplicationRunner {
         if (driver != null) return driver;
 
         SharedMemory sharedMemory = new SharedMemory();
-        driver = new ApplicationDriver(sharedMemory);
-        Main.injectedBuilder = new GooseGameAppBuilderForTest(sharedMemory);
+        DiceRollerStub diceRollerStub = new DiceRollerStub();
+        driver = new ApplicationDriver(sharedMemory, diceRollerStub);
+
+        Main.injectedBuilder = new GooseGameAppBuilderForTest(sharedMemory, diceRollerStub);
 
         Thread thread = new Thread(ApplicationRunner::invokeMainDetectingCrash);
         thread.setDaemon(true);

@@ -12,19 +12,21 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class MovePlayerOnGooseAcceptanceTest extends BaseAcceptanceTest {
     private AddPlayerDriver addPlayerDriver;
     private MovePlayerDriver movePlayerDriver;
+    private DiceRollerStub diceRollerStub;
 
     @BeforeEach
     void setUp() {
         ApplicationDriver driver = driver();
         addPlayerDriver = new AddPlayerDriver(driver);
         movePlayerDriver = new MovePlayerDriver(driver);
+        diceRollerStub = driver.diceRollerStub();
     }
 
     @Test
     void a_player_repeat_movement_when_lands_on_the_goose() {
         addPlayerDriver.addPlayer("Pippo");
         movePlayerDriver.moveOnPosition3("Pippo");
-        DiceRollerStub.onNextRollReturns(1, 1);
+        diceRollerStub.onNextRollReturns(1, 1);
 
         String output = movePlayerDriver.movePlayer("Pippo");
         assertThat(output).isEqualTo(
@@ -35,7 +37,7 @@ public class MovePlayerOnGooseAcceptanceTest extends BaseAcceptanceTest {
     void a_player_repeat_movement_more_times_when_lands_on_the_goose() {
         addPlayerDriver.addPlayer("Pippo");
         movePlayerDriver.moveOnPosition10("Pippo");
-        DiceRollerStub.onNextRollReturns(2, 2);
+        diceRollerStub.onNextRollReturns(2, 2);
 
         String output = movePlayerDriver.movePlayer("Pippo");
         assertThat(output).isEqualTo(
