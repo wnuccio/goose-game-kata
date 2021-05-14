@@ -9,12 +9,4 @@ public class ApplicationDriver {
         inputOuput.writeInputByTest(inputString);
         return inputOuput.readOutputByTest(5, MILLISECONDS);
     }
-
-    public void waitAbit() {
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 }

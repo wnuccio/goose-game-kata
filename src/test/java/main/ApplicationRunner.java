@@ -1,7 +1,5 @@
 package main;
 
-import main.test.ApplicationDriver;
-
 public class ApplicationRunner {
     private static boolean applicationRunning  = false;
 
@@ -26,9 +24,18 @@ public class ApplicationRunner {
     }
 
     public static boolean isApplicationRunning() {
-        new ApplicationDriver().waitAbit();
+        waitAbit();
         return applicationRunning;
     }
+
+    private static void waitAbit() {
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
 
 //    no crash detection
 //
