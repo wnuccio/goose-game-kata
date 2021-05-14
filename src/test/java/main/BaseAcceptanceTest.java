@@ -5,9 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 
 public abstract class BaseAcceptanceTest {
 
+    private ApplicationDriver driver;
+
     @BeforeEach
     final void init() {
-        ApplicationRunner.runApplication();
-        new ResetDriver(new ApplicationDriver()).resetGame();
+        driver = ApplicationRunner.runApplication();
+        new ResetDriver(driver).resetGame();
     }
+
+    protected ApplicationDriver driver() { return driver; }
 }

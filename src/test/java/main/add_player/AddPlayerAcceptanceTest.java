@@ -1,6 +1,5 @@
 package main.add_player;
 
-import main.ApplicationDriver;
 import main.BaseAcceptanceTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,7 @@ public class AddPlayerAcceptanceTest extends BaseAcceptanceTest {
 
     @BeforeEach
     void setUp() {
-        driver = new AddPlayerDriver(new ApplicationDriver());
+        driver = new AddPlayerDriver(driver());
     }
 
     @Test

@@ -3,20 +3,24 @@ package main;
 public class ApplicationRunner {
     private static ApplicationDriver driver = null;
 
-    public static void runApplication() {
-        if (driver != null) return;
+    public static ApplicationDriver runApplication() {
+        if (driver != null) return driver;
 
-        Main.injectedBuilder = new GooseGameAppBuilderForTest();
+        SharedMemory sharedMemory = new SharedMemory();
+        driver = new ApplicationDriver(sharedMemory);
+        Main.injectedBuilder = new GooseGameAppBuilderForTest(sharedMemory);
 
         Thread thread = new Thread(ApplicationRunner::invokeMainDetectingCrash);
         thread.setDaemon(true);
         thread.start();
 
+        waitAbit();
+        if (driver == null) throw new IllegalStateException("Wait more for app thread starting");
+        return driver;
     }
 
     private static void invokeMainDetectingCrash() {
         try {
-            driver = new ApplicationDriver(); // start: the application thread is running
             Main.main(new String[]{});
             driver = null;                    // normal termination: the application thread ends
 

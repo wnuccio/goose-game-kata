@@ -15,7 +15,7 @@ public class MovePlayerOnBridgeAcceptanceTest extends BaseAcceptanceTest {
 
     @BeforeEach
     void setUp() {
-        ApplicationDriver driver = new ApplicationDriver();
+        ApplicationDriver driver = driver();
         addPlayerDriver = new AddPlayerDriver(driver);
         movePlayerDriver = new MovePlayerDriver(driver);
     }

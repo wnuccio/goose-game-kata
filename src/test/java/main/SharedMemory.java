@@ -10,11 +10,7 @@ class SharedMemory implements InputOutput {
     private BlockingQueue<String> inputQueue = new LinkedBlockingDeque<>();
     private BlockingQueue<String> outputQueue = new LinkedBlockingDeque<>();
 
-    private static SharedMemory instance = new SharedMemory();
-    public static SharedMemory instance() {
-        return instance;
-    }
-    private SharedMemory() { }
+    public SharedMemory() { }
 
     void writeInputByTest(String inputLine) {
         execute(() -> inputQueue.offer(inputLine));

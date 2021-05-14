@@ -3,7 +3,11 @@ package main;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public class ApplicationDriver {
-    private SharedMemory inputOuput = SharedMemory.instance();
+    private SharedMemory inputOuput;
+
+    public ApplicationDriver(SharedMemory inputOuput) {
+        this.inputOuput = inputOuput;
+    }
 
     public String acceptInput(String inputString) {
         inputOuput.writeInputByTest(inputString);
