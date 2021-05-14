@@ -13,7 +13,7 @@ class SharedMemory implements InputOutput {
     public SharedMemory() { }
 
     void writeInputByTest(String inputLine) {
-        execute(() -> inputQueue.offer(inputLine));
+        execute(() -> inputQueue.put(inputLine));
     }
 
     @Override
@@ -23,7 +23,7 @@ class SharedMemory implements InputOutput {
 
     @Override
     public void writeOutputLine(String outputLine) {
-        execute(() -> outputQueue.add(outputLine));
+        execute(() -> outputQueue.put(outputLine));
         System.out.println(outputLine);
     }
 
