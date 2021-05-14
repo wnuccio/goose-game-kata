@@ -1,6 +1,19 @@
-Input/Output
-- usare una Queue invece di una list nella SystemIoForTest
-- v. note su test io: https://hackmd.io/84-pe8pHQgio0-qR_nwaBw
+Rivedere i pattern
+- Application Runner: non è più statico e non controlla
+    l'unicità dell'applicazione; è un rappresentante dell'applicazione
+    lato test, può esporre metodi di reset e stop e, cosa importante,
+    wrappa l'Application Driver e lo usa dopo aver lanciato l'applicazione
+    nel caso in cui quest'ultima restituisca un output speciale iniziale
+    per segnalare che essa è partita correttamente
+  
+- Base Acceptance Test: assicura che l'Application Runner sia unico per tutti i 
+    test, salvandolo in un field static con inizializzazione lazy;
+    controlla lo stato dell'Application Runner per capire se invocare di nuovo run
+    
+- Crash Detector: il meccanismo viene mantenuto nell'Application Runner,
+    in quanto è lui che controlla l'uscita dal main, per motivi normali
+    o per crash; poi il runner espone lo stato dell'applicazione 
+    e il Base Acceptance Test usa questo stato
   
 Struttura
 - provare una alberatura di package gerarchica

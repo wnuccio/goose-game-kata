@@ -2,9 +2,14 @@ package main.test;
 
 import boundary.application.InputOutput;
 
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
+
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+
 class SharedMemory implements InputOutput {
-    private String inputString = null;
-    private String outputString = null;
+    private BlockingQueue<String> inputQueue = new LinkedBlockingDeque<>();
+    private BlockingQueue<String> outputQueue = new LinkedBlockingDeque<>();
 
     private static SharedMemory instance = new SharedMemory();
     public static SharedMemory instance() {
@@ -12,27 +17,42 @@ class SharedMemory implements InputOutput {
     }
     private SharedMemory() { }
 
-    synchronized void writeInputByTest(String inputString) {
-        this.inputString = inputString;
+    void writeInputByTest(String inputLine) {
+        execute(() -> inputQueue.offer(inputLine));
     }
 
     @Override
-    synchronized public String readInputLine() {
-        String result = inputString;
-        inputString = null;
-        return result;
+    public String readInputLine() {
+        return execute(() -> inputQueue.take());
     }
 
     @Override
-    synchronized public void writeOutputLine(String string) {
-        outputString = string;
-        System.out.println(string);
+    public void writeOutputLine(String outputLine) {
+        execute(() -> outputQueue.add(outputLine));
+        System.out.println(outputLine);
     }
 
-    synchronized String readOutputByTest() {
-        String result = outputString;
-        outputString = null;
-        return result;
+    String readOutputByTest() {
+        return execute(() -> outputQueue.poll(5, MILLISECONDS));
+    }
 
+    private interface QueueAction { void doCommand() throws InterruptedException; }
+    private interface QueueQuery { String doQuery() throws InterruptedException; }
+    private void execute(QueueAction command) {
+        try {
+            command.doCommand();
+
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+    private String execute(QueueQuery query) {
+        try {
+            return query.doQuery();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            throw new IllegalStateException(e);
+        }
     }
 }
