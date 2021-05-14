@@ -4,8 +4,7 @@ import boundary.application.InputOutput;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
-
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import java.util.concurrent.TimeUnit;
 
 class SharedMemory implements InputOutput {
     private BlockingQueue<String> inputQueue = new LinkedBlockingDeque<>();
@@ -32,8 +31,8 @@ class SharedMemory implements InputOutput {
         System.out.println(outputLine);
     }
 
-    String readOutputByTest() {
-        return execute(() -> outputQueue.poll(5, MILLISECONDS));
+    String readOutputByTest(int timeout, TimeUnit timeUnit) {
+        return execute(() -> outputQueue.poll(timeout, timeUnit));
     }
 
     private interface QueueAction { void doCommand() throws InterruptedException; }
