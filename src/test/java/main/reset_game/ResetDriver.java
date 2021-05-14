@@ -1,7 +1,7 @@
 package main.reset_game;
 
+import main.ApplicationDriver;
 import main.ApplicationRunner;
-import main.test.ApplicationDriver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

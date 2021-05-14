@@ -1,8 +1,8 @@
 package main.reset_game;
 
+import main.ApplicationDriver;
 import main.BaseAcceptanceTest;
 import main.add_player.AddPlayerDriver;
-import main.test.ApplicationDriver;
 import org.junit.jupiter.api.Test;
 
 public class ResetAcceptanceTest extends BaseAcceptanceTest {

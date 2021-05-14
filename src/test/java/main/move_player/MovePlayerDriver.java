@@ -1,6 +1,6 @@
 package main.move_player;
 
-import main.test.ApplicationDriver;
+import main.ApplicationDriver;
 
 import static java.lang.String.format;
 

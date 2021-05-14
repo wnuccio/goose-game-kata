@@ -1,4 +1,4 @@
-package main.test;
+package main;
 
 import boundary.application.InputOutput;
 

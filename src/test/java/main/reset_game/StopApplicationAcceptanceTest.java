@@ -1,7 +1,7 @@
 package main.reset_game;
 
+import main.ApplicationDriver;
 import main.ApplicationRunner;
-import main.test.ApplicationDriver;
 import org.junit.jupiter.api.Test;
 
 public class StopApplicationAcceptanceTest {

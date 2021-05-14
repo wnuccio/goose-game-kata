@@ -1,9 +1,9 @@
 package main.move_player;
 
+import main.ApplicationDriver;
 import main.BaseAcceptanceTest;
+import main.DiceRollerStub;
 import main.add_player.AddPlayerDriver;
-import main.test.ApplicationDriver;
-import main.test.DiceRollerStub;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

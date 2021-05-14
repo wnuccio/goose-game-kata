@@ -1,10 +1,9 @@
 package main;
 
 import boundary.application.GooseGameApp;
-import main.test.GooseGameAppBuilderForTest;
 
 public class Main {
-    static GooseGameAppBuilderForTest injectedBuilder;
+    static GooseGameAppBuilder injectedBuilder;
 
     public static void main(String[] args) {
         GooseGameAppBuilder appBuilder = selectApplicationBuilder(args);

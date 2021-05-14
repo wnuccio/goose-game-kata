@@ -1,7 +1,5 @@
 package main;
 
-import main.test.GooseGameAppBuilderForTest;
-
 public class ApplicationRunner {
     private static boolean applicationRunning  = false;
 
