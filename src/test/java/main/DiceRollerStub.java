@@ -3,19 +3,35 @@ package main;
 import domain.Dice;
 import domain.DiceRoller;
 
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.TimeUnit;
+
 public class DiceRollerStub implements DiceRoller {
-    private Dice dice;
+    private BlockingQueue<Dice> dice;
 
     public void onNextRollReturns(int first, int second) {
-        dice = new Dice(first, second);
+        try {
+            dice.put(new Dice(first, second));
+
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     @Override
     public Dice roll() {
-        return dice;
+        try {
+            Dice result = dice.poll(5, TimeUnit.MILLISECONDS);
+            if (result == null) throw new IllegalStateException("Dice values not set");
+            return result;
+
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     public DiceRollerStub() {
-        this.dice = new Dice(1, 1);
+        this.dice = new LinkedBlockingDeque<>();
     }
 }
