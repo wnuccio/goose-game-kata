@@ -1,16 +1,25 @@
 package main;
 
+import domain.DiceRoller;
+
 public class ApplicationRunner {
     private static ApplicationDriver driver = null;
 
     public ApplicationDriver runApplication() {
+        DiceRollerStub diceRollerStub = new DiceRollerStub();
+        return runApplication(diceRollerStub);
+    }
+
+    public ApplicationDriver runApplication(DiceRoller diceRoller) {
         if (driver != null) return driver;
 
         SharedMemory sharedMemory = new SharedMemory();
-        DiceRollerStub diceRollerStub = new DiceRollerStub();
+        DiceRollerStub diceRollerStub =
+                diceRoller instanceof DiceRollerStub ? (DiceRollerStub) diceRoller : null;
+
         driver = new ApplicationDriver(sharedMemory, diceRollerStub);
 
-        Main.injectedBuilder = new GooseGameAppBuilderForTest(sharedMemory, diceRollerStub);
+        Main.injectedBuilder = new GooseGameAppBuilderForTest(sharedMemory, diceRoller);
 
         Thread thread = new Thread(this::invokeMainDetectingCrash);
         thread.setDaemon(true);
