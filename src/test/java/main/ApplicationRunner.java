@@ -1,10 +1,14 @@
 package main;
 
+import main.test.GooseGameAppBuilderForTest;
+
 public class ApplicationRunner {
     private static boolean applicationRunning  = false;
 
     public static void runApplication() {
         if (isApplicationRunning()) return;
+
+        Main.injectedBuilder = new GooseGameAppBuilderForTest();
 
         Thread thread = new Thread(ApplicationRunner::invokeMainDetectingCrash);
         thread.setDaemon(true);
@@ -14,7 +18,7 @@ public class ApplicationRunner {
     private static void invokeMainDetectingCrash() {
         try {
             applicationRunning = true; // start: the application thread is running
-            Main.main(Main.ARGS_FOR_TEST);
+            Main.main(new String[]{});
             applicationRunning = false; // normal termination: the application thread ends
 
         } catch (Exception e) {
