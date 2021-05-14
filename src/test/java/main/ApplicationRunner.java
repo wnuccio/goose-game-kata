@@ -3,7 +3,7 @@ package main;
 public class ApplicationRunner {
     private static ApplicationDriver driver = null;
 
-    public static ApplicationDriver runApplication() {
+    public ApplicationDriver runApplication() {
         if (driver != null) return driver;
 
         SharedMemory sharedMemory = new SharedMemory();
@@ -12,7 +12,7 @@ public class ApplicationRunner {
 
         Main.injectedBuilder = new GooseGameAppBuilderForTest(sharedMemory, diceRollerStub);
 
-        Thread thread = new Thread(ApplicationRunner::invokeMainDetectingCrash);
+        Thread thread = new Thread(this::invokeMainDetectingCrash);
         thread.setDaemon(true);
         thread.start();
 
@@ -21,7 +21,7 @@ public class ApplicationRunner {
         return driver;
     }
 
-    private static void invokeMainDetectingCrash() {
+    private void invokeMainDetectingCrash() {
         try {
             Main.main(new String[]{});
             driver = null;                    // normal termination: the application thread ends

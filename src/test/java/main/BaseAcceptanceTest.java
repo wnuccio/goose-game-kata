@@ -9,7 +9,7 @@ public abstract class BaseAcceptanceTest {
 
     @BeforeEach
     final void init() {
-        driver = ApplicationRunner.runApplication();
+        driver = new ApplicationRunner().runApplication();
         new ResetDriver(driver).resetGame();
     }
 
