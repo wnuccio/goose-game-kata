@@ -1,14 +1,14 @@
 package usecase.move_player;
 
+import boundary.output.MovementPresenter;
 import domain.Players;
-import usecase.Presenter;
 
 public class MovePlayer {
     private Players players;
     private ComputeMovement computeMovement;
-    private Presenter presenter;
+    private MovementPresenter presenter;
 
-    public MovePlayer(Players players, ComputeMovement computeMovement, Presenter presenter) {
+    public MovePlayer(Players players, ComputeMovement computeMovement, MovementPresenter presenter) {
         this.players = players;
         this.computeMovement = computeMovement;
         this.presenter = presenter;
@@ -16,7 +16,6 @@ public class MovePlayer {
 
     public void acceptCommand(MoveCommand command) {
         if ( ! players.contains(command.player())) {
-            presenter.presentNoSuchPlayerError(command.player());
             return;
         }
 

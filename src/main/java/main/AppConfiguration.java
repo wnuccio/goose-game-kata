@@ -6,6 +6,7 @@ import boundary.interpreters.AddPlayerInterpeter;
 import boundary.interpreters.Interpreter;
 import boundary.interpreters.MovePlayerInterpreter;
 import boundary.interpreters.ResetInterpeter;
+import boundary.output.MovementPresenter;
 import boundary.output.OutputPresenter;
 import domain.DiceRoller;
 import domain.Players;
@@ -62,6 +63,10 @@ public class AppConfiguration {
         return new OutputPresenter(inputOutput());
     }
 
+    private MovementPresenter movementPresenter() {
+        return new MovementPresenter(inputOutput());
+    }
+
     ///// INTERPRETERS CHAIN ///////////////////////////////////////////////////////////////
     private Interpreter interpretersChain() {
         return
@@ -70,6 +75,7 @@ public class AppConfiguration {
                         new MovePlayerInterpreter(rollAndMove(), movePlayer(),
                                 null)));
     }
+
     ///// INTERPRETERS CHAIN ///////////////////////////////////////////////////////////////
 
     private AddPlayer addPlayer() {
@@ -81,7 +87,7 @@ public class AppConfiguration {
     }
 
     private MovePlayer movePlayer() {
-        return new MovePlayer(players(), computeMovement(), presenter());
+        return new MovePlayer(players(), computeMovement(), movementPresenter());
     }
 
     private ComputeMovement computeMovement() {

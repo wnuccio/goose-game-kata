@@ -10,12 +10,16 @@ import static java.lang.String.format;
 import static java.lang.String.valueOf;
 
 public class MovementPresenter {
-    private MovementView movementView;
     private OutputBoundary outputBoundary;
+    private MovementView movementView;
 
-    public MovementPresenter(MovementView movementView, OutputBoundary outputBoundary) {
-        this.movementView = movementView;
+    public MovementPresenter(OutputBoundary outputBoundary) {
         this.outputBoundary = outputBoundary;
+    }
+
+    public void presentMovement(MovementView movementView) {
+        this.movementView = movementView;
+        movementView.present(this);
     }
 
     private String playerRolls() {

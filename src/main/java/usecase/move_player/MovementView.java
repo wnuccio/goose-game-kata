@@ -31,10 +31,6 @@ public class MovementView {
         return movement.startPosition();
     }
 
-    public int finalPosition() {
-        return movement.finalPosition();
-    }
-
     public void present(MovementPresenter movementPresenter) {
         movement.present(movementPresenter);
     }

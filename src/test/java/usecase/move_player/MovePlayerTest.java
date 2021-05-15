@@ -1,9 +1,9 @@
 package usecase.move_player;
 
+import boundary.output.MovementPresenter;
 import domain.Players;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import usecase.Presenter;
 
 import static domain.Dice.dice;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,19 +11,10 @@ import static org.mockito.Mockito.*;
 
 class MovePlayerTest {
     private Players players = new Players();
-    private Presenter presenter = mock(Presenter.class);
+    private MovementPresenter presenter = mock(MovementPresenter.class);
     ComputeMovement computeMovement = mock(ComputeMovement.class);
     private MovePlayer movePlayer = new MovePlayer(players, computeMovement, presenter);
     private ArgumentCaptor<MovementView> movementCaptor = ArgumentCaptor.forClass(MovementView.class);
-
-    @Test
-    void present_an_error_when_the_command_specifies_a_not_present_player() {
-        players.clear();
-
-        movePlayer.acceptCommand(move("Pippo", 1, 2));
-
-        verify(presenter).presentNoSuchPlayerError("Pippo");
-    }
 
     @Test
     void build_a_movement_view_with_player_name_initial_position_and_dice_values() {
