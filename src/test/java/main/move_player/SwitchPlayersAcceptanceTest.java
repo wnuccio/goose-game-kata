@@ -19,7 +19,7 @@ public class SwitchPlayersAcceptanceTest extends BaseAcceptanceTest {
         ApplicationDriver driver = driver();
         addPlayerDriver = new AddPlayerDriver(driver);
         movePlayerDriver = new MovePlayerDriver(driver);
-        diceRollerStub = driver.diceRollerStub();
+        diceRollerStub = diceRollerStub();
     }
 
     @Test

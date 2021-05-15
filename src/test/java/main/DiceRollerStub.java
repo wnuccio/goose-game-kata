@@ -22,7 +22,7 @@ public class DiceRollerStub implements DiceRoller {
     @Override
     public Dice roll() {
         try {
-            Dice result = dice.poll(5, TimeUnit.MILLISECONDS);
+            Dice result = dice.poll(15, TimeUnit.MILLISECONDS);
             if (result == null) throw new IllegalStateException("Dice values not set");
             return result;
 

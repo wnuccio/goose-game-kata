@@ -1,9 +1,8 @@
 package main.reset_game;
 
 import main.ApplicationDriver;
-import main.ApplicationRunner;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 public class ResetDriver {
     private ApplicationDriver applicationDriver;
@@ -19,10 +18,12 @@ public class ResetDriver {
     }
 
     public void verifyGameRunning() {
-        assertThat(ApplicationRunner.isApplicationRunning()).isEqualTo(true);
+//        assertThat(applicationRunner.isApplicationRunning()).isEqualTo(true);
+        fail("");
     }
 
     public void verifyGameStopped() {
-        assertThat(ApplicationRunner.isApplicationRunning()).isEqualTo(false);
+//        assertThat(applicationRunner.isApplicationRunning()).isEqualTo(false);
+        fail("");
     }
 }

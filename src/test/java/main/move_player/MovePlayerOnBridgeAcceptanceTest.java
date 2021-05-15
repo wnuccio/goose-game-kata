@@ -19,8 +19,7 @@ public class MovePlayerOnBridgeAcceptanceTest extends BaseAcceptanceTest {
         ApplicationDriver driver = driver();
         addPlayerDriver = new AddPlayerDriver(driver);
         movePlayerDriver = new MovePlayerDriver(driver);
-        diceRollerStub = driver.diceRollerStub();
-
+        diceRollerStub = diceRollerStub();
     }
 
 //    If there is one participant "Pippo" on space "4"

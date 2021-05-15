@@ -1,54 +1,45 @@
 package main;
 
-import domain.DiceRoller;
-
 public class ApplicationRunner {
-    private static ApplicationDriver driver = null;
+    private boolean appRunning = false;
 
-    public ApplicationDriver runApplication() {
-        DiceRollerStub diceRollerStub = new DiceRollerStub();
-        return runApplication(diceRollerStub);
+    private GooseGameAppBuilder appBuilder;
+
+    public ApplicationRunner(GooseGameAppBuilder appBuilder) {
+        this.appBuilder = appBuilder;
     }
 
-    public ApplicationDriver runApplication(DiceRoller diceRoller) {
-        if (driver != null) return driver;
-
-        SharedMemory sharedMemory = new SharedMemory();
-        DiceRollerStub diceRollerStub =
-                diceRoller instanceof DiceRollerStub ? (DiceRollerStub) diceRoller : null;
-
-        driver = new ApplicationDriver(sharedMemory, diceRollerStub);
-
-        Main.injectedBuilder = new GooseGameAppBuilderForTest(sharedMemory, diceRoller);
+    public void runApplication() {
+        Main.injectedBuilder = appBuilder;
 
         Thread thread = new Thread(this::invokeMainDetectingCrash);
         thread.setDaemon(true);
         thread.start();
 
         waitAbit();
-        if (driver == null) throw new IllegalStateException("Wait more for app thread starting");
-        return driver;
+
     }
 
     private void invokeMainDetectingCrash() {
         try {
+            appRunning = true;                    // normal termination: the application thread ends
             Main.main(new String[]{});
-            driver = null;                    // normal termination: the application thread ends
+            appRunning = false;                    // normal termination: the application thread ends
 
         } catch (Exception e) {
             e.printStackTrace();
-            driver = null;                    // crash: the application thread ends
+            appRunning = false;                    // crash: the application thread ends
         }
     }
 
-    public static boolean isApplicationRunning() {
+    public boolean isApplicationRunning() {
         waitAbit();
-        return driver != null;
+        return appRunning;
     }
 
     private static void waitAbit() {
         try {
-            Thread.sleep(10);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             throw new IllegalStateException(e);
         }

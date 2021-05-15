@@ -4,6 +4,8 @@ import main.BaseAcceptanceTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class StopApplicationAcceptanceTest extends BaseAcceptanceTest {
     private ResetDriver resetDriver;
 
@@ -16,10 +18,12 @@ public class StopApplicationAcceptanceTest extends BaseAcceptanceTest {
     void after_stop_command_the_application_is_no_more_running() {
 //        ApplicationRunner.runApplication();
 
-        resetDriver.verifyGameRunning();
+        assertThat(super.applicationRunner.isApplicationRunning()).isTrue();
+//        resetDriver.verifyGameRunning();
 
         resetDriver.stopGame();
 
-        resetDriver.verifyGameStopped();
+//        resetDriver.verifyGameStopped();
+        assertThat(super.applicationRunner.isApplicationRunning()).isFalse();
     }
 }

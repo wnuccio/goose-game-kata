@@ -6,7 +6,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 
-class SharedMemory implements InputOutput {
+public class SharedMemory implements InputOutput {
     private BlockingQueue<String> inputQueue = new LinkedBlockingDeque<>();
     private BlockingQueue<String> outputQueue = new LinkedBlockingDeque<>();
 
