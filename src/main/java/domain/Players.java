@@ -36,11 +36,11 @@ public class Players {
     }
 
     public List<String> playersOnSamePositionOf(String thisPlayer) {
-        Integer position = positionOf(thisPlayer);
-        return players.entrySet()
-                .stream()
-                .filter(entry -> entry.getValue().equals(position) &&  ! entry.getKey().equals(thisPlayer))
-                .map(entry -> entry.getKey())
+        List<String> result = players.keySet().stream()
+                .filter(aPlayer -> positionOf(aPlayer) == positionOf(thisPlayer))
                 .collect(Collectors.toList());
+
+        result.remove(thisPlayer);
+        return result;
     }
 }
