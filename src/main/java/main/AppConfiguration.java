@@ -19,6 +19,10 @@ import usecase.reset_game.ResetService;
 public class AppConfiguration {
 
     private GooseGameAppBuilder builder;
+    private GooseGameApp gooseGameApp;
+    private ApplicationSwitch applicationSwitch;
+    private Players players;
+    private InputOutput inputOutput;
     private DiceRoller diceRoller;
 
     public AppConfiguration(GooseGameAppBuilder builder) {
@@ -26,43 +30,73 @@ public class AppConfiguration {
     }
 
     public GooseGameApp buildApplication() {
-        InputOutput inputOutput = builder.getInputOutput();
-        OutputPresenter presenter = new OutputPresenter(inputOutput);
-        Players players = new Players();
-        ApplicationSwitch applicationSwitch = new ApplicationSwitch();
-        Interpreter interpreter = interpretersChain(presenter, players, applicationSwitch);
-
-        return new GooseGameApp(applicationSwitch, inputOutput, interpreter);
+        return gooseGameApp();
     }
 
-    private Interpreter interpretersChain(OutputPresenter presenter, Players players, ApplicationSwitch applicationSwitch) {
-        return new ResetInterpeter(resetService(players, applicationSwitch),
-                new AddPlayerInterpeter(addPlayer(presenter, players),
-                        new MovePlayerInterpreter(
-                                rollAndMove(presenter, players),
-                                movePlayer(presenter, players),
-                                null)));
+    private GooseGameApp gooseGameApp() {
+        if (gooseGameApp == null) gooseGameApp = new GooseGameApp(applicationSwitch(), inputOutput(), interpretersChain());
+        return gooseGameApp;
     }
 
-    private AddPlayerUseCase addPlayer(OutputPresenter presenter, Players players) {
-        return new AddPlayerUseCase(players, presenter);
+    private ApplicationSwitch applicationSwitch() {
+        if (applicationSwitch == null) applicationSwitch = new ApplicationSwitch();
+        return applicationSwitch;
     }
 
-    private ResetService resetService(Players players, ApplicationSwitch applicationSwitch) {
-        return new ResetService(applicationSwitch, players);
+    private Players players() {
+        if (players == null) players = new Players();
+        return players;
     }
 
-    private MovePlayer movePlayer(OutputPresenter presenter, Players players) {
-        return new MovePlayer(players, new ComputeMovement(players), presenter);
-    }
-
-    private RollAndMove rollAndMove(OutputPresenter presenter, Players players) {
-        MovePlayer movePlayer = new MovePlayer(players, new ComputeMovement(players), presenter);
-        return new RollAndMove(diceRoller(), movePlayer);
+    private InputOutput inputOutput() {
+        if (inputOutput == null) inputOutput = builder.getInputOutput();
+        return inputOutput;
     }
 
     private DiceRoller diceRoller() {
         if (diceRoller == null) diceRoller = builder.diceRoller();
         return diceRoller;
+    }
+
+    private OutputPresenter presenter() {
+        return new OutputPresenter(inputOutput());
+    }
+
+    ///// INTERPRETERS CHAIN ///////////////////////////////////////////////////////////////
+    private Interpreter interpretersChain() {
+        return resetInterpeter();
+    }
+
+    private ResetInterpeter resetInterpeter() {
+        return new ResetInterpeter(resetService(), addPlayerInterpeter());
+    }
+
+    private AddPlayerInterpeter addPlayerInterpeter() {
+        return new AddPlayerInterpeter(addPlayer(), movePlayerInterpreter());
+    }
+
+    private MovePlayerInterpreter movePlayerInterpreter() {
+        return new MovePlayerInterpreter(rollAndMove(), movePlayer(), null);
+    }
+    ///// INTERPRETERS CHAIN ///////////////////////////////////////////////////////////////
+
+    private AddPlayerUseCase addPlayer() {
+        return new AddPlayerUseCase(players(), presenter());
+    }
+
+    private ResetService resetService() {
+        return new ResetService(applicationSwitch(), players());
+    }
+
+    private MovePlayer movePlayer() {
+        return new MovePlayer(players(), computeMovement(), presenter());
+    }
+
+    private ComputeMovement computeMovement() {
+        return new ComputeMovement(players());
+    }
+
+    private RollAndMove rollAndMove() {
+        return new RollAndMove(diceRoller(), movePlayer());
     }
 }
