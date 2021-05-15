@@ -18,7 +18,6 @@ public class GooseGameApp {
     public void run() {
         while(applicationSwitch.isOn()) {
             String line = inputOutput.readInputLine();
-            if (line == null) continue;
             interpreter.acceptCommand(line);
         }
     }

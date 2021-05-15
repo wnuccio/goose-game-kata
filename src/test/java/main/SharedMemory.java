@@ -18,7 +18,11 @@ public class SharedMemory implements InputOutput {
 
     @Override
     public String readInputLine() {
-        String input = execute(() -> inputQueue.take());
+        String input;
+        do {
+            input = execute(() -> inputQueue.take());
+        } while(input == null);
+
         System.out.println("> " + input);
         return input;
     }
