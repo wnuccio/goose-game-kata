@@ -11,7 +11,4 @@ public class ResetDriver {
 
     public void resetGame() { applicationDriver.acceptInput("reset game"); }
 
-    public void stopGame() {
-        applicationDriver.acceptInput("stop game");
-    }
 }

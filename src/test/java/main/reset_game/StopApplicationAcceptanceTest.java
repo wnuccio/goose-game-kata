@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StopApplicationAcceptanceTest {
     private ResetDriver resetDriver;
     private ApplicationRunner applicationRunner;
+    private ApplicationDriver driver;
 
     @BeforeEach
     void setUp() {
@@ -19,16 +20,19 @@ public class StopApplicationAcceptanceTest {
         GooseGameAppBuilderForTest builder = new GooseGameAppBuilderForTest(sharedMemory, null);
         applicationRunner = new ApplicationRunner(builder);
 
-        resetDriver = new ResetDriver(new ApplicationDriver(sharedMemory));
+        driver = new ApplicationDriver(sharedMemory);
+        resetDriver = new ResetDriver(driver);
     }
 
     @Test
     void after_stop_command_the_application_is_no_more_running() {
+        assertThat(applicationRunner.isApplicationRunning()).isFalse();
+
         applicationRunner.runApplication();
 
         assertThat(applicationRunner.isApplicationRunning()).isTrue();
 
-        resetDriver.stopGame();
+        driver.acceptInput("stop game");
 
         assertThat(applicationRunner.isApplicationRunning()).isFalse();
     }
