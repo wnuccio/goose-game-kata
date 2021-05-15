@@ -22,13 +22,13 @@ public class ApplicationRunner {
 
     private void invokeMainDetectingCrash() {
         try {
-            appRunning = true;                    // normal termination: the application thread ends
+            appRunning = true;
             Main.main(new String[]{});
-            appRunning = false;                    // normal termination: the application thread ends
+            appRunning = false; // normal termination: the application thread ends
 
         } catch (Exception e) {
             e.printStackTrace();
-            appRunning = false;                    // crash: the application thread ends
+            appRunning = false; // crash: the application thread ends
         }
     }
 
@@ -44,15 +44,4 @@ public class ApplicationRunner {
             throw new IllegalStateException(e);
         }
     }
-
-
-//    no crash detection
-//
-//    private static void invokeMain() {
-//        applicationRunning = true;
-//        Main.main(Main.ARGS_FOR_TEST);
-//        applicationRunning = false; // explicit stop
-//    }
-
-
 }
