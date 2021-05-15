@@ -18,10 +18,11 @@ public class CompleteGameSimulation {
     void setUp() {
         SharedMemory sharedMemory = new SharedMemory();
         GooseGameAppBuilderForTest appBuilder = new GooseGameAppBuilderForTest(sharedMemory, new RandomDiceRoller());
-        ApplicationDriver driver = new ApplicationDriver(sharedMemory);
         new ApplicationRunner(appBuilder).runApplication();
-        AddPlayerDriver addPlayer = new AddPlayerDriver(driver);
-        addPlayer.addPlayers("Walter", "Andrea");
+
+        ApplicationDriver driver = new ApplicationDriver(sharedMemory);
+        new AddPlayerDriver(driver).addPlayers("Walter", "Andrea");
+
         movePlayer = new MovePlayerDriver(driver);
     }
 
