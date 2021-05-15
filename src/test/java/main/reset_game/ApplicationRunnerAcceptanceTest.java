@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class StopApplicationAcceptanceTest {
+public class ApplicationRunnerAcceptanceTest {
     private ApplicationRunner applicationRunner;
     private ApplicationDriver driver;
 
@@ -24,9 +24,16 @@ public class StopApplicationAcceptanceTest {
     }
 
     @Test
-    void after_stop_command_the_application_is_no_more_running() {
+    void run_the_application() {
         assertThat(applicationRunner.isApplicationRunning()).isFalse();
 
+        applicationRunner.runApplication();
+
+        assertThat(applicationRunner.isApplicationRunning()).isTrue();
+    }
+
+    @Test
+    void stop_the_application() {
         applicationRunner.runApplication();
 
         assertThat(applicationRunner.isApplicationRunning()).isTrue();
@@ -37,9 +44,10 @@ public class StopApplicationAcceptanceTest {
     }
 
     @Test
-    void after_reset_an_existing_player_becomes_a_new_player() {
-        applicationRunner.runApplication();
+    void reset_the_application_allowing_adding_twice_the_same_player_() {
         AddPlayerDriver addPlayerDriver = new AddPlayerDriver(driver);
+
+        applicationRunner.runApplication();
 
         String output = addPlayerDriver.addPlayer("Pippo");
         addPlayerDriver.verifyPlayersAdded(output, "Pippo");
