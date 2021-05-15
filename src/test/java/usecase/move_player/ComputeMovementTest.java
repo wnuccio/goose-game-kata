@@ -84,7 +84,6 @@ class ComputeMovementTest {
 
         MovementWithSwitch movementWithSwitch = (MovementWithSwitch)movement;
         assertThat(movementWithSwitch.hasPreviousMovement()).isFalse();
-        assertThat(movementWithSwitch.diceTotal()).isEqualTo(2);
         assertThat(movementWithSwitch.startPosition()).isEqualTo(15);
         assertThat(movementWithSwitch.finalPosition()).isEqualTo(17);
         assertThat(movementWithSwitch.switchedPlayer()).isEqualTo("Pluto");

@@ -21,7 +21,7 @@ public class ComputeMovement {
 
         Movement movement = applyBouncingRule(firstMovement);
         movement = applyBridgeRule(movement);
-        movement = applyGooseRule(movement);
+        movement = applyGooseRule(movement, command.diceTotal());
         movement = applyPlayerSwitchRule(movement);
 
         players.setPositionOf(command.player(), movement.finalPosition());
@@ -55,14 +55,14 @@ public class ComputeMovement {
         return movement;
     }
 
-    private Movement applyGooseRule(Movement previousMovement) {
+    private Movement applyGooseRule(Movement previousMovement, int diceTotal) {
         if (! previousMovement.endsOnGoose()) return previousMovement;
 
         Movement repeatedMovement = after(previousMovement)
                 .becauseOf(REPEAT_ON_GOOSE)
-                .goToPosition(previousMovement.finalPosition() + previousMovement.diceTotal());
+                .goToPosition(previousMovement.finalPosition() + diceTotal);
 
-        return applyGooseRule(repeatedMovement);
+        return applyGooseRule(repeatedMovement, diceTotal);
     }
 
     private Movement applyPlayerSwitchRule(Movement movement) {

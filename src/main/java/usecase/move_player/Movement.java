@@ -7,8 +7,6 @@ public interface Movement {
 
     int finalPosition();
 
-    int diceTotal();
-
     boolean hasPreviousMovement();
 
     Movement previousMovement();

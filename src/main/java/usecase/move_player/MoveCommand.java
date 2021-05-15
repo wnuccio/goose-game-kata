@@ -18,4 +18,8 @@ public class MoveCommand {
     public Dice dice() {
         return dice;
     }
+
+    public int diceTotal() {
+        return dice.total();
+    }
 }

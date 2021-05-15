@@ -12,10 +12,6 @@ public class FurtherMovement implements Movement {
         this.finalPosition = finalPosition;
     }
 
-    public int diceTotal() {
-        return previousMovement.diceTotal();
-    }
-
     public int startPosition() {
         return previousMovement.startPosition();
     }

@@ -20,11 +20,6 @@ public class MovementWithSwitch implements Movement {
     }
 
     @Override
-    public int diceTotal() {
-        return mainMovement.diceTotal();
-    }
-
-    @Override
     public boolean hasPreviousMovement() {
         return false;
     }
