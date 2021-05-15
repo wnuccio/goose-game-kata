@@ -23,15 +23,4 @@ class SimpleMovementTest {
         assertThat(movement.finalPosition()).isEqualTo(WIN_POSITION);
         assertThat(movement.isVictory()).isTrue();
     }
-
-    @Test
-    void ends_on_goose_when_the_final_position_has_a_goose() {
-        // positions with goose: 5, 9, 14, 18, 23, 27
-        assertThat(movement().from(3).givenRoll(dice(1, 1)).end().endsOnGoose()).isTrue();
-        assertThat(movement().from(7).givenRoll(dice(1, 1)).end().endsOnGoose()).isTrue();
-        assertThat(movement().from(12).givenRoll(dice(1, 1)).end().endsOnGoose()).isTrue();
-        assertThat(movement().from(16).givenRoll(dice(1, 1)).end().endsOnGoose()).isTrue();
-        assertThat(movement().from(21).givenRoll(dice(1, 1)).end().endsOnGoose()).isTrue();
-        assertThat(movement().from(25).givenRoll(dice(1, 1)).end().endsOnGoose()).isTrue();
-    }
 }
