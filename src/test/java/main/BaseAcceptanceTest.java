@@ -9,12 +9,11 @@ public abstract class BaseAcceptanceTest {
 
     @BeforeEach
     final void init() {
-        SharedMemory sharedMemory = new SharedMemory();
         diceRollerStub = new DiceRollerStub();
-        GooseGameAppBuilderForTest appBuilder = new GooseGameAppBuilderForTest(sharedMemory, diceRollerStub);
-        new ApplicationRunner(appBuilder).runApplication();
+        TestConfiguration configuration = new TestConfiguration(diceRollerStub);
+        configuration.applicationRunner().runApplication();
 
-        driver = new ApplicationDriver(sharedMemory);
+        driver = configuration.applicationDriver();
     }
 
     protected ApplicationDriver driver() { return driver; }

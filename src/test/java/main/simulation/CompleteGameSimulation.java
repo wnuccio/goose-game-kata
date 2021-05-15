@@ -1,10 +1,7 @@
 package main.simulation;
 
-import boundary.random.RandomDiceRoller;
 import main.ApplicationDriver;
-import main.ApplicationRunner;
-import main.GooseGameAppBuilderForTest;
-import main.SharedMemory;
+import main.TestConfiguration;
 import main.add_player.AddPlayerDriver;
 import main.move_player.MovePlayerDriver;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,11 +13,10 @@ public class CompleteGameSimulation {
 
     @BeforeEach
     void setUp() {
-        SharedMemory sharedMemory = new SharedMemory();
-        GooseGameAppBuilderForTest appBuilder = new GooseGameAppBuilderForTest(sharedMemory, new RandomDiceRoller());
-        new ApplicationRunner(appBuilder).runApplication();
+        TestConfiguration configuration = new TestConfiguration();
+        configuration.applicationRunner().runApplication();
 
-        ApplicationDriver driver = new ApplicationDriver(sharedMemory);
+        ApplicationDriver driver = configuration.applicationDriver();
         new AddPlayerDriver(driver).addPlayers("Walter", "Andrea");
 
         movePlayer = new MovePlayerDriver(driver);

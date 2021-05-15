@@ -2,8 +2,7 @@ package main.reset_game;
 
 import main.ApplicationDriver;
 import main.ApplicationRunner;
-import main.GooseGameAppBuilderForTest;
-import main.SharedMemory;
+import main.TestConfiguration;
 import main.add_player.AddPlayerDriver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,11 +15,9 @@ public class ApplicationRunnerAcceptanceTest {
 
     @BeforeEach
     void setUp() {
-        SharedMemory sharedMemory = new SharedMemory();
-        GooseGameAppBuilderForTest builder = new GooseGameAppBuilderForTest(sharedMemory, null);
-        applicationRunner = new ApplicationRunner(builder);
-
-        driver = new ApplicationDriver(sharedMemory);
+        TestConfiguration configuration = new TestConfiguration();
+        applicationRunner = configuration.applicationRunner();
+        driver = configuration.applicationDriver();
     }
 
     @Test
@@ -60,4 +57,5 @@ public class ApplicationRunnerAcceptanceTest {
         output = addPlayerDriver.addPlayer("Pippo");
         addPlayerDriver.verifyPlayersAdded(output, "Pippo");
     }
+
 }
