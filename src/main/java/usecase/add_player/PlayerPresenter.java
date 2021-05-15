@@ -1,6 +1,6 @@
-package usecase;
+package usecase.add_player;
 
-public interface Presenter {
+public interface PlayerPresenter {
     void presentPlayers(String... players);
 
     void presentExistingPlayerError(String player);

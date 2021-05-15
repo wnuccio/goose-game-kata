@@ -7,7 +7,7 @@ import boundary.interpreters.Interpreter;
 import boundary.interpreters.MovePlayerInterpreter;
 import boundary.interpreters.ResetInterpeter;
 import boundary.output.MovementPresenter;
-import boundary.output.OutputPresenter;
+import boundary.output.OutputPlayerPresenter;
 import domain.DiceRoller;
 import domain.Players;
 import usecase.add_player.AddPlayer;
@@ -59,8 +59,8 @@ public class AppConfiguration {
         return diceRoller;
     }
 
-    private OutputPresenter presenter() {
-        return new OutputPresenter(inputOutput());
+    private OutputPlayerPresenter presenter() {
+        return new OutputPlayerPresenter(inputOutput());
     }
 
     private MovementPresenter movementPresenter() {

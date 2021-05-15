@@ -1,11 +1,11 @@
 package boundary.output;
 
-import usecase.Presenter;
+import usecase.add_player.PlayerPresenter;
 
-public class OutputPresenter implements Presenter {
+public class OutputPlayerPresenter implements PlayerPresenter {
     private OutputBoundary outputBoundary;
 
-    public OutputPresenter(OutputBoundary outputBoundary) {
+    public OutputPlayerPresenter(OutputBoundary outputBoundary) {
         this.outputBoundary = outputBoundary;
     }
 

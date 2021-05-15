@@ -4,13 +4,12 @@ import domain.Players;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
-import usecase.Presenter;
 
 import static org.mockito.Mockito.*;
 
 class AddPlayerTest {
     private Players players = mock(Players.class);
-    private Presenter presenter = mock(Presenter.class);
+    private PlayerPresenter presenter = mock(PlayerPresenter.class);
     private AddPlayer addPlayer = new AddPlayer(players, presenter);
 
     @Test
