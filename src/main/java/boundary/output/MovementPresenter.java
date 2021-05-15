@@ -18,104 +18,60 @@ public class MovementPresenter {
         this.outputBoundary = outputBoundary;
     }
 
+    private String playerRolls() {
+        return format("%s rolls %s, %s" + ". ", player(), firstDice(), secondDice());
+    }
+
+    private String playerMoves(int from, int to) {
+        return format("%s moves from %s to %s", player(), positionName(from), positionName(to));
+    }
+
     public void presentSimpleMovement(SimpleMovement movement) {
-        String playerRolls = format("%s rolls %s, %s" + ". ",
-                player(),
-                firstDice(),
-                secondDice());
+        String playerMoves = playerMoves(movement.startPosition(), movement.finalPosition());
+        String playerWins = movement.isVictory() ? format(". %s Wins!!", player()) : "";
 
-        String playerMoves = format("%s moves from %s to %s",
-                player(),
-                positionName(movement.startPosition()),
-                positionName(movement.finalPosition()));
-
-        String specialCase = "";
-        if (movement.isVictory()) {
-            specialCase = format(". %s Wins!!", player());
-        }
-
-        outputBoundary.writeOutputLine(playerRolls + playerMoves + specialCase);
+        outputBoundary.writeOutputLine(playerRolls() + playerMoves + playerWins);
     }
 
     public void presentJumpOnBridge(FurtherMovement movement) {
-        String playerRolls = format("%s rolls %s, %s" + ". ",
-                player(),
-                firstDice(),
-                secondDice());
+        String playerMoves = playerMoves(movement.startPosition(), BRIDGE);
+        String playerJumps = format(". %s jumps to 12", player());
 
-        String playerMoves = format("%s moves from %s to %s",
-                player(),
-                positionName(movement.startPosition()),
-                positionName(Position.BRIDGE));
-
-        String specialCase = format(". %s jumps to 12",
-                player());
-
-        outputBoundary.writeOutputLine(playerRolls + playerMoves + specialCase);
+        outputBoundary.writeOutputLine(playerRolls() + playerMoves + playerJumps);
     }
 
     public void presentBouncing(FurtherMovement movement) {
-        String playerRolls = format("%s rolls %s, %s" + ". ",
-                player(),
-                firstDice(),
-                secondDice());
+        String playerMoves = playerMoves(movement.startPosition(), WIN_POSITION);
+        String playerBounces = format(". %s bounces! %s returns to %d", player(), player(), movement.finalPosition());
 
-        String playerMoves = format("%s moves from %s to %s",
-                player(),
-                positionName(movement.startPosition()),
-                positionName(WIN_POSITION));
-
-        String specialCase = format(". %s bounces! %s returns to %d",
-                player(),
-                player(),
-                movement.finalPosition());
-
-        outputBoundary.writeOutputLine( playerRolls + playerMoves + specialCase);
-
-    }
-
-    private String outputForRepeatOnGoose(Movement movement) {
-        if (! movement.hasPreviousMovement()) {
-            String playerRolls = format("%s rolls %s, %s" + ". ",
-                    player(),
-                    firstDice(),
-                    secondDice());
-
-            String playerMoves = format("%s moves from %s to %s, The Goose.",
-                    player(),
-                    positionName(movement.startPosition()),
-                    positionName(movement.finalPosition()));
-            return(playerRolls + playerMoves);
-        }
-
-        return outputForRepeatOnGoose(movement.previousMovement())
-                + format(" %s moves again and goes to %s%s",
-                player(),
-                movement.finalPosition(),
-                movement.endsOnGoose() ? ", The Goose." : "");
+        outputBoundary.writeOutputLine( playerRolls() + playerMoves + playerBounces);
     }
 
     public void presentPlayerSwitching(MovementWithSwitch movement) {
-        String playerRolls = format("%s rolls %s, %s" + ". ",
-                player(),
-                firstDice(),
-                secondDice());
-
-        String playerMoves = format("%s moves from %s to %s",
-                player(),
-                positionName(movement.startPosition()),
-                positionName(movement.finalPosition()));
-
         String playerSwitch = format(". On %s there is %s, who returns to %s",
                 positionName(movement.finalPosition()),
                 movement.switchedPlayer(),
                 movement.startPosition());
 
-        outputBoundary.writeOutputLine(playerRolls + playerMoves + playerSwitch);
+        outputBoundary.writeOutputLine(
+                playerRolls() +
+                        playerMoves(movement.startPosition(), movement.finalPosition()) +
+                        playerSwitch);
     }
 
     public void presentRepeatOnGoose(FurtherMovement movement) {
-        outputBoundary.writeOutputLine(outputForRepeatOnGoose(movement));
+        outputBoundary.writeOutputLine(playerMovesOnTheGoose(movement));
+    }
+
+    private String playerMovesOnTheGoose(Movement movement) {
+        if (! movement.hasPreviousMovement()) {
+            return(playerRolls() + playerMoves(movement.startPosition(), movement.finalPosition()));
+        }
+
+        String playerMovesAgain =
+                format(" %s moves again and goes to %s", player(), positionName(movement.finalPosition()));
+
+        return playerMovesOnTheGoose(movement.previousMovement()) + playerMovesAgain;
     }
 
     private String positionName(int position) {
@@ -123,7 +79,9 @@ public class MovementPresenter {
         names.put(of(START), "Start");
         names.put(of(BRIDGE), "The Bridge");
 
-        return names.getOrDefault(of(position), valueOf(position));
+        String name = names.getOrDefault(of(position), valueOf(position));
+        String gooseSuffix = Position.of(position).hasTheGoose() ? ", The Goose." : "";
+        return name + gooseSuffix;
     }
 
     private int secondDice() {
