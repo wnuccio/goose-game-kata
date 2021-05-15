@@ -22,7 +22,7 @@ public class ComputeMovement {
         Movement movement = applyBouncingRule(firstMovement);
         movement = applyBridgeRule(movement);
         movement = applyGooseRule(movement, command.diceTotal());
-        movement = applyPlayerSwitchRule(movement);
+        movement = applyPlayerSwitchRule(movement, command.player());
 
         players.setPositionOf(command.player(), movement.finalPosition());
         return movement;
@@ -65,12 +65,12 @@ public class ComputeMovement {
         return applyGooseRule(repeatedMovement, diceTotal);
     }
 
-    private Movement applyPlayerSwitchRule(Movement movement) {
+    private Movement applyPlayerSwitchRule(Movement movement, String player) {
         List<String> ecounteredPlayers = players.playersOnPosition(movement.finalPosition());
         if (ecounteredPlayers.isEmpty()) return movement;
         String unluckyPlayer = ecounteredPlayers.get(0);
 
-        players.setPositionOf(unluckyPlayer, movement.startPosition());
+        players.setPositionOf(unluckyPlayer, players.positionOf(player));
         return new MovementWithSwitch(unluckyPlayer, movement);
     }
 }
