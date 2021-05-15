@@ -1,6 +1,5 @@
 package usecase.move_player;
 
-import boundary.output.MovementPresenter;
 import domain.Players;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;

@@ -1,6 +1,5 @@
 package usecase.move_player;
 
-import boundary.output.MovementPresenter;
 import domain.Players;
 
 public class MovePlayer {

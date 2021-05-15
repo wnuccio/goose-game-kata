@@ -1,6 +1,5 @@
 package usecase.move_player;
 
-import boundary.output.MovementPresenter;
 
 public class FurtherMovement implements Movement {
     protected Movement previousMovement;

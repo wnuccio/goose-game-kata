@@ -9,14 +9,15 @@ import static domain.Position.*;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
 
-public class MovementPresenter {
+public class OutputMovementPresenter implements MovementPresenter {
     private OutputBoundary outputBoundary;
     private MovementView movementView;
 
-    public MovementPresenter(OutputBoundary outputBoundary) {
+    public OutputMovementPresenter(OutputBoundary outputBoundary) {
         this.outputBoundary = outputBoundary;
     }
 
+    @Override
     public void presentMovement(MovementView movementView) {
         this.movementView = movementView;
         movementView.present(this);
@@ -30,6 +31,7 @@ public class MovementPresenter {
         return format("%s moves from %s to %s", player(), positionName(from), positionName(to));
     }
 
+    @Override
     public void presentSimpleMovement(SimpleMovement movement) {
         String playerMoves = playerMoves(movement.startPosition(), movement.finalPosition());
         String playerWins = movement.isVictory() ? format(". %s Wins!!", player()) : "";
@@ -37,6 +39,7 @@ public class MovementPresenter {
         outputBoundary.writeOutputLine(playerRolls() + playerMoves + playerWins);
     }
 
+    @Override
     public void presentJumpOnBridge(FurtherMovement movement) {
         String playerMoves = playerMoves(movement.startPosition(), BRIDGE);
         String playerJumps = format(". %s jumps to 12", player());
@@ -44,6 +47,7 @@ public class MovementPresenter {
         outputBoundary.writeOutputLine(playerRolls() + playerMoves + playerJumps);
     }
 
+    @Override
     public void presentBouncing(FurtherMovement movement) {
         String playerMoves = playerMoves(movement.startPosition(), WIN_POSITION);
         String playerBounces = format(". %s bounces! %s returns to %d", player(), player(), movement.finalPosition());
@@ -51,6 +55,7 @@ public class MovementPresenter {
         outputBoundary.writeOutputLine( playerRolls() + playerMoves + playerBounces);
     }
 
+    @Override
     public void presentPlayerSwitching(MovementWithSwitch movement) {
         String playerSwitch = format(". On %s there is %s, who returns to %s",
                 positionName(movement.finalPosition()),
@@ -63,6 +68,7 @@ public class MovementPresenter {
                         playerSwitch);
     }
 
+    @Override
     public void presentRepeatOnGoose(FurtherMovement movement) {
         outputBoundary.writeOutputLine(playerMovesOnTheGoose(movement));
     }

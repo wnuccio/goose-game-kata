@@ -6,7 +6,7 @@ import boundary.interpreters.AddPlayerInterpeter;
 import boundary.interpreters.Interpreter;
 import boundary.interpreters.MovePlayerInterpreter;
 import boundary.interpreters.ResetInterpeter;
-import boundary.output.MovementPresenter;
+import boundary.output.OutputMovementPresenter;
 import boundary.output.OutputPlayerPresenter;
 import domain.DiceRoller;
 import domain.Players;
@@ -63,8 +63,8 @@ public class AppConfiguration {
         return new OutputPlayerPresenter(inputOutput());
     }
 
-    private MovementPresenter movementPresenter() {
-        return new MovementPresenter(inputOutput());
+    private OutputMovementPresenter movementPresenter() {
+        return new OutputMovementPresenter(inputOutput());
     }
 
     ///// INTERPRETERS CHAIN ///////////////////////////////////////////////////////////////

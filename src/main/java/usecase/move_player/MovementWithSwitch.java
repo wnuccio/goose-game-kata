@@ -1,7 +1,5 @@
 package usecase.move_player;
 
-import boundary.output.MovementPresenter;
-
 public class MovementWithSwitch implements Movement {
     private String switchedPlayer;
     private Movement mainMovement;

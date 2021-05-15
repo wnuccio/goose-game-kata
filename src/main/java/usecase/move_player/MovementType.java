@@ -1,7 +1,5 @@
 package usecase.move_player;
 
-import boundary.output.MovementPresenter;
-
 interface PresentationFunction {
     void apply(FurtherMovement furtherMovement, MovementPresenter movementPresenter);
 }
