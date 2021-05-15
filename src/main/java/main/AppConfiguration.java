@@ -9,7 +9,7 @@ import boundary.interpreters.ResetInterpeter;
 import boundary.output.OutputPresenter;
 import domain.DiceRoller;
 import domain.Players;
-import usecase.add_player.AddPlayerUseCase;
+import usecase.add_player.AddPlayer;
 import usecase.move_player.ComputeMovement;
 import usecase.move_player.MovePlayer;
 import usecase.move_player.RollAndMove;
@@ -80,8 +80,8 @@ public class AppConfiguration {
     }
     ///// INTERPRETERS CHAIN ///////////////////////////////////////////////////////////////
 
-    private AddPlayerUseCase addPlayer() {
-        return new AddPlayerUseCase(players(), presenter());
+    private AddPlayer addPlayer() {
+        return new AddPlayer(players(), presenter());
     }
 
     private ResetService resetService() {

@@ -3,11 +3,11 @@ package usecase.add_player;
 import domain.Players;
 import usecase.Presenter;
 
-public class AddPlayerUseCase {
+public class AddPlayer {
     private Players players;
     private Presenter presenter;
 
-    public AddPlayerUseCase(Players players, Presenter presenter) {
+    public AddPlayer(Players players, Presenter presenter) {
         this.players = players;
         this.presenter = presenter;
     }

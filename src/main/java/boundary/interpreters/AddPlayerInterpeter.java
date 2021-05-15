@@ -1,11 +1,11 @@
 package boundary.interpreters;
 
-import usecase.add_player.AddPlayerUseCase;
+import usecase.add_player.AddPlayer;
 
 public class AddPlayerInterpeter extends Interpreter {
-    private AddPlayerUseCase addPlayer;
+    private AddPlayer addPlayer;
 
-    public AddPlayerInterpeter(AddPlayerUseCase addPlayer, Interpreter nextInterpreter) {
+    public AddPlayerInterpeter(AddPlayer addPlayer, Interpreter nextInterpreter) {
         super(nextInterpreter);
         this.addPlayer = addPlayer;
     }

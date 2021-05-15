@@ -8,16 +8,16 @@ import usecase.Presenter;
 
 import static org.mockito.Mockito.*;
 
-class AddPlayerUseCaseTest {
+class AddPlayerTest {
     private Players players = mock(Players.class);
     private Presenter presenter = mock(Presenter.class);
-    private AddPlayerUseCase addPlayerUseCase = new AddPlayerUseCase(players, presenter);
+    private AddPlayer addPlayer = new AddPlayer(players, presenter);
 
     @Test
     void add_a_new_player_when_an_add_player_command_is_provided() {
         when(players.all()).thenReturn(players("Pippo"));
 
-        addPlayerUseCase.doAdd("Pippo");
+        addPlayer.doAdd("Pippo");
 
         verify(presenter).presentPlayers("Pippo");
     }
@@ -28,8 +28,8 @@ class AddPlayerUseCaseTest {
                 .thenReturn(players("Pippo"))
                 .thenReturn(players("Pippo", "Pluto"));
 
-        addPlayerUseCase.doAdd("Pippo");
-        addPlayerUseCase.doAdd("Pluto");
+        addPlayer.doAdd("Pippo");
+        addPlayer.doAdd("Pluto");
 
         verify(presenter).presentPlayers("Pippo");
         verify(presenter).presentPlayers("Pippo", "Pluto");
@@ -42,8 +42,8 @@ class AddPlayerUseCaseTest {
                 .thenReturn(false)
                 .thenReturn(true);
 
-        addPlayerUseCase.doAdd("Pippo");
-        addPlayerUseCase.doAdd("Pippo");
+        addPlayer.doAdd("Pippo");
+        addPlayer.doAdd("Pippo");
 
         InOrder inOrder = Mockito.inOrder(presenter);
         inOrder.verify(presenter).presentPlayers("Pippo");
