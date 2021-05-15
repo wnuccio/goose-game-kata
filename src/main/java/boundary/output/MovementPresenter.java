@@ -3,7 +3,9 @@ package boundary.output;
 import domain.Position;
 import usecase.move_player.*;
 
-import static domain.Position.WIN_POSITION;
+import java.util.HashMap;
+
+import static domain.Position.*;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
 
@@ -117,12 +119,11 @@ public class MovementPresenter {
     }
 
     private String positionName(int position) {
-        if (position == Position.START) return "Start";
-        if (position == Position.BRIDGE) return "The Bridge";
-        if (position == Position.BRIDGE_TARGET) return "12";
-        if (position == WIN_POSITION) return "63";
+        HashMap<Position, String> names = new HashMap<>();
+        names.put(of(START), "Start");
+        names.put(of(BRIDGE), "The Bridge");
 
-        return valueOf(position);
+        return names.getOrDefault(of(position), valueOf(position));
     }
 
     private int secondDice() {
