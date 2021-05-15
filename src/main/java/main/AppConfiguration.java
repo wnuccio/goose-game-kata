@@ -64,19 +64,11 @@ public class AppConfiguration {
 
     ///// INTERPRETERS CHAIN ///////////////////////////////////////////////////////////////
     private Interpreter interpretersChain() {
-        return resetInterpeter();
-    }
-
-    private ResetInterpeter resetInterpeter() {
-        return new ResetInterpeter(resetService(), addPlayerInterpeter());
-    }
-
-    private AddPlayerInterpeter addPlayerInterpeter() {
-        return new AddPlayerInterpeter(addPlayer(), movePlayerInterpreter());
-    }
-
-    private MovePlayerInterpreter movePlayerInterpreter() {
-        return new MovePlayerInterpreter(rollAndMove(), movePlayer(), null);
+        return
+                new ResetInterpeter(resetService(),
+                    new AddPlayerInterpeter(addPlayer(),
+                        new MovePlayerInterpreter(rollAndMove(), movePlayer(),
+                                null)));
     }
     ///// INTERPRETERS CHAIN ///////////////////////////////////////////////////////////////
 
