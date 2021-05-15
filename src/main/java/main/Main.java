@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         GooseGameAppBuilder appBuilder = selectApplicationBuilder(args);
-        GooseGameApp app = appBuilder.buildApplication();
+        GooseGameApp app = new AppConfiguration(appBuilder).buildApplication();
         app.run();
     }
 
