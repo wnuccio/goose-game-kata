@@ -1,29 +1,35 @@
 package main.reset_game;
 
-import main.BaseAcceptanceTest;
+import main.ApplicationDriver;
+import main.ApplicationRunner;
+import main.GooseGameAppBuilderForTest;
+import main.SharedMemory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class StopApplicationAcceptanceTest extends BaseAcceptanceTest {
+public class StopApplicationAcceptanceTest {
     private ResetDriver resetDriver;
+    private ApplicationRunner applicationRunner;
 
     @BeforeEach
     void setUp() {
-        resetDriver = new ResetDriver(driver());
+        SharedMemory sharedMemory = new SharedMemory();
+        GooseGameAppBuilderForTest builder = new GooseGameAppBuilderForTest(sharedMemory, null);
+        applicationRunner = new ApplicationRunner(builder);
+
+        resetDriver = new ResetDriver(new ApplicationDriver(sharedMemory));
     }
 
     @Test
     void after_stop_command_the_application_is_no_more_running() {
-//        ApplicationRunner.runApplication();
+        applicationRunner.runApplication();
 
-        assertThat(super.applicationRunner.isApplicationRunning()).isTrue();
-//        resetDriver.verifyGameRunning();
+        assertThat(applicationRunner.isApplicationRunning()).isTrue();
 
         resetDriver.stopGame();
 
-//        resetDriver.verifyGameStopped();
-        assertThat(super.applicationRunner.isApplicationRunning()).isFalse();
+        assertThat(applicationRunner.isApplicationRunning()).isFalse();
     }
 }
