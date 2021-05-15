@@ -1,2 +1,7 @@
-- rifattorizzare la logica di creazione dei builder di test ora duplicata
+- continuare il refactoring delle rule:
+    - spostare alcune logiche su Position
+    - evitare di duplicare su Movement le informazioni già disponibili nella Movement view
+    - chiarificare la logica della regola di switch players
+  
+- migliorare il codice di Players
       

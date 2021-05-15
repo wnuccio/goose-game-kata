@@ -51,12 +51,13 @@ class PlayersTest {
     }
 
     @Test
-    void find_any_player_on_given_position() {
+    void find_any_other_player_on_given_position() {
         Players players = new Players();
         players.setPositionOf("Pippo", 15);
         players.setPositionOf("Pluto", 15);
+        players.setPositionOf("Paperino", 10);
 
-        assertThat(players.playersOnPosition(15)).isEqualTo(asList("Pippo", "Pluto"));
-        assertThat(players.playersOnPosition(17)).isEqualTo(emptyList());
+        assertThat(players.playersOnSamePositionOf("Pippo")).isEqualTo(asList("Pluto"));
+        assertThat(players.playersOnSamePositionOf("Paperino")).isEqualTo(emptyList());
     }
 }

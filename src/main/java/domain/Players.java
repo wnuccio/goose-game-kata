@@ -35,10 +35,11 @@ public class Players {
         return nameSet.toArray(stringArray);
     }
 
-    public List<String> playersOnPosition(int position) {
+    public List<String> playersOnSamePositionOf(String thisPlayer) {
+        Integer position = positionOf(thisPlayer);
         return players.entrySet()
                 .stream()
-                .filter(entry -> entry.getValue().equals(position))
+                .filter(entry -> entry.getValue().equals(position) &&  ! entry.getKey().equals(thisPlayer))
                 .map(entry -> entry.getKey())
                 .collect(Collectors.toList());
     }

@@ -17,36 +17,44 @@ public class ComputeMovement {
     }
 
     public Movement fromCommand(MoveCommand command) {
-        SimpleMovement firstMovement = buildFirstMovement(command);
+        SimpleMovement firstMovement = applyFirstMovement(command);
+        Movement movement = applyBouncingRule(command, firstMovement);
+        movement = applyBridgeRule(command, movement);
+        movement = applyGooseRule(command, movement);
+        movement = applyPlayerSwitchRule(command, movement);
 
-        Movement movement = applyBouncingRule(firstMovement);
-        movement = applyBridgeRule(movement);
-        movement = applyGooseRule(movement, command.diceTotal());
-        movement = applyPlayerSwitchRule(movement, command.player());
-
-        players.setPositionOf(command.player(), movement.finalPosition());
         return movement;
     }
 
-    private SimpleMovement buildFirstMovement(MoveCommand command) {
-        return movement()
-                .from(players.positionOf(command.player()))
+    private SimpleMovement applyFirstMovement(MoveCommand command) {
+        int startPosition = players.positionOf(command.player());
+
+        SimpleMovement movement = movement()
+                .from(startPosition)
                 .givenRoll(command.dice())
                 .end();
+
+        players.setPositionOf(command.player(),  startPosition + command.diceTotal());
+        return movement;
     }
 
-    private Movement applyBouncingRule(SimpleMovement firstMovement) {
+    private Movement applyBouncingRule(MoveCommand command, SimpleMovement firstMovement) {
         if (firstMovement.finalPosition() > WIN_POSITION) {
+            int finalPosition = WIN_POSITION - (firstMovement.finalPosition() - WIN_POSITION);
+            players.setPositionOf(command.player(), finalPosition);
+
             return after(firstMovement)
                     .becauseOf(BOUNCING)
-                    .goToPosition(WIN_POSITION - (firstMovement.finalPosition() - WIN_POSITION));
+                    .goToPosition(finalPosition);
         }
 
         return firstMovement;
     }
 
-    private Movement applyBridgeRule(Movement movement) {
+    private Movement applyBridgeRule(MoveCommand command, Movement movement) {
         if (movement.finalPosition() == BRIDGE) {
+            players.setPositionOf(command.player(), BRIDGE_TARGET);
+
             return after(movement)
                     .becauseOf(JUMP_ON_BRIDGE)
                     .goToPosition(BRIDGE_TARGET);
@@ -55,22 +63,26 @@ public class ComputeMovement {
         return movement;
     }
 
-    private Movement applyGooseRule(Movement currentMovement, int diceTotal) {
+    private Movement applyGooseRule(MoveCommand command, Movement currentMovement) {
         if (! currentMovement.endsOnGoose()) return currentMovement;
+
+        int finalPosition = currentMovement.finalPosition() + command.diceTotal();
+        players.setPositionOf(command.player(), finalPosition);
 
         Movement repeatedMovement = after(currentMovement)
                 .becauseOf(REPEAT_ON_GOOSE)
-                .goToPosition(currentMovement.finalPosition() + diceTotal);
+                .goToPosition(finalPosition);
 
-        return applyGooseRule(repeatedMovement, diceTotal);
+        return applyGooseRule(command, repeatedMovement);
     }
 
-    private Movement applyPlayerSwitchRule(Movement movement, String player) {
-        List<String> ecounteredPlayers = players.playersOnPosition(movement.finalPosition());
+    private Movement applyPlayerSwitchRule(MoveCommand command, Movement movement) {
+        List<String> ecounteredPlayers = players.playersOnSamePositionOf(command.player());
         if (ecounteredPlayers.isEmpty()) return movement;
         String unluckyPlayer = ecounteredPlayers.get(0);
 
-        players.setPositionOf(unluckyPlayer, players.positionOf(player));
+        int previousPositionOfCurrentPlayer = movement.startPosition();
+        players.setPositionOf(unluckyPlayer, previousPositionOfCurrentPlayer);
         return new MovementWithSwitch(unluckyPlayer, movement);
     }
 }
