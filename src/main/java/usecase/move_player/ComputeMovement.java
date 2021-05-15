@@ -55,12 +55,12 @@ public class ComputeMovement {
         return movement;
     }
 
-    private Movement applyGooseRule(Movement previousMovement, int diceTotal) {
-        if (! previousMovement.endsOnGoose()) return previousMovement;
+    private Movement applyGooseRule(Movement currentMovement, int diceTotal) {
+        if (! currentMovement.endsOnGoose()) return currentMovement;
 
-        Movement repeatedMovement = after(previousMovement)
+        Movement repeatedMovement = after(currentMovement)
                 .becauseOf(REPEAT_ON_GOOSE)
-                .goToPosition(previousMovement.finalPosition() + diceTotal);
+                .goToPosition(currentMovement.finalPosition() + diceTotal);
 
         return applyGooseRule(repeatedMovement, diceTotal);
     }
