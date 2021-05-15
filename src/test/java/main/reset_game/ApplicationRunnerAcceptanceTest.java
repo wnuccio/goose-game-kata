@@ -38,7 +38,7 @@ public class ApplicationRunnerAcceptanceTest {
 
         assertThat(applicationRunner.isApplicationRunning()).isTrue();
 
-        driver.acceptInput("stop game");
+        driver.acceptInputNoOutput("stop game");
 
         assertThat(applicationRunner.isApplicationRunning()).isFalse();
     }
@@ -55,7 +55,7 @@ public class ApplicationRunnerAcceptanceTest {
         output = addPlayerDriver.addPlayer("Pippo");
         addPlayerDriver.verifyAlreadyExistingPlayer(output, "Pippo");
 
-        driver.acceptInput("reset game");
+        driver.acceptInputNoOutput("reset game");
 
         output = addPlayerDriver.addPlayer("Pippo");
         addPlayerDriver.verifyPlayersAdded(output, "Pippo");
