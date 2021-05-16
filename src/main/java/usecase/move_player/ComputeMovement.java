@@ -4,7 +4,8 @@ import domain.Players;
 
 import java.util.List;
 
-import static domain.Position.*;
+import static domain.Position.BRIDGE;
+import static domain.Position.BRIDGE_TARGET;
 import static usecase.move_player.FurtherMovementBuilder.after;
 import static usecase.move_player.MovementType.*;
 import static usecase.move_player.SimpleMovement.movement;
@@ -42,7 +43,7 @@ public class ComputeMovement {
 
     private Movement applyBouncingRule(MoveCommand command, SimpleMovement firstMovement) {
         if (firstMovement.isOverTheVictory()) {
-            int finalPosition = WIN_POSITION - (firstMovement.finalPosition() - WIN_POSITION);
+            int finalPosition = firstMovement.bouncedPosition().value();
             players.setPositionOf(command.player(), finalPosition);
 
             return after(firstMovement)

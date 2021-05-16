@@ -35,6 +35,4 @@ public class SimpleMovement implements Movement {
     public void present(MovementPresenter movementPresenter) {
         movementPresenter.presentSimpleMovement(this);
     }
-
-
 }

@@ -27,4 +27,12 @@ public class PositionTest {
         assertThat(Position.of(60).isOverTheVictory()).isFalse();
         assertThat(Position.of(63).isOverTheVictory()).isFalse();
     }
+
+    @Test
+    void return_a_bounced_position() {
+        assertThat(Position.of(65).bounced()).isEqualTo(Position.of(61));
+        assertThat(Position.of(67).bounced()).isEqualTo(Position.of(59));
+        assertThat(Position.of(60).bounced()).isEqualTo(Position.of(60));
+        assertThat(Position.of(63).bounced()).isEqualTo(Position.of(63));
+    }
 }

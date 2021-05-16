@@ -46,4 +46,22 @@ public class Position {
     public boolean isOverTheVictory() {
         return value > WIN_POSITION;
     }
+
+    public Position bounced() {
+        if (! isOverTheVictory()) return this;
+
+        int bounced = WIN_POSITION - (value - WIN_POSITION);
+        return Position.of(bounced);
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "value=" + value +
+                '}';
+    }
+
+    public int value() {
+        return value;
+    }
 }

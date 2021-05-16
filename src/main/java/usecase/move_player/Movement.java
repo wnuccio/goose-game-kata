@@ -24,4 +24,8 @@ public interface Movement {
     default boolean isOverTheVictory() {
          return Position.of(finalPosition()).isOverTheVictory();
     }
+
+    default Position bouncedPosition() {
+        return Position.of(finalPosition()).bounced();
+    }
 }
