@@ -1,13 +1,11 @@
 package usecase.move_player;
 
 import domain.Players;
-import domain.Position;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Test;
 
 import static domain.Dice.dice;
-import static domain.Position.BRIDGE_TARGET;
-import static domain.Position.START;
+import static domain.Position.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ComputeMovementTest {
@@ -18,84 +16,84 @@ class ComputeMovementTest {
     void build_a_movement_with_player_name_initial_position_and_dice_values() {
         String pippo = "Pippo";
         int position = 0;
-        players.setPositionOf(pippo, Position.of(position));
+        players.setPositionOf(pippo, position(position));
 
         Movement movement = computeMovement.fromCommand(move("Pippo", 4, 3));
 
-        AssertionsForClassTypes.assertThat(players.positionOf("Pippo")).isEqualTo(Position.of(7));
+        AssertionsForClassTypes.assertThat(players.positionOf("Pippo")).isEqualTo(position(7));
 
         assertThat(movement.startPosition()).isEqualTo(START);
-        assertThat(movement.finalPosition()).isEqualTo(Position.of(7));
+        assertThat(movement.finalPosition()).isEqualTo(position(7));
         assertThat(movement.hasPreviousMovement()).isFalse();
     }
 
     @Test
     void repeat_movement_on_bouncing() {
-        players.setPositionOf("Pippo", Position.of(62));
+        players.setPositionOf("Pippo", position(62));
 
         Movement movement = computeMovement.fromCommand(move("Pippo", 3, 4));
 
-        AssertionsForClassTypes.assertThat(players.positionOf("Pippo")).isEqualTo(Position.of(57));
-        assertThat(movement.startPosition()).isEqualTo(Position.of(62));
-        assertThat(movement.finalPosition()).isEqualTo(Position.of(57));
+        AssertionsForClassTypes.assertThat(players.positionOf("Pippo")).isEqualTo(position(57));
+        assertThat(movement.startPosition()).isEqualTo(position(62));
+        assertThat(movement.finalPosition()).isEqualTo(position(57));
         assertThat(movement.hasPreviousMovement()).isTrue();
     }
 
     @Test
     void repeat_movement_on_the_bridge() {
-        players.setPositionOf("Pippo", Position.of(4));
+        players.setPositionOf("Pippo", position(4));
 
         Movement movement = computeMovement.fromCommand(move("Pippo", 1, 1));
 
         AssertionsForClassTypes.assertThat(players.positionOf("Pippo")).isEqualTo(BRIDGE_TARGET);
-        assertThat(movement.startPosition()).isEqualTo(Position.of(4));
+        assertThat(movement.startPosition()).isEqualTo(position(4));
         assertThat(movement.finalPosition()).isEqualTo(BRIDGE_TARGET);
         assertThat(movement.hasPreviousMovement()).isTrue();
     }
 
     @Test
     void repeat_movement_on_the_goose() {
-        players.setPositionOf("Pippo", Position.of(3));
+        players.setPositionOf("Pippo", position(3));
 
         Movement movement = computeMovement.fromCommand(move("Pippo", 1, 1));
 
-        AssertionsForClassTypes.assertThat(players.positionOf("Pippo")).isEqualTo(Position.of(7));
-        assertThat(movement.startPosition()).isEqualTo(Position.of(3));
-        assertThat(movement.finalPosition()).isEqualTo(Position.of(7));
+        AssertionsForClassTypes.assertThat(players.positionOf("Pippo")).isEqualTo(position(7));
+        assertThat(movement.startPosition()).isEqualTo(position(3));
+        assertThat(movement.finalPosition()).isEqualTo(position(7));
         assertThat(movement.hasPreviousMovement()).isTrue();
     }
 
     @Test
     void repeat_movement_on_the_goose_more_times() {
-        players.setPositionOf("Pippo", Position.of(10));
+        players.setPositionOf("Pippo", position(10));
 
         Movement movement = computeMovement.fromCommand(move("Pippo", 2, 2));
 
-        AssertionsForClassTypes.assertThat(players.positionOf("Pippo")).isEqualTo(Position.of(22));
-        assertThat(movement.startPosition()).isEqualTo(Position.of(10));
-        assertThat(movement.finalPosition()).isEqualTo(Position.of(22));
+        AssertionsForClassTypes.assertThat(players.positionOf("Pippo")).isEqualTo(position(22));
+        assertThat(movement.startPosition()).isEqualTo(position(10));
+        assertThat(movement.finalPosition()).isEqualTo(position(22));
         assertThat(movement.hasPreviousMovement()).isTrue();
     }
 
     @Test
     void switch_players_on_encounter() {
-        players.setPositionOf("Pippo", Position.of(15));
-        players.setPositionOf("Pluto", Position.of(17));
+        players.setPositionOf("Pippo", position(15));
+        players.setPositionOf("Pluto", position(17));
 
         Movement movement = computeMovement.fromCommand(move("Pippo", 1, 1));
 
-        assertThat(movement.startPosition()).isEqualTo(Position.of(15));
-        assertThat(movement.finalPosition()).isEqualTo(Position.of(17));
+        assertThat(movement.startPosition()).isEqualTo(position(15));
+        assertThat(movement.finalPosition()).isEqualTo(position(17));
         assertThat(movement instanceof MovementWithSwitch).isTrue();
 
         MovementWithSwitch movementWithSwitch = (MovementWithSwitch)movement;
         assertThat(movementWithSwitch.hasPreviousMovement()).isFalse();
-        assertThat(movementWithSwitch.startPosition()).isEqualTo(Position.of(15));
-        assertThat(movementWithSwitch.finalPosition()).isEqualTo(Position.of(17));
+        assertThat(movementWithSwitch.startPosition()).isEqualTo(position(15));
+        assertThat(movementWithSwitch.finalPosition()).isEqualTo(position(17));
         assertThat(movementWithSwitch.switchedPlayer()).isEqualTo("Pluto");
 
-        AssertionsForClassTypes.assertThat(players.positionOf("Pippo")).isEqualTo(Position.of(17));
-        AssertionsForClassTypes.assertThat(players.positionOf("Pluto")).isEqualTo(Position.of(15));
+        AssertionsForClassTypes.assertThat(players.positionOf("Pippo")).isEqualTo(position(17));
+        AssertionsForClassTypes.assertThat(players.positionOf("Pluto")).isEqualTo(position(15));
     }
 
 

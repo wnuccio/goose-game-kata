@@ -6,10 +6,10 @@ import java.util.Objects;
 import static java.util.Arrays.asList;
 
 public class Position {
-    public static final Position START = Position.of(0);
-    public static final Position BRIDGE = Position.of(6);
-    public static final Position BRIDGE_TARGET = Position.of(12);
-    public static final Position WIN = Position.of(63);
+    public static final Position START = Position.position(0);
+    public static final Position BRIDGE = Position.position(6);
+    public static final Position BRIDGE_TARGET = Position.position(12);
+    public static final Position WIN = Position.position(63);
 
     private final int value;
 
@@ -17,7 +17,7 @@ public class Position {
         this.value = value;
     }
 
-    public static Position of(int value) {
+    public static Position position(int value) {
         return new Position(value);
     }
 
@@ -51,7 +51,7 @@ public class Position {
         if (! isOverTheVictory()) return this;
 
         int bounced = WIN.value - (value - WIN.value);
-        return Position.of(bounced);
+        return Position.position(bounced);
     }
 
     @Override
@@ -66,6 +66,6 @@ public class Position {
     }
 
     public Position plus(int i) {
-        return Position.of(value + i);
+        return Position.position(value + i);
     }
 }

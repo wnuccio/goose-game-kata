@@ -1,11 +1,11 @@
 package usecase.add_player;
 
 import domain.Players;
-import domain.Position;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
+import static domain.Position.position;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -19,7 +19,7 @@ public class PlayersTest {
 
         String pippo = "Pippo";
         int expected = 0;
-        assertThat(players.positionOf(pippo)).isEqualTo(Position.of(expected));
+        assertThat(players.positionOf(pippo)).isEqualTo(position(expected));
     }
 
     @Test
@@ -35,9 +35,9 @@ public class PlayersTest {
     void change_position_of_a_player() {
         Players players = new Players().addPlayer("Pippo");
 
-        players.setPositionOf("Pippo", Position.of(60));
+        players.setPositionOf("Pippo", position(60));
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(Position.of(60));
+        assertThat(players.positionOf("Pippo")).isEqualTo(position(60));
     }
 
     @Test
@@ -56,9 +56,9 @@ public class PlayersTest {
     @Test
     void find_any_other_player_on_given_position() {
         Players players = new Players();
-        players.setPositionOf("Pippo", Position.of(15));
-        players.setPositionOf("Pluto", Position.of(15));
-        players.setPositionOf("Paperino", Position.of(10));
+        players.setPositionOf("Pippo", position(15));
+        players.setPositionOf("Pluto", position(15));
+        players.setPositionOf("Paperino", position(10));
 
         assertThat(players.playersOnSamePositionOf("Pippo")).isEqualTo(asList("Pluto"));
         assertThat(players.playersOnSamePositionOf("Paperino")).isEqualTo(emptyList());
