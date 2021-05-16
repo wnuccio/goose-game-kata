@@ -1,6 +1,7 @@
 package usecase.move_player;
 
 import domain.Dice;
+import domain.Position;
 
 public class MovementBuilder {
 
@@ -10,12 +11,12 @@ public class MovementBuilder {
         movement = new SimpleMovement();
     }
 
-    public MovementBuilder from(int startPosition) {
+    public MovementBuilder from(Position startPosition) {
         movement.startPosition = startPosition;
         return this;
     }
 
-    public MovementBuilder to(int finalPosition) {
+    public MovementBuilder to(Position finalPosition) {
         movement.finalPosition = finalPosition;
         return this;
     }

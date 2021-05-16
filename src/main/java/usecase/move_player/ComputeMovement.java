@@ -33,8 +33,8 @@ public class ComputeMovement {
         Position finalPosition = startPosition.plus(command.diceTotal());
 
         SimpleMovement movement = movement()
-                .from(startPosition.value())
-                .to(finalPosition.value())
+                .from(startPosition)
+                .to(finalPosition)
                 .givenRoll(command.dice())
                 .end();
 

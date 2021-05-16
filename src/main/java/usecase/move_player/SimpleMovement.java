@@ -4,8 +4,8 @@ import domain.Dice;
 import domain.Position;
 
 public class SimpleMovement implements Movement {
-    int finalPosition;
-    int startPosition;
+    Position finalPosition;
+    Position startPosition;
     Dice dice;
 
     public static MovementBuilder movement() {
@@ -14,12 +14,12 @@ public class SimpleMovement implements Movement {
 
     @Override
     public Position startPosition() {
-        return Position.of(startPosition);
+        return startPosition;
     }
 
     @Override
     public Position finalPosition() {
-        return Position.of(finalPosition);
+        return finalPosition;
     }
 
     @Override
