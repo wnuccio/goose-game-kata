@@ -16,4 +16,8 @@ public class PositionTest {
         assertThat(Position.of(27).hasTheGoose()).isTrue();
     }
 
+    @Test
+    void position_63_is_win_position() {
+        assertThat(Position.of(63).isWin()).isTrue();
+    }
 }

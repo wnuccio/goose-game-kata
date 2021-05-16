@@ -22,7 +22,7 @@ public class SimpleMovement implements Movement {
     }
 
     public boolean isVictory() {
-        return finalPosition() == Position.WIN_POSITION;
+        return Position.of(finalPosition()).isWin();
     }
 
     @Override

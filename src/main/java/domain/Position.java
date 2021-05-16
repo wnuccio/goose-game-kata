@@ -38,4 +38,8 @@ public class Position {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    public boolean isWin() {
+        return value == WIN_POSITION;
+    }
 }
