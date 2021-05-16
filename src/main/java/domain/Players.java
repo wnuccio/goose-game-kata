@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Players {
-    private Map<String, Integer> players = new HashMap<>();
+    private final Map<String, Integer> players = new HashMap<>();
 
     public Players addPlayer(String playerName) {
         players.put(playerName, 0);
@@ -15,14 +15,14 @@ public class Players {
         return players.containsKey(playerName);
     }
 
-    public int positionOf(String playerName) {
+    public Position positionOf(String playerName) {
         if (! contains(playerName)) throw new NoSuchElementException("No such player: " + playerName);
 
-        return players.get(playerName);
+        return Position.of(players.get(playerName));
     }
 
-    public void setPositionOf(String player, int position) {
-        players.put(player, position);
+    public void setPositionOf(String player, Position position) {
+        players.put(player, position.value());
     }
 
     public void clear() {
@@ -37,7 +37,7 @@ public class Players {
 
     public List<String> playersOnSamePositionOf(String thisPlayer) {
         List<String> result = players.keySet().stream()
-                .filter(aPlayer -> positionOf(aPlayer) == positionOf(thisPlayer))
+                .filter(aPlayer -> positionOf(aPlayer).equals(positionOf(thisPlayer)))
                 .collect(Collectors.toList());
 
         result.remove(thisPlayer);

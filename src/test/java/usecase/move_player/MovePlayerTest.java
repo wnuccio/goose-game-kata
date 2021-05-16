@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 import static domain.Dice.dice;
+import static domain.Position.START;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -17,7 +18,7 @@ class MovePlayerTest {
 
     @Test
     void build_a_movement_view_with_player_name_initial_position_and_dice_values() {
-        players.setPositionOf("Pippo", 0);
+        players.setPositionOf("Pippo", START);
         MoveCommand moveCommand = move("Pippo", 4, 3);
         Movement movement = mock(Movement.class);
         when(computeMovement.fromCommand(moveCommand)).thenReturn(movement);

@@ -1,6 +1,7 @@
 package usecase.move_player;
 
 import domain.Players;
+import domain.Position;
 
 import java.util.List;
 
@@ -28,27 +29,28 @@ public class ComputeMovement {
     }
 
     private SimpleMovement applyFirstMovementRule(MoveCommand command) {
-        int startPosition = players.positionOf(command.player());
-        int finalPosition = startPosition + command.diceTotal();
+        Position startPosition = players.positionOf(command.player());
+        Position finalPosition = startPosition.plus(command.diceTotal());
 
         SimpleMovement movement = movement()
-                .from(startPosition)
-                .to(finalPosition)
+                .from(startPosition.value())
+                .to(finalPosition.value())
                 .givenRoll(command.dice())
                 .end();
 
-        players.setPositionOf(command.player(), finalPosition);
+        String player = command.player();
+        players.setPositionOf(player, finalPosition);
         return movement;
     }
 
     private Movement applyBouncingRule(MoveCommand command, SimpleMovement firstMovement) {
         if (firstMovement.isOverTheVictory()) {
-            int finalPosition = firstMovement.bouncedPosition().value();
+            Position finalPosition = firstMovement.bouncedPosition();
             players.setPositionOf(command.player(), finalPosition);
 
             return after(firstMovement)
                     .becauseOf(BOUNCING)
-                    .goToPosition(finalPosition);
+                    .goToPosition(finalPosition.value());
         }
 
         return firstMovement;
@@ -56,7 +58,7 @@ public class ComputeMovement {
 
     private Movement applyBridgeRule(MoveCommand command, Movement movement) {
         if (movement.finalPosition().equals(BRIDGE)) {
-            players.setPositionOf(command.player(), BRIDGE_TARGET.value());
+            players.setPositionOf(command.player(), BRIDGE_TARGET);
 
             return after(movement)
                     .becauseOf(JUMP_ON_BRIDGE)
@@ -69,12 +71,12 @@ public class ComputeMovement {
     private Movement applyGooseRule(MoveCommand command, Movement currentMovement) {
         if (! currentMovement.endsOnGoose()) return currentMovement;
 
-        int finalPosition = currentMovement.finalPosition().value() + command.diceTotal();
+        Position finalPosition = currentMovement.finalPosition().plus(command.diceTotal());
         players.setPositionOf(command.player(), finalPosition);
 
         Movement repeatedMovement = after(currentMovement)
                 .becauseOf(REPEAT_ON_GOOSE)
-                .goToPosition(finalPosition);
+                .goToPosition(finalPosition.value());
 
         return applyGooseRule(command, repeatedMovement);
     }
@@ -84,7 +86,7 @@ public class ComputeMovement {
         if (ecounteredPlayers.isEmpty()) return movement;
         String unluckyPlayer = ecounteredPlayers.get(0);
 
-        int previousPositionOfCurrentPlayer = movement.startPosition().value();
+        Position previousPositionOfCurrentPlayer = movement.startPosition();
         players.setPositionOf(unluckyPlayer, previousPositionOfCurrentPlayer);
         return new MovementWithSwitch(unluckyPlayer, movement);
     }
