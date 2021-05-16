@@ -28,7 +28,7 @@ public class OutputMovementPresenter implements MovementPresenter {
     }
 
     private String playerMoves(Position from, Position to) {
-        return format("%s moves from %s to %s", player(), positionName(from.value()), positionName(to.value()));
+        return format("%s moves from %s to %s", player(), positionName(from), positionName(to));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class OutputMovementPresenter implements MovementPresenter {
     @Override
     public void presentPlayerSwitching(MovementWithSwitch movement) {
         String playerSwitch = format(". On %s there is %s, who returns to %s",
-                positionName(movement.finalPosition().value()),
+                positionName(movement.finalPosition()),
                 movement.switchedPlayer(),
                 movement.startPosition().value());
 
@@ -79,18 +79,18 @@ public class OutputMovementPresenter implements MovementPresenter {
         }
 
         String playerMovesAgain =
-                format(" %s moves again and goes to %s", player(), positionName(movement.finalPosition().value()));
+                format(" %s moves again and goes to %s", player(), positionName(movement.finalPosition()));
 
         return playerMovesOnTheGoose(movement.previousMovement()) + playerMovesAgain;
     }
 
-    private String positionName(int position) {
+    private String positionName(Position position) {
         HashMap<Position, String> names = new HashMap<>();
         names.put(START, "Start");
         names.put(BRIDGE, "The Bridge");
 
-        String name = names.getOrDefault(of(position), valueOf(position));
-        String gooseSuffix = Position.of(position).hasTheGoose() ? ", The Goose." : "";
+        String name = names.getOrDefault(position, valueOf(position.value()));
+        String gooseSuffix = position.hasTheGoose() ? ", The Goose." : "";
         return name + gooseSuffix;
     }
 
