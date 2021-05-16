@@ -4,6 +4,7 @@ import domain.Dice;
 import domain.Position;
 
 public class SimpleMovement implements Movement {
+    int finalPosition;
     int startPosition;
     Dice dice;
 
@@ -18,7 +19,7 @@ public class SimpleMovement implements Movement {
 
     @Override
     public int finalPosition() {
-        return startPosition + dice.total();
+        return finalPosition;
     }
 
     public boolean isVictory() {

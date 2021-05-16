@@ -10,7 +10,7 @@ import static usecase.move_player.MovementType.*;
 import static usecase.move_player.SimpleMovement.movement;
 
 public class ComputeMovement {
-    private Players players;
+    private final Players players;
 
     public ComputeMovement(Players players) {
         this.players = players;
@@ -28,13 +28,15 @@ public class ComputeMovement {
 
     private SimpleMovement applyFirstMovementRule(MoveCommand command) {
         int startPosition = players.positionOf(command.player());
+        int finalPosition = startPosition + command.diceTotal();
 
         SimpleMovement movement = movement()
                 .from(startPosition)
+                .to(finalPosition)
                 .givenRoll(command.dice())
                 .end();
 
-        players.setPositionOf(command.player(),  startPosition + command.diceTotal());
+        players.setPositionOf(command.player(), finalPosition);
         return movement;
     }
 

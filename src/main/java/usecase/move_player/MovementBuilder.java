@@ -15,6 +15,11 @@ public class MovementBuilder {
         return this;
     }
 
+    public MovementBuilder to(int finalPosition) {
+        movement.finalPosition = finalPosition;
+        return this;
+    }
+
     public MovementBuilder givenRoll(Dice dice) {
         movement.dice = dice;
         return this;
