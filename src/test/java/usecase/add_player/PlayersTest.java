@@ -58,9 +58,11 @@ public class PlayersTest {
         Players players = new Players();
         players.setPositionOf("Pippo", position(15));
         players.setPositionOf("Pluto", position(15));
+        players.setPositionOf("Topolino", position(15));
         players.setPositionOf("Paperino", position(10));
 
-        assertThat(players.playersOnSamePositionOf("Pippo")).isEqualTo(asList("Pluto"));
+        assertThat(players.playersOnSamePositionOf("Pippo").size()).isEqualTo(2);
+        assertThat(players.playersOnSamePositionOf("Pippo").containsAll(asList("Pluto", "Topolino"))).isTrue();
         assertThat(players.playersOnSamePositionOf("Paperino")).isEqualTo(emptyList());
     }
 }
