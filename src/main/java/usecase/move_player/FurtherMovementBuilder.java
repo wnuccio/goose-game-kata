@@ -1,7 +1,9 @@
 package usecase.move_player;
 
+import domain.Position;
+
 public class FurtherMovementBuilder {
-    private Movement previousMovement;
+    private final Movement previousMovement;
     private MovementType type;
 
     public FurtherMovementBuilder(Movement previousMovement) {
@@ -17,7 +19,7 @@ public class FurtherMovementBuilder {
         return this;
     }
 
-    public Movement goToPosition(int finalPosition) {
+    public Movement goToPosition(Position finalPosition) {
         return new FurtherMovement(previousMovement, type, finalPosition);
     }
 }

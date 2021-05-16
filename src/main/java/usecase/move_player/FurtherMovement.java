@@ -6,9 +6,9 @@ import domain.Position;
 public class FurtherMovement implements Movement {
     protected Movement previousMovement;
     private final MovementType type;
-    private final int finalPosition;
+    private final Position finalPosition;
 
-    public FurtherMovement(Movement previousMovement, MovementType type, int finalPosition) {
+    public FurtherMovement(Movement previousMovement, MovementType type, Position finalPosition) {
         this.previousMovement = previousMovement;
         this.type = type;
         this.finalPosition = finalPosition;
@@ -21,7 +21,7 @@ public class FurtherMovement implements Movement {
 
     @Override
     public Position finalPosition() {
-        return Position.of(finalPosition);
+        return finalPosition;
     }
 
     @Override

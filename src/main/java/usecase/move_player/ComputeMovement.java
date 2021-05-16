@@ -50,7 +50,7 @@ public class ComputeMovement {
 
             return after(firstMovement)
                     .becauseOf(BOUNCING)
-                    .goToPosition(finalPosition.value());
+                    .goToPosition(finalPosition);
         }
 
         return firstMovement;
@@ -62,7 +62,7 @@ public class ComputeMovement {
 
             return after(movement)
                     .becauseOf(JUMP_ON_BRIDGE)
-                    .goToPosition(BRIDGE_TARGET.value());
+                    .goToPosition(BRIDGE_TARGET);
         }
 
         return movement;
@@ -76,7 +76,7 @@ public class ComputeMovement {
 
         Movement repeatedMovement = after(currentMovement)
                 .becauseOf(REPEAT_ON_GOOSE)
-                .goToPosition(finalPosition.value());
+                .goToPosition(finalPosition);
 
         return applyGooseRule(command, repeatedMovement);
     }
