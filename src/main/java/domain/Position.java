@@ -61,8 +61,8 @@ public class Position {
                 '}';
     }
 
-    public int value() {
-        return value;
+    public String value() {
+        return String.valueOf(value);
     }
 
     public Position plus(int i) {

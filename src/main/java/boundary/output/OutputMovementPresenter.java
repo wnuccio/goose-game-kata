@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 import static domain.Position.*;
 import static java.lang.String.format;
-import static java.lang.String.valueOf;
 
 public class OutputMovementPresenter implements MovementPresenter {
     private final OutputBoundary outputBoundary;
@@ -50,7 +49,7 @@ public class OutputMovementPresenter implements MovementPresenter {
     @Override
     public void presentBouncing(FurtherMovement movement) {
         String playerMoves = playerMoves(movement.startPosition(), WIN);
-        String playerBounces = format(". %s bounces! %s returns to %d", player(), player(), movement.finalPosition().value());
+        String playerBounces = format(". %s bounces! %s returns to %s", player(), player(), movement.finalPosition().value());
 
         outputBoundary.writeOutputLine( playerRolls() + playerMoves + playerBounces);
     }
@@ -89,7 +88,7 @@ public class OutputMovementPresenter implements MovementPresenter {
         names.put(START, "Start");
         names.put(BRIDGE, "The Bridge");
 
-        String name = names.getOrDefault(position, valueOf(position.value()));
+        String name = names.getOrDefault(position, position.value());
         String gooseSuffix = position.hasTheGoose() ? ", The Goose." : "";
         return name + gooseSuffix;
     }
