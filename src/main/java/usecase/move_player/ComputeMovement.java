@@ -17,7 +17,7 @@ public class ComputeMovement {
     }
 
     public Movement fromCommand(MoveCommand command) {
-        SimpleMovement firstMovement = applyFirstMovement(command);
+        SimpleMovement firstMovement = applyFirstMovementRule(command);
         Movement movement = applyBouncingRule(command, firstMovement);
         movement = applyBridgeRule(command, movement);
         movement = applyGooseRule(command, movement);
@@ -26,7 +26,7 @@ public class ComputeMovement {
         return movement;
     }
 
-    private SimpleMovement applyFirstMovement(MoveCommand command) {
+    private SimpleMovement applyFirstMovementRule(MoveCommand command) {
         int startPosition = players.positionOf(command.player());
 
         SimpleMovement movement = movement()
