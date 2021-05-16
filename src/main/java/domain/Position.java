@@ -42,4 +42,8 @@ public class Position {
     public boolean isWin() {
         return value == WIN_POSITION;
     }
+
+    public boolean isOverTheVictory() {
+        return value > WIN_POSITION;
+    }
 }

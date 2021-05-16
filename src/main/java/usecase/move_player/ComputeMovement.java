@@ -41,7 +41,7 @@ public class ComputeMovement {
     }
 
     private Movement applyBouncingRule(MoveCommand command, SimpleMovement firstMovement) {
-        if (firstMovement.finalPosition() > WIN_POSITION) {
+        if (firstMovement.isOverTheVictory()) {
             int finalPosition = WIN_POSITION - (firstMovement.finalPosition() - WIN_POSITION);
             players.setPositionOf(command.player(), finalPosition);
 

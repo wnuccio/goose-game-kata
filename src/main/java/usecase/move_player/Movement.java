@@ -16,4 +16,8 @@ public interface Movement {
     default boolean endsOnGoose() {
         return Position.of(finalPosition()).hasTheGoose();
     }
+
+    default boolean isOverTheVictory() {
+         return Position.of(finalPosition()).isOverTheVictory();
+    }
 }

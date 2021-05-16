@@ -20,4 +20,11 @@ public class PositionTest {
     void position_63_is_win_position() {
         assertThat(Position.of(63).isWin()).isTrue();
     }
+
+    @Test
+    void a_position_is_over_the_victory_when_has_a_value_greater_than_63() {
+        assertThat(Position.of(67).isOverTheVictory()).isTrue();
+        assertThat(Position.of(60).isOverTheVictory()).isFalse();
+        assertThat(Position.of(63).isOverTheVictory()).isFalse();
+    }
 }
