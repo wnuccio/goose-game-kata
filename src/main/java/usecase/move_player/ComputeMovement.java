@@ -55,12 +55,12 @@ public class ComputeMovement {
     }
 
     private Movement applyBridgeRule(MoveCommand command, Movement movement) {
-        if (movement.finalPosition() == BRIDGE) {
-            players.setPositionOf(command.player(), BRIDGE_TARGET);
+        if (movement.finalPosition() == BRIDGE.value()) {
+            players.setPositionOf(command.player(), BRIDGE_TARGET.value());
 
             return after(movement)
                     .becauseOf(JUMP_ON_BRIDGE)
-                    .goToPosition(BRIDGE_TARGET);
+                    .goToPosition(BRIDGE_TARGET.value());
         }
 
         return movement;

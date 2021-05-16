@@ -6,9 +6,9 @@ import java.util.Objects;
 import static java.util.Arrays.asList;
 
 public class Position {
-    public static final int START = 0;
-    public static final int BRIDGE = 6;
-    public static final int BRIDGE_TARGET = 12;
+    public static final Position START = Position.of(0);
+    public static final Position BRIDGE = Position.of(6);
+    public static final Position BRIDGE_TARGET = Position.of(12);
     public static final int WIN_POSITION = 63;
 
     private final int value;

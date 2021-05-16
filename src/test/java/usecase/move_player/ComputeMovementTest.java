@@ -41,9 +41,9 @@ class ComputeMovementTest {
 
         Movement movement = computeMovement.fromCommand(move("Pippo", 1, 1));
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(BRIDGE_TARGET);
+        assertThat(players.positionOf("Pippo")).isEqualTo(BRIDGE_TARGET.value());
         assertThat(movement.startPosition()).isEqualTo(4);
-        assertThat(movement.finalPosition()).isEqualTo(BRIDGE_TARGET);
+        assertThat(movement.finalPosition()).isEqualTo(BRIDGE_TARGET.value());
         assertThat(movement.hasPreviousMovement()).isTrue();
     }
 

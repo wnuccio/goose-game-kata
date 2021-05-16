@@ -10,7 +10,7 @@ import static java.lang.String.format;
 import static java.lang.String.valueOf;
 
 public class OutputMovementPresenter implements MovementPresenter {
-    private OutputBoundary outputBoundary;
+    private final OutputBoundary outputBoundary;
     private MovementView movementView;
 
     public OutputMovementPresenter(OutputBoundary outputBoundary) {
@@ -41,7 +41,7 @@ public class OutputMovementPresenter implements MovementPresenter {
 
     @Override
     public void presentJumpOnBridge(FurtherMovement movement) {
-        String playerMoves = playerMoves(movement.startPosition(), BRIDGE);
+        String playerMoves = playerMoves(movement.startPosition(), BRIDGE.value());
         String playerJumps = format(". %s jumps to 12", player());
 
         outputBoundary.writeOutputLine(playerRolls() + playerMoves + playerJumps);
@@ -86,8 +86,8 @@ public class OutputMovementPresenter implements MovementPresenter {
 
     private String positionName(int position) {
         HashMap<Position, String> names = new HashMap<>();
-        names.put(of(START), "Start");
-        names.put(of(BRIDGE), "The Bridge");
+        names.put(START, "Start");
+        names.put(BRIDGE, "The Bridge");
 
         String name = names.getOrDefault(of(position), valueOf(position));
         String gooseSuffix = Position.of(position).hasTheGoose() ? ", The Goose." : "";
