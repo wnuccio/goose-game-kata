@@ -4,10 +4,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Players {
-    private final Map<String, Integer> players = new HashMap<>();
+    private final Map<String, Position> players = new HashMap<>();
 
     public Players addPlayer(String playerName) {
-        players.put(playerName, 0);
+        players.put(playerName, Position.START);
         return this;
     }
 
@@ -18,11 +18,11 @@ public class Players {
     public Position positionOf(String playerName) {
         if (! contains(playerName)) throw new NoSuchElementException("No such player: " + playerName);
 
-        return Position.of(players.get(playerName));
+        return players.get(playerName);
     }
 
     public void setPositionOf(String player, Position position) {
-        players.put(player, position.value());
+        players.put(player, position);
     }
 
     public void clear() {
