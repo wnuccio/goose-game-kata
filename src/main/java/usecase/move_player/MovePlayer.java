@@ -2,6 +2,8 @@ package usecase.move_player;
 
 import domain.Players;
 
+import java.util.List;
+
 public class MovePlayer {
     private final Players players;
     private final ComputeMovement computeMovement;
@@ -18,13 +20,13 @@ public class MovePlayer {
             return;
         }
 
-        Movement movement = computeMovement.fromCommand(command).get(0);
-        presenter.presentMovement(buildMovementViewFrom(command, movement));
+        List<Movement> movements = computeMovement.fromCommand(command);
+        presenter.presentMovement(buildMovementViewFrom(command, movements));
     }
 
-    private MovementView buildMovementViewFrom(MoveCommand command, Movement movement) {
+    private MovementView buildMovementViewFrom(MoveCommand command, List<Movement> movements) {
         return new MovementView(
-                movement,
+                movements,
                 command.player(),
                 command.dice().first(),
                 command.dice().second()

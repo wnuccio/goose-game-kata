@@ -14,24 +14,21 @@ import static usecase.move_player.SimpleMovement.movement;
 
 public class ComputeMovement {
     private final Players players;
+    private ArrayList<Movement> movements;
 
     public ComputeMovement(Players players) {
         this.players = players;
     }
 
     public List<Movement> fromCommand(MoveCommand command) {
+        movements = new ArrayList<>();
+
         SimpleMovement firstMovement = applyFirstMovementRule(command);
         Movement movement = applyBouncingRule(command, firstMovement);
         movement = applyBridgeRule(command, movement);
         movement = applyGooseRule(command, movement);
-        movement = applyPlayerSwitchRule(command, movement);
+        applyPlayerSwitchRule(command, movement);
 
-        return toMovementList(movement);
-    }
-
-    private ArrayList<Movement> toMovementList(Movement movement) {
-        ArrayList<Movement> movements = new ArrayList<>();
-        movements.add(movement);
         return movements;
     }
 
@@ -47,6 +44,7 @@ public class ComputeMovement {
 
         String player = command.player();
         players.setPositionOf(player, finalPosition);
+        movements.add(movement);
         return movement;
     }
 
@@ -55,9 +53,11 @@ public class ComputeMovement {
             Position finalPosition = firstMovement.bouncedPosition();
             players.setPositionOf(command.player(), finalPosition);
 
-            return after(firstMovement)
+            Movement bouncing = after(firstMovement)
                     .becauseOf(BOUNCING)
                     .goToPosition(finalPosition);
+            movements.add(bouncing);
+            return bouncing;
         }
 
         return firstMovement;
@@ -67,9 +67,11 @@ public class ComputeMovement {
         if (movement.finalPosition().equals(BRIDGE)) {
             players.setPositionOf(command.player(), BRIDGE_TARGET);
 
-            return after(movement)
+            Movement jumpOnBridge = after(movement)
                     .becauseOf(JUMP_ON_BRIDGE)
                     .goToPosition(BRIDGE_TARGET);
+            movements.add(jumpOnBridge);
+            return jumpOnBridge;
         }
 
         return movement;
@@ -81,20 +83,22 @@ public class ComputeMovement {
         Position finalPosition = currentMovement.finalPosition().plus(command.diceTotal());
         players.setPositionOf(command.player(), finalPosition);
 
-        Movement repeatedMovement = after(currentMovement)
+        Movement gooseMovement = after(currentMovement)
                 .becauseOf(REPEAT_ON_GOOSE)
                 .goToPosition(finalPosition);
 
-        return applyGooseRule(command, repeatedMovement);
+        movements.add(gooseMovement);
+        return applyGooseRule(command, gooseMovement);
     }
 
-    private Movement applyPlayerSwitchRule(MoveCommand command, Movement movement) {
+    private void applyPlayerSwitchRule(MoveCommand command, Movement movement) {
         List<String> ecounteredPlayers = players.playersOnSamePositionOf(command.player());
-        if (ecounteredPlayers.isEmpty()) return movement;
+        if (ecounteredPlayers.isEmpty()) return;
         String unluckyPlayer = ecounteredPlayers.get(0);
 
         Position previousPositionOfCurrentPlayer = movement.startPosition();
         players.setPositionOf(unluckyPlayer, previousPositionOfCurrentPlayer);
-        return new MovementWithSwitch(unluckyPlayer, movement);
+        MovementWithSwitch movementWithSwitch = new MovementWithSwitch(unluckyPlayer, movement);
+        movements.add(movementWithSwitch);
     }
 }

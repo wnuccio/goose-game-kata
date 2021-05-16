@@ -1,14 +1,16 @@
 package usecase.move_player;
 
 
+import java.util.List;
+
 public class MovementView {
-    private final Movement movement;
+    private final List<Movement> movements;
     private final String player;
     private final int firstDice;
     private final int secondDice;
 
-    public MovementView(Movement movement, String player, int firstDice, int secondDice) {
-        this.movement = movement;
+    public MovementView(List<Movement> movements, String player, int firstDice, int secondDice) {
+        this.movements = movements;
         this.player = player;
         this.firstDice = firstDice;
         this.secondDice = secondDice;
@@ -26,7 +28,6 @@ public class MovementView {
         return secondDice;
     }
 
-    public Movement movement() {
-        return this.movement;
+    public List<Movement> movements() { return movements;
     }
 }

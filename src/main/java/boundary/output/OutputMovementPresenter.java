@@ -4,8 +4,6 @@ import domain.Position;
 import usecase.move_player.*;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 import static domain.Position.*;
 import static java.lang.String.format;
@@ -20,27 +18,12 @@ public class OutputMovementPresenter implements MovementPresenter {
         this.outputBoundary = outputBoundary;
     }
 
-    private LinkedList<Movement> expandDecoratedMovementToList(Movement currentMovement) {
-        if ( ! currentMovement.hasPreviousMovement()) {
-            LinkedList<Movement> firstMovement = new LinkedList<>();
-            firstMovement.add(currentMovement);
-            return firstMovement;
-        }
-
-        LinkedList<Movement> movements = new LinkedList<>();
-        LinkedList<Movement> previousMovements = expandDecoratedMovementToList(currentMovement.previousMovement());
-        movements.addAll(previousMovements);
-        movements.addLast(currentMovement);
-        return movements;
-    }
-
     @Override
     public void presentMovement(MovementView movementView) {
         this.movementView = movementView;
         this.stringBuilder = new StringBuilder();
 
-        List<Movement> movements = expandDecoratedMovementToList(movementView.movement());
-        for (Movement m: movements) {
+        for (Movement m: movementView.movements()) {
             m.present(this);
         }
         outputBoundary.writeOutputLine(stringBuilder.toString());

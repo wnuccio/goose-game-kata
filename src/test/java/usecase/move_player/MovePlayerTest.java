@@ -4,9 +4,11 @@ import domain.Players;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static domain.Dice.dice;
 import static domain.Position.START;
-import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -21,8 +23,8 @@ class MovePlayerTest {
     void build_a_movement_view_with_player_name_initial_position_and_dice_values() {
         players.setPositionOf("Pippo", START);
         MoveCommand moveCommand = move("Pippo", 4, 3);
-        Movement movement = mock(Movement.class);
-        when(computeMovement.fromCommand(moveCommand)).thenReturn(asList(movement));
+        List<Movement> movements = new ArrayList<>();
+        when(computeMovement.fromCommand(moveCommand)).thenReturn(movements);
 
         movePlayer.acceptCommand(moveCommand);
 
@@ -30,7 +32,7 @@ class MovePlayerTest {
         assertThat(movementCaptor.getValue().player()).isEqualTo("Pippo");
         assertThat(movementCaptor.getValue().firstDice()).isEqualTo(4);
         assertThat(movementCaptor.getValue().secondDice()).isEqualTo(3);
-        assertThat(movementCaptor.getValue().movement()).isEqualTo(movement);
+        assertThat(movementCaptor.getValue().movements()).isEqualTo(movements);
     }
 
     private MoveCommand move(String player, int first, int second) {
