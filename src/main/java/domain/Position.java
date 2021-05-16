@@ -9,7 +9,7 @@ public class Position {
     public static final Position START = Position.of(0);
     public static final Position BRIDGE = Position.of(6);
     public static final Position BRIDGE_TARGET = Position.of(12);
-    public static final int WIN_POSITION = 63;
+    public static final Position WIN = Position.of(63);
 
     private final int value;
 
@@ -40,17 +40,17 @@ public class Position {
     }
 
     public boolean isWin() {
-        return value == WIN_POSITION;
+        return this.equals(WIN);
     }
 
     public boolean isOverTheVictory() {
-        return value > WIN_POSITION;
+        return value > WIN.value;
     }
 
     public Position bounced() {
         if (! isOverTheVictory()) return this;
 
-        int bounced = WIN_POSITION - (value - WIN_POSITION);
+        int bounced = WIN.value - (value - WIN.value);
         return Position.of(bounced);
     }
 

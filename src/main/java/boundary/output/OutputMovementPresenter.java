@@ -49,7 +49,7 @@ public class OutputMovementPresenter implements MovementPresenter {
 
     @Override
     public void presentBouncing(FurtherMovement movement) {
-        String playerMoves = playerMoves(movement.startPosition(), WIN_POSITION);
+        String playerMoves = playerMoves(movement.startPosition(), WIN.value());
         String playerBounces = format(". %s bounces! %s returns to %d", player(), player(), movement.finalPosition());
 
         outputBoundary.writeOutputLine( playerRolls() + playerMoves + playerBounces);
