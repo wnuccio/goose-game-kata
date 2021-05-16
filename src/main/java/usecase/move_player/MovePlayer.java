@@ -3,9 +3,9 @@ package usecase.move_player;
 import domain.Players;
 
 public class MovePlayer {
-    private Players players;
-    private ComputeMovement computeMovement;
-    private MovementPresenter presenter;
+    private final Players players;
+    private final ComputeMovement computeMovement;
+    private final MovementPresenter presenter;
 
     public MovePlayer(Players players, ComputeMovement computeMovement, MovementPresenter presenter) {
         this.players = players;
@@ -18,7 +18,7 @@ public class MovePlayer {
             return;
         }
 
-        Movement movement = computeMovement.fromCommand(command);
+        Movement movement = computeMovement.fromCommand(command).get(0);
         presenter.presentMovement(buildMovementViewFrom(command, movement));
     }
 

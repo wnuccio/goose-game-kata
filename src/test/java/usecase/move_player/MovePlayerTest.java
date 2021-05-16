@@ -6,6 +6,7 @@ import org.mockito.ArgumentCaptor;
 
 import static domain.Dice.dice;
 import static domain.Position.START;
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -21,11 +22,10 @@ class MovePlayerTest {
         players.setPositionOf("Pippo", START);
         MoveCommand moveCommand = move("Pippo", 4, 3);
         Movement movement = mock(Movement.class);
-        when(computeMovement.fromCommand(moveCommand)).thenReturn(movement);
+        when(computeMovement.fromCommand(moveCommand)).thenReturn(asList(movement));
 
         movePlayer.acceptCommand(moveCommand);
 
-        verify(computeMovement).fromCommand(moveCommand);
         verify(presenter).presentMovement(movementCaptor.capture());
         assertThat(movementCaptor.getValue().player()).isEqualTo("Pippo");
         assertThat(movementCaptor.getValue().firstDice()).isEqualTo(4);

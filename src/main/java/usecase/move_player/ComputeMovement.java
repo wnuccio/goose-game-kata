@@ -3,6 +3,7 @@ package usecase.move_player;
 import domain.Players;
 import domain.Position;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static domain.Position.BRIDGE;
@@ -18,14 +19,20 @@ public class ComputeMovement {
         this.players = players;
     }
 
-    public Movement fromCommand(MoveCommand command) {
+    public List<Movement> fromCommand(MoveCommand command) {
         SimpleMovement firstMovement = applyFirstMovementRule(command);
         Movement movement = applyBouncingRule(command, firstMovement);
         movement = applyBridgeRule(command, movement);
         movement = applyGooseRule(command, movement);
         movement = applyPlayerSwitchRule(command, movement);
 
-        return movement;
+        return toMovementList(movement);
+    }
+
+    private ArrayList<Movement> toMovementList(Movement movement) {
+        ArrayList<Movement> movements = new ArrayList<>();
+        movements.add(movement);
+        return movements;
     }
 
     private SimpleMovement applyFirstMovementRule(MoveCommand command) {
