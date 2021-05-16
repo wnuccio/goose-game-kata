@@ -2,10 +2,10 @@ package usecase.move_player;
 
 
 public class MovementView {
-    private Movement movement;
-    private String player;
-    private int firstDice;
-    private int secondDice;
+    private final Movement movement;
+    private final String player;
+    private final int firstDice;
+    private final int secondDice;
 
     public MovementView(Movement movement, String player, int firstDice, int secondDice) {
         this.movement = movement;
@@ -24,10 +24,6 @@ public class MovementView {
 
     public int secondDice() {
         return secondDice;
-    }
-
-    public int startPosition() {
-        return movement.startPosition();
     }
 
     public void present(MovementPresenter movementPresenter) {

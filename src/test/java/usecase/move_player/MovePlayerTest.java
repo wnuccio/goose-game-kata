@@ -9,11 +9,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class MovePlayerTest {
-    private Players players = new Players();
-    private MovementPresenter presenter = mock(MovementPresenter.class);
+    private final Players players = new Players();
+    private final MovementPresenter presenter = mock(MovementPresenter.class);
     ComputeMovement computeMovement = mock(ComputeMovement.class);
-    private MovePlayer movePlayer = new MovePlayer(players, computeMovement, presenter);
-    private ArgumentCaptor<MovementView> movementCaptor = ArgumentCaptor.forClass(MovementView.class);
+    private final MovePlayer movePlayer = new MovePlayer(players, computeMovement, presenter);
+    private final ArgumentCaptor<MovementView> movementCaptor = ArgumentCaptor.forClass(MovementView.class);
 
     @Test
     void build_a_movement_view_with_player_name_initial_position_and_dice_values() {
@@ -27,7 +27,6 @@ class MovePlayerTest {
         verify(computeMovement).fromCommand(moveCommand);
         verify(presenter).presentMovement(movementCaptor.capture());
         assertThat(movementCaptor.getValue().player()).isEqualTo("Pippo");
-        assertThat(movementCaptor.getValue().startPosition()).isEqualTo(0);
         assertThat(movementCaptor.getValue().firstDice()).isEqualTo(4);
         assertThat(movementCaptor.getValue().secondDice()).isEqualTo(3);
         assertThat(movementCaptor.getValue().movement()).isEqualTo(movement);

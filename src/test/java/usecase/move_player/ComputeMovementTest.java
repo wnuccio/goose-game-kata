@@ -1,10 +1,12 @@
 package usecase.move_player;
 
 import domain.Players;
+import domain.Position;
 import org.junit.jupiter.api.Test;
 
 import static domain.Dice.dice;
 import static domain.Position.BRIDGE_TARGET;
+import static domain.Position.START;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ComputeMovementTest {
@@ -18,8 +20,8 @@ class ComputeMovementTest {
         Movement movement = computeMovement.fromCommand(move("Pippo", 4, 3));
 
         assertThat(players.positionOf("Pippo")).isEqualTo(7);
-        assertThat(movement.startPosition()).isEqualTo(0);
-        assertThat(movement.finalPosition()).isEqualTo(7);
+        assertThat(movement.startPosition()).isEqualTo(START);
+        assertThat(movement.finalPosition()).isEqualTo(Position.of(7));
         assertThat(movement.hasPreviousMovement()).isFalse();
     }
 
@@ -30,8 +32,8 @@ class ComputeMovementTest {
         Movement movement = computeMovement.fromCommand(move("Pippo", 3, 4));
 
         assertThat(players.positionOf("Pippo")).isEqualTo(57);
-        assertThat(movement.startPosition()).isEqualTo(62);
-        assertThat(movement.finalPosition()).isEqualTo(57);
+        assertThat(movement.startPosition()).isEqualTo(Position.of(62));
+        assertThat(movement.finalPosition()).isEqualTo(Position.of(57));
         assertThat(movement.hasPreviousMovement()).isTrue();
     }
 
@@ -42,8 +44,8 @@ class ComputeMovementTest {
         Movement movement = computeMovement.fromCommand(move("Pippo", 1, 1));
 
         assertThat(players.positionOf("Pippo")).isEqualTo(BRIDGE_TARGET.value());
-        assertThat(movement.startPosition()).isEqualTo(4);
-        assertThat(movement.finalPosition()).isEqualTo(BRIDGE_TARGET.value());
+        assertThat(movement.startPosition()).isEqualTo(Position.of(4));
+        assertThat(movement.finalPosition()).isEqualTo(BRIDGE_TARGET);
         assertThat(movement.hasPreviousMovement()).isTrue();
     }
 
@@ -54,8 +56,8 @@ class ComputeMovementTest {
         Movement movement = computeMovement.fromCommand(move("Pippo", 1, 1));
 
         assertThat(players.positionOf("Pippo")).isEqualTo(7);
-        assertThat(movement.startPosition()).isEqualTo(3);
-        assertThat(movement.finalPosition()).isEqualTo(7);
+        assertThat(movement.startPosition()).isEqualTo(Position.of(3));
+        assertThat(movement.finalPosition()).isEqualTo(Position.of(7));
         assertThat(movement.hasPreviousMovement()).isTrue();
     }
 
@@ -66,8 +68,8 @@ class ComputeMovementTest {
         Movement movement = computeMovement.fromCommand(move("Pippo", 2, 2));
 
         assertThat(players.positionOf("Pippo")).isEqualTo(22);
-        assertThat(movement.startPosition()).isEqualTo(10);
-        assertThat(movement.finalPosition()).isEqualTo(22);
+        assertThat(movement.startPosition()).isEqualTo(Position.of(10));
+        assertThat(movement.finalPosition()).isEqualTo(Position.of(22));
         assertThat(movement.hasPreviousMovement()).isTrue();
     }
 
@@ -78,14 +80,14 @@ class ComputeMovementTest {
 
         Movement movement = computeMovement.fromCommand(move("Pippo", 1, 1));
 
-        assertThat(movement.startPosition()).isEqualTo(15);
-        assertThat(movement.finalPosition()).isEqualTo(17);
+        assertThat(movement.startPosition()).isEqualTo(Position.of(15));
+        assertThat(movement.finalPosition()).isEqualTo(Position.of(17));
         assertThat(movement instanceof MovementWithSwitch).isTrue();
 
         MovementWithSwitch movementWithSwitch = (MovementWithSwitch)movement;
         assertThat(movementWithSwitch.hasPreviousMovement()).isFalse();
-        assertThat(movementWithSwitch.startPosition()).isEqualTo(15);
-        assertThat(movementWithSwitch.finalPosition()).isEqualTo(17);
+        assertThat(movementWithSwitch.startPosition()).isEqualTo(Position.of(15));
+        assertThat(movementWithSwitch.finalPosition()).isEqualTo(Position.of(17));
         assertThat(movementWithSwitch.switchedPlayer()).isEqualTo("Pluto");
 
         assertThat(players.positionOf("Pippo")).isEqualTo(17);

@@ -1,10 +1,12 @@
 package usecase.move_player;
 
 
+import domain.Position;
+
 public class FurtherMovement implements Movement {
     protected Movement previousMovement;
-    private MovementType type;
-    private int finalPosition;
+    private final MovementType type;
+    private final int finalPosition;
 
     public FurtherMovement(Movement previousMovement, MovementType type, int finalPosition) {
         this.previousMovement = previousMovement;
@@ -12,13 +14,14 @@ public class FurtherMovement implements Movement {
         this.finalPosition = finalPosition;
     }
 
-    public int startPosition() {
+    @Override
+    public Position startPosition() {
         return previousMovement.startPosition();
     }
 
     @Override
-    public int finalPosition() {
-        return finalPosition;
+    public Position finalPosition() {
+        return Position.of(finalPosition);
     }
 
     @Override

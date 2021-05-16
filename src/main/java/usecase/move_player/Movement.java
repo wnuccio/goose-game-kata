@@ -3,9 +3,9 @@ package usecase.move_player;
 import domain.Position;
 
 public interface Movement {
-    int startPosition();
+    Position startPosition();
 
-    int finalPosition();
+    Position finalPosition();
 
     boolean hasPreviousMovement();
 
@@ -14,18 +14,18 @@ public interface Movement {
     void present(MovementPresenter movementPresenter);
 
     default boolean endsOnGoose() {
-        return Position.of(finalPosition()).hasTheGoose();
+        return finalPosition().hasTheGoose();
     }
 
     default boolean isVictory() {
-        return Position.of(finalPosition()).isWin();
+        return finalPosition().isWin();
     }
 
     default boolean isOverTheVictory() {
-         return Position.of(finalPosition()).isOverTheVictory();
+         return finalPosition().isOverTheVictory();
     }
 
     default Position bouncedPosition() {
-        return Position.of(finalPosition()).bounced();
+        return finalPosition().bounced();
     }
 }

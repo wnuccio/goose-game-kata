@@ -27,8 +27,8 @@ public class OutputMovementPresenter implements MovementPresenter {
         return format("%s rolls %s, %s" + ". ", player(), firstDice(), secondDice());
     }
 
-    private String playerMoves(int from, int to) {
-        return format("%s moves from %s to %s", player(), positionName(from), positionName(to));
+    private String playerMoves(Position from, Position to) {
+        return format("%s moves from %s to %s", player(), positionName(from.value()), positionName(to.value()));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class OutputMovementPresenter implements MovementPresenter {
 
     @Override
     public void presentJumpOnBridge(FurtherMovement movement) {
-        String playerMoves = playerMoves(movement.startPosition(), BRIDGE.value());
+        String playerMoves = playerMoves(movement.startPosition(), BRIDGE);
         String playerJumps = format(". %s jumps to 12", player());
 
         outputBoundary.writeOutputLine(playerRolls() + playerMoves + playerJumps);
@@ -49,8 +49,8 @@ public class OutputMovementPresenter implements MovementPresenter {
 
     @Override
     public void presentBouncing(FurtherMovement movement) {
-        String playerMoves = playerMoves(movement.startPosition(), WIN.value());
-        String playerBounces = format(". %s bounces! %s returns to %d", player(), player(), movement.finalPosition());
+        String playerMoves = playerMoves(movement.startPosition(), WIN);
+        String playerBounces = format(". %s bounces! %s returns to %d", player(), player(), movement.finalPosition().value());
 
         outputBoundary.writeOutputLine( playerRolls() + playerMoves + playerBounces);
     }
@@ -58,9 +58,9 @@ public class OutputMovementPresenter implements MovementPresenter {
     @Override
     public void presentPlayerSwitching(MovementWithSwitch movement) {
         String playerSwitch = format(". On %s there is %s, who returns to %s",
-                positionName(movement.finalPosition()),
+                positionName(movement.finalPosition().value()),
                 movement.switchedPlayer(),
-                movement.startPosition());
+                movement.startPosition().value());
 
         outputBoundary.writeOutputLine(
                 playerRolls() +
@@ -79,7 +79,7 @@ public class OutputMovementPresenter implements MovementPresenter {
         }
 
         String playerMovesAgain =
-                format(" %s moves again and goes to %s", player(), positionName(movement.finalPosition()));
+                format(" %s moves again and goes to %s", player(), positionName(movement.finalPosition().value()));
 
         return playerMovesOnTheGoose(movement.previousMovement()) + playerMovesAgain;
     }

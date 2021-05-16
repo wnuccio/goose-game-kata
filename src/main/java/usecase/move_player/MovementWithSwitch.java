@@ -1,8 +1,10 @@
 package usecase.move_player;
 
+import domain.Position;
+
 public class MovementWithSwitch implements Movement {
-    private String switchedPlayer;
-    private Movement mainMovement;
+    private final String switchedPlayer;
+    private final Movement mainMovement;
 
     public MovementWithSwitch(String switchedPlayer, Movement mainMovement) {
         this.switchedPlayer = switchedPlayer;
@@ -10,12 +12,12 @@ public class MovementWithSwitch implements Movement {
     }
 
     @Override
-    public int startPosition() {
+    public Position startPosition() {
         return mainMovement.startPosition();
     }
 
     @Override
-    public int finalPosition() {
+    public Position finalPosition() {
         return mainMovement.finalPosition();
     }
 

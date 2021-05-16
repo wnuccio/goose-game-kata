@@ -1,6 +1,7 @@
 package usecase.move_player;
 
 import domain.Dice;
+import domain.Position;
 
 public class SimpleMovement implements Movement {
     int finalPosition;
@@ -12,13 +13,13 @@ public class SimpleMovement implements Movement {
     }
 
     @Override
-    public int startPosition() {
-        return startPosition;
+    public Position startPosition() {
+        return Position.of(startPosition);
     }
 
     @Override
-    public int finalPosition() {
-        return finalPosition;
+    public Position finalPosition() {
+        return Position.of(finalPosition);
     }
 
     @Override
