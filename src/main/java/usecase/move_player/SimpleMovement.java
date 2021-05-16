@@ -23,16 +23,6 @@ public class SimpleMovement implements Movement {
     }
 
     @Override
-    public boolean hasPreviousMovement() {
-        return false;
-    }
-
-    @Override
-    public Movement previousMovement() {
-        throw new IllegalStateException();
-    }
-
-    @Override
     public void present(MovementPresenter movementPresenter) {
         movementPresenter.presentSimpleMovement(this);
     }

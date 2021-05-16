@@ -7,10 +7,6 @@ public interface Movement {
 
     Position finalPosition();
 
-    boolean hasPreviousMovement();
-
-    Movement previousMovement();
-
     void present(MovementPresenter movementPresenter);
 
     default boolean endsOnGoose() {

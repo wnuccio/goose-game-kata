@@ -22,16 +22,6 @@ public class MovementWithSwitch implements Movement {
     }
 
     @Override
-    public boolean hasPreviousMovement() {
-        return true;
-    }
-
-    @Override
-    public Movement previousMovement() {
-        return mainMovement;
-    }
-
-    @Override
     public void present(MovementPresenter movementPresenter) {
         movementPresenter.presentPlayerSwitching(this);
     }

@@ -25,7 +25,6 @@ class ComputeMovementTest {
         Movement movement = movements.get(0);
         assertThat(movement.startPosition()).isEqualTo(START);
         assertThat(movement.finalPosition()).isEqualTo(position(7));
-        assertThat(movement.hasPreviousMovement()).isFalse();
     }
 
     @Test

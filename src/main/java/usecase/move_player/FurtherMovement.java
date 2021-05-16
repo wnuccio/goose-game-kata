@@ -25,16 +25,6 @@ public class FurtherMovement implements Movement {
     }
 
     @Override
-    public boolean hasPreviousMovement() {
-        return true;
-    }
-
-    @Override
-    public Movement previousMovement() {
-        return previousMovement;
-    }
-
-    @Override
     public void present(MovementPresenter movementPresenter) {
         type.presentMovement(this, movementPresenter);
     }
