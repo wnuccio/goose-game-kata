@@ -23,12 +23,12 @@ public class MovementWithSwitch implements Movement {
 
     @Override
     public boolean hasPreviousMovement() {
-        return false;
+        return true;
     }
 
     @Override
     public Movement previousMovement() {
-        return null;
+        return mainMovement;
     }
 
     @Override

@@ -26,10 +26,6 @@ public class MovementView {
         return secondDice;
     }
 
-    public void present(MovementPresenter movementPresenter) {
-        movement.present(movementPresenter);
-    }
-
     public Movement movement() {
         return this.movement;
     }

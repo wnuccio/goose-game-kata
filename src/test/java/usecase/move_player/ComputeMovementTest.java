@@ -16,9 +16,7 @@ class ComputeMovementTest {
 
     @Test
     void build_a_movement_with_player_name_initial_position_and_dice_values() {
-        String pippo = "Pippo";
-        int position = 0;
-        players.setPositionOf(pippo, position(position));
+        players.setPositionOf("Pippo", position(0));
 
         List<Movement> movements = computeMovement.fromCommand(move("Pippo", 4, 3));
 
@@ -91,7 +89,7 @@ class ComputeMovementTest {
         assertThat(movement instanceof MovementWithSwitch).isTrue();
 
         MovementWithSwitch movementWithSwitch = (MovementWithSwitch)movement;
-        assertThat(movementWithSwitch.hasPreviousMovement()).isFalse();
+        assertThat(movementWithSwitch.hasPreviousMovement()).isTrue();
         assertThat(movementWithSwitch.startPosition()).isEqualTo(position(15));
         assertThat(movementWithSwitch.finalPosition()).isEqualTo(position(17));
         assertThat(movementWithSwitch.switchedPlayer()).isEqualTo("Pluto");

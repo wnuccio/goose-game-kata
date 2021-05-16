@@ -4,54 +4,72 @@ import domain.Position;
 import usecase.move_player.*;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import static domain.Position.*;
 import static java.lang.String.format;
 
 public class OutputMovementPresenter implements MovementPresenter {
     private final OutputBoundary outputBoundary;
+
     private MovementView movementView;
+    private StringBuilder stringBuilder;
 
     public OutputMovementPresenter(OutputBoundary outputBoundary) {
         this.outputBoundary = outputBoundary;
     }
 
+    private LinkedList<Movement> expandDecoratedMovementToList(Movement currentMovement) {
+        if ( ! currentMovement.hasPreviousMovement()) {
+            LinkedList<Movement> firstMovement = new LinkedList<>();
+            firstMovement.add(currentMovement);
+            return firstMovement;
+        }
+
+        LinkedList<Movement> movements = new LinkedList<>();
+        LinkedList<Movement> previousMovements = expandDecoratedMovementToList(currentMovement.previousMovement());
+        movements.addAll(previousMovements);
+        movements.addLast(currentMovement);
+        return movements;
+    }
+
     @Override
     public void presentMovement(MovementView movementView) {
         this.movementView = movementView;
-        movementView.present(this);
-    }
+        this.stringBuilder = new StringBuilder();
 
-    private String playerRolls() {
-        return format("%s rolls %s, %s" + ". ", player(), firstDice(), secondDice());
-    }
-
-    private String playerMoves(Position from, Position to) {
-        return format("%s moves from %s to %s", player(), positionName(from), positionName(to));
+        List<Movement> movements = expandDecoratedMovementToList(movementView.movement());
+        for (Movement m: movements) {
+            m.present(this);
+        }
+        outputBoundary.writeOutputLine(stringBuilder.toString());
     }
 
     @Override
     public void presentSimpleMovement(SimpleMovement movement) {
-        String playerMoves = playerMoves(movement.startPosition(), movement.finalPosition());
+        String playerRolls = format("%s rolls %s, %s" + ". ", player(), firstDice(), secondDice());
+        String playerMoves = format("%s moves from %s to %s", player(), positionName(movement.startPosition()), positionName(movement.finalPosition()));
         String playerWins = movement.isVictory() ? format(". %s Wins!!", player()) : "";
 
-        outputBoundary.writeOutputLine(playerRolls() + playerMoves + playerWins);
+        stringBuilder.append(playerRolls + playerMoves + playerWins);
     }
 
     @Override
     public void presentJumpOnBridge(FurtherMovement movement) {
-        String playerMoves = playerMoves(movement.startPosition(), BRIDGE);
         String playerJumps = format(". %s jumps to 12", player());
 
-        outputBoundary.writeOutputLine(playerRolls() + playerMoves + playerJumps);
+        stringBuilder.append(playerJumps);
     }
 
     @Override
     public void presentBouncing(FurtherMovement movement) {
-        String playerMoves = playerMoves(movement.startPosition(), WIN);
-        String playerBounces = format(". %s bounces! %s returns to %s", player(), player(), movement.finalPosition().value());
+        String playerBounces = format(". %s bounces! %s returns to %s",
+                player(),
+                player(),
+                positionName(movement.finalPosition()));
 
-        outputBoundary.writeOutputLine( playerRolls() + playerMoves + playerBounces);
+        stringBuilder.append(playerBounces);
     }
 
     @Override
@@ -59,31 +77,23 @@ public class OutputMovementPresenter implements MovementPresenter {
         String playerSwitch = format(". On %s there is %s, who returns to %s",
                 positionName(movement.finalPosition()),
                 movement.switchedPlayer(),
-                movement.startPosition().value());
+                positionName(movement.startPosition()));
 
-        outputBoundary.writeOutputLine(
-                playerRolls() +
-                        playerMoves(movement.startPosition(), movement.finalPosition()) +
-                        playerSwitch);
+        stringBuilder.append(playerSwitch);
     }
 
     @Override
     public void presentRepeatOnGoose(FurtherMovement movement) {
-        outputBoundary.writeOutputLine(playerMovesOnTheGoose(movement));
-    }
+        String playerMovesAgain = format(" %s moves again and goes to %s",
+                player(),
+                positionName(movement.finalPosition()));
 
-    private String playerMovesOnTheGoose(Movement movement) {
-        if (! movement.hasPreviousMovement()) {
-            return(playerRolls() + playerMoves(movement.startPosition(), movement.finalPosition()));
-        }
-
-        String playerMovesAgain =
-                format(" %s moves again and goes to %s", player(), positionName(movement.finalPosition()));
-
-        return playerMovesOnTheGoose(movement.previousMovement()) + playerMovesAgain;
+        stringBuilder.append(playerMovesAgain);
     }
 
     private String positionName(Position position) {
+        if (position.isOverTheVictory()) return WIN.value();
+
         HashMap<Position, String> names = new HashMap<>();
         names.put(START, "Start");
         names.put(BRIDGE, "The Bridge");

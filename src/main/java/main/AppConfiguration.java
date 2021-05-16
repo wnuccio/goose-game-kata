@@ -13,13 +13,14 @@ import domain.Players;
 import usecase.add_player.AddPlayer;
 import usecase.move_player.ComputeMovement;
 import usecase.move_player.MovePlayer;
+import usecase.move_player.MovementPresenter;
 import usecase.move_player.RollAndMove;
 import usecase.reset_game.ApplicationSwitch;
 import usecase.reset_game.ResetService;
 
 public class AppConfiguration {
 
-    private GooseGameAppBuilder builder;
+    private final GooseGameAppBuilder builder;
     private GooseGameApp gooseGameApp;
     private ApplicationSwitch applicationSwitch;
     private Players players;
@@ -63,7 +64,7 @@ public class AppConfiguration {
         return new OutputPlayerPresenter(inputOutput());
     }
 
-    private OutputMovementPresenter movementPresenter() {
+    private MovementPresenter movementPresenter() {
         return new OutputMovementPresenter(inputOutput());
     }
 
