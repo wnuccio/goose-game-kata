@@ -64,4 +64,8 @@ public class Position {
     public int value() {
         return value;
     }
+
+    public Position plus(int i) {
+        return Position.of(value + i);
+    }
 }

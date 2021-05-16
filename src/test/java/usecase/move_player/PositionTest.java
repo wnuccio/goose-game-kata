@@ -3,9 +3,17 @@ package usecase.move_player;
 import domain.Position;
 import org.junit.jupiter.api.Test;
 
+import static domain.Position.START;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PositionTest {
+
+    @Test
+    void position_plus_number_returns_new_position() {
+        assertThat(START.plus(3)).isEqualTo(Position.of(3));
+        assertThat(Position.of(3).plus(4)).isEqualTo(Position.of(7));
+    }
+
     @Test
     void positions_having_the_goose() {
         assertThat(Position.of(5).hasTheGoose()).isTrue();
