@@ -19,7 +19,6 @@ public class ApplicationRunner {
         thread.start();
 
         waitAbit();
-
     }
 
     private void invokeMainDetectingCrash() {
