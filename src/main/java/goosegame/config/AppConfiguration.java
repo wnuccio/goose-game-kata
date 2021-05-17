@@ -1,8 +1,8 @@
 package goosegame.config;
 
+import goosegame.boundary.application.CommandsInterpreter;
 import goosegame.boundary.application.GooseGameApp;
 import goosegame.boundary.application.InputOutput;
-import goosegame.boundary.interpreters.*;
 import goosegame.boundary.output.OutputMovementPresenter;
 import goosegame.boundary.output.OutputPlayerPresenter;
 import goosegame.domain.DiceRoller;
@@ -33,7 +33,7 @@ public class AppConfiguration {
     }
 
     private GooseGameApp gooseGameApp() {
-        if (gooseGameApp == null) gooseGameApp = new GooseGameApp(applicationSwitch(), inputOutput(), interpretersChain());
+        if (gooseGameApp == null) gooseGameApp = new GooseGameApp(applicationSwitch(), inputOutput(), interpreter());
         return gooseGameApp;
     }
 
@@ -65,21 +65,8 @@ public class AppConfiguration {
         return new OutputMovementPresenter(inputOutput());
     }
 
-    private Interpreter interpretersChain() {
-        return new CommandsInterpreter(addPlayer(), movePlayer(), rollAndMove(), resetService());
+    private CommandsInterpreter interpreter() { return new CommandsInterpreter(addPlayer(), movePlayer(), rollAndMove(), resetService());
     }
-
-    ///// INTERPRETERS CHAIN ///////////////////////////////////////////////////////////////
-    private Interpreter interpretersChain_() {
-        return
-                new ResetInterpeter(resetService(),
-                    new AddPlayerInterpeter(addPlayer(),
-                        new MovePlayerInterpreter(rollAndMove(), movePlayer(),
-                                null)));
-    }
-
-    ///// INTERPRETERS CHAIN ///////////////////////////////////////////////////////////////
-
     private AddPlayer addPlayer() {
         return new AddPlayer(players(), presenter());
     }
