@@ -1,6 +1,5 @@
 package goosegame.boundary.application;
 
-
 import goosegame.domain.Dice;
 import goosegame.usecase.add_player.AddPlayer;
 import goosegame.usecase.move_player.MoveCommand;
@@ -8,6 +7,7 @@ import goosegame.usecase.move_player.MovePlayer;
 import goosegame.usecase.move_player.RollAndMove;
 import goosegame.usecase.reset_game.ResetService;
 
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 
 import static java.util.regex.Pattern.compile;
@@ -18,6 +18,7 @@ public class CommandsInterpreter {
     private final MovePlayer movePlayer;
     private final RollAndMove rollAndMove;
     private final ResetService resetService;
+    private String commandLine;
 
     public CommandsInterpreter(AddPlayer addPlayer, MovePlayer movePlayer, RollAndMove rollAndMove, ResetService resetService) {
         this.addPlayer = addPlayer;
@@ -26,43 +27,71 @@ public class CommandsInterpreter {
         this.resetService = resetService;
     }
 
-    public void acceptCommand(String commandLine) {
-        Matcher m;
+    private static String[] toTokens(Matcher m) {
+        if (! m.find()) return new String[0];
 
-        m = compile("(add player) (\\w*)").matcher(commandLine);
-        if (m.find()) {
-            String player = m.group(2);
-            addPlayer.doAdd(player);
-            return;
+        String[] tokens = new String[m.groupCount() + 1];
+        for (int i=0; i< m.groupCount() + 1; i++) {
+            tokens[i] = m.group(i);
         }
+        return tokens;
+    }
 
-        m = compile("(move) (\\w*) ([1-6]), ([1-6])").matcher(commandLine);
-        if (m.find()) {
-            String player = m.group(2);
-            int dice1 = Integer.parseInt(m.group(3));
-            int dice2 = Integer.parseInt(m.group(4));
+    private static String[] parse(String commandLine, String regex) {
+        return toTokens(compile(regex).matcher(commandLine));
+    }
+
+    private boolean interpret(String regex, Consumer<String[]> execution) {
+        String[] tokens = parse(commandLine, regex);
+        if (tokens.length == 0) return false;
+        execution.accept(tokens);
+        return true;
+    }
+
+    private boolean interpretAddPlayer() {
+        return interpret("(add player) (\\w*)", tokens -> {
+            String player = tokens[2];
+            addPlayer.doAdd(player);
+        });
+    }
+
+    private boolean interpretMovePlayerWithDice() {
+        return interpret("(move) (\\w*) ([1-6]), ([1-6])", tokens -> {
+            String player = tokens[2];
+            int dice1 = Integer.parseInt(tokens[3]);
+            int dice2 = Integer.parseInt(tokens[4]);
             MoveCommand command = new MoveCommand(player, new Dice(dice1, dice2));
             movePlayer.acceptCommand(command);
-            return;
-        }
+        });
+    }
 
-        m = compile("(move) (\\w*)").matcher(commandLine);
-        if (m.find()) {
-            String player = m.group(2);
+    private boolean interpretRollAndMove() {
+        return interpret("(move) (\\w*)", tokens -> {
+            String player = tokens[2];
             rollAndMove.acceptCommand(player);
-            return;
-        }
+        });
+    }
 
-        m = compile("(reset) (\\w*)").matcher(commandLine);
-        if (m.find()) {
-            resetService.doReset();
-            return;
-        }
+    private boolean interpretReset() {
+        return interpret("(reset) (\\w*)", tokens -> resetService.doReset());
+    }
 
-        m = compile("(stop) (\\w*)").matcher(commandLine);
-        if (m.find()) {
-            resetService.doStop();
-            return;
-        }
+    private boolean interpretStop() {
+        return interpret("(stop) (\\w*)", tokens -> resetService.doStop());
+    }
+
+    public void acceptCommand(String commandLine) {
+        this.commandLine = commandLine;
+
+        if (interpretAddPlayer()) return;
+        if (interpretMovePlayerWithDice()) return;
+        if (interpretRollAndMove()) return;
+        if (interpretReset()) return;
+        if (interpretStop()) return;
+
+        doNothing();
+    }
+
+    private void doNothing() {
     }
 }
