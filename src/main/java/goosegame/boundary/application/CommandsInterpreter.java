@@ -8,9 +8,6 @@ import goosegame.usecase.move_player.RollAndMove;
 import goosegame.usecase.reset_game.ResetService;
 
 import java.util.function.Consumer;
-import java.util.regex.Matcher;
-
-import static java.util.regex.Pattern.compile;
 
 public class CommandsInterpreter {
 
@@ -18,7 +15,7 @@ public class CommandsInterpreter {
     private final MovePlayer movePlayer;
     private final RollAndMove rollAndMove;
     private final ResetService resetService;
-    private String commandLine;
+    private CommandLine commandLine;
 
     public CommandsInterpreter(AddPlayer addPlayer, MovePlayer movePlayer, RollAndMove rollAndMove, ResetService resetService) {
         this.addPlayer = addPlayer;
@@ -27,22 +24,8 @@ public class CommandsInterpreter {
         this.resetService = resetService;
     }
 
-    private static String[] toTokens(Matcher m) {
-        if (! m.find()) return new String[0];
-
-        String[] tokens = new String[m.groupCount() + 1];
-        for (int i=0; i< m.groupCount() + 1; i++) {
-            tokens[i] = m.group(i);
-        }
-        return tokens;
-    }
-
-    private static String[] parse(String commandLine, String regex) {
-        return toTokens(compile(regex).matcher(commandLine));
-    }
-
     private boolean interpret(String regex, Consumer<String[]> execution) {
-        String[] tokens = parse(commandLine, regex);
+        String[] tokens = commandLine.parse(regex);
         if (tokens.length == 0) return false;
         execution.accept(tokens);
         return true;
@@ -81,7 +64,7 @@ public class CommandsInterpreter {
     }
 
     public void acceptCommand(String commandLine) {
-        this.commandLine = commandLine;
+        this.commandLine = new CommandLine(commandLine);
 
         if (interpretAddPlayer()) return;
         if (interpretMovePlayerWithDice()) return;
