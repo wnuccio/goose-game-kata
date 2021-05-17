@@ -1,0 +1,32 @@
+package goosegame.usecase.move_player;
+
+import goosegame.domain.Position;
+
+public class MovementWithSwitch implements Movement {
+    private final String switchedPlayer;
+    private final Movement mainMovement;
+
+    public MovementWithSwitch(String switchedPlayer, Movement mainMovement) {
+        this.switchedPlayer = switchedPlayer;
+        this.mainMovement = mainMovement;
+    }
+
+    @Override
+    public Position startPosition() {
+        return mainMovement.startPosition();
+    }
+
+    @Override
+    public Position finalPosition() {
+        return mainMovement.finalPosition();
+    }
+
+    @Override
+    public void present(MovementPresenter movementPresenter) {
+        movementPresenter.presentPlayerSwitching(this);
+    }
+
+    public String switchedPlayer() {
+        return switchedPlayer;
+    }
+}
