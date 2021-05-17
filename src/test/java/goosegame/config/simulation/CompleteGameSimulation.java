@@ -1,9 +1,9 @@
-package goosegame.main.simulation;
+package goosegame.config.simulation;
 
 import goosegame.ApplicationDriver;
 import goosegame.TestConfiguration;
-import goosegame.main.add_player.AddPlayerDriver;
-import goosegame.main.move_player.MovePlayerDriver;
+import goosegame.config.add_player.AddPlayerDriver;
+import goosegame.config.move_player.MovePlayerDriver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

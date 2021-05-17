@@ -1,15 +1,15 @@
-package goosegame.main.move_player;
+package goosegame.config.move_player;
 
 import goosegame.ApplicationDriver;
 import goosegame.BaseAcceptanceTest;
 import goosegame.DiceRollerStub;
-import goosegame.main.add_player.AddPlayerDriver;
+import goosegame.config.add_player.AddPlayerDriver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class SwitchPlayersAcceptanceTest extends BaseAcceptanceTest {
+public class MovePlayerWithDiceAcceptanceTest extends BaseAcceptanceTest {
     private AddPlayerDriver addPlayerDriver;
     private MovePlayerDriver movePlayerDriver;
     private DiceRollerStub diceRollerStub;
@@ -22,14 +22,18 @@ public class SwitchPlayersAcceptanceTest extends BaseAcceptanceTest {
         diceRollerStub = diceRollerStub();
     }
 
+//    If there is one participant "Pippo" on space "4"
+//    assuming that the dice get 1 and 2
+//    when the user writes: "move Pippo"
+//    the system responds: "Pippo rolls 1, 2. Pippo moves from 4 to 7"
+
     @Test
-    void switch_players_positions_on_encounter() {
-        addPlayerDriver.addPlayers("Pippo", "Pluto");
-        movePlayerDriver.moveOnPositions15_17("Pippo", "Pluto");
-        diceRollerStub.onNextRollReturns(1, 1);
+    void a_player_moves_by_throwing_dice() {
+        addPlayerDriver.addPlayer("Pippo");
+        movePlayerDriver.moveOnPosition4("Pippo");
+        diceRollerStub.onNextRollReturns(1, 2);
 
         String output = movePlayerDriver.movePlayer("Pippo");
-        assertThat(output).isEqualTo(
-                "Pippo rolls 1, 1. Pippo moves from 15 to 17. On 17 there is Pluto, who returns to 15");
+        assertThat(output).isEqualTo("Pippo rolls 1, 2. Pippo moves from 4 to 7");
     }
 }

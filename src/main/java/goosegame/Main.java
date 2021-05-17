@@ -1,8 +1,8 @@
 package goosegame;
 
 import goosegame.boundary.application.GooseGameApp;
-import goosegame.main.AppConfiguration;
-import goosegame.main.GooseGameAppBuilder;
+import goosegame.config.AppConfiguration;
+import goosegame.config.GooseGameAppBuilder;
 
 public class Main {
     static GooseGameAppBuilder injectedBuilder;

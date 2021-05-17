@@ -1,4 +1,4 @@
-package goosegame.main.add_player;
+package goosegame.config.add_player;
 
 import goosegame.ApplicationDriver;
 

@@ -1,4 +1,4 @@
-package goosegame.main;
+package goosegame.config;
 
 import goosegame.boundary.application.InputOutput;
 import goosegame.boundary.output.SystemInputOutput;

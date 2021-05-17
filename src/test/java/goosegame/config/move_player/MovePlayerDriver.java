@@ -1,4 +1,4 @@
-package goosegame.main.move_player;
+package goosegame.config.move_player;
 
 import goosegame.ApplicationDriver;
 

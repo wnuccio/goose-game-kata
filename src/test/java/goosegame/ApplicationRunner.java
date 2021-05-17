@@ -1,6 +1,6 @@
 package goosegame;
 
-import goosegame.main.GooseGameAppBuilder;
+import goosegame.config.GooseGameAppBuilder;
 
 public class ApplicationRunner {
     private boolean appRunning = false;

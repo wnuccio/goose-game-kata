@@ -2,8 +2,8 @@ package goosegame;
 
 import goosegame.boundary.application.InputOutput;
 import goosegame.boundary.random.RandomDiceRoller;
+import goosegame.config.GooseGameAppBuilder;
 import goosegame.domain.DiceRoller;
-import goosegame.main.GooseGameAppBuilder;
 
 public class TestConfiguration {
     private SharedMemory sharedMemory;
