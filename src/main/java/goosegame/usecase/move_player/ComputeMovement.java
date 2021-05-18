@@ -49,36 +49,32 @@ public class ComputeMovement {
     }
 
     private Movement applyBouncingRule(MoveCommand command, Movement lastMovement) {
-        if (lastMovement.isOverTheVictory()) {
-            Position finalPosition = lastMovement.bouncedPosition();
-            players.setPositionOf(command.player(), finalPosition);
+        if (!lastMovement.isOverTheVictory()) return lastMovement;
 
-            Movement bouncing = after(lastMovement)
-                    .becauseOf(BOUNCING)
-                    .goToPosition(finalPosition);
-            movements.add(bouncing);
-            return bouncing;
-        }
+        Position finalPosition = lastMovement.bouncedPosition();
+        players.setPositionOf(command.player(), finalPosition);
 
-        return lastMovement;
+        Movement bouncing = after(lastMovement)
+                .becauseOf(BOUNCING)
+                .goToPosition(finalPosition);
+        movements.add(bouncing);
+        return bouncing;
     }
 
     private Movement applyBridgeRule(MoveCommand command, Movement lastMovement) {
-        if (lastMovement.finalPosition().equals(BRIDGE)) {
-            players.setPositionOf(command.player(), BRIDGE_TARGET);
+        if (!lastMovement.finalPosition().equals(BRIDGE)) return lastMovement;
 
-            Movement jumpOnBridge = after(lastMovement)
-                    .becauseOf(JUMP_ON_BRIDGE)
-                    .goToPosition(BRIDGE_TARGET);
-            movements.add(jumpOnBridge);
-            return jumpOnBridge;
-        }
+        players.setPositionOf(command.player(), BRIDGE_TARGET);
 
-        return lastMovement;
+        Movement jumpOnBridge = after(lastMovement)
+                .becauseOf(JUMP_ON_BRIDGE)
+                .goToPosition(BRIDGE_TARGET);
+        movements.add(jumpOnBridge);
+        return jumpOnBridge;
     }
 
     private Movement applyGooseRule(MoveCommand command, Movement lastMovement) {
-        if (! lastMovement.endsOnGoose()) return lastMovement;
+        if (!lastMovement.endsOnGoose()) return lastMovement;
 
         Position finalPosition = lastMovement.finalPosition().plus(command.diceTotal());
         players.setPositionOf(command.player(), finalPosition);
@@ -91,14 +87,16 @@ public class ComputeMovement {
         return applyGooseRule(command, gooseMovement);
     }
 
-    private void applyPlayerSwitchRule(MoveCommand command, Movement lastMovement) {
+    private Movement applyPlayerSwitchRule(MoveCommand command, Movement lastMovement) {
         List<String> ecounteredPlayers = players.playersOnSamePositionOf(command.player());
-        if (ecounteredPlayers.isEmpty()) return;
+        if (ecounteredPlayers.isEmpty()) return lastMovement;
+
         String unluckyPlayer = ecounteredPlayers.get(0);
 
         Position previousPositionOfCurrentPlayer = lastMovement.startPosition();
         players.setPositionOf(unluckyPlayer, previousPositionOfCurrentPlayer);
         MovementWithSwitch movementWithSwitch = new MovementWithSwitch(unluckyPlayer, lastMovement);
         movements.add(movementWithSwitch);
+        return lastMovement;
     }
 }
