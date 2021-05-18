@@ -8,7 +8,7 @@ import java.util.List;
 
 import static goosegame.domain.Position.BRIDGE;
 import static goosegame.domain.Position.BRIDGE_TARGET;
-import static goosegame.usecase.move_player.FurtherMovementBuilder.after;
+import static goosegame.usecase.move_player.FurtherMovementBuilder.furtherMovement;
 import static goosegame.usecase.move_player.MovementType.*;
 import static goosegame.usecase.move_player.SimpleMovement.movement;
 
@@ -54,9 +54,11 @@ public class ComputeMovement {
         Position finalPosition = lastMovement.bouncedPosition();
         players.setPositionOf(command.player(), finalPosition);
 
-        Movement bouncing = after(lastMovement)
+        Movement bouncing = furtherMovement()
                 .becauseOf(BOUNCING)
-                .goToPosition(finalPosition);
+                .from(lastMovement.finalPosition())
+                .goTo(finalPosition);
+
         movements.add(bouncing);
         return bouncing;
     }
@@ -66,9 +68,11 @@ public class ComputeMovement {
 
         players.setPositionOf(command.player(), BRIDGE_TARGET);
 
-        Movement jumpOnBridge = after(lastMovement)
+        Movement jumpOnBridge = furtherMovement()
                 .becauseOf(JUMP_ON_BRIDGE)
-                .goToPosition(BRIDGE_TARGET);
+                .from(lastMovement.finalPosition())
+                .goTo(BRIDGE_TARGET);
+
         movements.add(jumpOnBridge);
         return jumpOnBridge;
     }
@@ -79,9 +83,10 @@ public class ComputeMovement {
         Position finalPosition = lastMovement.finalPosition().plus(command.diceTotal());
         players.setPositionOf(command.player(), finalPosition);
 
-        Movement gooseMovement = after(lastMovement)
+        Movement gooseMovement = furtherMovement()
                 .becauseOf(REPEAT_ON_GOOSE)
-                .goToPosition(finalPosition);
+                .from(lastMovement.finalPosition())
+                .goTo(finalPosition);
 
         movements.add(gooseMovement);
         return applyGooseRule(command, gooseMovement);
@@ -101,6 +106,7 @@ public class ComputeMovement {
                 otherPlayerPreviousPosition
         );
         players.setPositionOf(unluckyPlayer, otherPlayerPreviousPosition);
+
         movements.add(movementWithSwitch);
         return lastMovement;
     }

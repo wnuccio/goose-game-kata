@@ -3,15 +3,11 @@ package goosegame.usecase.move_player;
 import goosegame.domain.Position;
 
 public class FurtherMovementBuilder {
-    private final Movement previousMovement;
     private MovementType type;
+    private Position startPosition;
 
-    public FurtherMovementBuilder(Movement previousMovement) {
-        this.previousMovement = previousMovement;
-    }
-
-    public static FurtherMovementBuilder after(Movement previousMovement) {
-        return new FurtherMovementBuilder(previousMovement);
+    public static FurtherMovementBuilder furtherMovement() {
+        return new FurtherMovementBuilder();
     }
 
     public FurtherMovementBuilder becauseOf(MovementType type) {
@@ -19,7 +15,12 @@ public class FurtherMovementBuilder {
         return this;
     }
 
-    public Movement goToPosition(Position finalPosition) {
-        return new FurtherMovement(previousMovement.finalPosition(), type, finalPosition);
+    public FurtherMovementBuilder from(Position startPosition) {
+        this.startPosition = startPosition;
+        return this;
+    }
+
+    public Movement goTo(Position finalPosition) {
+        return new FurtherMovement(startPosition, type, finalPosition);
     }
 }
