@@ -20,6 +20,6 @@ public class FurtherMovementBuilder {
     }
 
     public Movement goToPosition(Position finalPosition) {
-        return new FurtherMovement(previousMovement, type, finalPosition);
+        return new FurtherMovement(previousMovement.finalPosition(), type, finalPosition);
     }
 }

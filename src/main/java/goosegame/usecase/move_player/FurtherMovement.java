@@ -4,19 +4,19 @@ package goosegame.usecase.move_player;
 import goosegame.domain.Position;
 
 public class FurtherMovement implements Movement {
-    protected Movement previousMovement;
+    private final Position startPosition;
     private final MovementType type;
     private final Position finalPosition;
 
-    public FurtherMovement(Movement previousMovement, MovementType type, Position finalPosition) {
-        this.previousMovement = previousMovement;
+    public FurtherMovement(Position startPosition, MovementType type, Position finalPosition) {
+        this.startPosition = startPosition;
         this.type = type;
         this.finalPosition = finalPosition;
     }
 
     @Override
     public Position startPosition() {
-        return previousMovement.startPosition();
+        return startPosition;
     }
 
     @Override

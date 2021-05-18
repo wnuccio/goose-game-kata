@@ -36,13 +36,13 @@ class ComputeMovementTest {
         assertThat(players.positionOf("Pippo")).isEqualTo(position(57));
 
         assertThat(movements.size()).isEqualTo(2);
-        Movement movement1 = movements.get(0);
-        Movement movement2 = movements.get(1);
+        Movement firstMovement = movements.get(0);
+        Movement bouncing = movements.get(1);
 
-        assertThat(movement1.startPosition()).isEqualTo(position(62));
-        assertThat(movement1.finalPosition()).isEqualTo(position(69));
-        assertThat(movement2.startPosition()).isEqualTo(position(62));
-        assertThat(movement2.finalPosition()).isEqualTo(position(57));
+        assertThat(firstMovement.startPosition()).isEqualTo(position(62));
+        assertThat(firstMovement.finalPosition()).isEqualTo(position(69));
+        assertThat(bouncing.startPosition()).isEqualTo(position(69));
+        assertThat(bouncing.finalPosition()).isEqualTo(position(57));
     }
 
     @Test
@@ -54,13 +54,13 @@ class ComputeMovementTest {
         assertThat(players.positionOf("Pippo")).isEqualTo(BRIDGE_TARGET);
 
         assertThat(movements.size()).isEqualTo(2);
-        Movement movement1 = movements.get(0);
-        Movement movement2 = movements.get(1);
+        Movement firstMovement = movements.get(0);
+        Movement jumpOnBridge = movements.get(1);
 
-        assertThat(movement1.startPosition()).isEqualTo(position(4));
-        assertThat(movement1.finalPosition()).isEqualTo(BRIDGE);
-        assertThat(movement2.startPosition()).isEqualTo(position(4));
-        assertThat(movement2.finalPosition()).isEqualTo(BRIDGE_TARGET);
+        assertThat(firstMovement.startPosition()).isEqualTo(position(4));
+        assertThat(firstMovement.finalPosition()).isEqualTo(BRIDGE);
+        assertThat(jumpOnBridge.startPosition()).isEqualTo(BRIDGE);
+        assertThat(jumpOnBridge.finalPosition()).isEqualTo(BRIDGE_TARGET);
     }
 
     @Test
@@ -72,13 +72,13 @@ class ComputeMovementTest {
         assertThat(players.positionOf("Pippo")).isEqualTo(position(7));
 
         assertThat(movements.size()).isEqualTo(2);
-        Movement movement1 = movements.get(0);
-        Movement movement2 = movements.get(1);
+        Movement firstMovement = movements.get(0);
+        Movement repeatOnGoose = movements.get(1);
 
-        assertThat(movement1.startPosition()).isEqualTo(position(3));
-        assertThat(movement1.finalPosition()).isEqualTo(position(5));
-        assertThat(movement2.startPosition()).isEqualTo(position(3));
-        assertThat(movement2.finalPosition()).isEqualTo(position(7));
+        assertThat(firstMovement.startPosition()).isEqualTo(position(3));
+        assertThat(firstMovement.finalPosition()).isEqualTo(position(5));
+        assertThat(repeatOnGoose.startPosition()).isEqualTo(position(5));
+        assertThat(repeatOnGoose.finalPosition()).isEqualTo(position(7));
     }
 
     @Test
@@ -90,16 +90,16 @@ class ComputeMovementTest {
         assertThat(players.positionOf("Pippo")).isEqualTo(position(22));
 
         assertThat(movements.size()).isEqualTo(3);
-        Movement movement1 = movements.get(0);
-        Movement movement2 = movements.get(1);
-        Movement movement3 = movements.get(2);
+        Movement firstMovement = movements.get(0);
+        Movement firstGoose = movements.get(1);
+        Movement secondGoose = movements.get(2);
 
-        assertThat(movement1.startPosition()).isEqualTo(position(10));
-        assertThat(movement1.finalPosition()).isEqualTo(position(14));
-        assertThat(movement2.startPosition()).isEqualTo(position(10));
-        assertThat(movement2.finalPosition()).isEqualTo(position(18));
-        assertThat(movement3.startPosition()).isEqualTo(position(10));
-        assertThat(movement3.finalPosition()).isEqualTo(position(22));
+        assertThat(firstMovement.startPosition()).isEqualTo(position(10));
+        assertThat(firstMovement.finalPosition()).isEqualTo(position(14));
+        assertThat(firstGoose.startPosition()).isEqualTo(position(14));
+        assertThat(firstGoose.finalPosition()).isEqualTo(position(18));
+        assertThat(secondGoose.startPosition()).isEqualTo(position(18));
+        assertThat(secondGoose.finalPosition()).isEqualTo(position(22));
     }
 
     @Test
