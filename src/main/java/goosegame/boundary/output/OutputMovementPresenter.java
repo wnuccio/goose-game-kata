@@ -68,7 +68,7 @@ public class OutputMovementPresenter implements MovementPresenter {
     }
 
     @Override
-    public void presentRepeatOnGoose(GooseMovement movement) {
+    public void presentGooseMovement(GooseMovement movement) {
         String playerMovesAgain = format(" %s moves again and goes to %s",
                 player(),
                 positionName(movement.finalPosition()));

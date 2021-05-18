@@ -11,5 +11,5 @@ public interface MovementPresenter {
 
     void presentSwitchMovement(SwitchMovement movement);
 
-    void presentRepeatOnGoose(GooseMovement movement);
+    void presentGooseMovement(GooseMovement movement);
 }

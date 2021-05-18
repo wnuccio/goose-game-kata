@@ -8,6 +8,6 @@ public class GooseMovement extends PresentableMovement {
 
     @Override
     public void present(MovementPresenter movementPresenter) {
-        movementPresenter.presentRepeatOnGoose(this);
+        movementPresenter.presentGooseMovement(this);
     }
 }
