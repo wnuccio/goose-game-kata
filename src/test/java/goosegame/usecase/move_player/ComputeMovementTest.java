@@ -41,7 +41,7 @@ class ComputeMovementTest {
 
         assertThat(firstMovement.startPosition()).isEqualTo(position(62));
         assertThat(firstMovement.finalPosition()).isEqualTo(position(69));
-        assertThat(bouncing.startPosition()).isEqualTo(position(69));
+        assertThat(bouncing.startPosition()).isEqualTo(WIN);
         assertThat(bouncing.finalPosition()).isEqualTo(position(57));
     }
 

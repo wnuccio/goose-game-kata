@@ -47,7 +47,7 @@ public class ComputeMovement {
         Position finalPosition = lastMovement.bouncedPosition();
         players.setPositionOf(command.player(), finalPosition);
 
-        Movement bouncing = new BouncingMovement(lastMovement.finalPosition(), finalPosition);
+        Movement bouncing = new BouncingMovement(finalPosition);
 
         movements.add(bouncing);
         return bouncing;
