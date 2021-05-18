@@ -8,8 +8,6 @@ import java.util.List;
 
 import static goosegame.domain.Position.BRIDGE;
 import static goosegame.domain.Position.BRIDGE_TARGET;
-import static goosegame.usecase.move_player.FurtherMovementBuilder.furtherMovement;
-import static goosegame.usecase.move_player.MovementType.*;
 
 public class ComputeMovement {
     private final Players players;
@@ -49,10 +47,7 @@ public class ComputeMovement {
         Position finalPosition = lastMovement.bouncedPosition();
         players.setPositionOf(command.player(), finalPosition);
 
-        Movement bouncing = furtherMovement()
-                .becauseOf(BOUNCING)
-                .from(lastMovement.finalPosition())
-                .goTo(finalPosition);
+        Movement bouncing = new BouncingMovement(lastMovement.finalPosition(), finalPosition);
 
         movements.add(bouncing);
         return bouncing;
@@ -63,13 +58,10 @@ public class ComputeMovement {
 
         players.setPositionOf(command.player(), BRIDGE_TARGET);
 
-        Movement jumpOnBridge = furtherMovement()
-                .becauseOf(JUMP_ON_BRIDGE)
-                .from(lastMovement.finalPosition())
-                .goTo(BRIDGE_TARGET);
+        Movement jumpOnBridgeMovement = new JumpOnBridgeMovement(BRIDGE, BRIDGE_TARGET);
 
-        movements.add(jumpOnBridge);
-        return jumpOnBridge;
+        movements.add(jumpOnBridgeMovement);
+        return jumpOnBridgeMovement;
     }
 
     private Movement applyGooseRule(MoveCommand command, Movement lastMovement) {
@@ -78,10 +70,7 @@ public class ComputeMovement {
         Position finalPosition = lastMovement.finalPosition().plus(command.diceTotal());
         players.setPositionOf(command.player(), finalPosition);
 
-        Movement gooseMovement = furtherMovement()
-                .becauseOf(REPEAT_ON_GOOSE)
-                .from(lastMovement.finalPosition())
-                .goTo(finalPosition);
+        Movement gooseMovement = new GooseMovement(lastMovement.finalPosition(), finalPosition);
 
         movements.add(gooseMovement);
         return applyGooseRule(command, gooseMovement);

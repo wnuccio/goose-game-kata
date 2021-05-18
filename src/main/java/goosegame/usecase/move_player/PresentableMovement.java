@@ -1,16 +1,14 @@
 package goosegame.usecase.move_player;
 
-
 import goosegame.domain.Position;
 
-public class FurtherMovement implements Movement {
+
+public abstract class PresentableMovement implements Movement {
     private final Position startPosition;
-    private final MovementType type;
     private final Position finalPosition;
 
-    public FurtherMovement(Position startPosition, MovementType type, Position finalPosition) {
+    public PresentableMovement(Position startPosition, Position finalPosition) {
         this.startPosition = startPosition;
-        this.type = type;
         this.finalPosition = finalPosition;
     }
 
@@ -24,8 +22,5 @@ public class FurtherMovement implements Movement {
         return finalPosition;
     }
 
-    @Override
-    public void present(MovementPresenter movementPresenter) {
-        type.presentMovement(this, movementPresenter);
-    }
+    public abstract void present(MovementPresenter movementPresenter);
 }

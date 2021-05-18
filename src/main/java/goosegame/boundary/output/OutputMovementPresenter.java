@@ -39,14 +39,14 @@ public class OutputMovementPresenter implements MovementPresenter {
     }
 
     @Override
-    public void presentJumpOnBridge(FurtherMovement movement) {
+    public void presentJumpOnBridge(JumpOnBridgeMovement movement) {
         String playerJumps = format(". %s jumps to 12", player());
 
         stringBuilder.append(playerJumps);
     }
 
     @Override
-    public void presentBouncing(FurtherMovement movement) {
+    public void presentBouncing(BouncingMovement movement) {
         String playerBounces = format(". %s bounces! %s returns to %s",
                 player(),
                 player(),
@@ -66,7 +66,7 @@ public class OutputMovementPresenter implements MovementPresenter {
     }
 
     @Override
-    public void presentRepeatOnGoose(FurtherMovement movement) {
+    public void presentRepeatOnGoose(GooseMovement movement) {
         String playerMovesAgain = format(" %s moves again and goes to %s",
                 player(),
                 positionName(movement.finalPosition()));

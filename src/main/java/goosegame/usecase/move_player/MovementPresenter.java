@@ -5,11 +5,11 @@ public interface MovementPresenter {
 
     void presentFirstMovement(FirstMovement movement);
 
-    void presentJumpOnBridge(FurtherMovement movement);
+    void presentJumpOnBridge(JumpOnBridgeMovement movement);
 
-    void presentBouncing(FurtherMovement movement);
+    void presentBouncing(BouncingMovement movement);
 
     void presentPlayerSwitching(MovementWithSwitch movement);
 
-    void presentRepeatOnGoose(FurtherMovement movement);
+    void presentRepeatOnGoose(GooseMovement movement);
 }
