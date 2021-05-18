@@ -1,4 +1,4 @@
-package goosegame.boundary.application;
+package goosegame.boundary.input;
 
 import goosegame.domain.Dice;
 import goosegame.usecase.add_player.AddPlayer;
@@ -10,8 +10,8 @@ import goosegame.usecase.reset_game.ResetService;
 import java.util.function.Consumer;
 
 public class CommandsInterpreter {
-
     private final AddPlayer addPlayer;
+
     private final MovePlayer movePlayer;
     private final RollAndMove rollAndMove;
     private final ResetService resetService;
@@ -22,6 +22,18 @@ public class CommandsInterpreter {
         this.movePlayer = movePlayer;
         this.rollAndMove = rollAndMove;
         this.resetService = resetService;
+    }
+
+    public void acceptCommand(String commandLine) {
+        this.commandLine = new CommandLine(commandLine);
+
+        if (interpretAddPlayer()) return;
+        if (interpretMovePlayerWithDice()) return;
+        if (interpretRollAndMove()) return;
+        if (interpretReset()) return;
+        if (interpretStop()) return;
+
+        doNothing();
     }
 
     private boolean interpret(String regex, Consumer<String[]> execution) {
@@ -61,18 +73,6 @@ public class CommandsInterpreter {
 
     private boolean interpretStop() {
         return interpret("(stop) (\\w*)", tokens -> resetService.doStop());
-    }
-
-    public void acceptCommand(String commandLine) {
-        this.commandLine = new CommandLine(commandLine);
-
-        if (interpretAddPlayer()) return;
-        if (interpretMovePlayerWithDice()) return;
-        if (interpretRollAndMove()) return;
-        if (interpretReset()) return;
-        if (interpretStop()) return;
-
-        doNothing();
     }
 
     private void doNothing() {
