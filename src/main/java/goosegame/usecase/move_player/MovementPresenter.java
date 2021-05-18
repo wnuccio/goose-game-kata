@@ -3,7 +3,7 @@ package goosegame.usecase.move_player;
 public interface MovementPresenter {
     void presentMovement(MovementView movementView);
 
-    void presentSimpleMovement(SimpleMovement movement);
+    void presentFirstMovement(FirstMovement movement);
 
     void presentJumpOnBridge(FurtherMovement movement);
 

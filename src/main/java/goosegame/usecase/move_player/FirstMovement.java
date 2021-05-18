@@ -3,12 +3,12 @@ package goosegame.usecase.move_player;
 import goosegame.domain.Dice;
 import goosegame.domain.Position;
 
-public class SimpleMovement implements Movement {
+public class FirstMovement implements Movement {
     Position finalPosition;
     Position startPosition;
     Dice dice;
 
-    public static MovementBuilder movement() {
+    public static MovementBuilder firstMovement() {
         return new MovementBuilder();
     }
 
@@ -24,6 +24,6 @@ public class SimpleMovement implements Movement {
 
     @Override
     public void present(MovementPresenter movementPresenter) {
-        movementPresenter.presentSimpleMovement(this);
+        movementPresenter.presentFirstMovement(this);
     }
 }

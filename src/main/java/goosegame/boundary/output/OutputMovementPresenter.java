@@ -30,7 +30,7 @@ public class OutputMovementPresenter implements MovementPresenter {
     }
 
     @Override
-    public void presentSimpleMovement(SimpleMovement movement) {
+    public void presentFirstMovement(FirstMovement movement) {
         String playerRolls = format("%s rolls %s, %s" + ". ", player(), firstDice(), secondDice());
         String playerMoves = format("%s moves from %s to %s", player(), positionName(movement.startPosition()), positionName(movement.finalPosition()));
         String playerWins = movement.isVictory() ? format(". %s Wins!!", player()) : "";

@@ -5,10 +5,10 @@ import goosegame.domain.Position;
 
 public class MovementBuilder {
 
-    private final SimpleMovement movement;
+    private final FirstMovement movement;
 
     public MovementBuilder() {
-        movement = new SimpleMovement();
+        movement = new FirstMovement();
     }
 
     public MovementBuilder from(Position startPosition) {
@@ -26,7 +26,7 @@ public class MovementBuilder {
         return this;
     }
 
-    public SimpleMovement end() {
+    public FirstMovement end() {
         return movement;
     }
 }

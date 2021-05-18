@@ -8,9 +8,9 @@ import java.util.List;
 
 import static goosegame.domain.Position.BRIDGE;
 import static goosegame.domain.Position.BRIDGE_TARGET;
+import static goosegame.usecase.move_player.FirstMovement.firstMovement;
 import static goosegame.usecase.move_player.FurtherMovementBuilder.furtherMovement;
 import static goosegame.usecase.move_player.MovementType.*;
-import static goosegame.usecase.move_player.SimpleMovement.movement;
 
 public class ComputeMovement {
     private final Players players;
@@ -23,7 +23,7 @@ public class ComputeMovement {
     public List<Movement> fromCommand(MoveCommand command) {
         movements = new ArrayList<>();
 
-        SimpleMovement firstMovement = applyFirstMovementRule(command);
+        FirstMovement firstMovement = applyFirstMovementRule(command);
         Movement movement = applyBouncingRule(command, firstMovement);
         movement = applyBridgeRule(command, movement);
         movement = applyGooseRule(command, movement);
@@ -32,11 +32,11 @@ public class ComputeMovement {
         return movements;
     }
 
-    private SimpleMovement applyFirstMovementRule(MoveCommand command) {
+    private FirstMovement applyFirstMovementRule(MoveCommand command) {
         Position startPosition = players.positionOf(command.player());
         Position finalPosition = startPosition.plus(command.diceTotal());
 
-        SimpleMovement movement = movement()
+        FirstMovement movement = firstMovement()
                 .from(startPosition)
                 .to(finalPosition)
                 .givenRoll(command.dice())
