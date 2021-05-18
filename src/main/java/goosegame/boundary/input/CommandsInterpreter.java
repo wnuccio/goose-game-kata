@@ -36,16 +36,16 @@ public class CommandsInterpreter {
 
     private boolean interpretAddPlayer() {
         return commandLine.interpret("(add player) (\\w*)", tokens -> {
-            String player = tokens[2];
+            String player = tokens.name(2);
             addPlayer.doAdd(player);
         });
     }
 
     private boolean interpretMovePlayerWithDice() {
         return commandLine.interpret("(move) (\\w*) ([1-6]), ([1-6])", tokens -> {
-            String player = tokens[2];
-            int dice1 = Integer.parseInt(tokens[3]);
-            int dice2 = Integer.parseInt(tokens[4]);
+            String player = tokens.name(2);
+            int dice1 = tokens.number(3);
+            int dice2 = tokens.number(4);
             MoveCommand command = new MoveCommand(player, new Dice(dice1, dice2));
             movePlayer.acceptCommand(command);
         });
@@ -53,7 +53,7 @@ public class CommandsInterpreter {
 
     private boolean interpretRollAndMove() {
         return commandLine.interpret("(move) (\\w*)", tokens -> {
-            String player = tokens[2];
+            String player = tokens.name(2);
             rollAndMove.acceptCommand(player);
         });
     }

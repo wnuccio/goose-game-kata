@@ -26,9 +26,9 @@ public class CommandLine {
         return toTokens(compile(regex).matcher(commandLine));
     }
 
-    public boolean interpret(String regex, Consumer<String[]> execution) {
-        String[] tokens = parse(regex);
-        if (tokens.length == 0) return false;
+    public boolean interpret(String regex, Consumer<Tokens> execution) {
+        Tokens tokens = new Tokens(parse(regex));
+        if (tokens.isEmpty()) return false;
         execution.accept(tokens);
         return true;
     }
