@@ -26,7 +26,7 @@ public class CommandsInterpreter {
         this.commandLine = new CommandLine(commandLine);
 
         if (interpretAddPlayer()) return;
-        if (interpretMovePlayerWithDice()) return;
+        if (interpretMovePlayer()) return;
         if (interpretRollAndMove()) return;
         if (interpretReset()) return;
         if (interpretStop()) return;
@@ -41,7 +41,7 @@ public class CommandsInterpreter {
         });
     }
 
-    private boolean interpretMovePlayerWithDice() {
+    private boolean interpretMovePlayer() {
         return commandLine.interpret("(move) (\\w*) ([1-6]), ([1-6])", tokens -> {
             String player = tokens.name(2);
             int dice1 = tokens.number(3);
