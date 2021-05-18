@@ -58,9 +58,9 @@ public class OutputMovementPresenter implements MovementPresenter {
     @Override
     public void presentPlayerSwitching(MovementWithSwitch movement) {
         String playerSwitch = format(". On %s there is %s, who returns to %s",
-                positionName(movement.finalPosition()),
+                positionName(movement.startPosition()),
                 movement.switchedPlayer(),
-                positionName(movement.startPosition()));
+                positionName(movement.finalPosition()));
 
         stringBuilder.append(playerSwitch);
     }

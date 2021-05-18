@@ -119,8 +119,8 @@ class ComputeMovementTest {
         assertThat(movement2 instanceof MovementWithSwitch).isTrue();
 
         MovementWithSwitch movementWithSwitch = (MovementWithSwitch)movement2;
-        assertThat(movementWithSwitch.startPosition()).isEqualTo(position(15));
-        assertThat(movementWithSwitch.finalPosition()).isEqualTo(position(17));
+        assertThat(movementWithSwitch.startPosition()).isEqualTo(position(17));
+        assertThat(movementWithSwitch.finalPosition()).isEqualTo(position(15));
         assertThat(movementWithSwitch.switchedPlayer()).isEqualTo("Pluto");
 
         assertThat(players.positionOf("Pippo")).isEqualTo(position(17));
