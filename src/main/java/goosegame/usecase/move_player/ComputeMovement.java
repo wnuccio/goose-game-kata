@@ -77,10 +77,10 @@ public class ComputeMovement {
     }
 
     private Movement applyPlayerSwitchRule(MoveCommand command, Movement lastMovement) {
-        List<String> ecounteredPlayers = players.playersOnSamePositionOf(command.player());
-        if (ecounteredPlayers.isEmpty()) return lastMovement;
+        List<String> encounteredPlayers = players.playersOnSamePositionOf(command.player());
+        if (encounteredPlayers.isEmpty()) return lastMovement;
 
-        String unluckyPlayer = ecounteredPlayers.get(0);
+        String unluckyPlayer = encounteredPlayers.get(0);
 
         Position unluckyPlayerPosition = players.positionOf(unluckyPlayer);
         Position otherPlayerPreviousPosition = lastMovement.startPosition();
