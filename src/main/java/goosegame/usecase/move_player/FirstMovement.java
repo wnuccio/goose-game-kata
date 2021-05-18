@@ -1,15 +1,14 @@
 package goosegame.usecase.move_player;
 
-import goosegame.domain.Dice;
 import goosegame.domain.Position;
 
 public class FirstMovement implements Movement {
-    Position finalPosition;
-    Position startPosition;
-    Dice dice;
+    private final Position startPosition;
+    private final Position finalPosition;
 
-    public static MovementBuilder firstMovement() {
-        return new MovementBuilder();
+    public FirstMovement(Position startPosition, Position finalPosition) {
+        this.startPosition = startPosition;
+        this.finalPosition = finalPosition;
     }
 
     @Override

@@ -8,7 +8,6 @@ import java.util.List;
 
 import static goosegame.domain.Position.BRIDGE;
 import static goosegame.domain.Position.BRIDGE_TARGET;
-import static goosegame.usecase.move_player.FirstMovement.firstMovement;
 import static goosegame.usecase.move_player.FurtherMovementBuilder.furtherMovement;
 import static goosegame.usecase.move_player.MovementType.*;
 
@@ -36,11 +35,7 @@ public class ComputeMovement {
         Position startPosition = players.positionOf(command.player());
         Position finalPosition = startPosition.plus(command.diceTotal());
 
-        FirstMovement movement = firstMovement()
-                .from(startPosition)
-                .to(finalPosition)
-                .givenRoll(command.dice())
-                .end();
+        FirstMovement movement = new FirstMovement(startPosition, finalPosition);
 
         String player = command.player();
         players.setPositionOf(player, finalPosition);
