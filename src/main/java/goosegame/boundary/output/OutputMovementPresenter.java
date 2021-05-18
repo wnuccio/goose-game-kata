@@ -31,7 +31,9 @@ public class OutputMovementPresenter implements MovementPresenter {
 
     @Override
     public void presentFirstMovement(FirstMovement movement) {
-        String playerRolls = format("%s rolls %s, %s" + ". ", player(), firstDice(), secondDice());
+        int firstDice = movementView.firstDice();
+        int secondDice = movementView.secondDice();
+        String playerRolls = format("%s rolls %s, %s" + ". ", player(), firstDice, secondDice);
         String playerMoves = format("%s moves from %s to %s", player(), positionName(movement.startPosition()), positionName(movement.finalPosition()));
         String playerWins = movement.isVictory() ? format(". %s Wins!!", player()) : "";
 
@@ -84,14 +86,6 @@ public class OutputMovementPresenter implements MovementPresenter {
         String name = names.getOrDefault(position, position.value());
         String gooseSuffix = position.hasTheGoose() ? ", The Goose." : "";
         return name + gooseSuffix;
-    }
-
-    private int secondDice() {
-        return movementView.secondDice();
-    }
-
-    private int firstDice() {
-        return movementView.firstDice();
     }
 
     private String player() {
