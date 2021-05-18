@@ -58,7 +58,7 @@ public class ComputeMovement {
 
         players.setPositionOf(command.player(), BRIDGE_TARGET);
 
-        Movement jumpOnBridgeMovement = new JumpOnBridgeMovement(BRIDGE, BRIDGE_TARGET);
+        Movement jumpOnBridgeMovement = new JumpOnBridgeMovement();
 
         movements.add(jumpOnBridgeMovement);
         return jumpOnBridgeMovement;

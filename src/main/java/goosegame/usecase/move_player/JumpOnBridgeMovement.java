@@ -1,10 +1,11 @@
 package goosegame.usecase.move_player;
 
-import goosegame.domain.Position;
+import static goosegame.domain.Position.BRIDGE;
+import static goosegame.domain.Position.BRIDGE_TARGET;
 
 public class JumpOnBridgeMovement extends PresentableMovement {
 
-    public JumpOnBridgeMovement(Position startPosition, Position finalPosition) { super(startPosition, finalPosition); }
+    public JumpOnBridgeMovement() { super(BRIDGE, BRIDGE_TARGET); }
 
     @Override
     public void present(MovementPresenter movementPresenter) { movementPresenter.presentJumpOnBridge(this); }
