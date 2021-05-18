@@ -7,8 +7,6 @@ import goosegame.usecase.move_player.MovePlayer;
 import goosegame.usecase.move_player.RollAndMove;
 import goosegame.usecase.reset_game.ResetService;
 
-import java.util.function.Consumer;
-
 public class CommandsInterpreter {
     private final AddPlayer addPlayer;
 
@@ -36,22 +34,15 @@ public class CommandsInterpreter {
         doNothing();
     }
 
-    private boolean interpret(String regex, Consumer<String[]> execution) {
-        String[] tokens = commandLine.parse(regex);
-        if (tokens.length == 0) return false;
-        execution.accept(tokens);
-        return true;
-    }
-
     private boolean interpretAddPlayer() {
-        return interpret("(add player) (\\w*)", tokens -> {
+        return commandLine.interpret("(add player) (\\w*)", tokens -> {
             String player = tokens[2];
             addPlayer.doAdd(player);
         });
     }
 
     private boolean interpretMovePlayerWithDice() {
-        return interpret("(move) (\\w*) ([1-6]), ([1-6])", tokens -> {
+        return commandLine.interpret("(move) (\\w*) ([1-6]), ([1-6])", tokens -> {
             String player = tokens[2];
             int dice1 = Integer.parseInt(tokens[3]);
             int dice2 = Integer.parseInt(tokens[4]);
@@ -61,18 +52,18 @@ public class CommandsInterpreter {
     }
 
     private boolean interpretRollAndMove() {
-        return interpret("(move) (\\w*)", tokens -> {
+        return commandLine.interpret("(move) (\\w*)", tokens -> {
             String player = tokens[2];
             rollAndMove.acceptCommand(player);
         });
     }
 
     private boolean interpretReset() {
-        return interpret("(reset) (\\w*)", tokens -> resetService.doReset());
+        return commandLine.interpret("(reset) (\\w*)", tokens -> resetService.doReset());
     }
 
     private boolean interpretStop() {
-        return interpret("(stop) (\\w*)", tokens -> resetService.doStop());
+        return commandLine.interpret("(stop) (\\w*)", tokens -> resetService.doStop());
     }
 
     private void doNothing() {

@@ -1,5 +1,6 @@
 package goosegame.boundary.input;
 
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 
 import static java.util.regex.Pattern.compile;
@@ -21,7 +22,14 @@ public class CommandLine {
         return tokens;
     }
 
-    public String[] parse(String regex) {
+    private String[] parse(String regex) {
         return toTokens(compile(regex).matcher(commandLine));
+    }
+
+    public boolean interpret(String regex, Consumer<String[]> execution) {
+        String[] tokens = parse(regex);
+        if (tokens.length == 0) return false;
+        execution.accept(tokens);
+        return true;
     }
 }
