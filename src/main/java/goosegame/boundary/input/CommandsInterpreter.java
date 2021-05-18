@@ -59,11 +59,11 @@ public class CommandsInterpreter {
     }
 
     private boolean interpretReset() {
-        return commandLine.interpret("(reset) (\\w*)", tokens -> resetService.doReset());
+        return commandLine.interpret("reset game", resetService::doReset);
     }
 
     private boolean interpretStop() {
-        return commandLine.interpret("(stop) (\\w*)", tokens -> resetService.doStop());
+        return commandLine.interpret("stop game", resetService::doStop);
     }
 
     private void doNothing() {

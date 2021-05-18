@@ -32,4 +32,8 @@ public class CommandLine {
         execution.accept(tokens);
         return true;
     }
+
+    public boolean interpret(String regex, Runnable execution) {
+        return interpret(regex, tokens -> execution.run());
+    }
 }
