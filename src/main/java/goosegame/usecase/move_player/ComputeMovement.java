@@ -84,14 +84,14 @@ public class ComputeMovement {
 
         Position unluckyPlayerPosition = players.positionOf(unluckyPlayer);
         Position otherPlayerPreviousPosition = lastMovement.startPosition();
-        MovementWithSwitch movementWithSwitch = new MovementWithSwitch(
+        SwitchMovement switchMovement = new SwitchMovement(
                 unluckyPlayer,
                 unluckyPlayerPosition,
                 otherPlayerPreviousPosition
         );
         players.setPositionOf(unluckyPlayer, otherPlayerPreviousPosition);
 
-        movements.add(movementWithSwitch);
+        movements.add(switchMovement);
         return lastMovement;
     }
 }

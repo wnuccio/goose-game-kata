@@ -9,7 +9,7 @@ public interface MovementPresenter {
 
     void presentBouncing(BouncingMovement movement);
 
-    void presentPlayerSwitching(MovementWithSwitch movement);
+    void presentSwitchMovement(SwitchMovement movement);
 
     void presentRepeatOnGoose(GooseMovement movement);
 }
