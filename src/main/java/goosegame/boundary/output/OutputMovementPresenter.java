@@ -12,7 +12,7 @@ public class OutputMovementPresenter implements MovementPresenter {
     private final OutputBoundary outputBoundary;
 
     private MovementView movementView;
-    private StringBuilder stringBuilder;
+    private StringBuilder outputBuilder;
 
     public OutputMovementPresenter(OutputBoundary outputBoundary) {
         this.outputBoundary = outputBoundary;
@@ -21,12 +21,12 @@ public class OutputMovementPresenter implements MovementPresenter {
     @Override
     public void presentMovement(MovementView movementView) {
         this.movementView = movementView;
-        this.stringBuilder = new StringBuilder();
+        this.outputBuilder = new StringBuilder();
 
         for (Movement m: movementView.movements()) {
             m.present(this);
         }
-        outputBoundary.writeOutputLine(stringBuilder.toString());
+        outputBoundary.writeOutputLine(outputBuilder.toString());
     }
 
     @Override
@@ -35,14 +35,14 @@ public class OutputMovementPresenter implements MovementPresenter {
         String playerMoves = format("%s moves from %s to %s", player(), positionName(movement.startPosition()), positionName(movement.finalPosition()));
         String playerWins = movement.isVictory() ? format(". %s Wins!!", player()) : "";
 
-        stringBuilder.append(playerRolls + playerMoves + playerWins);
+        outputBuilder.append(playerRolls + playerMoves + playerWins);
     }
 
     @Override
     public void presentJumpOnBridge(JumpOnBridgeMovement movement) {
         String playerJumps = format(". %s jumps to 12", player());
 
-        stringBuilder.append(playerJumps);
+        outputBuilder.append(playerJumps);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class OutputMovementPresenter implements MovementPresenter {
                 player(),
                 positionName(movement.finalPosition()));
 
-        stringBuilder.append(playerBounces);
+        outputBuilder.append(playerBounces);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class OutputMovementPresenter implements MovementPresenter {
                 movement.switchedPlayer(),
                 positionName(movement.finalPosition()));
 
-        stringBuilder.append(playerSwitch);
+        outputBuilder.append(playerSwitch);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class OutputMovementPresenter implements MovementPresenter {
                 player(),
                 positionName(movement.finalPosition()));
 
-        stringBuilder.append(playerMovesAgain);
+        outputBuilder.append(playerMovesAgain);
     }
 
     private String positionName(Position position) {
