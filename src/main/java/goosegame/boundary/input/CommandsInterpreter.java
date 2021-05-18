@@ -7,6 +7,8 @@ import goosegame.usecase.move_player.MovePlayer;
 import goosegame.usecase.move_player.RollAndMove;
 import goosegame.usecase.reset_game.ResetService;
 
+import java.util.function.Supplier;
+
 public class CommandsInterpreter {
     private final AddPlayer addPlayer;
 
@@ -25,13 +27,21 @@ public class CommandsInterpreter {
     public void acceptCommand(String commandLine) {
         this.commandLine = new CommandLine(commandLine);
 
-        if (interpretAddPlayer()) return;
-        if (interpretMovePlayer()) return;
-        if (interpretRollAndMove()) return;
-        if (interpretReset()) return;
-        if (interpretStop()) return;
+        interpretCommands(
+            this::interpretAddPlayer,
+            this::interpretMovePlayer,
+            this::interpretRollAndMove,
+            this::interpretReset,
+            this::interpretStop,
+            this::unrecognizedCommand
+        );
+    }
 
-        doNothing();
+    void interpretCommands(Supplier<Boolean>... interpretationsFunctions) {
+        for (Supplier<Boolean> f: interpretationsFunctions) {
+            Boolean applied = f.get();
+            if (applied) break;
+        }
     }
 
     private boolean interpretAddPlayer() {
@@ -66,6 +76,7 @@ public class CommandsInterpreter {
         return commandLine.interpret("stop game", resetService::doStop);
     }
 
-    private void doNothing() {
+    private boolean unrecognizedCommand() {
+        return false;
     }
 }
