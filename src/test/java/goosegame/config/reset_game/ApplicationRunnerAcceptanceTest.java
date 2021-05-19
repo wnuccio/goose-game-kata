@@ -7,42 +7,34 @@ import goosegame.config.add_player.AddPlayerDriver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ApplicationRunnerAcceptanceTest {
     private ApplicationRunner applicationRunner;
     private ApplicationDriver driver;
+    private AddPlayerDriver addPlayerDriver;
 
     @BeforeEach
     void setUp() {
         TestConfiguration configuration = new TestConfiguration();
         applicationRunner = configuration.applicationRunner();
         driver = configuration.applicationDriver();
-    }
-
-    @Test
-    void run_the_application() {
-        assertThat(applicationRunner.isApplicationRunning()).isFalse();
-
-        applicationRunner.runApplication();
-
-        assertThat(applicationRunner.isApplicationRunning()).isTrue();
+        addPlayerDriver = new AddPlayerDriver(driver);
     }
 
     @Test
     void stop_the_application() {
         applicationRunner.runApplication();
 
-        assertThat(applicationRunner.isApplicationRunning()).isTrue();
+        addPlayerDriver.addPlayer("Pippo");
 
         driver.acceptInputNoOutput("stop game");
 
-        assertThat(applicationRunner.isApplicationRunning()).isFalse();
+        assertThrows(IllegalStateException.class, () -> addPlayerDriver.addPlayer("Pluto"));
     }
 
     @Test
     void reset_the_application_allowing_adding_twice_the_same_player_() {
-        AddPlayerDriver addPlayerDriver = new AddPlayerDriver(driver);
 
         applicationRunner.runApplication();
 
