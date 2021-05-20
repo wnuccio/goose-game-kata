@@ -12,7 +12,7 @@ public class Token {
     }
 
     public static Token token(TokenType type) {
-        return new Token(type, "");
+        return new Token(type, type.regex());
     }
 
     public static Token token(TokenType type, String content) {
