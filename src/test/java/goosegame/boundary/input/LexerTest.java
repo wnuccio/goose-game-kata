@@ -46,4 +46,18 @@ public class LexerTest {
                 tokens);
 
     }
+
+    @Test
+    void recognize_reset_command() {
+        List<Token> tokens = lexer.tokenize("reset game");
+
+        assertEquals(asList(token(RESET_GAME)), tokens);
+    }
+
+    @Test
+    void recognize_stop_command() {
+        List<Token> tokens = lexer.tokenize("stop game");
+
+        assertEquals(asList(token(STOP_GAME)), tokens);
+    }
 }

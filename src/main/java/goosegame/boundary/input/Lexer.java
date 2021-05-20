@@ -13,13 +13,19 @@ import static java.util.Collections.emptyList;
 
 public class Lexer {
 
-    public List<Token> tokenize(String text) {
+    private static final List<List<TokenType>> allExpressions;
 
-        List<List<TokenType>> allExpressions = asList(
+    static {
+        allExpressions = asList(
                 asList(ADD_PLAYER, PLAYER_NAME)
                 ,asList(MOVE_PLAYER, PLAYER_NAME, DICE, DICE)
                 ,asList(MOVE_PLAYER, PLAYER_NAME)
+                ,asList(RESET_GAME)
+                ,asList(STOP_GAME)
         );
+    }
+
+    public List<Token> tokenize(String text) {
 
         for(List<TokenType> regex: allExpressions) {
             List<Token> tokens = recognize(text, (TokenType[]) regex.toArray());

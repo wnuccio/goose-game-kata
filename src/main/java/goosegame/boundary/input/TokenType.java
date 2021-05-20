@@ -4,7 +4,9 @@ public enum TokenType {
     ADD_PLAYER("add player"),
     PLAYER_NAME("\\w*"),
     MOVE_PLAYER("move"),
-    DICE("[1-6]");
+    DICE("[1-6]"),
+    RESET_GAME("reset game"),
+    STOP_GAME("stop game");
 
     private final String regExp;
 
