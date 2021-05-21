@@ -3,19 +3,13 @@ package goosegame.config;
 import goosegame.boundary.application.GooseGameApp;
 import goosegame.boundary.application.InputOutput;
 import goosegame.boundary.input.CommandLineIntepreter;
-import goosegame.boundary.input.InterpretMovePlayer;
-import goosegame.boundary.input.InterpretRollAndMove;
-import goosegame.boundary.output.OutputMovementPresenter;
 import goosegame.domain.DiceRoller;
 import goosegame.domain.Interpreter;
 import goosegame.domain.Players;
 import goosegame.usecase.add_player.AddPlayer;
 import goosegame.usecase.add_player.InterpretAddPlayer;
 import goosegame.usecase.add_player.PlayerPresenter;
-import goosegame.usecase.move_player.ComputeMovement;
-import goosegame.usecase.move_player.MovePlayer;
-import goosegame.usecase.move_player.MovementPresenter;
-import goosegame.usecase.move_player.RollAndMove;
+import goosegame.usecase.move_player.*;
 import goosegame.usecase.reset_game.ApplicationSwitch;
 import goosegame.usecase.reset_game.InterpretReset;
 import goosegame.usecase.reset_game.ResetService;
@@ -72,7 +66,7 @@ public class AppConfiguration {
     }
 
     private MovementPresenter movementPresenter() {
-        return new OutputMovementPresenter(inputOutput());
+        return new MovementPresenter(inputOutput());
     }
 
     private CommandLineIntepreter interpreter() {

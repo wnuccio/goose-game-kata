@@ -1,9 +1,8 @@
-package goosegame.boundary.input;
+package goosegame.usecase.move_player;
 
+import goosegame.boundary.input.CommandLine;
 import goosegame.domain.Dice;
 import goosegame.domain.Interpreter;
-import goosegame.usecase.move_player.MoveCommand;
-import goosegame.usecase.move_player.MovePlayer;
 
 public class InterpretMovePlayer implements Interpreter {
     private final MovePlayer movePlayer;
