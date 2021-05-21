@@ -1,6 +1,6 @@
 package goosegame.usecase.reset_game;
 
-import goosegame.application.CommandLine;
+import goosegame.domain.CommandLine;
 
 public class InterpretReset {
     private final ResetService resetService;

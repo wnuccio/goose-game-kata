@@ -1,5 +1,6 @@
 package goosegame.application;
 
+import goosegame.domain.CommandLine;
 import goosegame.lexer.Tokens;
 
 import java.util.function.Consumer;

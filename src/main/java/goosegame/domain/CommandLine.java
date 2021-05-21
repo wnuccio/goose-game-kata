@@ -1,4 +1,4 @@
-package goosegame.application;
+package goosegame.domain;
 
 import goosegame.lexer.Tokens;
 

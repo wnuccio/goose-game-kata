@@ -1,6 +1,6 @@
 package goosegame.usecase.move_player;
 
-import goosegame.application.CommandLine;
+import goosegame.domain.CommandLine;
 import goosegame.domain.Interpreter;
 
 public class InterpretRollAndMove implements Interpreter {

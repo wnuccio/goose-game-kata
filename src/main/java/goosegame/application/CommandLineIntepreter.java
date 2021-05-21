@@ -1,5 +1,6 @@
 package goosegame.application;
 
+import goosegame.domain.CommandLine;
 import goosegame.domain.Interpreter;
 
 import java.util.List;
