@@ -1,15 +1,15 @@
 package goosegame.boundary.application;
 
-import goosegame.boundary.input.CommandsInterpreter;
+import goosegame.boundary.input.CommandLineIntepreter;
 import goosegame.usecase.reset_game.ApplicationSwitch;
 
 public class GooseGameApp {
 
     private final ApplicationSwitch applicationSwitch;
     private final InputBoundary inputOutput;
-    private final CommandsInterpreter interpreter;
+    private final CommandLineIntepreter interpreter;
 
-    public GooseGameApp(ApplicationSwitch applicationSwitch, InputOutput inputOutput, CommandsInterpreter interpreter) {
+    public GooseGameApp(ApplicationSwitch applicationSwitch, InputOutput inputOutput, CommandLineIntepreter interpreter) {
         this.applicationSwitch = applicationSwitch;
         this.inputOutput = inputOutput;
         this.interpreter = interpreter;

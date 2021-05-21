@@ -2,10 +2,10 @@ package goosegame.boundary.input;
 
 import java.util.List;
 
-public class CommandsInterpreter {
+public class CommandLineIntepreter {
     private final List<Interpreter> intepreters;
 
-    public CommandsInterpreter(List<Interpreter> intepreters) {
+    public CommandLineIntepreter(List<Interpreter> intepreters) {
         this.intepreters = intepreters;
     }
 

@@ -17,7 +17,7 @@ import goosegame.usecase.reset_game.ResetService;
 
 import java.util.List;
 
-import static goosegame.boundary.input.CommandsInterpreter.ignoreUnrecognizedCommands;
+import static goosegame.boundary.input.CommandLineIntepreter.ignoreUnrecognizedCommands;
 import static java.util.Arrays.asList;
 
 public class AppConfiguration {
@@ -70,7 +70,7 @@ public class AppConfiguration {
         return new OutputMovementPresenter(inputOutput());
     }
 
-    private CommandsInterpreter interpreter() {
+    private CommandLineIntepreter interpreter() {
         List<Interpreter> intepreters = asList(
                 new InterpretAddPlayer(addPlayer()),
                 new InterpretMovePlayer(movePlayer()),
@@ -80,7 +80,7 @@ public class AppConfiguration {
                 ignoreUnrecognizedCommands
         );
 
-        return new CommandsInterpreter(intepreters);
+        return new CommandLineIntepreter(intepreters);
     }
 
     private AddPlayer addPlayer() {
