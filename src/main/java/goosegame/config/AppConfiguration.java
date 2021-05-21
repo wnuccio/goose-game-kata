@@ -2,7 +2,7 @@ package goosegame.config;
 
 import goosegame.boundary.application.GooseGameApp;
 import goosegame.boundary.application.InputOutput;
-import goosegame.boundary.input.CommandsInterpreter;
+import goosegame.boundary.input.*;
 import goosegame.boundary.output.OutputMovementPresenter;
 import goosegame.boundary.output.OutputPlayerPresenter;
 import goosegame.domain.DiceRoller;
@@ -14,6 +14,10 @@ import goosegame.usecase.move_player.MovementPresenter;
 import goosegame.usecase.move_player.RollAndMove;
 import goosegame.usecase.reset_game.ApplicationSwitch;
 import goosegame.usecase.reset_game.ResetService;
+
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class AppConfiguration {
 
@@ -65,11 +69,17 @@ public class AppConfiguration {
         return new OutputMovementPresenter(inputOutput());
     }
 
-    private CommandsInterpreter interpreter() { return new CommandsInterpreter(
-            addPlayer(),
-            movePlayer(),
-            rollAndMove(),
-            resetService());
+    private CommandsInterpreter interpreter() {
+        List<Interpreter> intepreters = asList(
+                new InterpretAddPlayer(addPlayer()),
+                new InterpretMovePlayer(movePlayer()),
+                new InterpretRollAndMove(rollAndMove()),
+                new InterpretReset(resetService())::doReset,
+                new InterpretReset(resetService())::doStop,
+                (commandLine -> false)
+        );
+
+        return new CommandsInterpreter(intepreters);
     }
 
     private AddPlayer addPlayer() {
