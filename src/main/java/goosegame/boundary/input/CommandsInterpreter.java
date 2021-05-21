@@ -1,15 +1,14 @@
 package goosegame.boundary.input;
 
-import goosegame.domain.Dice;
 import goosegame.usecase.add_player.AddPlayer;
-import goosegame.usecase.move_player.MoveCommand;
 import goosegame.usecase.move_player.MovePlayer;
 import goosegame.usecase.move_player.RollAndMove;
 import goosegame.usecase.reset_game.ResetService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
+
+import static java.util.Arrays.asList;
 
 public class CommandsInterpreter {
     private final AddPlayer addPlayer;
@@ -29,16 +28,16 @@ public class CommandsInterpreter {
     public void acceptCommand(String commandLine) {
         this.commandLine = new CommandLine(commandLine);
 
-        Interpreter interpretAddPlayer = new InterpretAddPlayer(addPlayer);
-        List<Interpreter> intepreters = new ArrayList<>();
-        intepreters.add(interpretAddPlayer);
+        List<Interpreter> intepreters = asList(
+            new InterpretAddPlayer(addPlayer)
+            , new InterpretMovePlayer(movePlayer)
+        );
 
         for(Interpreter i: intepreters) {
             if (i.interpret(this.commandLine)) return;
         }
 
         interpretCommands(
-            this::interpretMovePlayer,
             this::interpretRollAndMove,
             this::interpretReset,
             this::interpretStop,
@@ -51,16 +50,6 @@ public class CommandsInterpreter {
             Boolean applied = f.apply(commandLine);
             if (applied) break;
         }
-    }
-
-    private boolean interpretMovePlayer(CommandLine commandLine) {
-        return commandLine.interpret("(move) (\\w*) ([1-6]), ([1-6])", tokens -> {
-            String player = tokens.name(2);
-            int dice1 = tokens.number(3);
-            int dice2 = tokens.number(4);
-            MoveCommand command = new MoveCommand(player, new Dice(dice1, dice2));
-            movePlayer.acceptCommand(command);
-        });
     }
 
     private boolean interpretRollAndMove(CommandLine commandLine) {
