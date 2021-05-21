@@ -21,7 +21,7 @@ public class ComputeMovement {
 
         new FirstMovementRule(players).apply(command, movements);
         new BouncingRule(players).apply(command, movements);
-        applyBridgeRule(command, movements);
+        new JumpOnBridgeRule(players).apply(command, movements);
         applyGooseRule(command, movements);
         applyPlayerSwitchRule(command, movements);
 
