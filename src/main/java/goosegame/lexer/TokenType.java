@@ -1,4 +1,4 @@
-package goosegame.boundary.input;
+package goosegame.lexer;
 
 public enum TokenType {
     ADD_PLAYER("add player"),

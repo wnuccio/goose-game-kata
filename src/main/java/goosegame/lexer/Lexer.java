@@ -1,12 +1,11 @@
-package goosegame.boundary.input;
+package goosegame.lexer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static goosegame.boundary.input.Token.token;
-import static goosegame.boundary.input.TokenType.*;
+import static goosegame.lexer.TokenType.*;
 import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
@@ -45,7 +44,7 @@ public class Lexer {
         if ( ! matcher.find()) return emptyList();
         List<Token> result = new ArrayList<>();
         for (int i = 0; i< terms.length; i++) {
-            result.add(token(terms[i], matcher.group(i+1)));
+            result.add(Token.token(terms[i], matcher.group(i+1)));
         }
         return result;
     }

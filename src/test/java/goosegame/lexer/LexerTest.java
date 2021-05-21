@@ -1,11 +1,11 @@
-package goosegame.boundary.input;
+package goosegame.lexer;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
-import static goosegame.boundary.input.Token.token;
-import static goosegame.boundary.input.TokenType.*;
+import static goosegame.lexer.TokenType.*;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,10 +18,10 @@ public class LexerTest {
         List<Token> tokens;
 
         tokens = lexer.tokenize("add player Pippo");
-        assertEquals(asList(token(ADD_PLAYER), token(PLAYER_NAME, "Pippo")), tokens);
+        assertEquals(asList(Token.token(TokenType.ADD_PLAYER), Token.token(TokenType.PLAYER_NAME, "Pippo")), tokens);
 
         tokens = lexer.tokenize("add player Pluto");
-        assertEquals(asList(token(ADD_PLAYER), token(PLAYER_NAME, "Pluto")), tokens);
+        assertEquals(asList(Token.token(TokenType.ADD_PLAYER), Token.token(TokenType.PLAYER_NAME, "Pluto")), tokens);
     }
 
     @Test
@@ -29,10 +29,10 @@ public class LexerTest {
         List<Token> tokens = lexer.tokenize("move Pippo 1 2");
 
         assertEquals(asList(
-                token(MOVE_PLAYER),
-                token(PLAYER_NAME, "Pippo"),
-                token(DICE, "1"),
-                token(DICE, "2")),
+                Token.token(MOVE_PLAYER),
+                Token.token(PLAYER_NAME, "Pippo"),
+                Token.token(DICE, "1"),
+                Token.token(DICE, "2")),
                 tokens);
     }
 
@@ -41,8 +41,8 @@ public class LexerTest {
         List<Token> tokens = lexer.tokenize("move Pluto");
 
         assertEquals(asList(
-                token(MOVE_PLAYER),
-                token(PLAYER_NAME, "Pluto")),
+                Token.token(MOVE_PLAYER),
+                Token.token(PLAYER_NAME, "Pluto")),
                 tokens);
 
     }
@@ -51,13 +51,13 @@ public class LexerTest {
     void recognize_reset_command() {
         List<Token> tokens = lexer.tokenize("reset game");
 
-        assertEquals(asList(token(RESET_GAME)), tokens);
+        assertEquals(Arrays.asList(Token.token(RESET_GAME)), tokens);
     }
 
     @Test
     void recognize_stop_command() {
         List<Token> tokens = lexer.tokenize("stop game");
 
-        assertEquals(asList(token(STOP_GAME)), tokens);
+        assertEquals(Arrays.asList(Token.token(STOP_GAME)), tokens);
     }
 }

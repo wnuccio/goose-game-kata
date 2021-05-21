@@ -1,4 +1,4 @@
-package goosegame.boundary.input;
+package goosegame.lexer;
 
 import java.util.Objects;
 

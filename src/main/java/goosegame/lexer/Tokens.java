@@ -1,4 +1,4 @@
-package goosegame.boundary.input;
+package goosegame.lexer;
 
 public class Tokens {
     private final String[] tokens;
