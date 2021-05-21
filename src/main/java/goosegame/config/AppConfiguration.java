@@ -17,6 +17,7 @@ import goosegame.usecase.reset_game.ResetService;
 
 import java.util.List;
 
+import static goosegame.boundary.input.CommandsInterpreter.ignoreUnrecognizedCommands;
 import static java.util.Arrays.asList;
 
 public class AppConfiguration {
@@ -76,7 +77,7 @@ public class AppConfiguration {
                 new InterpretRollAndMove(rollAndMove()),
                 new InterpretReset(resetService())::doReset,
                 new InterpretReset(resetService())::doStop,
-                (commandLine -> false)
+                ignoreUnrecognizedCommands
         );
 
         return new CommandsInterpreter(intepreters);

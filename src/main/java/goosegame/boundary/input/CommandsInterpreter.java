@@ -17,7 +17,5 @@ public class CommandsInterpreter {
         }
     }
 
-    private boolean unrecognizedCommand(CommandLine commandLine) {
-        return false;
-    }
+    public static final Interpreter ignoreUnrecognizedCommands = (commandLine -> false);
 }
