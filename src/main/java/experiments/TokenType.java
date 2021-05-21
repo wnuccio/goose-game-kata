@@ -1,4 +1,4 @@
-package goosegame.lexer;
+package experiments;
 
 public enum TokenType {
     ADD_PLAYER("add player"),

@@ -1,6 +1,6 @@
 package goosegame.domain;
 
-import goosegame.lexer.Tokens;
+import experiments.Tokens;
 
 import java.util.function.Consumer;
 

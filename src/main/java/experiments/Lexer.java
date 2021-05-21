@@ -1,11 +1,11 @@
-package goosegame.lexer;
+package experiments;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static goosegame.lexer.TokenType.*;
+import static experiments.TokenType.*;
 import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;

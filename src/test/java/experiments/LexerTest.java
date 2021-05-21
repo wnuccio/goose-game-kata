@@ -1,11 +1,11 @@
-package goosegame.lexer;
+package experiments;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static goosegame.lexer.TokenType.*;
+import static experiments.TokenType.*;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

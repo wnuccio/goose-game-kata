@@ -1,4 +1,4 @@
-package goosegame.lexer;
+package experiments;
 
 import java.util.Objects;
 

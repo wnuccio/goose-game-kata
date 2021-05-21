@@ -1,12 +1,12 @@
 package goosegame.application;
 
+import experiments.Tokens;
 import goosegame.domain.CommandLine;
-import goosegame.lexer.Tokens;
 
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 
-import static goosegame.lexer.Tokens.empty;
+import static experiments.Tokens.empty;
 import static java.util.regex.Pattern.compile;
 
 public class TokenizableCommandLine implements CommandLine {

@@ -1,4 +1,4 @@
-package goosegame.lexer;
+package experiments;
 
 public class Tokens {
     private final String[] tokens;
