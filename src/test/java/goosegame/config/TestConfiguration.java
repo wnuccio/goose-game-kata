@@ -1,8 +1,6 @@
-package goosegame;
+package goosegame.config;
 
 import goosegame.application.InputOutput;
-import goosegame.config.GooseGameAppBuilder;
-import goosegame.config.RandomDiceRoller;
 import goosegame.domain.DiceRoller;
 
 public class TestConfiguration {

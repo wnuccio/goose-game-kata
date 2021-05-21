@@ -1,6 +1,6 @@
 package goosegame.config.add_player;
 
-import goosegame.BaseAcceptanceTest;
+import goosegame.config.BaseAcceptanceTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

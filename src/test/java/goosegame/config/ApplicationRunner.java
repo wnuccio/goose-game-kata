@@ -1,6 +1,6 @@
-package goosegame;
+package goosegame.config;
 
-import goosegame.config.GooseGameAppBuilder;
+import goosegame.Main;
 
 public class ApplicationRunner {
 

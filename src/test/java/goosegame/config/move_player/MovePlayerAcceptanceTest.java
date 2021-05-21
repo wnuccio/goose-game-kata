@@ -1,7 +1,7 @@
 package goosegame.config.move_player;
 
-import goosegame.ApplicationDriver;
-import goosegame.BaseAcceptanceTest;
+import goosegame.config.ApplicationDriver;
+import goosegame.config.BaseAcceptanceTest;
 import goosegame.config.add_player.AddPlayerDriver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

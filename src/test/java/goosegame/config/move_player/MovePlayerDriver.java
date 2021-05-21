@@ -1,6 +1,6 @@
 package goosegame.config.move_player;
 
-import goosegame.ApplicationDriver;
+import goosegame.config.ApplicationDriver;
 
 import static java.lang.String.format;
 

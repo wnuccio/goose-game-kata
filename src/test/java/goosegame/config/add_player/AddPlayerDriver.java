@@ -1,6 +1,6 @@
 package goosegame.config.add_player;
 
-import goosegame.ApplicationDriver;
+import goosegame.config.ApplicationDriver;
 
 import java.util.stream.Stream;
 

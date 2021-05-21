@@ -1,4 +1,4 @@
-package goosegame;
+package goosegame.config;
 
 import goosegame.domain.Dice;
 import goosegame.domain.DiceRoller;

@@ -5,7 +5,7 @@ import goosegame.config.AppConfiguration;
 import goosegame.config.GooseGameAppBuilder;
 
 public class Main {
-    static GooseGameAppBuilder injectedBuilder;
+    public static GooseGameAppBuilder injectedBuilder;
 
     public static void main(String[] args) {
         GooseGameAppBuilder appBuilder = selectApplicationBuilder(args);
