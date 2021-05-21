@@ -2,7 +2,6 @@ package goosegame.config;
 
 import goosegame.application.CommandLineIntepreter;
 import goosegame.application.GooseGameApp;
-import goosegame.application.InputOutput;
 import goosegame.domain.DiceRoller;
 import goosegame.domain.Interpreter;
 import goosegame.domain.Players;

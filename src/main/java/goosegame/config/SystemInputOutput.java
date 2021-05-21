@@ -1,7 +1,5 @@
 package goosegame.config;
 
-import goosegame.application.InputOutput;
-
 import java.util.Scanner;
 
 public class SystemInputOutput implements InputOutput {

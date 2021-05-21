@@ -1,7 +1,5 @@
 package goosegame.config;
 
-import goosegame.application.InputOutput;
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
