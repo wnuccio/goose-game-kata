@@ -19,7 +19,7 @@ public class ComputeMovement {
     public List<Movement> fromCommand(MoveCommand command) {
         LinkedList<Movement> movements = new LinkedList<>();
 
-        applyFirstMovementRule(command, movements);
+        new FirstMovementRule(players).apply(command, movements);
         applyBouncingRule(command, movements);
         applyBridgeRule(command, movements);
         applyGooseRule(command, movements);
