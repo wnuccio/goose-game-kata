@@ -19,23 +19,10 @@ public class ComputeMovement {
         new FirstMovementRule(players).apply(command, movements);
         new BouncingRule(players).apply(command, movements);
         new JumpOnBridgeRule(players).apply(command, movements);
-        applyGooseRule(command, movements);
+        new GooseRule(players).apply(command, movements);
         applyPlayerSwitchRule(command, movements);
 
         return movements;
-    }
-
-    private Movement applyGooseRule(MoveCommand command, LinkedList<Movement> movements) {
-        Movement lastMovement = movements.getLast();
-        if (!lastMovement.endsOnGoose()) return lastMovement;
-
-        Position finalPosition = lastMovement.finalPosition().plus(command.diceTotal());
-        players.setPositionOf(command.player(), finalPosition);
-
-        Movement gooseMovement = new GooseMovement(lastMovement.finalPosition(), finalPosition);
-
-        movements.add(gooseMovement);
-        return applyGooseRule(command, movements);
     }
 
     private Movement applyPlayerSwitchRule(MoveCommand command, LinkedList<Movement> movements) {
