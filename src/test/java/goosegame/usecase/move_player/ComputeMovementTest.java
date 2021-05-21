@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static goosegame.domain.Dice.dice;
-import static goosegame.domain.Position.*;
+import static goosegame.domain.Position.position;
+import static goosegame.usecase.move_player.FirstMovementRuleTest.move;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ComputeMovementTest {
@@ -14,35 +14,14 @@ class ComputeMovementTest {
     ComputeMovement computeMovement = new ComputeMovement(players);
 
     @Test
-    void build_a_movement_with_player_name_initial_position_and_dice_values() {
-        players.setPositionOf("Pippo", position(0));
-
-        List<Movement> movements = computeMovement.fromCommand(move("Pippo", 4, 3));
-
-        assertThat(players.positionOf("Pippo")).isEqualTo(position(7));
-
-        assertThat(movements.size()).isEqualTo(1);
-        Movement movement = movements.get(0);
-        assertThat(movement.startPosition()).isEqualTo(START);
-        assertThat(movement.finalPosition()).isEqualTo(position(7));
-    }
-
-    @Test
     void repeat_movement_on_bouncing() {
         players.setPositionOf("Pippo", position(62));
 
         List<Movement> movements = computeMovement.fromCommand(move("Pippo", 3, 4));
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(position(57));
-
         assertThat(movements.size()).isEqualTo(2);
-        Movement firstMovement = movements.get(0);
-        Movement bouncing = movements.get(1);
-
-        assertThat(firstMovement.startPosition()).isEqualTo(position(62));
-        assertThat(firstMovement.finalPosition()).isEqualTo(position(69));
-        assertThat(bouncing.startPosition()).isEqualTo(WIN);
-        assertThat(bouncing.finalPosition()).isEqualTo(position(57));
+        assertThat(movements.get(0) instanceof FirstMovement).isTrue();
+        assertThat(movements.get(1) instanceof BouncingMovement).isTrue();
     }
 
     @Test
@@ -51,16 +30,9 @@ class ComputeMovementTest {
 
         List<Movement> movements = computeMovement.fromCommand(move("Pippo", 1, 1));
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(BRIDGE_TARGET);
-
         assertThat(movements.size()).isEqualTo(2);
-        Movement firstMovement = movements.get(0);
-        Movement jumpOnBridge = movements.get(1);
-
-        assertThat(firstMovement.startPosition()).isEqualTo(position(4));
-        assertThat(firstMovement.finalPosition()).isEqualTo(BRIDGE);
-        assertThat(jumpOnBridge.startPosition()).isEqualTo(BRIDGE);
-        assertThat(jumpOnBridge.finalPosition()).isEqualTo(BRIDGE_TARGET);
+        assertThat(movements.get(0) instanceof FirstMovement).isTrue();
+        assertThat(movements.get(1) instanceof JumpOnBridgeMovement).isTrue();
     }
 
     @Test
@@ -69,37 +41,9 @@ class ComputeMovementTest {
 
         List<Movement> movements = computeMovement.fromCommand(move("Pippo", 1, 1));
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(position(7));
-
         assertThat(movements.size()).isEqualTo(2);
-        Movement firstMovement = movements.get(0);
-        Movement repeatOnGoose = movements.get(1);
-
-        assertThat(firstMovement.startPosition()).isEqualTo(position(3));
-        assertThat(firstMovement.finalPosition()).isEqualTo(position(5));
-        assertThat(repeatOnGoose.startPosition()).isEqualTo(position(5));
-        assertThat(repeatOnGoose.finalPosition()).isEqualTo(position(7));
-    }
-
-    @Test
-    void repeat_movement_on_the_goose_more_times() {
-        players.setPositionOf("Pippo", position(10));
-
-        List<Movement> movements = computeMovement.fromCommand(move("Pippo", 2, 2));
-
-        assertThat(players.positionOf("Pippo")).isEqualTo(position(22));
-
-        assertThat(movements.size()).isEqualTo(3);
-        Movement firstMovement = movements.get(0);
-        Movement firstGoose = movements.get(1);
-        Movement secondGoose = movements.get(2);
-
-        assertThat(firstMovement.startPosition()).isEqualTo(position(10));
-        assertThat(firstMovement.finalPosition()).isEqualTo(position(14));
-        assertThat(firstGoose.startPosition()).isEqualTo(position(14));
-        assertThat(firstGoose.finalPosition()).isEqualTo(position(18));
-        assertThat(secondGoose.startPosition()).isEqualTo(position(18));
-        assertThat(secondGoose.finalPosition()).isEqualTo(position(22));
+        assertThat(movements.get(0) instanceof FirstMovement).isTrue();
+        assertThat(movements.get(1) instanceof GooseMovement).isTrue();
     }
 
     @Test
@@ -110,24 +54,7 @@ class ComputeMovementTest {
         List<Movement> movements = computeMovement.fromCommand(move("Pippo", 1, 1));
 
         assertThat(movements.size()).isEqualTo(2);
-        Movement movement1 = movements.get(0);
-        Movement movement2 = movements.get(1);
-
-        assertThat(movement1.startPosition()).isEqualTo(position(15));
-        assertThat(movement1.finalPosition()).isEqualTo(position(17));
-
-        assertThat(movement2 instanceof SwitchMovement).isTrue();
-
-        SwitchMovement switchMovement = (SwitchMovement)movement2;
-        assertThat(switchMovement.startPosition()).isEqualTo(position(17));
-        assertThat(switchMovement.finalPosition()).isEqualTo(position(15));
-        assertThat(switchMovement.switchedPlayer()).isEqualTo("Pluto");
-
-        assertThat(players.positionOf("Pippo")).isEqualTo(position(17));
-        assertThat(players.positionOf("Pluto")).isEqualTo(position(15));
-    }
-
-    private MoveCommand move(String player, int first, int second) {
-        return new MoveCommand(player, dice(first, second));
+        assertThat(movements.get(0) instanceof FirstMovement).isTrue();
+        assertThat(movements.get(1) instanceof SwitchMovement).isTrue();
     }
 }
