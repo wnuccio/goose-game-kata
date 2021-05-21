@@ -1,4 +1,4 @@
-package goosegame.usecase.move_player;
+package goosegame.domain;
 
 import org.junit.jupiter.api.Test;
 

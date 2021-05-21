@@ -1,6 +1,5 @@
-package goosegame.usecase.add_player;
+package goosegame.domain;
 
-import goosegame.domain.Players;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
