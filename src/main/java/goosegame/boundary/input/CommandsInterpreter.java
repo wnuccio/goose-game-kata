@@ -7,6 +7,8 @@ import goosegame.usecase.move_player.MovePlayer;
 import goosegame.usecase.move_player.RollAndMove;
 import goosegame.usecase.reset_game.ResetService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 public class CommandsInterpreter {
@@ -27,8 +29,15 @@ public class CommandsInterpreter {
     public void acceptCommand(String commandLine) {
         this.commandLine = new CommandLine(commandLine);
 
+        Interpreter interpretAddPlayer = new InterpretAddPlayer(addPlayer);
+        List<Interpreter> intepreters = new ArrayList<>();
+        intepreters.add(interpretAddPlayer);
+
+        for(Interpreter i: intepreters) {
+            if (i.interpret(this.commandLine)) return;
+        }
+
         interpretCommands(
-            this::interpretAddPlayer,
             this::interpretMovePlayer,
             this::interpretRollAndMove,
             this::interpretReset,
@@ -42,13 +51,6 @@ public class CommandsInterpreter {
             Boolean applied = f.apply(commandLine);
             if (applied) break;
         }
-    }
-
-    private boolean interpretAddPlayer(CommandLine commandLine) {
-        return commandLine.interpret("(add player) (\\w*)", tokens -> {
-            String player = tokens.name(2);
-            addPlayer.doAdd(player);
-        });
     }
 
     private boolean interpretMovePlayer(CommandLine commandLine) {
