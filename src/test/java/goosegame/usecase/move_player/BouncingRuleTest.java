@@ -27,4 +27,24 @@ class BouncingRuleTest {
         assertThat(movement.startPosition()).isEqualTo(WIN);
         assertThat(movement.finalPosition()).isEqualTo(position(57));
     }
+
+    @Test
+    void do_not_correct_position_before_63() {
+        players.setPositionOf("Pippo", position(60));
+
+        rule.apply(move("Pippo", 3, 4), movements);
+
+        assertThat(players.positionOf("Pippo")).isEqualTo(position(60));
+        assertThat(movements.isEmpty()).isTrue();
+    }
+
+    @Test
+    void do_not_correct_position_equals_to_63() {
+        players.setPositionOf("Pippo", WIN);
+
+        rule.apply(move("Pippo", 3, 4), movements);
+
+        assertThat(players.positionOf("Pippo")).isEqualTo(WIN);
+        assertThat(movements.isEmpty()).isTrue();
+    }
 }

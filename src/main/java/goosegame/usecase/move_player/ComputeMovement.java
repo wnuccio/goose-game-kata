@@ -6,9 +6,6 @@ import goosegame.domain.Position;
 import java.util.LinkedList;
 import java.util.List;
 
-import static goosegame.domain.Position.BRIDGE;
-import static goosegame.domain.Position.BRIDGE_TARGET;
-
 public class ComputeMovement {
     private final Players players;
 
@@ -26,18 +23,6 @@ public class ComputeMovement {
         applyPlayerSwitchRule(command, movements);
 
         return movements;
-    }
-
-    private Movement applyBridgeRule(MoveCommand command, LinkedList<Movement> movements) {
-        Movement lastMovement = movements.getLast();
-        if (!lastMovement.finalPosition().equals(BRIDGE)) return lastMovement;
-
-        players.setPositionOf(command.player(), BRIDGE_TARGET);
-
-        Movement jumpOnBridgeMovement = new JumpOnBridgeMovement();
-
-        movements.add(jumpOnBridgeMovement);
-        return jumpOnBridgeMovement;
     }
 
     private Movement applyGooseRule(MoveCommand command, LinkedList<Movement> movements) {
