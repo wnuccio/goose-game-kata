@@ -7,6 +7,10 @@ public class Tokens {
         this.tokens = tokens;
     }
 
+    public static Tokens empty() {
+        return new Tokens(new String[0]);
+    }
+
     public boolean isEmpty() {
         return tokens.length == 0;
     }
