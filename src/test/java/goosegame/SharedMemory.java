@@ -1,6 +1,6 @@
 package goosegame;
 
-import goosegame.boundary.application.InputOutput;
+import goosegame.application.InputOutput;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;

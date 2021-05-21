@@ -1,8 +1,8 @@
 package goosegame.config;
 
-import goosegame.boundary.application.GooseGameApp;
-import goosegame.boundary.application.InputOutput;
-import goosegame.boundary.input.CommandLineIntepreter;
+import goosegame.application.CommandLineIntepreter;
+import goosegame.application.GooseGameApp;
+import goosegame.application.InputOutput;
 import goosegame.domain.DiceRoller;
 import goosegame.domain.Interpreter;
 import goosegame.domain.Players;
@@ -16,7 +16,7 @@ import goosegame.usecase.reset_game.ResetService;
 
 import java.util.List;
 
-import static goosegame.boundary.input.CommandLineIntepreter.ignoreUnrecognizedCommands;
+import static goosegame.application.CommandLineIntepreter.ignoreUnrecognizedCommands;
 import static java.util.Arrays.asList;
 
 public class AppConfiguration {

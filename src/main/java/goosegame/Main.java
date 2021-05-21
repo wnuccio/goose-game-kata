@@ -1,6 +1,6 @@
 package goosegame;
 
-import goosegame.boundary.application.GooseGameApp;
+import goosegame.application.GooseGameApp;
 import goosegame.config.AppConfiguration;
 import goosegame.config.GooseGameAppBuilder;
 

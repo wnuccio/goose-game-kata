@@ -1,4 +1,6 @@
-package goosegame.boundary.input;
+package goosegame.application;
+
+import goosegame.boundary.input.Tokens;
 
 import java.util.function.Consumer;
 import java.util.regex.Matcher;

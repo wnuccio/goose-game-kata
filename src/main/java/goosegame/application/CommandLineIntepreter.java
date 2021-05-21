@@ -1,4 +1,4 @@
-package goosegame.boundary.input;
+package goosegame.application;
 
 import goosegame.domain.Interpreter;
 

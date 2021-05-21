@@ -1,6 +1,6 @@
 package goosegame;
 
-import goosegame.boundary.application.InputOutput;
+import goosegame.application.InputOutput;
 import goosegame.config.GooseGameAppBuilder;
 import goosegame.config.RandomDiceRoller;
 import goosegame.domain.DiceRoller;

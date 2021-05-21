@@ -1,6 +1,5 @@
-package goosegame.boundary.application;
+package goosegame.application;
 
-import goosegame.boundary.input.CommandLineIntepreter;
 import goosegame.usecase.reset_game.ApplicationSwitch;
 
 public class GooseGameApp {
