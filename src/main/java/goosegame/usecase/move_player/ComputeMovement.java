@@ -1,7 +1,6 @@
 package goosegame.usecase.move_player;
 
 import goosegame.domain.Players;
-import goosegame.domain.Position;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -20,28 +19,8 @@ public class ComputeMovement {
         new BouncingRule(players).apply(command, movements);
         new JumpOnBridgeRule(players).apply(command, movements);
         new GooseRule(players).apply(command, movements);
-        applyPlayerSwitchRule(command, movements);
+        new SwitchPlayersRule(players).apply(command, movements);
 
         return movements;
-    }
-
-    private Movement applyPlayerSwitchRule(MoveCommand command, LinkedList<Movement> movements) {
-        Movement lastMovement = movements.getLast();
-        List<String> encounteredPlayers = players.playersOnSamePositionOf(command.player());
-        if (encounteredPlayers.isEmpty()) return lastMovement;
-
-        String unluckyPlayer = encounteredPlayers.get(0);
-
-        Position unluckyPlayerPosition = players.positionOf(unluckyPlayer);
-        Position otherPlayerPreviousPosition = lastMovement.startPosition();
-        SwitchMovement switchMovement = new SwitchMovement(
-                unluckyPlayer,
-                unluckyPlayerPosition,
-                otherPlayerPreviousPosition
-        );
-        players.setPositionOf(unluckyPlayer, otherPlayerPreviousPosition);
-
-        movements.add(switchMovement);
-        return lastMovement;
     }
 }
