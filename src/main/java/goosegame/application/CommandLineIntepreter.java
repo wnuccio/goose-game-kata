@@ -12,7 +12,7 @@ public class CommandLineIntepreter {
     }
 
     public void acceptCommand(String line) {
-        CommandLine commandLine = new CommandLine(line);
+        CommandLine commandLine = new TokenizableCommandLine(line);
 
         for (Interpreter i : this.intepreters) {
             if (i.interpret(commandLine)) return;

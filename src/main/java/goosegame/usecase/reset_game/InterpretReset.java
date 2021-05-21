@@ -10,10 +10,10 @@ public class InterpretReset {
     }
 
     public boolean doReset(CommandLine commandLine) {
-        return commandLine.interpret("reset game", resetService::doReset);
+        return commandLine.interpret("reset game", tokens -> resetService.doReset());
     }
 
     public boolean doStop(CommandLine commandLine) {
-        return commandLine.interpret("stop game", resetService::doStop);
+        return commandLine.interpret("stop game", tokens -> resetService.doStop());
     }
 }
