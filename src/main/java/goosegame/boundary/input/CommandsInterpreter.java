@@ -7,7 +7,7 @@ import goosegame.usecase.move_player.MovePlayer;
 import goosegame.usecase.move_player.RollAndMove;
 import goosegame.usecase.reset_game.ResetService;
 
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 public class CommandsInterpreter {
     private final AddPlayer addPlayer;
@@ -37,21 +37,21 @@ public class CommandsInterpreter {
         );
     }
 
-    void interpretCommands(Supplier<Boolean>... interpretationsFunctions) {
-        for (Supplier<Boolean> f: interpretationsFunctions) {
-            Boolean applied = f.get();
+    void interpretCommands(Function<CommandLine, Boolean>... interpretationsFunctions) {
+        for (Function<CommandLine, Boolean> f: interpretationsFunctions) {
+            Boolean applied = f.apply(commandLine);
             if (applied) break;
         }
     }
 
-    private boolean interpretAddPlayer() {
+    private boolean interpretAddPlayer(CommandLine commandLine) {
         return commandLine.interpret("(add player) (\\w*)", tokens -> {
             String player = tokens.name(2);
             addPlayer.doAdd(player);
         });
     }
 
-    private boolean interpretMovePlayer() {
+    private boolean interpretMovePlayer(CommandLine commandLine) {
         return commandLine.interpret("(move) (\\w*) ([1-6]), ([1-6])", tokens -> {
             String player = tokens.name(2);
             int dice1 = tokens.number(3);
@@ -61,22 +61,22 @@ public class CommandsInterpreter {
         });
     }
 
-    private boolean interpretRollAndMove() {
+    private boolean interpretRollAndMove(CommandLine commandLine) {
         return commandLine.interpret("(move) (\\w*)", tokens -> {
             String player = tokens.name(2);
             rollAndMove.acceptCommand(player);
         });
     }
 
-    private boolean interpretReset() {
+    private boolean interpretReset(CommandLine commandLine) {
         return commandLine.interpret("reset game", resetService::doReset);
     }
 
-    private boolean interpretStop() {
+    private boolean interpretStop(CommandLine commandLine) {
         return commandLine.interpret("stop game", resetService::doStop);
     }
 
-    private boolean unrecognizedCommand() {
+    private boolean unrecognizedCommand(CommandLine commandLine) {
         return false;
     }
 }
