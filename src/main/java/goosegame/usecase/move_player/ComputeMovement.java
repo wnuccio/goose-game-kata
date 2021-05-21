@@ -20,37 +20,12 @@ public class ComputeMovement {
         LinkedList<Movement> movements = new LinkedList<>();
 
         new FirstMovementRule(players).apply(command, movements);
-        applyBouncingRule(command, movements);
+        new BouncingRule(players).apply(command, movements);
         applyBridgeRule(command, movements);
         applyGooseRule(command, movements);
         applyPlayerSwitchRule(command, movements);
 
         return movements;
-    }
-
-    private FirstMovement applyFirstMovementRule(MoveCommand command, LinkedList<Movement> movements) {
-        Position startPosition = players.positionOf(command.player());
-        Position finalPosition = startPosition.plus(command.diceTotal());
-
-        FirstMovement movement = new FirstMovement(startPosition, finalPosition);
-
-        String player = command.player();
-        players.setPositionOf(player, finalPosition);
-        movements.add(movement);
-        return movement;
-    }
-
-    private Movement applyBouncingRule(MoveCommand command, LinkedList<Movement> movements) {
-        Movement lastMovement = movements.getLast();
-        if (!lastMovement.isOverTheVictory()) return lastMovement;
-
-        Position finalPosition = lastMovement.bouncedPosition();
-        players.setPositionOf(command.player(), finalPosition);
-
-        Movement bouncing = new BouncingMovement(finalPosition);
-
-        movements.add(bouncing);
-        return bouncing;
     }
 
     private Movement applyBridgeRule(MoveCommand command, LinkedList<Movement> movements) {
