@@ -4,7 +4,6 @@ import goosegame.boundary.application.GooseGameApp;
 import goosegame.boundary.application.InputOutput;
 import goosegame.boundary.input.CommandLineIntepreter;
 import goosegame.boundary.input.InterpretMovePlayer;
-import goosegame.boundary.input.InterpretReset;
 import goosegame.boundary.input.InterpretRollAndMove;
 import goosegame.boundary.output.OutputMovementPresenter;
 import goosegame.domain.DiceRoller;
@@ -18,6 +17,7 @@ import goosegame.usecase.move_player.MovePlayer;
 import goosegame.usecase.move_player.MovementPresenter;
 import goosegame.usecase.move_player.RollAndMove;
 import goosegame.usecase.reset_game.ApplicationSwitch;
+import goosegame.usecase.reset_game.InterpretReset;
 import goosegame.usecase.reset_game.ResetService;
 
 import java.util.List;
