@@ -29,8 +29,10 @@ public class CommandsInterpreter {
         this.commandLine = new CommandLine(commandLine);
 
         List<Interpreter> intepreters = asList(
-            new InterpretAddPlayer(addPlayer)
-            , new InterpretMovePlayer(movePlayer)
+            new InterpretAddPlayer(addPlayer),
+            new InterpretMovePlayer(movePlayer),
+            new InterpretRollAndMove(rollAndMove),
+            this::unrecognizedCommand
         );
 
         for(Interpreter i: intepreters) {
@@ -38,7 +40,6 @@ public class CommandsInterpreter {
         }
 
         interpretCommands(
-            this::interpretRollAndMove,
             this::interpretReset,
             this::interpretStop,
             this::unrecognizedCommand
@@ -50,13 +51,6 @@ public class CommandsInterpreter {
             Boolean applied = f.apply(commandLine);
             if (applied) break;
         }
-    }
-
-    private boolean interpretRollAndMove(CommandLine commandLine) {
-        return commandLine.interpret("(move) (\\w*)", tokens -> {
-            String player = tokens.name(2);
-            rollAndMove.acceptCommand(player);
-        });
     }
 
     private boolean interpretReset(CommandLine commandLine) {
