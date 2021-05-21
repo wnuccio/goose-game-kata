@@ -1,5 +1,6 @@
 package goosegame.boundary.output;
 
+import goosegame.domain.OutputBoundary;
 import goosegame.domain.Position;
 import goosegame.usecase.move_player.*;
 

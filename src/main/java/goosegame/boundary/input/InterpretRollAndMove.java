@@ -1,5 +1,6 @@
 package goosegame.boundary.input;
 
+import goosegame.domain.Interpreter;
 import goosegame.usecase.move_player.RollAndMove;
 
 public class InterpretRollAndMove implements Interpreter {

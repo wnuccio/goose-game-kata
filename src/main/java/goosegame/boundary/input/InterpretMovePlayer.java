@@ -1,6 +1,7 @@
 package goosegame.boundary.input;
 
 import goosegame.domain.Dice;
+import goosegame.domain.Interpreter;
 import goosegame.usecase.move_player.MoveCommand;
 import goosegame.usecase.move_player.MovePlayer;
 

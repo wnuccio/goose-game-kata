@@ -2,12 +2,17 @@ package goosegame.config;
 
 import goosegame.boundary.application.GooseGameApp;
 import goosegame.boundary.application.InputOutput;
-import goosegame.boundary.input.*;
+import goosegame.boundary.input.CommandLineIntepreter;
+import goosegame.boundary.input.InterpretMovePlayer;
+import goosegame.boundary.input.InterpretReset;
+import goosegame.boundary.input.InterpretRollAndMove;
 import goosegame.boundary.output.OutputMovementPresenter;
-import goosegame.boundary.output.OutputPlayerPresenter;
 import goosegame.domain.DiceRoller;
+import goosegame.domain.Interpreter;
 import goosegame.domain.Players;
 import goosegame.usecase.add_player.AddPlayer;
+import goosegame.usecase.add_player.InterpretAddPlayer;
+import goosegame.usecase.add_player.PlayerPresenter;
 import goosegame.usecase.move_player.ComputeMovement;
 import goosegame.usecase.move_player.MovePlayer;
 import goosegame.usecase.move_player.MovementPresenter;
@@ -62,8 +67,8 @@ public class AppConfiguration {
         return diceRoller;
     }
 
-    private OutputPlayerPresenter presenter() {
-        return new OutputPlayerPresenter(inputOutput());
+    private PlayerPresenter presenter() {
+        return new PlayerPresenter(inputOutput());
     }
 
     private MovementPresenter movementPresenter() {

@@ -1,5 +1,7 @@
 package goosegame.boundary.input;
 
+import goosegame.domain.Interpreter;
+
 import java.util.List;
 
 public class CommandLineIntepreter {

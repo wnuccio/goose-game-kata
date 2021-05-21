@@ -1,6 +1,7 @@
-package goosegame.boundary.input;
+package goosegame.usecase.add_player;
 
-import goosegame.usecase.add_player.AddPlayer;
+import goosegame.boundary.input.CommandLine;
+import goosegame.domain.Interpreter;
 
 public class InterpretAddPlayer implements Interpreter {
     private final AddPlayer addPlayer;
