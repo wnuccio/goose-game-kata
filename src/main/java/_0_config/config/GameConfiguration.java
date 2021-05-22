@@ -1,6 +1,10 @@
 package _0_config.config;
 
-import _1_actions.game.*;
+import _1_actions.controller.CommandLineProcessor;
+import _1_actions.controller.Game;
+import _1_actions.game.InterpretResetGame;
+import _1_actions.game.InterpretStopGame;
+import _1_actions.game.StopOrResetGame;
 import _1_actions.player.add.AddPlayer;
 import _1_actions.player.add.InterpretAddPlayer;
 import _1_actions.player.add.PlayerPresenter;
@@ -10,13 +14,14 @@ import _1_actions.player.move.rules.RuleProcessor;
 import _1_actions.player.rollmove.DiceRoller;
 import _1_actions.player.rollmove.InterpretRollAndMove;
 import _1_actions.player.rollmove.RollAndMove;
+import _2_domain.game.GameSwitch;
 import _2_domain.interpreter.Interpreter;
 import _2_domain.player.Players;
 import _2_domain.presenter.StringBuilderPresenter;
 
 import java.util.List;
 
-import static _1_actions.game.CommandLineProcessor.ignoreUnrecognizedCommands;
+import static _1_actions.controller.CommandLineProcessor.ignoreUnrecognizedCommands;
 import static java.util.Arrays.asList;
 
 public class GameConfiguration {

@@ -2,7 +2,7 @@ package _0_config;
 
 import _0_config.config.GameConfiguration;
 import _0_config.config.GooseGameAppBuilder;
-import _1_actions.game.Game;
+import _1_actions.controller.Game;
 
 public class Main {
     public static GooseGameAppBuilder injectedBuilder;

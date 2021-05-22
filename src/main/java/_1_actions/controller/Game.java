@@ -1,4 +1,6 @@
-package _1_actions.game;
+package _1_actions.controller;
+
+import _2_domain.game.GameSwitch;
 
 public class Game {
 

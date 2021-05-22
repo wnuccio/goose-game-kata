@@ -1,5 +1,6 @@
 package _1_actions.game;
 
+import _2_domain.game.GameSwitch;
 import _2_domain.player.Players;
 import org.junit.jupiter.api.Test;
 

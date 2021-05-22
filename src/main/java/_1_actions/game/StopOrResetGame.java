@@ -1,5 +1,6 @@
 package _1_actions.game;
 
+import _2_domain.game.GameSwitch;
 import _2_domain.player.Players;
 
 public class StopOrResetGame {

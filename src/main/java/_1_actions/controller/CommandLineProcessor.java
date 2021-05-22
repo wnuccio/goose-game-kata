@@ -1,4 +1,4 @@
-package _1_actions.game;
+package _1_actions.controller;
 
 import _2_domain.interpreter.CommandLine;
 import _2_domain.interpreter.Interpreter;

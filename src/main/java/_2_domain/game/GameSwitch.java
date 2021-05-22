@@ -1,4 +1,4 @@
-package _1_actions.game;
+package _2_domain.game;
 
 public class GameSwitch {
     private boolean isOn = true;
