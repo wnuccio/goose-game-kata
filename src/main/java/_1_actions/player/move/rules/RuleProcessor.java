@@ -19,7 +19,7 @@ public class RuleProcessor {
         this.players = players;
     }
 
-    public List<Movement> fromCommand(MoveCommand command) {
+    public List<Movement> computeMovementsFor(MoveCommand command) {
         LinkedList<Movement> movements = new LinkedList<>();
 
         new FirstMovementRule(players).apply(command, movements);

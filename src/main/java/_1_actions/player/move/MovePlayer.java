@@ -25,7 +25,7 @@ public class MovePlayer {
             return;
         }
 
-        List<Movement> movements = ruleProcessor.fromCommand(command);
+        List<Movement> movements = ruleProcessor.computeMovementsFor(command);
 
         PlayerTurnView playerTurnView = buildPlayerTurnViewFrom(command);
         presenter.init();

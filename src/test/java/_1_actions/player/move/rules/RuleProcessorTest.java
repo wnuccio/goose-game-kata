@@ -3,7 +3,6 @@ package _1_actions.player.move.rules;
 import _1_actions.player.move.rules.bouncing.BouncingMovement;
 import _1_actions.player.move.rules.bridge.JumpOnBridgeMovement;
 import _1_actions.player.move.rules.first.FirstMovement;
-import _1_actions.player.move.rules.first.FirstMovementRuleTest;
 import _1_actions.player.move.rules.goose.GooseMovement;
 import _1_actions.player.move.rules.switchrule.SwitchMovement;
 import _2_domain.movement.Movement;
@@ -13,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static _1_actions.player.move.rules.first.FirstMovementRuleTest.move;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RuleProcessorTest {
@@ -23,7 +23,7 @@ class RuleProcessorTest {
     void repeat_movement_on_bouncing() {
         players.setPositionOf("Pippo", Position.position(62));
 
-        List<Movement> movements = ruleProcessor.fromCommand(FirstMovementRuleTest.move("Pippo", 3, 4));
+        List<Movement> movements = ruleProcessor.computeMovementsFor(move("Pippo", 3, 4));
 
         assertThat(movements.size()).isEqualTo(2);
         assertThat(movements.get(0) instanceof FirstMovement).isTrue();
@@ -34,7 +34,7 @@ class RuleProcessorTest {
     void repeat_movement_on_the_bridge() {
         players.setPositionOf("Pippo", Position.position(4));
 
-        List<Movement> movements = ruleProcessor.fromCommand(FirstMovementRuleTest.move("Pippo", 1, 1));
+        List<Movement> movements = ruleProcessor.computeMovementsFor(move("Pippo", 1, 1));
 
         assertThat(movements.size()).isEqualTo(2);
         assertThat(movements.get(0) instanceof FirstMovement).isTrue();
@@ -45,7 +45,7 @@ class RuleProcessorTest {
     void repeat_movement_on_the_goose() {
         players.setPositionOf("Pippo", Position.position(3));
 
-        List<Movement> movements = ruleProcessor.fromCommand(FirstMovementRuleTest.move("Pippo", 1, 1));
+        List<Movement> movements = ruleProcessor.computeMovementsFor(move("Pippo", 1, 1));
 
         assertThat(movements.size()).isEqualTo(2);
         assertThat(movements.get(0) instanceof FirstMovement).isTrue();
@@ -57,7 +57,7 @@ class RuleProcessorTest {
         players.setPositionOf("Pippo", Position.position(15));
         players.setPositionOf("Pluto", Position.position(17));
 
-        List<Movement> movements = ruleProcessor.fromCommand(FirstMovementRuleTest.move("Pippo", 1, 1));
+        List<Movement> movements = ruleProcessor.computeMovementsFor(move("Pippo", 1, 1));
 
         assertThat(movements.size()).isEqualTo(2);
         assertThat(movements.get(0) instanceof FirstMovement).isTrue();

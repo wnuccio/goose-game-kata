@@ -30,7 +30,7 @@ class MovePlayerTest {
         Movement movement1 = mock(Movement.class);
         Movement movement2 = mock(Movement.class);
         List<Movement> movements = asList(movement1, movement2);
-        when(ruleProcessor.fromCommand(moveCommand)).thenReturn(movements);
+        when(ruleProcessor.computeMovementsFor(moveCommand)).thenReturn(movements);
 
         movePlayer.acceptCommand(moveCommand);
 
