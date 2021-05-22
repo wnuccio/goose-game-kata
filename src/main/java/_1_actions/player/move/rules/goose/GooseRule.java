@@ -1,11 +1,9 @@
 package _1_actions.player.move.rules.goose;
 
-import _2_domain.movement.MoveCommand;
 import _2_domain.movement.Movement;
+import _2_domain.movement.PlayerTurn;
 import _2_domain.player.Players;
 import _2_domain.player.Position;
-
-import java.util.LinkedList;
 
 public class GooseRule {
     private final Players players;
@@ -15,18 +13,18 @@ public class GooseRule {
         this.players = players;
     }
 
-    public void apply(MoveCommand command, LinkedList<Movement> movements) {
-        Position position = players.positionOf(command.player());
+    public void apply(PlayerTurn turn) {
+        Position position = players.positionOf(turn.player());
 
         if ( ! position.hasTheGoose()) return;
 
-        Position finalPosition = position.plus(command.diceTotal());
+        Position finalPosition = position.plus(turn.diceTotal());
 
-        players.setPositionOf(command.player(), finalPosition);
+        players.setPositionOf(turn.player(), finalPosition);
 
         Movement gooseMovement = new GooseMovement(position, finalPosition);
-        movements.add(gooseMovement);
+        turn.add(gooseMovement);
 
-        this.apply(command, movements);
+        this.apply(turn);
     }
 }

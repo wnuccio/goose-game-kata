@@ -1,11 +1,10 @@
 package _1_actions.player.move.rules.switchrule;
 
-import _2_domain.movement.MoveCommand;
 import _2_domain.movement.Movement;
+import _2_domain.movement.PlayerTurn;
 import _2_domain.player.Players;
 import _2_domain.player.Position;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class SwitchPlayersRule {
@@ -16,9 +15,9 @@ public class SwitchPlayersRule {
         this.players = players;
     }
 
-    public void apply(MoveCommand command, LinkedList<Movement> movements) {
-        Movement lastMovement = movements.getLast();
-        List<String> encounteredPlayers = players.playersOnSamePositionOf(command.player());
+    public void apply(PlayerTurn turn) {
+        Movement lastMovement = turn.movements().getLast();
+        List<String> encounteredPlayers = players.playersOnSamePositionOf(turn.player());
 
         if (encounteredPlayers.isEmpty()) return;
 
@@ -33,6 +32,6 @@ public class SwitchPlayersRule {
         );
         players.setPositionOf(unluckyPlayer, otherPlayerPreviousPosition);
 
-        movements.add(switchMovement);
+        turn.add(switchMovement);
     }
 }

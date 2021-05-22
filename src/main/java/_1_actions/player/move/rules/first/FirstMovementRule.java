@@ -1,11 +1,8 @@
 package _1_actions.player.move.rules.first;
 
-import _2_domain.movement.MoveCommand;
-import _2_domain.movement.Movement;
+import _2_domain.movement.PlayerTurn;
 import _2_domain.player.Players;
 import _2_domain.player.Position;
-
-import java.util.List;
 
 public class FirstMovementRule {
     private final Players players;
@@ -15,14 +12,13 @@ public class FirstMovementRule {
         this.players = players;
     }
 
-    public void apply(MoveCommand command, List<Movement> movements) {
-        Position startPosition = players.positionOf(command.player());
-        Position finalPosition = startPosition.plus(command.diceTotal());
+    public void apply(PlayerTurn turn) {
+        Position startPosition = players.positionOf(turn.player());
+        Position finalPosition = startPosition.plus(turn.diceTotal());
 
         FirstMovement movement = new FirstMovement(startPosition, finalPosition);
 
-        String player = command.player();
-        players.setPositionOf(player, finalPosition);
-        movements.add(movement);
+        players.setPositionOf(turn.player(), finalPosition);
+        turn.add(movement);
     }
 }
