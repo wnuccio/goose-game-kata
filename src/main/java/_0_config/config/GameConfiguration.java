@@ -12,7 +12,7 @@ import _1_actions.player.rollmove.InterpretRollAndMove;
 import _1_actions.player.rollmove.RollAndMove;
 import _2_domain.interpreter.Interpreter;
 import _2_domain.player.Players;
-import _2_domain.presenter.MovementPresenter;
+import _2_domain.presenter.StringBuilderPresenter;
 
 import java.util.List;
 
@@ -65,8 +65,8 @@ public class GameConfiguration {
         return new PlayerPresenter(inputOutput());
     }
 
-    private MovementPresenter movementPresenter() {
-        return new MovementPresenter(inputOutput());
+    private StringBuilderPresenter movementPresenter() {
+        return new StringBuilderPresenter(inputOutput());
     }
 
     private CommandLineProcessor interpreter() {

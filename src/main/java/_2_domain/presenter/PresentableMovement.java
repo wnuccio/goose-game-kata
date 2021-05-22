@@ -23,5 +23,5 @@ public abstract class PresentableMovement implements Movement {
         return finalPosition;
     }
 
-    public abstract void present(MovementPresenter movementPresenter);
+    public void present(StringBuilderPresenter presenter, PlayerTurnView playerTurnView) {}
 }
