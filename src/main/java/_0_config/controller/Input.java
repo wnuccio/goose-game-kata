@@ -1,4 +1,4 @@
-package _1_actions.controller;
+package _0_config.controller;
 
 public interface Input {
     String readInputLine();

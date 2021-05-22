@@ -1,21 +1,21 @@
-package _1_actions.controller;
+package _0_config.controller;
 
-import _2_domain.game.GameSwitch;
+import _2_domain.game.Game;
 
-public class Game {
+public class GameController {
 
-    private final GameSwitch gameSwitch;
+    private final Game game;
     private final Input input;
     private final CommandLineProcessor processor;
 
-    public Game(GameSwitch gameSwitch, Input input, CommandLineProcessor processor) {
-        this.gameSwitch = gameSwitch;
+    public GameController(Game game, Input input, CommandLineProcessor processor) {
+        this.game = game;
         this.input = input;
         this.processor = processor;
     }
 
     public void run() {
-        while(gameSwitch.isOn()) {
+        while(game.isOn()) {
             String line = input.readInputLine();
             processor.acceptCommand(line);
         }

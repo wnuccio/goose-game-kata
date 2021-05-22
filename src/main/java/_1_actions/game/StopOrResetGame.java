@@ -1,15 +1,15 @@
 package _1_actions.game;
 
-import _2_domain.game.GameSwitch;
+import _2_domain.game.Game;
 import _2_domain.player.Players;
 
 public class StopOrResetGame {
 
-    private final GameSwitch gameSwitch;
+    private final Game game;
     private final Players players;
 
-    public StopOrResetGame(GameSwitch gameSwitch, Players players) {
-        this.gameSwitch = gameSwitch;
+    public StopOrResetGame(Game game, Players players) {
+        this.game = game;
         this.players = players;
     }
 
@@ -18,6 +18,6 @@ public class StopOrResetGame {
     }
 
     public void doStop() {
-        gameSwitch.turnOff();
+        game.turnOff();
     }
 }

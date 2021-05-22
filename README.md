@@ -1,12 +1,12 @@
 # The Goose Game Kata
-Goose game is a game where two or more players move pieces around a track by rolling a die. The aim of the game is to reach square number sixty-three before any of the other players and avoid obstacles. ([wikipedia](https://en.wikipedia.org/wiki/Game_of_the_Goose))
+Goose gameController is a gameController where two or more players move pieces around a track by rolling a die. The aim of the gameController is to reach square number sixty-three before any of the other players and avoid obstacles. ([wikipedia](https://en.wikipedia.org/wiki/Game_of_the_Goose))
 
 This kata has been invented by [Matteo Vaccari](https://github.com/xpmatteo), you can find the original slides [here](https://www.slideshare.net/pierodibello/il-dilettevole-giuoco-delloca-coding-dojo).
 
 ## Features
 
 ### 1. Add players
-As a player, I want to add me to the game so that I can play.
+As a player, I want to add me to the gameController so that I can play.
 
 **Scenarios:**
 1. Add Player
@@ -26,7 +26,7 @@ As a player, I want to add me to the game so that I can play.
    ```
 
 ### 2. Move a player
-As a player, I want to move the marker on the board to make the game progress
+As a player, I want to move the marker on the board to make the gameController progress
 
 **Scenarios:**
 1. Start
@@ -41,7 +41,7 @@ As a player, I want to move the marker on the board to make the game progress
    ```
 
 ### 3. Win
-As a player, I win the game if I land on space "63"
+As a player, I win the gameController if I land on space "63"
 
 **Scenarios:**
 1. Victory
@@ -57,8 +57,8 @@ As a player, I win the game if I land on space "63"
    the user writes: "move Pippo 3, 2"
    the system responds: "Pippo rolls 3, 2. Pippo moves from 60 to 63. Pippo bounces! Pippo returns to 61"
    ```
-### 4. The game throws the dice
-As a player, I want the game throws the dice for me to save effort
+### 4. The gameController throws the dice
+As a player, I want the gameController throws the dice for me to save effort
 
 **Scenarios:**
 1. Dice roll
@@ -104,7 +104,7 @@ The spaces 5, 9, 14, 18, 23, 27 have a picture of "The Goose"
    ```
 
 ### 7. Prank (Optional Step)
-As a player, when I land on a space occupied by another player, I send him to my previous position so that the game can be more entertaining.
+As a player, when I land on a space occupied by another player, I send him to my previous position so that the gameController can be more entertaining.
 
 **Scenarios:**
 1. Prank

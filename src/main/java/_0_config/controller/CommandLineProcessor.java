@@ -1,4 +1,4 @@
-package _1_actions.controller;
+package _0_config.controller;
 
 import _2_domain.interpreter.CommandLine;
 import _2_domain.interpreter.Interpreter;

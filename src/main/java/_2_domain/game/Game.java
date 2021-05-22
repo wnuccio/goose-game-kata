@@ -1,6 +1,6 @@
 package _2_domain.game;
 
-public class GameSwitch {
+public class Game {
     private boolean isOn = true;
 
     public void turnOff() {

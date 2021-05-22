@@ -1,7 +1,7 @@
 package _0_config.config;
 
-import _1_actions.controller.CommandLineProcessor;
-import _1_actions.controller.Game;
+import _0_config.controller.CommandLineProcessor;
+import _0_config.controller.GameController;
 import _1_actions.game.InterpretResetGame;
 import _1_actions.game.InterpretStopGame;
 import _1_actions.game.StopOrResetGame;
@@ -14,21 +14,21 @@ import _1_actions.player.move.rules.RuleProcessor;
 import _1_actions.player.rollmove.DiceRoller;
 import _1_actions.player.rollmove.InterpretRollAndMove;
 import _1_actions.player.rollmove.RollAndMove;
-import _2_domain.game.GameSwitch;
+import _2_domain.game.Game;
 import _2_domain.interpreter.Interpreter;
 import _2_domain.player.Players;
 import _2_domain.presenter.StringBuilderPresenter;
 
 import java.util.List;
 
-import static _1_actions.controller.CommandLineProcessor.ignoreUnrecognizedCommands;
+import static _0_config.controller.CommandLineProcessor.ignoreUnrecognizedCommands;
 import static java.util.Arrays.asList;
 
 public class GameConfiguration {
 
     private final GooseGameAppBuilder builder;
+    private GameController gameController;
     private Game game;
-    private GameSwitch gameSwitch;
     private Players players;
     private InputOutput inputOutput;
     private DiceRoller diceRoller;
@@ -37,18 +37,18 @@ public class GameConfiguration {
         this.builder = builder;
     }
 
-    public Game buildApplication() {
+    public GameController buildApplication() {
         return gooseGameApp();
     }
 
-    private Game gooseGameApp() {
-        if (game == null) game = new Game(applicationSwitch(), inputOutput(), interpreter());
-        return game;
+    private GameController gooseGameApp() {
+        if (gameController == null) gameController = new GameController(applicationSwitch(), inputOutput(), interpreter());
+        return gameController;
     }
 
-    private GameSwitch applicationSwitch() {
-        if (gameSwitch == null) gameSwitch = new GameSwitch();
-        return gameSwitch;
+    private Game applicationSwitch() {
+        if (game == null) game = new Game();
+        return game;
     }
 
     private Players players() {

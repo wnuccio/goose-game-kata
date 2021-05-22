@@ -1,6 +1,6 @@
 package _1_actions.game;
 
-import _2_domain.game.GameSwitch;
+import _2_domain.game.Game;
 import _2_domain.player.Players;
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +19,11 @@ class StopOrResetGameTest {
 
     @Test
     void stops_application() {
-        GameSwitch gameSwitch = mock(GameSwitch.class);
-        StopOrResetGame stopGameService = new StopOrResetGame(gameSwitch, null);
+        Game game = mock(Game.class);
+        StopOrResetGame stopGameService = new StopOrResetGame(game, null);
 
         stopGameService.doStop();
 
-        verify(gameSwitch).turnOff();
+        verify(game).turnOff();
     }
 }
