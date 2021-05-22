@@ -2,8 +2,8 @@ package _1_actions.player.move;
 
 import _1_actions.player.move.rules.RuleProcessor;
 import _2_domain.movement.MoveCommand;
+import _2_domain.movement.Movement;
 import _2_domain.movement.PlayerTurnView;
-import _2_domain.movement.PresentableMovement;
 import _2_domain.player.Players;
 import _2_domain.presenter.StringBuilderPresenter;
 
@@ -25,11 +25,11 @@ public class MovePlayer {
             return;
         }
 
-        List<PresentableMovement> movements = ruleProcessor.fromCommand(command);
+        List<Movement> movements = ruleProcessor.fromCommand(command);
 
         PlayerTurnView playerTurnView = buildPlayerTurnViewFrom(command);
         presenter.init();
-        for (PresentableMovement m: movements) {
+        for (Movement m: movements) {
             m.present(presenter, playerTurnView);
         }
         presenter.writeOutput();

@@ -2,7 +2,6 @@ package _1_actions.player.move.rules.goose;
 
 import _1_actions.player.move.rules.first.FirstMovementRuleTest;
 import _2_domain.movement.Movement;
-import _2_domain.movement.PresentableMovement;
 import _2_domain.player.Players;
 import _2_domain.player.Position;
 import org.assertj.core.api.Assertions;
@@ -15,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class GooseRuleTest {
     Players players = new Players();
     GooseRule rule = new GooseRule(players);
-    LinkedList<PresentableMovement> movements = new LinkedList<>();
+    LinkedList<Movement> movements = new LinkedList<>();
 
     @Test
     void move_again_when_lands_on_a_goose_position() {

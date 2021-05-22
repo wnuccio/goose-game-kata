@@ -2,7 +2,6 @@ package _1_actions.player.move.rules.bridge;
 
 import _1_actions.player.move.rules.first.FirstMovementRuleTest;
 import _2_domain.movement.Movement;
-import _2_domain.movement.PresentableMovement;
 import _2_domain.player.Players;
 import _2_domain.player.Position;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JumpOnBridgeRuleTest {
     Players players = new Players();
     JumpOnBridgeRule rule = new JumpOnBridgeRule(players);
-    LinkedList<PresentableMovement> movements = new LinkedList<>();
+    LinkedList<Movement> movements = new LinkedList<>();
 
     @Test
     void jump_from_position_6_to_position_12() {

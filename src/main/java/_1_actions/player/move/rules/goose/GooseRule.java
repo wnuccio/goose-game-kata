@@ -1,7 +1,7 @@
 package _1_actions.player.move.rules.goose;
 
 import _2_domain.movement.MoveCommand;
-import _2_domain.movement.PresentableMovement;
+import _2_domain.movement.Movement;
 import _2_domain.player.Players;
 import _2_domain.player.Position;
 
@@ -15,7 +15,7 @@ public class GooseRule {
         this.players = players;
     }
 
-    public void apply(MoveCommand command, LinkedList<PresentableMovement> movements) {
+    public void apply(MoveCommand command, LinkedList<Movement> movements) {
         Position position = players.positionOf(command.player());
 
         if ( ! position.hasTheGoose()) return;
@@ -24,7 +24,7 @@ public class GooseRule {
 
         players.setPositionOf(command.player(), finalPosition);
 
-        PresentableMovement gooseMovement = new GooseMovement(position, finalPosition);
+        Movement gooseMovement = new GooseMovement(position, finalPosition);
         movements.add(gooseMovement);
 
         this.apply(command, movements);

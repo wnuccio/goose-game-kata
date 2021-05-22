@@ -6,7 +6,7 @@ import _1_actions.player.move.rules.first.FirstMovementRule;
 import _1_actions.player.move.rules.goose.GooseRule;
 import _1_actions.player.move.rules.switchrule.SwitchPlayersRule;
 import _2_domain.movement.MoveCommand;
-import _2_domain.movement.PresentableMovement;
+import _2_domain.movement.Movement;
 import _2_domain.player.Players;
 
 import java.util.LinkedList;
@@ -19,8 +19,8 @@ public class RuleProcessor {
         this.players = players;
     }
 
-    public List<PresentableMovement> fromCommand(MoveCommand command) {
-        LinkedList<PresentableMovement> movements = new LinkedList<>();
+    public List<Movement> fromCommand(MoveCommand command) {
+        LinkedList<Movement> movements = new LinkedList<>();
 
         new FirstMovementRule(players).apply(command, movements);
         new BouncingRule(players).apply(command, movements);

@@ -3,7 +3,6 @@ package _1_actions.player.move.rules.first;
 import _2_domain.movement.Dice;
 import _2_domain.movement.MoveCommand;
 import _2_domain.movement.Movement;
-import _2_domain.movement.PresentableMovement;
 import _2_domain.player.Players;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FirstMovementRuleTest {
     Players players = new Players();
     FirstMovementRule rule = new FirstMovementRule(players);
-    List<PresentableMovement> movements = new ArrayList<>();
+    List<Movement> movements = new ArrayList<>();
 
     @Test
     void build_a_movement_with_start_and_final_positions() {

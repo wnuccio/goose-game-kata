@@ -2,7 +2,6 @@ package _1_actions.player.move.rules.switchrule;
 
 import _2_domain.movement.MoveCommand;
 import _2_domain.movement.Movement;
-import _2_domain.movement.PresentableMovement;
 import _2_domain.player.Players;
 import _2_domain.player.Position;
 
@@ -17,7 +16,7 @@ public class SwitchPlayersRule {
         this.players = players;
     }
 
-    public void apply(MoveCommand command, LinkedList<PresentableMovement> movements) {
+    public void apply(MoveCommand command, LinkedList<Movement> movements) {
         Movement lastMovement = movements.getLast();
         List<String> encounteredPlayers = players.playersOnSamePositionOf(command.player());
 

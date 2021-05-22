@@ -1,7 +1,7 @@
 package _1_actions.player.move.rules.bridge;
 
 import _2_domain.movement.MoveCommand;
-import _2_domain.movement.PresentableMovement;
+import _2_domain.movement.Movement;
 import _2_domain.player.Players;
 import _2_domain.player.Position;
 
@@ -15,10 +15,10 @@ public class JumpOnBridgeRule {
         this.players = players;
     }
 
-    public void apply(MoveCommand command, LinkedList<PresentableMovement> movements) {
+    public void apply(MoveCommand command, LinkedList<Movement> movements) {
         Position lastPosition = players.positionOf(command.player());
 
-        PresentableMovement movement = new JumpOnBridgeMovement();
+        Movement movement = new JumpOnBridgeMovement();
 
         if (lastPosition.equals(movement.startPosition())) {
             movements.add(movement);

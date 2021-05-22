@@ -3,8 +3,8 @@ package _1_actions.player.move;
 import _1_actions.player.move.rules.RuleProcessor;
 import _2_domain.movement.Dice;
 import _2_domain.movement.MoveCommand;
+import _2_domain.movement.Movement;
 import _2_domain.movement.PlayerTurnView;
-import _2_domain.movement.PresentableMovement;
 import _2_domain.player.Players;
 import _2_domain.player.Position;
 import _2_domain.presenter.StringBuilderPresenter;
@@ -27,9 +27,9 @@ class MovePlayerTest {
     void computes_a_movement_list_and_present_them_all() {
         players.setPositionOf("Pippo", Position.START);
         MoveCommand moveCommand = move("Pippo", 4, 3);
-        PresentableMovement movement1 = mock(PresentableMovement.class);
-        PresentableMovement movement2 = mock(PresentableMovement.class);
-        List<PresentableMovement> movements = asList(movement1, movement2);
+        Movement movement1 = mock(Movement.class);
+        Movement movement2 = mock(Movement.class);
+        List<Movement> movements = asList(movement1, movement2);
         when(ruleProcessor.fromCommand(moveCommand)).thenReturn(movements);
 
         movePlayer.acceptCommand(moveCommand);

@@ -1,7 +1,6 @@
 package _2_domain.movement;
 
 import _2_domain.player.Position;
-import _2_domain.presenter.StringBuilderPresenter;
 
 
 public abstract class PresentableMovement implements Movement {
@@ -22,6 +21,4 @@ public abstract class PresentableMovement implements Movement {
     public Position finalPosition() {
         return finalPosition;
     }
-
-    public void present(StringBuilderPresenter presenter, PlayerTurnView playerTurnView) {}
 }
