@@ -1,7 +1,7 @@
 package _1_actions.player.move.rules.goose;
 
+import _2_domain.movement.PlayerTurnView;
 import _2_domain.player.Position;
-import _2_domain.presenter.PlayerTurnView;
 import _2_domain.presenter.StringBuilderPresenter;
 
 import static java.lang.String.format;

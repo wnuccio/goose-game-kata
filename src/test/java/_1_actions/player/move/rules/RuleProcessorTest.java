@@ -6,9 +6,9 @@ import _1_actions.player.move.rules.first.FirstMovement;
 import _1_actions.player.move.rules.first.FirstMovementRuleTest;
 import _1_actions.player.move.rules.goose.GooseMovement;
 import _1_actions.player.move.rules.switchrule.SwitchMovement;
+import _2_domain.movement.PresentableMovement;
 import _2_domain.player.Players;
 import _2_domain.player.Position;
-import _2_domain.presenter.PresentableMovement;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

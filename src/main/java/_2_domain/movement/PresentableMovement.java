@@ -1,7 +1,7 @@
-package _2_domain.presenter;
+package _2_domain.movement;
 
-import _2_domain.movement.Movement;
 import _2_domain.player.Position;
+import _2_domain.presenter.StringBuilderPresenter;
 
 
 public abstract class PresentableMovement implements Movement {

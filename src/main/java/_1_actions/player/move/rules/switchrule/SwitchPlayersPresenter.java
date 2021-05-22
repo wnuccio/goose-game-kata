@@ -1,6 +1,6 @@
 package _1_actions.player.move.rules.switchrule;
 
-import _2_domain.presenter.PlayerTurnView;
+import _2_domain.movement.PlayerTurnView;
 import _2_domain.presenter.StringBuilderPresenter;
 
 import static java.lang.String.format;

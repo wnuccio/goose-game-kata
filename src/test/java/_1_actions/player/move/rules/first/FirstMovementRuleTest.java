@@ -3,8 +3,8 @@ package _1_actions.player.move.rules.first;
 import _2_domain.movement.Dice;
 import _2_domain.movement.MoveCommand;
 import _2_domain.movement.Movement;
+import _2_domain.movement.PresentableMovement;
 import _2_domain.player.Players;
-import _2_domain.presenter.PresentableMovement;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

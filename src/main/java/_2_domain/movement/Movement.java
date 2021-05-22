@@ -7,8 +7,4 @@ public interface Movement {
 
     Position finalPosition();
 
-    default boolean isVictory() {
-        return finalPosition().isWin();
-    }
-
 }

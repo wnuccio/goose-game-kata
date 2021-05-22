@@ -1,8 +1,8 @@
 package _1_actions.player.move.rules.bouncing;
 
+import _2_domain.movement.PlayerTurnView;
+import _2_domain.movement.PresentableMovement;
 import _2_domain.player.Position;
-import _2_domain.presenter.PlayerTurnView;
-import _2_domain.presenter.PresentableMovement;
 import _2_domain.presenter.StringBuilderPresenter;
 
 public class BouncingMovement extends PresentableMovement {
