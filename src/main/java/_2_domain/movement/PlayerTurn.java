@@ -1,5 +1,6 @@
 package _2_domain.movement;
 
+import _2_domain.player.Position;
 import _2_domain.presenter.StringBuilderPresenter;
 
 import java.util.LinkedList;
@@ -28,6 +29,10 @@ public class PlayerTurn {
 
     public LinkedList<Movement> movements() {
         return movements;
+    }
+
+    public Position previousPosition() {
+        return movements.getLast().startPosition();
     }
 
     public void present(StringBuilderPresenter presenter) {
