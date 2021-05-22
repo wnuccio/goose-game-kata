@@ -19,6 +19,6 @@ public class SwitchMovement extends PresentableMovement {
 
     @Override
     public void present(StringBuilderPresenter presenter, PlayerTurnView playerTurnView) {
-        new SwitchPlayersPresenter().present(this, presenter, playerTurnView);
+        new SwitchPlayersPresenter().present(this, presenter);
     }
 }
