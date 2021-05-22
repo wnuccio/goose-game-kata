@@ -1,9 +1,9 @@
 package _1_actions.player.move.rules.bridge;
 
-import _1_actions.player.move.presenter.PresentableMovement;
-import _2_domain.MoveCommand;
-import _2_domain.Players;
-import _2_domain.Position;
+import _2_domain.movement.MoveCommand;
+import _2_domain.player.Players;
+import _2_domain.player.Position;
+import _2_domain.presenter.PresentableMovement;
 
 import java.util.LinkedList;
 

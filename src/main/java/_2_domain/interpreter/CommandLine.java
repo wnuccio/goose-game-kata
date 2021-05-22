@@ -1,9 +1,9 @@
-package _1_actions.interpreter;
+package _2_domain.interpreter;
 
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 
-import static _1_actions.interpreter.Tokens.empty;
+import static _2_domain.interpreter.Tokens.empty;
 import static java.util.regex.Pattern.compile;
 
 public class CommandLine {

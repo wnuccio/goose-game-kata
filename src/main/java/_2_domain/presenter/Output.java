@@ -1,4 +1,4 @@
-package _1_actions.interpreter;
+package _2_domain.presenter;
 
 public interface Output {
     void writeOutputLine(String string);

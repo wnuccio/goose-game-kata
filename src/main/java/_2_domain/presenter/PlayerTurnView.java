@@ -1,16 +1,12 @@
-package _1_actions.player.move.presenter;
+package _2_domain.presenter;
 
 
-import java.util.List;
-
-public class MovementView {
-    private final List<PresentableMovement> movements;
+public class PlayerTurnView {
     private final String player;
     private final int firstDice;
     private final int secondDice;
 
-    public MovementView(List<PresentableMovement> movements, String player, int firstDice, int secondDice) {
-        this.movements = movements;
+    public PlayerTurnView(String player, int firstDice, int secondDice) {
         this.player = player;
         this.firstDice = firstDice;
         this.secondDice = secondDice;

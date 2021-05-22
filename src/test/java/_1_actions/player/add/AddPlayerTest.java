@@ -1,6 +1,6 @@
 package _1_actions.player.add;
 
-import _2_domain.Players;
+import _2_domain.player.Players;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.mockito.Mockito;

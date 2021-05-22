@@ -1,6 +1,6 @@
 package _1_actions.player.add;
 
-import _2_domain.Players;
+import _2_domain.player.Players;
 
 public class AddPlayer {
     private final Players players;

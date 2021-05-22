@@ -1,4 +1,4 @@
-package _2_domain;
+package _2_domain.player;
 
 import java.util.*;
 import java.util.stream.Collectors;

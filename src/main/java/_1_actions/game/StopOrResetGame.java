@@ -1,6 +1,6 @@
 package _1_actions.game;
 
-import _2_domain.Players;
+import _2_domain.player.Players;
 
 public class StopOrResetGame {
 

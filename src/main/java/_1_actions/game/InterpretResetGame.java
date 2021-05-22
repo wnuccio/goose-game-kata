@@ -1,7 +1,7 @@
 package _1_actions.game;
 
-import _1_actions.interpreter.CommandLine;
-import _1_actions.interpreter.Interpreter;
+import _2_domain.interpreter.CommandLine;
+import _2_domain.interpreter.Interpreter;
 
 public class InterpretResetGame implements Interpreter {
     private final StopOrResetGame stopOrResetGame;

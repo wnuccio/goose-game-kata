@@ -1,11 +1,11 @@
 package _1_actions.player.move.rules.switchrule;
 
-import _1_actions.player.move.presenter.PresentableMovement;
 import _1_actions.player.move.rules.first.FirstMovement;
 import _1_actions.player.move.rules.first.FirstMovementRuleTest;
-import _2_domain.Movement;
-import _2_domain.Players;
-import _2_domain.Position;
+import _2_domain.movement.Movement;
+import _2_domain.player.Players;
+import _2_domain.player.Position;
+import _2_domain.presenter.PresentableMovement;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

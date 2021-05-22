@@ -1,16 +1,16 @@
 package _1_actions.player.move.rules.first;
 
-import _1_actions.player.move.presenter.PresentableMovement;
-import _2_domain.Dice;
-import _2_domain.MoveCommand;
-import _2_domain.Movement;
-import _2_domain.Players;
+import _2_domain.movement.Dice;
+import _2_domain.movement.MoveCommand;
+import _2_domain.movement.Movement;
+import _2_domain.player.Players;
+import _2_domain.presenter.PresentableMovement;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static _2_domain.Position.position;
+import static _2_domain.player.Position.position;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FirstMovementRuleTest {

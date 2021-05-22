@@ -1,18 +1,18 @@
 package _0_config.config;
 
 import _1_actions.game.*;
-import _1_actions.interpreter.Interpreter;
 import _1_actions.player.add.AddPlayer;
 import _1_actions.player.add.InterpretAddPlayer;
 import _1_actions.player.add.PlayerPresenter;
 import _1_actions.player.move.InterpretMovePlayer;
 import _1_actions.player.move.MovePlayer;
-import _1_actions.player.move.presenter.MovementPresenter;
 import _1_actions.player.move.rules.RuleProcessor;
 import _1_actions.player.rollmove.DiceRoller;
 import _1_actions.player.rollmove.InterpretRollAndMove;
 import _1_actions.player.rollmove.RollAndMove;
-import _2_domain.Players;
+import _2_domain.interpreter.Interpreter;
+import _2_domain.player.Players;
+import _2_domain.presenter.MovementPresenter;
 
 import java.util.List;
 

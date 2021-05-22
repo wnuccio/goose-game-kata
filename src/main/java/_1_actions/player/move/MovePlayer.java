@@ -1,11 +1,11 @@
 package _1_actions.player.move;
 
-import _1_actions.player.move.presenter.MovementPresenter;
-import _1_actions.player.move.presenter.MovementView;
-import _1_actions.player.move.presenter.PresentableMovement;
 import _1_actions.player.move.rules.RuleProcessor;
-import _2_domain.MoveCommand;
-import _2_domain.Players;
+import _2_domain.movement.MoveCommand;
+import _2_domain.player.Players;
+import _2_domain.presenter.MovementPresenter;
+import _2_domain.presenter.PlayerTurnView;
+import _2_domain.presenter.PresentableMovement;
 
 import java.util.List;
 
@@ -27,17 +27,16 @@ public class MovePlayer {
 
         List<PresentableMovement> movements = ruleProcessor.fromCommand(command);
 
-        MovementView movementView = buildMovementViewFrom(command, movements);
-        presenter.init(movementView);
+        PlayerTurnView playerTurnView = buildPlayerTurnViewFrom(command);
+        presenter.init(playerTurnView);
         for (PresentableMovement m: movements) {
             m.present(presenter);
         }
         presenter.writeOutput();
     }
 
-    private MovementView buildMovementViewFrom(MoveCommand command, List<PresentableMovement> movements) {
-        return new MovementView(
-                movements,
+    private PlayerTurnView buildPlayerTurnViewFrom(MoveCommand command) {
+        return new PlayerTurnView(
                 command.player(),
                 command.dice().first(),
                 command.dice().second()

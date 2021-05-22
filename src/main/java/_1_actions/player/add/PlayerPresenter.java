@@ -1,6 +1,6 @@
 package _1_actions.player.add;
 
-import _1_actions.interpreter.Output;
+import _2_domain.presenter.Output;
 
 public class PlayerPresenter {
     private final Output output;

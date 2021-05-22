@@ -1,10 +1,11 @@
 package _2_domain;
 
+import _2_domain.player.Players;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static _2_domain.Position.position;
+import static _2_domain.player.Position.position;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

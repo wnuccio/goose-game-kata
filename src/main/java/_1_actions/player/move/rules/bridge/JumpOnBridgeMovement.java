@@ -1,8 +1,8 @@
 package _1_actions.player.move.rules.bridge;
 
-import _1_actions.player.move.presenter.MovementPresenter;
-import _1_actions.player.move.presenter.PresentableMovement;
-import _2_domain.Position;
+import _2_domain.player.Position;
+import _2_domain.presenter.MovementPresenter;
+import _2_domain.presenter.PresentableMovement;
 
 public class JumpOnBridgeMovement extends PresentableMovement {
 

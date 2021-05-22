@@ -1,5 +1,6 @@
 package _2_domain;
 
+import _2_domain.player.Position;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,9 +1,9 @@
 package _1_actions.player.move;
 
-import _1_actions.interpreter.CommandLine;
-import _1_actions.interpreter.Interpreter;
-import _2_domain.Dice;
-import _2_domain.MoveCommand;
+import _2_domain.interpreter.CommandLine;
+import _2_domain.interpreter.Interpreter;
+import _2_domain.movement.Dice;
+import _2_domain.movement.MoveCommand;
 
 public class InterpretMovePlayer implements Interpreter {
     private final MovePlayer movePlayer;

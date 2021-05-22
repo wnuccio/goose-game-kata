@@ -1,4 +1,4 @@
-package _1_actions.interpreter;
+package _2_domain.interpreter;
 
 public class Tokens {
     private final String[] tokens;

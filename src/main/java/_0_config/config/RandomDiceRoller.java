@@ -1,7 +1,7 @@
 package _0_config.config;
 
 import _1_actions.player.rollmove.DiceRoller;
-import _2_domain.Dice;
+import _2_domain.movement.Dice;
 
 public class RandomDiceRoller implements DiceRoller {
     @Override

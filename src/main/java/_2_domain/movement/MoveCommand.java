@@ -1,4 +1,4 @@
-package _2_domain;
+package _2_domain.movement;
 
 public class MoveCommand {
     private final String player;

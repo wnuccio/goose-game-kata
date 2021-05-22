@@ -1,12 +1,11 @@
-package _1_actions.player.move.presenter;
+package _2_domain.presenter;
 
-import _1_actions.interpreter.Output;
 import _1_actions.player.move.rules.bouncing.BouncingMovement;
 import _1_actions.player.move.rules.bridge.JumpOnBridgeMovement;
 import _1_actions.player.move.rules.first.FirstMovement;
 import _1_actions.player.move.rules.goose.GooseMovement;
 import _1_actions.player.move.rules.switchrule.SwitchMovement;
-import _2_domain.Position;
+import _2_domain.player.Position;
 
 import java.util.HashMap;
 
@@ -15,15 +14,15 @@ import static java.lang.String.format;
 public class MovementPresenter {
     private final Output output;
 
-    private MovementView movementView;
+    private PlayerTurnView playerTurnView;
     private StringBuilder outputBuilder;
 
     public MovementPresenter(Output output) {
         this.output = output;
     }
 
-    public void init(MovementView movementView) {
-        this.movementView = movementView;
+    public void init(PlayerTurnView playerTurnView) {
+        this.playerTurnView = playerTurnView;
         this.outputBuilder = new StringBuilder();
     }
 
@@ -32,8 +31,8 @@ public class MovementPresenter {
     }
 
     public void presentFirstMovement(FirstMovement movement) {
-        int firstDice = movementView.firstDice();
-        int secondDice = movementView.secondDice();
+        int firstDice = playerTurnView.firstDice();
+        int secondDice = playerTurnView.secondDice();
         String playerRolls = format("%s rolls %s, %s" + ". ", player(), firstDice, secondDice);
         String playerMoves = format("%s moves from %s to %s", player(), positionName(movement.startPosition()), positionName(movement.finalPosition()));
         String playerWins = movement.isVictory() ? format(". %s Wins!!", player()) : "";
@@ -86,6 +85,6 @@ public class MovementPresenter {
     }
 
     private String player() {
-        return movementView.player();
+        return playerTurnView.player();
     }
 }

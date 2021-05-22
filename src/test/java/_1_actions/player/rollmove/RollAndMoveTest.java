@@ -1,8 +1,8 @@
 package _1_actions.player.rollmove;
 
 import _1_actions.player.move.MovePlayer;
-import _2_domain.Dice;
-import _2_domain.MoveCommand;
+import _2_domain.movement.Dice;
+import _2_domain.movement.MoveCommand;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 

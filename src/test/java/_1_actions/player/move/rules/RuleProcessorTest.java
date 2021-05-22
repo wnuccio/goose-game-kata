@@ -1,14 +1,14 @@
 package _1_actions.player.move.rules;
 
-import _1_actions.player.move.presenter.PresentableMovement;
 import _1_actions.player.move.rules.bouncing.BouncingMovement;
 import _1_actions.player.move.rules.bridge.JumpOnBridgeMovement;
 import _1_actions.player.move.rules.first.FirstMovement;
 import _1_actions.player.move.rules.first.FirstMovementRuleTest;
 import _1_actions.player.move.rules.goose.GooseMovement;
 import _1_actions.player.move.rules.switchrule.SwitchMovement;
-import _2_domain.Players;
-import _2_domain.Position;
+import _2_domain.player.Players;
+import _2_domain.player.Position;
+import _2_domain.presenter.PresentableMovement;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
