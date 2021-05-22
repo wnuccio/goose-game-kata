@@ -26,7 +26,13 @@ public class MovePlayer {
         }
 
         List<PresentableMovement> movements = ruleProcessor.fromCommand(command);
-        presenter.presentMovement(buildMovementViewFrom(command, movements));
+
+        MovementView movementView = buildMovementViewFrom(command, movements);
+        presenter.init(movementView);
+        for (PresentableMovement m: movements) {
+            m.present(presenter);
+        }
+        presenter.writeOutput();
     }
 
     private MovementView buildMovementViewFrom(MoveCommand command, List<PresentableMovement> movements) {

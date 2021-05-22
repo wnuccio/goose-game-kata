@@ -22,13 +22,12 @@ public class MovementPresenter {
         this.output = output;
     }
 
-    public void presentMovement(MovementView movementView) {
+    public void init(MovementView movementView) {
         this.movementView = movementView;
         this.outputBuilder = new StringBuilder();
+    }
 
-        for (PresentableMovement m: movementView.movements()) {
-            m.present(this);
-        }
+    public void writeOutput() {
         output.writeOutputLine(outputBuilder.toString());
     }
 
@@ -88,4 +87,5 @@ public class MovementPresenter {
 
     private String player() {
         return movementView.player();
-    }}
+    }
+}

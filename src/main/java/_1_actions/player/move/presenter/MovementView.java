@@ -27,7 +27,4 @@ public class MovementView {
     public int secondDice() {
         return secondDice;
     }
-
-    public List<PresentableMovement> movements() { return movements;
-    }
 }

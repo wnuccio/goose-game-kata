@@ -8,7 +8,6 @@ import _2_domain.Dice;
 import _2_domain.MoveCommand;
 import _2_domain.Players;
 import _2_domain.Position;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -34,11 +33,12 @@ class MovePlayerTest {
 
         movePlayer.acceptCommand(moveCommand);
 
-        verify(presenter).presentMovement(movementCaptor.capture());
+        verify(presenter).init(movementCaptor.capture());
+        verify(presenter).writeOutput();
+
         assertThat(movementCaptor.getValue().player()).isEqualTo("Pippo");
         assertThat(movementCaptor.getValue().firstDice()).isEqualTo(4);
         assertThat(movementCaptor.getValue().secondDice()).isEqualTo(3);
-        Assertions.assertThat(movementCaptor.getValue().movements()).isEqualTo(movements);
     }
 
     private MoveCommand move(String player, int first, int second) {
