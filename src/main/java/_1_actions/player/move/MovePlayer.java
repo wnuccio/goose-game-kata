@@ -2,9 +2,9 @@ package _1_actions.player.move;
 
 import _1_actions.player.move.presenter.MovementPresenter;
 import _1_actions.player.move.presenter.MovementView;
+import _1_actions.player.move.presenter.PresentableMovement;
 import _1_actions.player.move.rules.RuleProcessor;
 import _2_domain.MoveCommand;
-import _2_domain.Movement;
 import _2_domain.Players;
 
 import java.util.List;
@@ -25,11 +25,11 @@ public class MovePlayer {
             return;
         }
 
-        List<Movement> movements = ruleProcessor.fromCommand(command);
+        List<PresentableMovement> movements = ruleProcessor.fromCommand(command);
         presenter.presentMovement(buildMovementViewFrom(command, movements));
     }
 
-    private MovementView buildMovementViewFrom(MoveCommand command, List<Movement> movements) {
+    private MovementView buildMovementViewFrom(MoveCommand command, List<PresentableMovement> movements) {
         return new MovementView(
                 movements,
                 command.player(),

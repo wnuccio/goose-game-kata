@@ -1,7 +1,7 @@
 package _1_actions.player.move.rules.bouncing;
 
+import _1_actions.player.move.presenter.PresentableMovement;
 import _2_domain.MoveCommand;
-import _2_domain.Movement;
 import _2_domain.Players;
 import _2_domain.Position;
 
@@ -15,7 +15,7 @@ public class BouncingRule {
         this.players = players;
     }
 
-    public void apply(MoveCommand command, LinkedList<Movement> movements) {
+    public void apply(MoveCommand command, LinkedList<PresentableMovement> movements) {
         Position lastPosition = players.positionOf(command.player());
 
         if ( ! lastPosition.isOverTheVictory()) return;
@@ -23,7 +23,7 @@ public class BouncingRule {
         Position finalPosition = lastPosition.bounced();
         players.setPositionOf(command.player(), finalPosition);
 
-        Movement bouncing = new BouncingMovement(finalPosition);
+        PresentableMovement bouncing = new BouncingMovement(finalPosition);
 
         movements.add(bouncing);
     }

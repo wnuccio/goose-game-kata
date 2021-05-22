@@ -2,8 +2,12 @@ package _1_actions.player.move;
 
 import _1_actions.player.move.presenter.MovementPresenter;
 import _1_actions.player.move.presenter.MovementView;
+import _1_actions.player.move.presenter.PresentableMovement;
 import _1_actions.player.move.rules.RuleProcessor;
-import _2_domain.*;
+import _2_domain.Dice;
+import _2_domain.MoveCommand;
+import _2_domain.Players;
+import _2_domain.Position;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -25,7 +29,7 @@ class MovePlayerTest {
     void build_a_movement_view_with_player_name_initial_position_and_dice_values() {
         players.setPositionOf("Pippo", Position.START);
         MoveCommand moveCommand = move("Pippo", 4, 3);
-        List<Movement> movements = new ArrayList<>();
+        List<PresentableMovement> movements = new ArrayList<>();
         when(ruleProcessor.fromCommand(moveCommand)).thenReturn(movements);
 
         movePlayer.acceptCommand(moveCommand);

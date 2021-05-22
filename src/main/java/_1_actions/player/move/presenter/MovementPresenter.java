@@ -6,7 +6,6 @@ import _1_actions.player.move.rules.bridge.JumpOnBridgeMovement;
 import _1_actions.player.move.rules.first.FirstMovement;
 import _1_actions.player.move.rules.goose.GooseMovement;
 import _1_actions.player.move.rules.switchrule.SwitchMovement;
-import _2_domain.Movement;
 import _2_domain.Position;
 
 import java.util.HashMap;
@@ -27,7 +26,7 @@ public class MovementPresenter {
         this.movementView = movementView;
         this.outputBuilder = new StringBuilder();
 
-        for (Movement m: movementView.movements()) {
+        for (PresentableMovement m: movementView.movements()) {
             m.present(this);
         }
         output.writeOutputLine(outputBuilder.toString());

@@ -1,5 +1,6 @@
 package _1_actions.player.move.rules.bouncing;
 
+import _1_actions.player.move.presenter.PresentableMovement;
 import _1_actions.player.move.rules.first.FirstMovementRuleTest;
 import _2_domain.Movement;
 import _2_domain.Players;
@@ -13,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BouncingRuleTest {
     Players players = new Players();
     BouncingRule rule = new BouncingRule(players);
-    LinkedList<Movement> movements = new LinkedList<>();
+    LinkedList<PresentableMovement> movements = new LinkedList<>();
 
     @Test
     void correct_position_over_63_with_bouncing() {

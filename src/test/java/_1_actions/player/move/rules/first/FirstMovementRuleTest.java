@@ -1,5 +1,6 @@
 package _1_actions.player.move.rules.first;
 
+import _1_actions.player.move.presenter.PresentableMovement;
 import _2_domain.Dice;
 import _2_domain.MoveCommand;
 import _2_domain.Movement;
@@ -15,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FirstMovementRuleTest {
     Players players = new Players();
     FirstMovementRule rule = new FirstMovementRule(players);
-    List<Movement> movements = new ArrayList<>();
+    List<PresentableMovement> movements = new ArrayList<>();
 
     @Test
     void build_a_movement_with_start_and_final_positions() {

@@ -1,5 +1,6 @@
 package _1_actions.player.move.rules.switchrule;
 
+import _1_actions.player.move.presenter.PresentableMovement;
 import _1_actions.player.move.rules.first.FirstMovement;
 import _1_actions.player.move.rules.first.FirstMovementRuleTest;
 import _2_domain.Movement;
@@ -15,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class SwitchPlayersRuleTest {
     Players players = new Players();
     SwitchPlayersRule rule = new SwitchPlayersRule(players);
-    LinkedList<Movement> movements = new LinkedList<>();
+    LinkedList<PresentableMovement> movements = new LinkedList<>();
 
     @Test
     void change_position_of_encountered_player() {

@@ -1,5 +1,6 @@
 package _1_actions.player.move.rules.bridge;
 
+import _1_actions.player.move.presenter.PresentableMovement;
 import _1_actions.player.move.rules.first.FirstMovementRuleTest;
 import _2_domain.Movement;
 import _2_domain.Players;
@@ -13,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JumpOnBridgeRuleTest {
     Players players = new Players();
     JumpOnBridgeRule rule = new JumpOnBridgeRule(players);
-    LinkedList<Movement> movements = new LinkedList<>();
+    LinkedList<PresentableMovement> movements = new LinkedList<>();
 
     @Test
     void jump_from_position_6_to_position_12() {

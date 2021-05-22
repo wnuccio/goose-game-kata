@@ -1,17 +1,15 @@
 package _1_actions.player.move.presenter;
 
 
-import _2_domain.Movement;
-
 import java.util.List;
 
 public class MovementView {
-    private final List<Movement> movements;
+    private final List<PresentableMovement> movements;
     private final String player;
     private final int firstDice;
     private final int secondDice;
 
-    public MovementView(List<Movement> movements, String player, int firstDice, int secondDice) {
+    public MovementView(List<PresentableMovement> movements, String player, int firstDice, int secondDice) {
         this.movements = movements;
         this.player = player;
         this.firstDice = firstDice;
@@ -30,6 +28,6 @@ public class MovementView {
         return secondDice;
     }
 
-    public List<Movement> movements() { return movements;
+    public List<PresentableMovement> movements() { return movements;
     }
 }
