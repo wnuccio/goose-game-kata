@@ -11,7 +11,7 @@ public class BouncingPresenter {
         String playerBounces = format(". %s bounces! %s returns to %s",
                 playerTurnView.player(),
                 playerTurnView.player(),
-                presenter.positionName(finalPosition));
+                finalPosition.name());
 
         presenter.append(playerBounces);
     }

@@ -14,7 +14,7 @@ public class FirstMovementPresenter {
         String playerRolls = format("%s rolls %s, %s" + ". ", player, firstDice, secondDice);
         Position start = movement.startPosition();
         Position end = movement.finalPosition();
-        String playerMoves = format("%s moves from %s to %s", player, presenter.positionName(start), presenter.positionName(end));
+        String playerMoves = format("%s moves from %s to %s", player, start.name(), end.name());
         String playerWins = end.isWin() ? format(". %s Wins!!", player) : "";
 
         presenter.append(playerRolls + playerMoves + playerWins);

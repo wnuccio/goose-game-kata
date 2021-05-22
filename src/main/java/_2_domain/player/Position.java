@@ -3,6 +3,7 @@ package _2_domain.player;
 import java.util.List;
 import java.util.Objects;
 
+import static java.lang.String.valueOf;
 import static java.util.Arrays.asList;
 
 public class Position {
@@ -61,11 +62,17 @@ public class Position {
                 '}';
     }
 
-    public String value() {
-        return String.valueOf(value);
-    }
-
     public Position plus(int i) {
         return Position.position(value + i);
     }
+
+    public String name() {
+        if (this.isOverTheVictory()) return valueOf(WIN.value);
+        if (this.equals(START)) return "Start";
+        if (this.equals(BRIDGE)) return "The Bridge";
+
+        String gooseSuffix = this.hasTheGoose() ? ", The Goose." : "";
+        return value + gooseSuffix;
+    }
+
 }

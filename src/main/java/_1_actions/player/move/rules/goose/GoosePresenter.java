@@ -10,7 +10,7 @@ public class GoosePresenter {
     public void present(Position finalPosition, StringBuilderPresenter presenter, PlayerTurnView playerTurnView) {
         String playerMovesAgain = format(" %s moves again and goes to %s",
                 playerTurnView.player(),
-                presenter.positionName(finalPosition));
+                finalPosition.name());
 
         presenter.append(playerMovesAgain);
 

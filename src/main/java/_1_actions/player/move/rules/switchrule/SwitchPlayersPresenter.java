@@ -8,9 +8,9 @@ import static java.lang.String.format;
 public class SwitchPlayersPresenter {
     public void present(SwitchMovement movement, StringBuilderPresenter presenter, PlayerTurnView playerTurnView) {
         String playerSwitch = format(". On %s there is %s, who returns to %s",
-                presenter.positionName(movement.startPosition()),
+                movement.startPosition().name(),
                 movement.switchedPlayer(),
-                presenter.positionName(movement.finalPosition()));
+                movement.finalPosition().name());
 
         presenter.append(playerSwitch);
     }
