@@ -1,10 +1,10 @@
 package _1_actions.player.move;
 
-import _1_actions.player.move.rules.RuleProcessor;
 import _2_domain.movement.MoveCommand;
 import _2_domain.movement.PlayerTurn;
 import _2_domain.player.Players;
 import _2_domain.presenter.StringBuilderPresenter;
+import _2_domain.rules.RuleProcessor;
 
 public class MovePlayer {
     private final Players players;

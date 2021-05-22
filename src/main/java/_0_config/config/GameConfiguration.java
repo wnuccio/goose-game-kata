@@ -10,7 +10,6 @@ import _1_actions.player.add.InterpretAddPlayer;
 import _1_actions.player.add.PlayerPresenter;
 import _1_actions.player.move.InterpretMovePlayer;
 import _1_actions.player.move.MovePlayer;
-import _1_actions.player.move.rules.RuleProcessor;
 import _1_actions.player.rollmove.InterpretRollAndMove;
 import _1_actions.player.rollmove.RollAndMove;
 import _2_domain.game.Game;
@@ -18,6 +17,7 @@ import _2_domain.interpreter.Interpreter;
 import _2_domain.movement.DiceRoller;
 import _2_domain.player.Players;
 import _2_domain.presenter.StringBuilderPresenter;
+import _2_domain.rules.RuleProcessor;
 
 import java.util.List;
 
