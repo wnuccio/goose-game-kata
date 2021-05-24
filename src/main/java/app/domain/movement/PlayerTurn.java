@@ -12,11 +12,18 @@ public class PlayerTurn {
     public PlayerTurn(MoveCommand command) {
         this.command = command;
         this.movements = new LinkedList<>();
-
     }
 
     public String player() {
         return command.player();
+    }
+
+    public int firstDice() {
+        return command.dice().first();
+    }
+
+    public int secondDice() {
+        return command.dice().second();
     }
 
     public int diceTotal() {
@@ -37,14 +44,7 @@ public class PlayerTurn {
 
     public void present(StringBuilderPresenter presenter) {
         presenter.init();
-        for (Movement movement: movements()) {
-            PlayerTurnView playerTurnView = new PlayerTurnView(
-                    player(),
-                    command.dice().first(),
-                    command.dice().second());
-
-            movement.present(presenter, playerTurnView);
-        }
+        movements().forEach(movement -> movement.present(presenter, this));
         presenter.writeOutput();
     }
 }

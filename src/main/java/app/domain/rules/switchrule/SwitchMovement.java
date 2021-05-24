@@ -1,6 +1,6 @@
 package app.domain.rules.switchrule;
 
-import app.domain.movement.PlayerTurnView;
+import app.domain.movement.PlayerTurn;
 import app.domain.movement.PresentableMovement;
 import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
@@ -18,7 +18,7 @@ public class SwitchMovement extends PresentableMovement {
     }
 
     @Override
-    public void present(StringBuilderPresenter presenter, PlayerTurnView playerTurnView) {
+    public void present(StringBuilderPresenter presenter, PlayerTurn playerTurn) {
         new SwitchPlayersPresenter().present(this, presenter);
     }
 }
