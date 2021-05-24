@@ -2,10 +2,23 @@
 - una feature non è uno use case ma è un concetto più generico che può essere
     - una entity (es. player, movement, game)
     - un aspetto (es. rules)
-    - una azione (es. rollmove)
+    - un'azione (es. rollmove)
+    - un'astrazione (es. interpreter)
+    - un concetto comune ad altre feature
+
 - in questo approccio tutto sta in 'domain', non ci sono distinzioni di layer;
     se due 'feature' hanno qualcosa in comune, questa è a sua volta una 'feature' che va in un 
     pacakge separato
+- la distinzione tra domain e 'adapters' ci può ancora stare, perchè in domain
+siamo "dentro" l'applicazione, e quindi domain è diviso in feature, 
+  mentre fuori domain non c'è un "layer" bensì un package per ogni adapter diverso
+  (e quindi database, console di io per esempio).
+  Il punto cruciale, però, è che ad esempio "database" non è un layer,
+  cioè non è un posto dove finiscono tutte le classi di mapping tra dominio e 
+  db, che invece sono ciascuna dove deve stare, cioè ciascuna vicino alla sua
+  corrispondente classe di dominio, o ciascuna nella "feature" più adatta.
+  Invece in "database" ci sono sono classi di utilità generale, es. un Driver di db,
+  che è accessibile dal dominio tramite un'interfaccia che crea un po' di astrazione.
 
 - l'approccio più semplice è mettere tutto in un unico package molto grosso e poi 
     scorporare un pacakge alla volta
