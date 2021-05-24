@@ -4,14 +4,16 @@ import _2_domain.movement.Dice;
 import _2_domain.movement.MoveCommand;
 import _2_domain.movement.Movement;
 import _2_domain.movement.PlayerTurn;
+import _2_domain.player.Board;
 import _2_domain.player.Players;
+import _2_domain.player.Position;
 import org.junit.jupiter.api.Test;
 
-import static _2_domain.player.Position.position;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FirstMovementRuleTest {
     Players players = new Players();
+    Board board = new Board();
     FirstMovementRule rule = new FirstMovementRule(players);
 
     @Test
@@ -35,5 +37,9 @@ public class FirstMovementRuleTest {
 
     public static PlayerTurn turn(String player, int first, int second) {
         return new PlayerTurn(new MoveCommand(player, Dice.dice(first, second)));
+    }
+
+    private Position position(int i) {
+        return board.position(i);
     }
 }

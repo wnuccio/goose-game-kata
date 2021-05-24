@@ -1,8 +1,8 @@
 package _2_domain.rules;
 
 import _2_domain.movement.PlayerTurn;
+import _2_domain.player.Board;
 import _2_domain.player.Players;
-import _2_domain.player.Position;
 import _2_domain.rules.bouncing.BouncingMovement;
 import _2_domain.rules.bridge.JumpOnBridgeMovement;
 import _2_domain.rules.first.FirstMovement;
@@ -14,12 +14,13 @@ import static _2_domain.rules.first.FirstMovementRuleTest.turn;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RuleProcessorTest {
+    Board board = new Board();
     Players players = new Players();
-    RuleProcessor ruleProcessor = new RuleProcessor(players);
+    RuleProcessor ruleProcessor = new RuleProcessor(board, players);
 
     @Test
     void repeat_movement_on_bouncing() {
-        players.setPositionOf("Pippo", Position.position(62));
+        players.setPositionOf("Pippo", board.position(62));
 
         PlayerTurn turn = turn("Pippo", 3, 4);
         ruleProcessor.computeMovementsFor(turn);
@@ -31,7 +32,7 @@ class RuleProcessorTest {
 
     @Test
     void repeat_movement_on_the_bridge() {
-        players.setPositionOf("Pippo", Position.position(4));
+        players.setPositionOf("Pippo", board.position(4));
         PlayerTurn turn = turn("Pippo", 1, 1);
 
         ruleProcessor.computeMovementsFor(turn);
@@ -43,7 +44,7 @@ class RuleProcessorTest {
 
     @Test
     void repeat_movement_on_the_goose() {
-        players.setPositionOf("Pippo", Position.position(3));
+        players.setPositionOf("Pippo", board.position(3));
 
         PlayerTurn turn = turn("Pippo", 1, 1);
         ruleProcessor.computeMovementsFor(turn);
@@ -55,8 +56,8 @@ class RuleProcessorTest {
 
     @Test
     void switch_players_on_encounter() {
-        players.setPositionOf("Pippo", Position.position(15));
-        players.setPositionOf("Pluto", Position.position(17));
+        players.setPositionOf("Pippo", board.position(15));
+        players.setPositionOf("Pluto", board.position(17));
 
         PlayerTurn turn = turn("Pippo", 1, 1);
         ruleProcessor.computeMovementsFor(turn);

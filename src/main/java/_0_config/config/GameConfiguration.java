@@ -107,7 +107,7 @@ public class GameConfiguration {
     }
 
     private RuleProcessor computeMovement() {
-        return new RuleProcessor(players());
+        return new RuleProcessor(board(), players());
     }
 
     private RollAndMove rollAndMove() {

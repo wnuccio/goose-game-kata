@@ -9,7 +9,7 @@ public class PlayerTurn {
     private final MoveCommand command;
     private final LinkedList<Movement> movements;
 
-    public PlayerTurn (MoveCommand command) {
+    public PlayerTurn(MoveCommand command) {
         this.command = command;
         this.movements = new LinkedList<>();
 

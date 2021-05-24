@@ -1,18 +1,19 @@
 package _2_domain;
 
+import _2_domain.player.Board;
 import _2_domain.player.Players;
+import _2_domain.player.Position;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static _2_domain.player.Position.position;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayersTest {
-
+    private final Board board = new Board();
     private final Players players = new Players();
 
     @Test
@@ -56,5 +57,9 @@ public class PlayersTest {
         assertThat(players.playersOnSamePositionOf("Pippo").size()).isEqualTo(2);
         assertThat(players.playersOnSamePositionOf("Pippo").containsAll(asList("Pluto", "Topolino"))).isTrue();
         assertThat(players.playersOnSamePositionOf("Paperino")).isEqualTo(emptyList());
+    }
+
+    private Position position(int i) {
+        return board.position(i);
     }
 }

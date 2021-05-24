@@ -7,19 +7,12 @@ import static java.lang.String.valueOf;
 import static java.util.Arrays.asList;
 
 public class Position {
-    public static final Position START = Position.position(0);
-    public static final Position BRIDGE = Position.position(6);
-    public static final Position BRIDGE_TARGET = Position.position(12);
-    public static final Position WIN = Position.position(63);
-
+    private final Board board;
     private final int value;
 
-    public Position(int value) {
+    Position(int value, Board board) {
         this.value = value;
-    }
-
-    public static Position position(int value) {
-        return new Position(value);
+        this.board = board;
     }
 
     public boolean hasTheGoose() {
@@ -41,18 +34,18 @@ public class Position {
     }
 
     public boolean isWin() {
-        return this.equals(WIN);
+        return this.equals(board.winPosition());
     }
 
     public boolean isOverTheVictory() {
-        return value > WIN.value;
+        return value > board.winPosition().value;
     }
 
     public Position bounced() {
         if (! isOverTheVictory()) return this;
 
-        int bounced = WIN.value - (value - WIN.value);
-        return Position.position(bounced);
+        int bounced = board.winPosition().value - (value - board.winPosition().value);
+        return board.position(bounced);
     }
 
     @Override
@@ -63,13 +56,13 @@ public class Position {
     }
 
     public Position plus(int i) {
-        return Position.position(value + i);
+        return board.position(value + i);
     }
 
     public String name() {
-        if (this.isOverTheVictory()) return valueOf(WIN.value);
-        if (this.equals(START)) return "Start";
-        if (this.equals(BRIDGE)) return "The Bridge";
+        if (this.isOverTheVictory()) return valueOf(board.winPosition().value);
+        if (this.equals(board.start())) return "Start";
+        if (this.equals(board.bridge())) return "The Bridge";
 
         String gooseSuffix = this.hasTheGoose() ? ", The Goose." : "";
         return value + gooseSuffix;
