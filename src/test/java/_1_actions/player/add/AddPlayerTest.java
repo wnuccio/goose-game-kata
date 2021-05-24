@@ -1,5 +1,6 @@
 package _1_actions.player.add;
 
+import _2_domain.player.Board;
 import _2_domain.player.Players;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
@@ -10,7 +11,7 @@ import static org.mockito.Mockito.*;
 class AddPlayerTest {
     private final Players players = mock(Players.class);
     private final PlayerPresenter presenter = mock(PlayerPresenter.class);
-    private final AddPlayer addPlayer = new AddPlayer(players, presenter);
+    private final AddPlayer addPlayer = new AddPlayer(new Board(), players, presenter);
 
     @Test
     void add_a_new_player_when_an_add_player_command_is_provided() {

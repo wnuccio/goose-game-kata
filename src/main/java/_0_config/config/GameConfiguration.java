@@ -15,6 +15,7 @@ import _1_actions.player.rollmove.RollAndMove;
 import _2_domain.game.Game;
 import _2_domain.interpreter.Interpreter;
 import _2_domain.movement.DiceRoller;
+import _2_domain.player.Board;
 import _2_domain.player.Players;
 import _2_domain.presenter.StringBuilderPresenter;
 import _2_domain.rules.RuleProcessor;
@@ -29,6 +30,7 @@ public class GameConfiguration {
     private final GooseGameAppBuilder builder;
     private GameController gameController;
     private Game game;
+    private Board board;
     private Players players;
     private InputOutput inputOutput;
     private DiceRoller diceRoller;
@@ -49,6 +51,11 @@ public class GameConfiguration {
     private Game applicationSwitch() {
         if (game == null) game = new Game();
         return game;
+    }
+
+    private Board board() {
+        if (board == null) board = new Board();
+        return board;
     }
 
     private Players players() {
@@ -88,7 +95,7 @@ public class GameConfiguration {
     }
 
     private AddPlayer addPlayer() {
-        return new AddPlayer(players(), presenter());
+        return new AddPlayer(board(), players(), presenter());
     }
 
     private StopOrResetGame resetService() {

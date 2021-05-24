@@ -13,14 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayersTest {
 
-    @Test
-    void position_of_a_new_player_is_zero() {
-        Players players = new Players().addPlayer("Pippo");
-
-        String pippo = "Pippo";
-        int expected = 0;
-        assertThat(players.positionOf(pippo)).isEqualTo(position(expected));
-    }
+    private final Players players = new Players();
 
     @Test
     void raises_an_exception_when_asked_for_a_position_of_an_absent_players() {
@@ -33,8 +26,7 @@ public class PlayersTest {
 
     @Test
     void change_position_of_a_player() {
-        Players players = new Players().addPlayer("Pippo");
-
+        players.setPositionOf("Pippo", position(60));
         players.setPositionOf("Pippo", position(60));
 
         assertThat(players.positionOf("Pippo")).isEqualTo(position(60));
@@ -42,7 +34,8 @@ public class PlayersTest {
 
     @Test
     void remove_all_players_on_clear() {
-        Players players = new Players().addPlayer("Pippo").addPlayer("Pluto");
+        players.setPositionOf("Pippo", position(1));
+        players.setPositionOf("Pluto", position(2));
 
         assertThat(players.contains("Pippo")).isEqualTo(true);
         assertThat(players.contains("Pluto")).isEqualTo(true);
@@ -55,7 +48,6 @@ public class PlayersTest {
 
     @Test
     void find_any_other_player_on_given_position() {
-        Players players = new Players();
         players.setPositionOf("Pippo", position(15));
         players.setPositionOf("Pluto", position(15));
         players.setPositionOf("Topolino", position(15));

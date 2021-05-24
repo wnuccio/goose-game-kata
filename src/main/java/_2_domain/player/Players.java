@@ -6,11 +6,6 @@ import java.util.stream.Collectors;
 public class Players {
     private final Map<String, Position> players = new HashMap<>();
 
-    public Players addPlayer(String playerName) {
-        players.put(playerName, Position.START);
-        return this;
-    }
-
     public boolean contains(String playerName) {
         return players.containsKey(playerName);
     }
