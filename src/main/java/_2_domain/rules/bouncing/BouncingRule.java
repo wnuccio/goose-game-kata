@@ -18,7 +18,7 @@ public class BouncingRule {
     public void apply(PlayerTurn turn) {
         Position lastPosition = players.positionOf(turn.player());
 
-        if ( ! lastPosition.isOverTheVictory()) return;
+        if ( ! lastPosition.isBeyondWin()) return;
 
         Position finalPosition = lastPosition.bounced();
         players.setPositionOf(turn.player(), finalPosition);

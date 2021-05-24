@@ -37,12 +37,12 @@ public class Position {
         return this.equals(board.winPosition());
     }
 
-    public boolean isOverTheVictory() {
+    public boolean isBeyondWin() {
         return value > board.winPosition().value;
     }
 
     public Position bounced() {
-        if (! isOverTheVictory()) return this;
+        if (! isBeyondWin()) return this;
 
         int bounced = board.winPosition().value - (value - board.winPosition().value);
         return board.position(bounced);
@@ -60,7 +60,7 @@ public class Position {
     }
 
     public String name() {
-        if (this.isOverTheVictory()) return valueOf(board.winPosition().value);
+        if (this.isBeyondWin()) return valueOf(board.winPosition().value);
         if (this.equals(board.start())) return "Start";
         if (this.equals(board.bridge())) return "The Bridge";
 

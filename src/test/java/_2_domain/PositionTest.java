@@ -31,9 +31,9 @@ public class PositionTest {
 
     @Test
     void a_position_is_over_the_victory_when_has_a_value_greater_than_63() {
-        Assertions.assertThat(board.position(67).isOverTheVictory()).isTrue();
-        Assertions.assertThat(board.position(60).isOverTheVictory()).isFalse();
-        Assertions.assertThat(board.position(63).isOverTheVictory()).isFalse();
+        Assertions.assertThat(board.position(67).isBeyondWin()).isTrue();
+        Assertions.assertThat(board.position(60).isBeyondWin()).isFalse();
+        Assertions.assertThat(board.position(63).isBeyondWin()).isFalse();
     }
 
     @Test
