@@ -12,13 +12,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BouncingRuleTest {
     private final Board board = new Board();
     Players players = new Players();
-    BouncingRule rule = new BouncingRule(board, players);
+    BouncingRule rule = new BouncingRule(board);
 
     @Test
     void correct_position_over_63_with_bouncing() {
         players.setPositionOf("Pippo", board.position(69));
 
-        PlayerTurn turn = turn("Pippo", 3, 4);
+        PlayerTurn turn = turn(players, "Pippo", 3, 4);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.position(57));
@@ -32,7 +32,7 @@ class BouncingRuleTest {
     void do_not_correct_position_before_63() {
         players.setPositionOf("Pippo", board.position(60));
 
-        PlayerTurn turn = turn("Pippo", 3, 4);
+        PlayerTurn turn = turn(players, "Pippo", 3, 4);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.position(60));
@@ -43,7 +43,7 @@ class BouncingRuleTest {
     void do_not_correct_position_equals_to_63() {
         players.setPositionOf("Pippo", board.winPosition());
 
-        PlayerTurn turn = turn("Pippo", 3, 4);
+        PlayerTurn turn = turn(players, "Pippo", 3, 4);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.winPosition());

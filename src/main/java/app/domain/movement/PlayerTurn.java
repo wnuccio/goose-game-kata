@@ -1,15 +1,18 @@
 package app.domain.movement;
 
+import app.domain.player.Players;
 import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
 
 import java.util.LinkedList;
 
 public class PlayerTurn {
+    private final Players players;
     private final MoveCommand command;
     private final LinkedList<Movement> movements;
 
-    public PlayerTurn(MoveCommand command) {
+    public PlayerTurn(Players players, MoveCommand command) {
+        this.players = players;
         this.command = command;
         this.movements = new LinkedList<>();
     }
@@ -46,5 +49,13 @@ public class PlayerTurn {
         presenter.init();
         movements().forEach(movement -> movement.present(presenter, this));
         presenter.writeOutput();
+    }
+
+    public Position positionOfPlayer() {
+        return players.positionOf(player());
+    }
+
+    public void setPositionOfPlayer(Position position) {
+        players.setPositionOf(player(), position);
     }
 }

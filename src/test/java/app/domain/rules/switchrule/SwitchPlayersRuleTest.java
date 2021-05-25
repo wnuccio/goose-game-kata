@@ -23,7 +23,7 @@ class SwitchPlayersRuleTest {
     void change_position_of_encountered_player() {
         players.setPositionOf("Pippo", board.position(17));
         players.setPositionOf("Pluto", board.position(17));
-        PlayerTurn turn = turn("Pippo", 3, 4);
+        PlayerTurn turn = turn(players, "Pippo", 3, 4);
         turn.add(new FirstMovement(board.position(10), board.position(17)));
 
         rule.apply(turn);
@@ -39,7 +39,7 @@ class SwitchPlayersRuleTest {
     @Test
     void do_not_apply_any_switch_if_no_other_player_is_encountered() {
         players.setPositionOf("Pippo", board.position(17));
-        PlayerTurn turn = turn("Pippo", 3, 4);
+        PlayerTurn turn = turn(players, "Pippo", 3, 4);
         turn.add(new FirstMovement(board.position(10), board.position(17)));
 
         rule.apply(turn);

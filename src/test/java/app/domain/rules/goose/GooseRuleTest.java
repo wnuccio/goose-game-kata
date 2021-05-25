@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class GooseRuleTest {
     Board board = new Board();
     Players players = new Players();
-    GooseRule rule = new GooseRule(players);
+    GooseRule rule = new GooseRule();
     LinkedList<Movement> movements = new LinkedList<>();
 
     @Test
@@ -23,7 +23,7 @@ class GooseRuleTest {
         Assertions.assertThat(board.position(5).hasTheGoose()).isTrue();
         players.setPositionOf("Pippo", board.position(5));
 
-        PlayerTurn turn = turn("Pippo", 3, 4);
+        PlayerTurn turn = turn(players, "Pippo", 3, 4);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.position(12));
@@ -40,7 +40,7 @@ class GooseRuleTest {
         Assertions.assertThat(board.position(22).hasTheGoose()).isFalse();
         players.setPositionOf("Pippo", board.position(14));
 
-        PlayerTurn turn = turn("Pippo", 2, 2);
+        PlayerTurn turn = turn(players, "Pippo", 2, 2);
         rule.apply(turn);
 
         assertThat(turn.movements().size()).isEqualTo(2);
@@ -59,7 +59,7 @@ class GooseRuleTest {
         Assertions.assertThat(board.position(10).hasTheGoose()).isFalse();
         players.setPositionOf("Pippo", board.position(10));
 
-        PlayerTurn turn = turn("Pippo", 3, 4);
+        PlayerTurn turn = turn(players, "Pippo", 3, 4);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.position(10));

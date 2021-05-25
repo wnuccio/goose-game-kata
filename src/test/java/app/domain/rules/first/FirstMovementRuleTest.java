@@ -14,13 +14,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FirstMovementRuleTest {
     Players players = new Players();
     Board board = new Board();
-    FirstMovementRule rule = new FirstMovementRule(players);
+    FirstMovementRule rule = new FirstMovementRule();
 
     @Test
     void build_a_movement_with_start_and_final_positions() {
         players.setPositionOf("Pippo", position(10));
 
-        PlayerTurn turn = turn("Pippo", 4, 3);
+        PlayerTurn turn = turn(players, "Pippo", 4, 3);
 
         rule.apply(turn);
 
@@ -35,8 +35,8 @@ public class FirstMovementRuleTest {
         return new MoveCommand(player, Dice.dice(first, second));
     }
 
-    public static PlayerTurn turn(String player, int first, int second) {
-        return new PlayerTurn(new MoveCommand(player, Dice.dice(first, second)));
+    public static PlayerTurn turn(Players players, String player, int first, int second) {
+        return new PlayerTurn(players, new MoveCommand(player, Dice.dice(first, second)));
     }
 
     private Position position(int i) {

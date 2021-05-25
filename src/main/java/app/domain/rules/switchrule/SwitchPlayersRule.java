@@ -23,13 +23,13 @@ public class SwitchPlayersRule {
         Position unluckyPlayerPosition = players.positionOf(unluckyPlayer);
         Position otherPlayerPreviousPosition = turn.previousPosition();
 
-        players.setPositionOf(unluckyPlayer, otherPlayerPreviousPosition);
-
         SwitchMovement switchMovement = new SwitchMovement(
                 unluckyPlayer,
                 unluckyPlayerPosition,
                 otherPlayerPreviousPosition
         );
+
         turn.add(switchMovement);
+        players.setPositionOf(unluckyPlayer, switchMovement.finalPosition());
     }
 }

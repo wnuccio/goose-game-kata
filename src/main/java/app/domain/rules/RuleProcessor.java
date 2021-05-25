@@ -19,10 +19,10 @@ public class RuleProcessor {
     }
 
     public void computeMovementsFor(PlayerTurn playerTurn) {
-        new FirstMovementRule(players).apply(playerTurn);
-        new BouncingRule(board, players).apply(playerTurn);
-        new JumpOnBridgeRule(board, players).apply(playerTurn);
-        new GooseRule(players).apply(playerTurn);
+        new FirstMovementRule().apply(playerTurn);
+        new BouncingRule(board).apply(playerTurn);
+        new JumpOnBridgeRule(board).apply(playerTurn);
+        new GooseRule().apply(playerTurn);
         new SwitchPlayersRule(players).apply(playerTurn);
     }
 }

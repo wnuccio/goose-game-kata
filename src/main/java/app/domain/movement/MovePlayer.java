@@ -18,7 +18,7 @@ public class MovePlayer {
     public void acceptCommand(MoveCommand command) {
         if ( ! players.contains(command.player())) return;
 
-        PlayerTurn playerTurn = new PlayerTurn(command);
+        PlayerTurn playerTurn = new PlayerTurn(players, command);
         ruleProcessor.computeMovementsFor(playerTurn);
         playerTurn.present(presenter);
     }

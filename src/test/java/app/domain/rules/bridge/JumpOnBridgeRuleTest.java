@@ -14,14 +14,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JumpOnBridgeRuleTest {
     Players players = new Players();
     Board board = new Board();
-    JumpOnBridgeRule rule = new JumpOnBridgeRule(board, players);
+    JumpOnBridgeRule rule = new JumpOnBridgeRule(board);
     LinkedList<Movement> movements = new LinkedList<>();
 
     @Test
     void jump_from_position_6_to_position_12() {
         players.setPositionOf("Pippo", board.position(6));
 
-        PlayerTurn turn = turn("Pippo", 1, 1);
+        PlayerTurn turn = turn(players, "Pippo", 1, 1);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.position(12));
@@ -35,7 +35,7 @@ class JumpOnBridgeRuleTest {
     void remain_on_same_position_if_not_applicable() {
         players.setPositionOf("Pippo", board.position(7));
 
-        PlayerTurn turn = turn("Pippo", 1, 1);
+        PlayerTurn turn = turn(players, "Pippo", 1, 1);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.position(7));
