@@ -1,7 +1,7 @@
 package app.domain.rules.bouncing;
 
 import app.domain.movement.Movement;
-import app.domain.movement.PlayerTurn;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
 import app.domain.player.Position;
 
@@ -12,7 +12,7 @@ public class BouncingRule {
         this.board = board;
     }
 
-    public void apply(PlayerTurn turn) {
+    public void apply(PlayerOnTurn turn) {
         Position lastPosition = turn.positionOfPlayer();
 
         if ( ! lastPosition.isBeyondWin()) return;

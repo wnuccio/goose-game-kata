@@ -1,11 +1,11 @@
 package app.domain.rules.first;
 
-import app.domain.movement.PlayerTurn;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Position;
 
 public class FirstMovementRule {
 
-    public void apply(PlayerTurn turn) {
+    public void apply(PlayerOnTurn turn) {
         Position startPosition = turn.positionOfPlayer();
         Position finalPosition = startPosition.plus(turn.diceTotal());
 

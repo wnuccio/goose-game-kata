@@ -1,16 +1,16 @@
 package app.domain.rules.first;
 
-import app.domain.movement.PlayerTurn;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
 
 import static java.lang.String.format;
 
 public class FirstMovementPresenter {
-    public void present(FirstMovement movement, StringBuilderPresenter presenter, PlayerTurn playerTurn) {
-        String player = playerTurn.player();
-        int firstDice = playerTurn.firstDice();
-        int secondDice = playerTurn.secondDice();
+    public void present(FirstMovement movement, StringBuilderPresenter presenter, PlayerOnTurn playerOnTurn) {
+        String player = playerOnTurn.player();
+        int firstDice = playerOnTurn.firstDice();
+        int secondDice = playerOnTurn.secondDice();
         String playerRolls = format("%s rolls %s, %s" + ". ", player, firstDice, secondDice);
         Position start = movement.startPosition();
         Position end = movement.finalPosition();

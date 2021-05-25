@@ -1,14 +1,14 @@
 package app.domain.rules.bridge;
 
 import app.domain.movement.Movement;
-import app.domain.movement.PlayerTurn;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
 import app.domain.player.Players;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 
-import static app.domain.rules.first.FirstMovementRuleTest.turn;
+import static app.domain.rules.first.FirstMovementRuleTest.playerOnTurn;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class JumpOnBridgeRuleTest {
@@ -21,7 +21,7 @@ class JumpOnBridgeRuleTest {
     void jump_from_position_6_to_position_12() {
         players.setPositionOf("Pippo", board.position(6));
 
-        PlayerTurn turn = turn(players, "Pippo", 1, 1);
+        PlayerOnTurn turn = playerOnTurn(players, "Pippo", 1, 1);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.position(12));
@@ -35,7 +35,7 @@ class JumpOnBridgeRuleTest {
     void remain_on_same_position_if_not_applicable() {
         players.setPositionOf("Pippo", board.position(7));
 
-        PlayerTurn turn = turn(players, "Pippo", 1, 1);
+        PlayerOnTurn turn = playerOnTurn(players, "Pippo", 1, 1);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.position(7));

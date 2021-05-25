@@ -1,12 +1,12 @@
 package app.domain.rules.goose;
 
 import app.domain.movement.Movement;
-import app.domain.movement.PlayerTurn;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Position;
 
 public class GooseRule {
 
-    public void apply(PlayerTurn turn) {
+    public void apply(PlayerOnTurn turn) {
         Position position = turn.positionOfPlayer();
 
         if ( ! position.hasTheGoose()) return;

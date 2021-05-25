@@ -1,7 +1,7 @@
 package app.domain.rules.bridge;
 
 import app.domain.movement.Movement;
-import app.domain.movement.PlayerTurn;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
 import app.domain.player.Position;
 
@@ -12,7 +12,7 @@ public class JumpOnBridgeRule {
         this.board = board;
     }
 
-    public void apply(PlayerTurn turn) {
+    public void apply(PlayerOnTurn turn) {
         Position lastPosition = turn.positionOfPlayer();
 
         if ( ! lastPosition.equals(board.bridge())) return;

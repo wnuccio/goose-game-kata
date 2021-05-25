@@ -1,16 +1,16 @@
 package app.domain.rules.bouncing;
 
-import app.domain.movement.PlayerTurn;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
 
 import static java.lang.String.format;
 
 public class BouncingPresenter {
-    public void present(Position finalPosition, StringBuilderPresenter presenter, PlayerTurn playerTurn) {
+    public void present(Position finalPosition, StringBuilderPresenter presenter, PlayerOnTurn playerOnTurn) {
         String playerBounces = format(". %s bounces! %s returns to %s",
-                playerTurn.player(),
-                playerTurn.player(),
+                playerOnTurn.player(),
+                playerOnTurn.player(),
                 finalPosition.name());
 
         presenter.append(playerBounces);

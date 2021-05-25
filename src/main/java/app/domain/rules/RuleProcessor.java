@@ -1,6 +1,6 @@
 package app.domain.rules;
 
-import app.domain.movement.PlayerTurn;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
 import app.domain.player.Players;
 import app.domain.rules.bouncing.BouncingRule;
@@ -18,11 +18,11 @@ public class RuleProcessor {
         this.players = players;
     }
 
-    public void computeMovementsFor(PlayerTurn playerTurn) {
-        new FirstMovementRule().apply(playerTurn);
-        new BouncingRule(board).apply(playerTurn);
-        new JumpOnBridgeRule(board).apply(playerTurn);
-        new GooseRule().apply(playerTurn);
-        new SwitchPlayersRule(players).apply(playerTurn);
+    public void computeMovementsFor(PlayerOnTurn playerOnTurn) {
+        new FirstMovementRule().apply(playerOnTurn);
+        new BouncingRule(board).apply(playerOnTurn);
+        new JumpOnBridgeRule(board).apply(playerOnTurn);
+        new GooseRule().apply(playerOnTurn);
+        new SwitchPlayersRule(players).apply(playerOnTurn);
     }
 }

@@ -1,12 +1,12 @@
 package app.domain.rules.bouncing;
 
 import app.domain.movement.Movement;
-import app.domain.movement.PlayerTurn;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
 import app.domain.player.Players;
 import org.junit.jupiter.api.Test;
 
-import static app.domain.rules.first.FirstMovementRuleTest.turn;
+import static app.domain.rules.first.FirstMovementRuleTest.playerOnTurn;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BouncingRuleTest {
@@ -18,7 +18,7 @@ class BouncingRuleTest {
     void correct_position_over_63_with_bouncing() {
         players.setPositionOf("Pippo", board.position(69));
 
-        PlayerTurn turn = turn(players, "Pippo", 3, 4);
+        PlayerOnTurn turn = playerOnTurn(players, "Pippo", 3, 4);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.position(57));
@@ -32,7 +32,7 @@ class BouncingRuleTest {
     void do_not_correct_position_before_63() {
         players.setPositionOf("Pippo", board.position(60));
 
-        PlayerTurn turn = turn(players, "Pippo", 3, 4);
+        PlayerOnTurn turn = playerOnTurn(players, "Pippo", 3, 4);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.position(60));
@@ -43,7 +43,7 @@ class BouncingRuleTest {
     void do_not_correct_position_equals_to_63() {
         players.setPositionOf("Pippo", board.winPosition());
 
-        PlayerTurn turn = turn(players, "Pippo", 3, 4);
+        PlayerOnTurn turn = playerOnTurn(players, "Pippo", 3, 4);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.winPosition());

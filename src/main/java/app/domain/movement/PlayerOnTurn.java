@@ -8,12 +8,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PlayerTurn {
+public class PlayerOnTurn {
     private final Players players;
     private final MoveCommand command;
     private final LinkedList<Movement> movements;
 
-    public PlayerTurn(Players players, MoveCommand command) {
+    public PlayerOnTurn(Players players, MoveCommand command) {
         this.players = players;
         this.command = command;
         this.movements = new LinkedList<>();

@@ -1,7 +1,7 @@
 package app.domain.rules.goose;
 
 import app.domain.movement.Movement;
-import app.domain.movement.PlayerTurn;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
 import app.domain.player.Players;
 import org.assertj.core.api.Assertions;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 
-import static app.domain.rules.first.FirstMovementRuleTest.turn;
+import static app.domain.rules.first.FirstMovementRuleTest.playerOnTurn;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GooseRuleTest {
@@ -23,7 +23,7 @@ class GooseRuleTest {
         Assertions.assertThat(board.position(5).hasTheGoose()).isTrue();
         players.setPositionOf("Pippo", board.position(5));
 
-        PlayerTurn turn = turn(players, "Pippo", 3, 4);
+        PlayerOnTurn turn = playerOnTurn(players, "Pippo", 3, 4);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.position(12));
@@ -40,7 +40,7 @@ class GooseRuleTest {
         Assertions.assertThat(board.position(22).hasTheGoose()).isFalse();
         players.setPositionOf("Pippo", board.position(14));
 
-        PlayerTurn turn = turn(players, "Pippo", 2, 2);
+        PlayerOnTurn turn = playerOnTurn(players, "Pippo", 2, 2);
         rule.apply(turn);
 
         assertThat(turn.movements().size()).isEqualTo(2);
@@ -59,7 +59,7 @@ class GooseRuleTest {
         Assertions.assertThat(board.position(10).hasTheGoose()).isFalse();
         players.setPositionOf("Pippo", board.position(10));
 
-        PlayerTurn turn = turn(players, "Pippo", 3, 4);
+        PlayerOnTurn turn = playerOnTurn(players, "Pippo", 3, 4);
         rule.apply(turn);
 
         assertThat(players.positionOf("Pippo")).isEqualTo(board.position(10));

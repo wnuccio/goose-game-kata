@@ -13,9 +13,9 @@ import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-class PlayerTurnTest {
+class PlayerOnTurnTest {
 
-    private PlayerTurn turn;
+    private PlayerOnTurn turn;
     private Movement movement1;
     private Movement movement2;
     private StringBuilderPresenter presenter;
@@ -36,7 +36,7 @@ class PlayerTurnTest {
     @Test
     void return_position_of_player_in_turn() {
         Position position = board.position(10);
-        turn = new PlayerTurn(players, move("Pippo", 3, 4));
+        turn = new PlayerOnTurn(players, move("Pippo", 3, 4));
         when(players.positionOf("Pippo")).thenReturn(position);
 
         Position actualPosition = turn.positionOfPlayer();
@@ -47,7 +47,7 @@ class PlayerTurnTest {
     @Test
     void change_position_of_player_in_turn() {
         Position position = board.position(10);
-        turn = new PlayerTurn(players, move("Pippo", 3, 4));
+        turn = new PlayerOnTurn(players, move("Pippo", 3, 4));
 
         turn.setPositionOfPlayer(position);
 
@@ -56,7 +56,7 @@ class PlayerTurnTest {
 
     @Test
     void init_presenter_and_pass_it_to_all_movements() {
-        turn = new PlayerTurn(null, move("Pippo", 3, 4));
+        turn = new PlayerOnTurn(null, move("Pippo", 3, 4));
         turn.add(movement1);
         turn.add(movement2);
 
@@ -78,7 +78,7 @@ class PlayerTurnTest {
         players.setPositionOf("Topolino", position(15));
         players.setPositionOf("Paperino", position(10));
 
-        turn = new PlayerTurn(players, move("Pippo", 3, 4));
+        turn = new PlayerOnTurn(players, move("Pippo", 3, 4));
 
         assertThat(turn.encounteredOpponents().size()).isEqualTo(2);
         assertThat(turn.encounteredOpponents().containsAll(asList("Pluto", "Topolino"))).isTrue();
