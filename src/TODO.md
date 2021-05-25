@@ -1,3 +1,9 @@
+###
+- introdurre la classe Player, dotato di posizione
+- spostare su Player il set e il get della posizione
+- sostituire nel PlayerOnTurn la stringa con l'oggetto Player
+- evitare di passare la collezione Players al costruttore di PlayerOnTurn
+
 ### Provare il packaging 'by feature' ricordando che 
 - una feature non è uno use case ma è un concetto più generico che può essere
     - una entity (es. player, movement, game)
