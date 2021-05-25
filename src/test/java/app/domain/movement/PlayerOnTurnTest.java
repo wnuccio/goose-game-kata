@@ -88,8 +88,8 @@ class PlayerOnTurnTest {
 
         playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
 
-        assertThat(playerOnTurn.encounteredOpponents().size()).isEqualTo(2);
-        assertThat(playerOnTurn.encounteredOpponents().containsAll(asList("Pluto", "Topolino"))).isTrue();
+        assertThat(playerOnTurn.encounteredOpponents(players).size()).isEqualTo(2);
+        assertThat(playerOnTurn.encounteredOpponents(players).containsAll(asList("Pluto", "Topolino"))).isTrue();
     }
 
     private static MoveCommand move(String player, int first, int second) {

@@ -62,11 +62,11 @@ public class PlayerOnTurn {
         players.setPositionOf(player(), movement.finalPosition());
     }
 
-    public List<String> encounteredOpponents() {
-        List<String> result = players
+    public List<String> encounteredOpponents(Players allPlayers) {
+        List<String> result = allPlayers
                 .all()
                 .stream()
-                .filter(aPlayer -> players.positionOf(aPlayer).equals(positionOfPlayer()))
+                .filter(aPlayer -> allPlayers.positionOf(aPlayer).equals(positionOfPlayer()))
                 .collect(Collectors.toList());
 
         result.remove(player());

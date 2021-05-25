@@ -10,12 +10,11 @@ public class SwitchPlayersRule {
     private final Players players;
 
     public SwitchPlayersRule(Players players) {
-
         this.players = players;
     }
 
     public void apply(PlayerOnTurn turn) {
-        List<String> encounteredOpponents = turn.encounteredOpponents();
+        List<String> encounteredOpponents = turn.encounteredOpponents(players);
 
         if (encounteredOpponents.isEmpty()) return;
 
