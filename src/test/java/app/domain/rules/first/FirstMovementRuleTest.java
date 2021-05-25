@@ -6,40 +6,38 @@ import app.domain.movement.Movement;
 import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
 import app.domain.player.Players;
-import app.domain.player.Position;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+
+import java.util.LinkedList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 public class FirstMovementRuleTest {
-    Players players = new Players();
     Board board = new Board();
     FirstMovementRule rule = new FirstMovementRule();
 
+    PlayerOnTurn playerOnTurn = mock(PlayerOnTurn.class);
+
+    ArgumentCaptor<Movement> movement = ArgumentCaptor.forClass(Movement.class);
+
+
     @Test
     void build_a_movement_with_start_and_final_positions() {
-        players.setPositionOf("Pippo", position(10));
+        when(playerOnTurn.positionOfPlayer()).thenReturn(board.position(10));
+        when(playerOnTurn.diceTotal()).thenReturn(7);
 
-        PlayerOnTurn turn = playerOnTurn(players, "Pippo", 4, 3);
+        rule.apply(playerOnTurn);
 
-        rule.apply(turn);
+        verify(playerOnTurn).applyMovement(movement.capture());
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(position(17));
-
-        Movement movement = turn.movements().get(0);
-        assertThat(movement.startPosition()).isEqualTo(position(10));
-        assertThat(movement.finalPosition()).isEqualTo(position(17));
-    }
-
-    public static MoveCommand move(String player, int first, int second) {
-        return new MoveCommand(player, Dice.dice(first, second));
+        assertThat(movement.getValue().startPosition()).isEqualTo(board.position(10));
+        assertThat(movement.getValue().finalPosition()).isEqualTo(board.position(17));
     }
 
     public static PlayerOnTurn playerOnTurn(Players players, String player, int first, int second) {
-        return new PlayerOnTurn(players, new MoveCommand(player, Dice.dice(first, second)));
+        return new PlayerOnTurn(players, new MoveCommand(player, Dice.dice(first, second)), new LinkedList<>());
     }
 
-    private Position position(int i) {
-        return board.position(i);
-    }
 }

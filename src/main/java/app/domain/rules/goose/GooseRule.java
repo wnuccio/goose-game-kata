@@ -6,18 +6,15 @@ import app.domain.player.Position;
 
 public class GooseRule {
 
-    public void apply(PlayerOnTurn turn) {
-        Position position = turn.positionOfPlayer();
+    public void apply(PlayerOnTurn playerOnTurn) {
+        if ( !playerOnTurn.isOnTheGoose()) return;
 
-        if ( ! position.hasTheGoose()) return;
-
-        Position finalPosition = position.plus(turn.diceTotal());
+        Position position = playerOnTurn.positionOfPlayer();
+        Position finalPosition = position.plus(playerOnTurn.diceTotal());
 
         Movement movement = new GooseMovement(position, finalPosition);
+        playerOnTurn.applyMovement(movement);
 
-        turn.add(movement);
-        turn.setPositionOfPlayer(movement.finalPosition());
-
-        this.apply(turn);
+        this.apply(playerOnTurn);
     }
 }

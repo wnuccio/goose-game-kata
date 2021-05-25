@@ -8,65 +8,73 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 
-import static app.domain.rules.first.FirstMovementRuleTest.move;
+import java.util.LinkedList;
+
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class PlayerOnTurnTest {
 
-    private PlayerOnTurn turn;
-    private Movement movement1;
-    private Movement movement2;
+    private PlayerOnTurn playerOnTurn;
     private StringBuilderPresenter presenter;
     private Players players;
     private Board board;
+    private LinkedList<Movement> movements;
 
     @BeforeEach
     void setUp() {
         board = new Board();
         players = mock(Players.class);
-
-        movement1 = mock(Movement.class);
-        movement2 = mock(Movement.class);
-
+        movements = mock(LinkedList.class);
         presenter = mock(StringBuilderPresenter.class);
     }
 
     @Test
     void return_position_of_player_in_turn() {
         Position position = board.position(10);
-        turn = new PlayerOnTurn(players, move("Pippo", 3, 4));
+        playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
         when(players.positionOf("Pippo")).thenReturn(position);
 
-        Position actualPosition = turn.positionOfPlayer();
+        Position actualPosition = playerOnTurn.positionOfPlayer();
 
         assertThat(actualPosition).isEqualTo(position);
     }
 
     @Test
-    void change_position_of_player_in_turn() {
-        Position position = board.position(10);
-        turn = new PlayerOnTurn(players, move("Pippo", 3, 4));
+    void return_player_is_on_the_goose() {
+        Position position = board.position(5);
+        assertThat(position.hasTheGoose()).isTrue();
+        when(players.positionOf("Pippo")).thenReturn(position);
 
-        turn.setPositionOfPlayer(position);
+        playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
 
-        verify(players).setPositionOf("Pippo", position);
+        assertThat(playerOnTurn.isOnTheGoose()).isTrue();
+    }
+
+    @Test
+    void apply_a_movement_by_changing_player_position_and_registering_the_movement() {
+        Position finalPosition = board.position(10);
+        Movement movement = mock(Movement.class);
+        when(movement.finalPosition()).thenReturn(finalPosition);
+
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
+        playerOnTurn.applyMovement(movement);
+
+        verify(players).setPositionOf("Pippo", finalPosition);
+        verify(movements).add(movement);
     }
 
     @Test
     void init_presenter_and_pass_it_to_all_movements() {
-        turn = new PlayerOnTurn(null, move("Pippo", 3, 4));
-        turn.add(movement1);
-        turn.add(movement2);
+        playerOnTurn = new PlayerOnTurn(null, move("Pippo", 3, 4), movements);
 
-        turn.present(presenter);
+        playerOnTurn.present(presenter);
 
-        InOrder inOrder = inOrder(presenter);
+        InOrder inOrder = inOrder(presenter, movements);
 
         inOrder.verify(presenter).init();
-        verify(movement1).present(presenter, turn);
-        verify(movement2).present(presenter, turn);
+        inOrder.verify(movements).forEach(any());
         inOrder.verify(presenter).writeOutput();
     }
 
@@ -78,10 +86,14 @@ class PlayerOnTurnTest {
         players.setPositionOf("Topolino", position(15));
         players.setPositionOf("Paperino", position(10));
 
-        turn = new PlayerOnTurn(players, move("Pippo", 3, 4));
+        playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
 
-        assertThat(turn.encounteredOpponents().size()).isEqualTo(2);
-        assertThat(turn.encounteredOpponents().containsAll(asList("Pluto", "Topolino"))).isTrue();
+        assertThat(playerOnTurn.encounteredOpponents().size()).isEqualTo(2);
+        assertThat(playerOnTurn.encounteredOpponents().containsAll(asList("Pluto", "Topolino"))).isTrue();
+    }
+
+    private static MoveCommand move(String player, int first, int second) {
+        return new MoveCommand(player, Dice.dice(first, second));
     }
 
     private Position position(int i) {

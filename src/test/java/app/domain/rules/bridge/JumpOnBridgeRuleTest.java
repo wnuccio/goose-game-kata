@@ -3,43 +3,37 @@ package app.domain.rules.bridge;
 import app.domain.movement.Movement;
 import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
-import app.domain.player.Players;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 
-import java.util.LinkedList;
-
-import static app.domain.rules.first.FirstMovementRuleTest.playerOnTurn;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 class JumpOnBridgeRuleTest {
-    Players players = new Players();
     Board board = new Board();
     JumpOnBridgeRule rule = new JumpOnBridgeRule(board);
-    LinkedList<Movement> movements = new LinkedList<>();
+    PlayerOnTurn playerOnTurn = mock(PlayerOnTurn.class);
+
+    ArgumentCaptor<Movement> movement = ArgumentCaptor.forClass(Movement.class);
 
     @Test
     void jump_from_position_6_to_position_12() {
-        players.setPositionOf("Pippo", board.position(6));
+        when(playerOnTurn.positionOfPlayer()).thenReturn(board.position(6));
 
-        PlayerOnTurn turn = playerOnTurn(players, "Pippo", 1, 1);
-        rule.apply(turn);
+        rule.apply(playerOnTurn);
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(board.position(12));
+        verify(playerOnTurn).applyMovement(movement.capture());
 
-        Movement movement = turn.movements().get(0);
-        assertThat(movement.startPosition()).isEqualTo(board.position(6));
-        assertThat(movement.finalPosition()).isEqualTo(board.position(12));
+        assertThat(movement.getValue().startPosition()).isEqualTo(board.position(6));
+        assertThat(movement.getValue().finalPosition()).isEqualTo(board.position(12));
     }
 
     @Test
     void remain_on_same_position_if_not_applicable() {
-        players.setPositionOf("Pippo", board.position(7));
+        when(playerOnTurn.positionOfPlayer()).thenReturn(board.position(7));
 
-        PlayerOnTurn turn = playerOnTurn(players, "Pippo", 1, 1);
-        rule.apply(turn);
+        rule.apply(playerOnTurn);
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(board.position(7));
-
-        assertThat(turn.movements().isEmpty()).isTrue();
+        verify(playerOnTurn, never()).applyMovement(any());
     }
 }

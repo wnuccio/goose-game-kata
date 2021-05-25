@@ -12,15 +12,14 @@ public class BouncingRule {
         this.board = board;
     }
 
-    public void apply(PlayerOnTurn turn) {
-        Position lastPosition = turn.positionOfPlayer();
+    public void apply(PlayerOnTurn playerOnTurn) {
+        Position lastPosition = playerOnTurn.positionOfPlayer();
 
         if ( ! lastPosition.isBeyondWin()) return;
 
         Position finalPosition = lastPosition.bounced();
         Movement movement = new BouncingMovement(board, finalPosition);
 
-        turn.add(movement);
-        turn.setPositionOfPlayer(movement.finalPosition());
+        playerOnTurn.applyMovement(movement);
     }
 }

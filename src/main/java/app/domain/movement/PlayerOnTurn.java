@@ -13,10 +13,10 @@ public class PlayerOnTurn {
     private final MoveCommand command;
     private final LinkedList<Movement> movements;
 
-    public PlayerOnTurn(Players players, MoveCommand command) {
+    public PlayerOnTurn(Players players, MoveCommand command, LinkedList<Movement> movements) {
         this.players = players;
         this.command = command;
-        this.movements = new LinkedList<>();
+        this.movements = movements;
     }
 
     public String player() {
@@ -49,7 +49,7 @@ public class PlayerOnTurn {
 
     public void present(StringBuilderPresenter presenter) {
         presenter.init();
-        movements().forEach(movement -> movement.present(presenter, this));
+        movements.forEach(movement -> movement.present(presenter, this));
         presenter.writeOutput();
     }
 
@@ -57,8 +57,9 @@ public class PlayerOnTurn {
         return players.positionOf(player());
     }
 
-    public void setPositionOfPlayer(Position position) {
-        players.setPositionOf(player(), position);
+    public void applyMovement(Movement movement) {
+        movements.add(movement);
+        players.setPositionOf(player(), movement.finalPosition());
     }
 
     public List<String> encounteredOpponents() {
@@ -71,5 +72,9 @@ public class PlayerOnTurn {
         result.remove(player());
         return result;
 
+    }
+
+    public boolean isOnTheGoose() {
+        return positionOfPlayer().hasTheGoose();
     }
 }

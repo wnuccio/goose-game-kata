@@ -5,13 +5,11 @@ import app.domain.player.Position;
 
 public class FirstMovementRule {
 
-    public void apply(PlayerOnTurn turn) {
-        Position startPosition = turn.positionOfPlayer();
-        Position finalPosition = startPosition.plus(turn.diceTotal());
+    public void apply(PlayerOnTurn playerOnTurn) {
+        Position startPosition = playerOnTurn.positionOfPlayer();
+        Position finalPosition = startPosition.plus(playerOnTurn.diceTotal());
 
         FirstMovement movement = new FirstMovement(startPosition, finalPosition);
-
-        turn.add(movement);
-        turn.setPositionOfPlayer(movement.finalPosition());
+        playerOnTurn.applyMovement(movement);
     }
 }
