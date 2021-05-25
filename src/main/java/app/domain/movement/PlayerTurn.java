@@ -5,6 +5,8 @@ import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
 
 import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class PlayerTurn {
     private final Players players;
@@ -57,5 +59,17 @@ public class PlayerTurn {
 
     public void setPositionOfPlayer(Position position) {
         players.setPositionOf(player(), position);
+    }
+
+    public List<String> encounteredOpponents() {
+        List<String> result = players
+                .all()
+                .stream()
+                .filter(aPlayer -> players.positionOf(aPlayer).equals(positionOfPlayer()))
+                .collect(Collectors.toList());
+
+        result.remove(player());
+        return result;
+
     }
 }

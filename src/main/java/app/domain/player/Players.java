@@ -1,7 +1,9 @@
 package app.domain.player;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Set;
 
 public class Players {
     private final Map<String, Position> players = new HashMap<>();
@@ -24,18 +26,8 @@ public class Players {
         players.clear();
     }
 
-    public String[] all() {
-        Set<String> nameSet = players.keySet();
-        String[] stringArray = new String[nameSet.size()];
-        return nameSet.toArray(stringArray);
+    public Set<String> all() {
+        return players.keySet();
     }
 
-    public List<String> playersOnSamePositionOf(String thisPlayer) {
-        List<String> result = players.keySet().stream()
-                .filter(aPlayer -> positionOf(aPlayer).equals(positionOf(thisPlayer)))
-                .collect(Collectors.toList());
-
-        result.remove(thisPlayer);
-        return result;
-    }
 }

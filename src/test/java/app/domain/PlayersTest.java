@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static java.util.Arrays.asList;
-import static java.util.Collections.emptyList;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -45,18 +43,6 @@ public class PlayersTest {
 
         assertThat(players.contains("Pippo")).isEqualTo(false);
         assertThat(players.contains("Pluto")).isEqualTo(false);
-    }
-
-    @Test
-    void find_any_other_player_on_given_position() {
-        players.setPositionOf("Pippo", position(15));
-        players.setPositionOf("Pluto", position(15));
-        players.setPositionOf("Topolino", position(15));
-        players.setPositionOf("Paperino", position(10));
-
-        assertThat(players.playersOnSamePositionOf("Pippo").size()).isEqualTo(2);
-        assertThat(players.playersOnSamePositionOf("Pippo").containsAll(asList("Pluto", "Topolino"))).isTrue();
-        assertThat(players.playersOnSamePositionOf("Paperino")).isEqualTo(emptyList());
     }
 
     private Position position(int i) {

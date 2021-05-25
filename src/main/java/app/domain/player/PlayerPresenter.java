@@ -2,6 +2,8 @@ package app.domain.player;
 
 import app.domain.presenter.Output;
 
+import java.util.Collection;
+
 public class PlayerPresenter {
     private final Output output;
 
@@ -9,7 +11,7 @@ public class PlayerPresenter {
         this.output = output;
     }
 
-    public void presentPlayers(String... players) {
+    public void presentPlayers(Collection<String> players) {
         String playersSeparatedByComma = String.join(", ", players);
         output.writeOutputLine("players: " + playersSeparatedByComma);
     }

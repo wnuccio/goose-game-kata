@@ -4,6 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 
+import java.util.Set;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toSet;
 import static org.mockito.Mockito.*;
 
 class AddPlayerTest {
@@ -17,7 +21,7 @@ class AddPlayerTest {
 
         addPlayer.doAdd("Pippo");
 
-        verify(presenter).presentPlayers("Pippo");
+        verify(presenter).presentPlayers(players("Pippo"));
     }
 
     @Test
@@ -29,8 +33,8 @@ class AddPlayerTest {
         addPlayer.doAdd("Pippo");
         addPlayer.doAdd("Pluto");
 
-        verify(presenter).presentPlayers("Pippo");
-        verify(presenter).presentPlayers("Pippo", "Pluto");
+        verify(presenter).presentPlayers(players("Pippo"));
+        verify(presenter).presentPlayers(players("Pippo", "Pluto"));
     }
 
     @Test
@@ -44,11 +48,11 @@ class AddPlayerTest {
         addPlayer.doAdd("Pippo");
 
         InOrder inOrder = Mockito.inOrder(presenter);
-        inOrder.verify(presenter).presentPlayers("Pippo");
+        inOrder.verify(presenter).presentPlayers(players("Pippo"));
         inOrder.verify(presenter).presentExistingPlayerError("Pippo");
     }
 
-    private String[] players(String...players) {
-        return players;
+    private Set<String> players(String...players) {
+        return Stream.of(players).collect(toSet());
     }
 }
