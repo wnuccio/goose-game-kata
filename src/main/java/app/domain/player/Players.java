@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class Players {
-    private final Map<String, Position> players = new HashMap<>();
+    private final Map<String, Player> players = new HashMap<>();
 
     public boolean contains(String playerName) {
         return players.containsKey(playerName);
@@ -15,11 +15,11 @@ public class Players {
     public Position positionOf(String playerName) {
         if (! contains(playerName)) throw new NoSuchElementException("No such player: " + playerName);
 
-        return players.get(playerName);
+        return players.get(playerName).position();
     }
 
-    public void setPositionOf(String player, Position position) {
-        players.put(player, position);
+    public void setPositionOf(String playerName, Position position) {
+        players.put(playerName, new Player(playerName).position(position));
     }
 
     public void clear() {
