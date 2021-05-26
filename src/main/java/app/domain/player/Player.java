@@ -8,6 +8,10 @@ public class Player {
         this.name = name;
     }
 
+    public String name() {
+        return name;
+    }
+
     public Player position(Position position) {
         this.position = position;
         return this;

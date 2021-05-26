@@ -18,6 +18,14 @@ public class Players {
         return players.get(playerName).position();
     }
 
+    public void add(Player player) {
+        players.put(player.name(), player);
+    }
+
+    public Player findByName(String name) {
+        return players.get(name);
+    }
+
     public void setPositionOf(String playerName, Position position) {
         players.put(playerName, new Player(playerName).position(position));
     }
@@ -29,5 +37,4 @@ public class Players {
     public Set<String> all() {
         return players.keySet();
     }
-
 }
