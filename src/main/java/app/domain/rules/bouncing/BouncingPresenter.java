@@ -9,8 +9,8 @@ import static java.lang.String.format;
 public class BouncingPresenter {
     public void present(Position finalPosition, StringBuilderPresenter presenter, PlayerOnTurn playerOnTurn) {
         String playerBounces = format(". %s bounces! %s returns to %s",
-                playerOnTurn.player(),
-                playerOnTurn.player(),
+                playerOnTurn.playerName(),
+                playerOnTurn.playerName(),
                 finalPosition.name());
 
         presenter.append(playerBounces);

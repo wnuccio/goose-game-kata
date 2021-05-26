@@ -8,7 +8,7 @@ import static java.lang.String.format;
 
 public class FirstMovementPresenter {
     public void present(FirstMovement movement, StringBuilderPresenter presenter, PlayerOnTurn playerOnTurn) {
-        String player = playerOnTurn.player();
+        String player = playerOnTurn.playerName();
         int firstDice = playerOnTurn.firstDice();
         int secondDice = playerOnTurn.secondDice();
         String playerRolls = format("%s rolls %s, %s" + ". ", player, firstDice, secondDice);

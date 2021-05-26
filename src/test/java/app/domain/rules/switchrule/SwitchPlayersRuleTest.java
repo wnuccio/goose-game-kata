@@ -26,7 +26,6 @@ class SwitchPlayersRuleTest {
         Player pluto = new Player("Pluto",board.position(17));
 
         when(playerOnTurn.encounteredOpponents(players)).thenReturn(asList("Pluto"));
-        when(players.positionOf("Pluto")).thenReturn(board.position(17));
         when(players.findByName("Pluto")).thenReturn(pluto);
         when(playerOnTurn.previousPosition()).thenReturn(board.position(10));
 

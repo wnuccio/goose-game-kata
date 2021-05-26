@@ -1,6 +1,7 @@
 package app.domain.rules.switchrule;
 
 import app.domain.movement.PlayerOnTurn;
+import app.domain.player.Player;
 import app.domain.player.Players;
 import app.domain.player.Position;
 
@@ -18,17 +19,18 @@ public class SwitchPlayersRule {
 
         if (encounteredOpponents.isEmpty()) return;
 
-        String unluckyOpponent = encounteredOpponents.get(0);
-        Position unluckyOpponentPosition = players.positionOf(unluckyOpponent);
+        String unluckyOpponentName = encounteredOpponents.get(0);
+        Player unluckyOpponent = players.findByName(unluckyOpponentName);
+        Position unluckyOpponentPosition = unluckyOpponent.position();
         Position playerOnTurnPreviousPosition = turn.previousPosition();
 
         SwitchMovement switchMovement = new SwitchMovement(
-                unluckyOpponent,
+                unluckyOpponentName,
                 unluckyOpponentPosition,
                 playerOnTurnPreviousPosition
         );
 
         turn.add(switchMovement);
-        players.findByName(unluckyOpponent).position(switchMovement.finalPosition());
+        unluckyOpponent.position(switchMovement.finalPosition());
     }
 }

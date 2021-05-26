@@ -1,9 +1,6 @@
 package app.domain.player;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
 
 public class Players {
     private final Map<String, Player> players = new HashMap<>();
@@ -12,25 +9,25 @@ public class Players {
         return players.containsKey(playerName);
     }
 
-    public Position positionOf(String playerName) {
-        if (! contains(playerName)) throw new NoSuchElementException("No such player: " + playerName);
-
-        return players.get(playerName).position();
-    }
-
     public void add(Player player) {
         players.put(player.name(), player);
     }
 
-    public Player findByName(String name) {
-        return players.get(name);
+    public Player findByName(String playerName) {
+        if (! contains(playerName)) throw new NoSuchElementException("No such player: " + playerName);
+
+        return players.get(playerName);
     }
 
     public void clear() {
         players.clear();
     }
 
-    public Set<String> all() {
+    public Set<String> allNames() {
         return players.keySet();
+    }
+
+    public Set<Player> all() {
+        return new HashSet<>(players.values());
     }
 }

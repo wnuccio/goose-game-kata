@@ -18,7 +18,7 @@ public class AddPlayer {
         }
 
         players.add(new Player(player, board.start()));
-        presenter.presentPlayers(players.all());
+        presenter.presentPlayers(players.allNames());
     }
 }
 

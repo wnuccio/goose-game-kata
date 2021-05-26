@@ -7,7 +7,7 @@ import static java.lang.String.format;
 
 public class JumpOnBridgePresenter {
     public void present(StringBuilderPresenter presenter, PlayerOnTurn playerOnTurn) {
-        String playerJumps = format(". %s jumps to 12", playerOnTurn.player());
+        String playerJumps = format(". %s jumps to 12", playerOnTurn.playerName());
 
         presenter.append(playerJumps);
     }

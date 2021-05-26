@@ -26,20 +26,12 @@ public class PlayersTest {
     }
 
     @Test
-    void raises_an_exception_when_asked_for_a_position_of_an_absent_players() {
+    void raises_an_exception_when_asked_for_an_absent_players() {
         assertThrows(NoSuchElementException.class, () -> {
             Players emptyPlayerCollection = new Players();
 
-            emptyPlayerCollection.positionOf("anyPlayer");
+            emptyPlayerCollection.findByName("anyPlayer");
         });
-    }
-
-    @Test
-    void change_position_of_a_player() {
-        players.add(new Player("Pippo", position(60)));
-        players.findByName("Pippo").position(position(61));
-
-        assertThat(players.positionOf("Pippo")).isEqualTo(position(61));
     }
 
     @Test

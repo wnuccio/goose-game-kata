@@ -17,7 +17,7 @@ class AddPlayerTest {
 
     @Test
     void add_a_new_player_when_an_add_player_command_is_provided() {
-        when(players.all()).thenReturn(players("Pippo"));
+        when(players.allNames()).thenReturn(players("Pippo"));
 
         addPlayer.doAdd("Pippo");
 
@@ -26,7 +26,7 @@ class AddPlayerTest {
 
     @Test
     void add_two_new_players() {
-        when(players.all())
+        when(players.allNames())
                 .thenReturn(players("Pippo"))
                 .thenReturn(players("Pippo", "Pluto"));
 
@@ -39,7 +39,7 @@ class AddPlayerTest {
 
     @Test
     void do_not_add_the_same_player_more_times() {
-        when(players.all()).thenReturn(players("Pippo"));
+        when(players.allNames()).thenReturn(players("Pippo"));
         when(players.contains("Pippo"))
                 .thenReturn(false)
                 .thenReturn(true);

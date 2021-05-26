@@ -1,5 +1,6 @@
 package app.domain.movement;
 
+import app.domain.player.Player;
 import app.domain.player.Players;
 import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
@@ -19,7 +20,7 @@ public class PlayerOnTurn {
         this.movements = movements;
     }
 
-    public String player() {
+    public String playerName() {
         return command.player();
     }
 
@@ -53,25 +54,29 @@ public class PlayerOnTurn {
         presenter.writeOutput();
     }
 
+    private Player player() {
+        return players.findByName(playerName());
+    }
+
     public Position positionOfPlayer() {
-        return players.positionOf(player());
+        return player().position();
     }
 
     public void applyMovement(Movement movement) {
         movements.add(movement);
-        players.findByName(player()).position(movement.finalPosition());
+        players.findByName(playerName()).position(movement.finalPosition());
     }
 
     public List<String> encounteredOpponents(Players allPlayers) {
         List<String> result = allPlayers
                 .all()
                 .stream()
-                .filter(aPlayer -> allPlayers.positionOf(aPlayer).equals(positionOfPlayer()))
+                .filter(aPlayer -> aPlayer.position().equals(positionOfPlayer()))
+                .map(Player::name)
                 .collect(Collectors.toList());
 
-        result.remove(player());
+        result.remove(playerName());
         return result;
-
     }
 
     public boolean isOnTheGoose() {
