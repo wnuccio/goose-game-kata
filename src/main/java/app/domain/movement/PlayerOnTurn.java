@@ -19,8 +19,16 @@ public class PlayerOnTurn {
         this.movements = movements;
     }
 
-    public String playerName() {
+    public String name() {
         return player.name();
+    }
+
+    public Position position() {
+        return player.position();
+    }
+
+    public int diceTotal() {
+        return dice.total();
     }
 
     public int firstDice() {
@@ -29,10 +37,6 @@ public class PlayerOnTurn {
 
     public int secondDice() {
         return dice.second();
-    }
-
-    public int diceTotal() {
-        return dice.total();
     }
 
     public LinkedList<Movement> movements() {
@@ -49,10 +53,6 @@ public class PlayerOnTurn {
         presenter.writeOutput();
     }
 
-    public Position positionOfPlayer() {
-        return player.position();
-    }
-
     public void add(Movement movement) {
         movements.add(movement);
     }
@@ -67,6 +67,6 @@ public class PlayerOnTurn {
     }
 
     public boolean isOnTheGoose() {
-        return positionOfPlayer().hasTheGoose();
+        return position().hasTheGoose();
     }
 }

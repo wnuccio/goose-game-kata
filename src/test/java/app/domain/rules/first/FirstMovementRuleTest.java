@@ -20,7 +20,7 @@ public class FirstMovementRuleTest {
 
     @Test
     void build_a_movement_with_start_and_final_positions() {
-        when(playerOnTurn.positionOfPlayer()).thenReturn(board.position(10));
+        when(playerOnTurn.position()).thenReturn(board.position(10));
         when(playerOnTurn.diceTotal()).thenReturn(7);
 
         rule.apply(playerOnTurn);

@@ -20,7 +20,7 @@ class GooseRuleTest {
 
     @Test
     void move_again_when_lands_on_a_goose_position() {
-        when(playerOnTurn.positionOfPlayer()).thenReturn(board.position(5));
+        when(playerOnTurn.position()).thenReturn(board.position(5));
         when(playerOnTurn.isOnTheGoose())
                 .thenReturn(true)
                 .thenReturn(false);
@@ -36,7 +36,7 @@ class GooseRuleTest {
 
     @Test
     void move_again_more_times_while_landing_on_gooses() {
-        when(playerOnTurn.positionOfPlayer())
+        when(playerOnTurn.position())
                 .thenReturn(board.position(14))
                 .thenReturn(board.position(18));
 

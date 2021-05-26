@@ -18,7 +18,7 @@ class JumpOnBridgeRuleTest {
 
     @Test
     void jump_from_position_6_to_position_12() {
-        when(playerOnTurn.positionOfPlayer()).thenReturn(board.position(6));
+        when(playerOnTurn.position()).thenReturn(board.position(6));
 
         rule.apply(playerOnTurn);
 
@@ -30,7 +30,7 @@ class JumpOnBridgeRuleTest {
 
     @Test
     void remain_on_same_position_if_not_applicable() {
-        when(playerOnTurn.positionOfPlayer()).thenReturn(board.position(7));
+        when(playerOnTurn.position()).thenReturn(board.position(7));
 
         rule.apply(playerOnTurn);
 

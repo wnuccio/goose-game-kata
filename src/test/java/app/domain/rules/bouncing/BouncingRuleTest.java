@@ -18,7 +18,7 @@ class BouncingRuleTest {
 
     @Test
     void correct_position_over_63_with_bouncing() {
-        when(playerOnTurn.positionOfPlayer()).thenReturn(board.position(69));
+        when(playerOnTurn.position()).thenReturn(board.position(69));
 
         rule.apply(playerOnTurn);
 
@@ -30,7 +30,7 @@ class BouncingRuleTest {
 
     @Test
     void do_not_correct_position_before_63() {
-        when(playerOnTurn.positionOfPlayer()).thenReturn(board.position(60));
+        when(playerOnTurn.position()).thenReturn(board.position(60));
 
         rule.apply(playerOnTurn);
 
@@ -39,7 +39,7 @@ class BouncingRuleTest {
 
     @Test
     void do_not_correct_position_equals_to_63() {
-        when(playerOnTurn.positionOfPlayer()).thenReturn(board.position(63));
+        when(playerOnTurn.position()).thenReturn(board.position(63));
 
         rule.apply(playerOnTurn);
 

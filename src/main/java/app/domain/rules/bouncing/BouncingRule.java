@@ -13,7 +13,7 @@ public class BouncingRule {
     }
 
     public void apply(PlayerOnTurn playerOnTurn) {
-        Position lastPosition = playerOnTurn.positionOfPlayer();
+        Position lastPosition = playerOnTurn.position();
 
         if ( ! lastPosition.isBeyondWin()) return;
 

@@ -29,7 +29,7 @@ class MovePlayerTest {
 
         verify(ruleProcessor).computeMovementsFor(playerOnTurn.capture());
 
-        assertThat(playerOnTurn.getValue().playerName()).isEqualTo("Pippo");
+        assertThat(playerOnTurn.getValue().name()).isEqualTo("Pippo");
 
         verify(presenter).init();
         verify(presenter).writeOutput();

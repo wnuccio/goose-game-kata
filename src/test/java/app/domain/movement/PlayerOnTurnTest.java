@@ -40,7 +40,7 @@ class PlayerOnTurnTest {
         playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
         when(players.find("Pippo")).thenReturn(pippo);
 
-        Position actualPosition = playerOnTurn.positionOfPlayer();
+        Position actualPosition = playerOnTurn.position();
 
         assertThat(actualPosition).isEqualTo(position);
     }
