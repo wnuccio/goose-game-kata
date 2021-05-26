@@ -17,11 +17,12 @@ public class PlayersTest {
 
     @Test
     void find_player_by_name() {
-        players.add(new Player("Pippo"));
+        players.add(new Player("Pippo", board.position(4)));
 
         Player player = players.findByName("Pippo");
 
         assertThat(player.name()).isEqualTo("Pippo");
+        assertThat(player.position()).isEqualTo(board.position(4));
     }
 
     @Test

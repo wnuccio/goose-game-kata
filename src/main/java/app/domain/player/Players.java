@@ -27,7 +27,7 @@ public class Players {
     }
 
     public void addNewPlayerOnPosition(String playerName, Position position) {
-        add(new Player(playerName).position(position));
+        add(new Player(playerName, position));
     }
 
     public void changePositionOf(String playerName, Position position) {
