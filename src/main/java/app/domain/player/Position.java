@@ -3,16 +3,17 @@ package app.domain.player;
 import java.util.List;
 import java.util.Objects;
 
-import static java.lang.String.valueOf;
 import static java.util.Arrays.asList;
 
 public class Position {
     private final Board board;
-    private final int value;
+    String name;
+    final int value;
 
-    Position(int value, Board board) {
+    Position(int value, Board board, String name) {
         this.value = value;
         this.board = board;
+        this.name = name;
     }
 
     public boolean hasTheGoose() {
@@ -60,12 +61,7 @@ public class Position {
     }
 
     public String name() {
-        if (this.isBeyondWin()) return valueOf(board.win().value);
-        if (this.equals(board.start())) return "Start";
-        if (this.equals(board.bridge())) return "The Bridge";
-
-        String gooseSuffix = this.hasTheGoose() ? ", The Goose." : "";
-        return value + gooseSuffix;
+        return name;
     }
 
 }
