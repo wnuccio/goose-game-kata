@@ -17,7 +17,7 @@ class MovePlayerTest {
 
     @Test
     void computes_a_movement_list_and_present_them_all() {
-        players.setPositionOf("Pippo", new Board().start());
+        players.addNewPlayerOnPosition("Pippo", new Board().start());
         MoveCommand moveCommand = move("Pippo", 4, 3);
 
         movePlayer.acceptCommand(moveCommand);

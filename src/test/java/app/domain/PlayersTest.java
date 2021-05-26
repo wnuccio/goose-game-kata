@@ -35,16 +35,16 @@ public class PlayersTest {
 
     @Test
     void change_position_of_a_player() {
-        players.setPositionOf("Pippo", position(60));
-        players.setPositionOf("Pippo", position(60));
+        players.addNewPlayerOnPosition("Pippo", position(60));
+        players.changePositionOf("Pippo", position(61));
 
-        assertThat(players.positionOf("Pippo")).isEqualTo(position(60));
+        assertThat(players.positionOf("Pippo")).isEqualTo(position(61));
     }
 
     @Test
     void remove_all_players_on_clear() {
-        players.setPositionOf("Pippo", position(1));
-        players.setPositionOf("Pluto", position(2));
+        players.addNewPlayerOnPosition("Pippo", position(1));
+        players.addNewPlayerOnPosition("Pluto", position(2));
 
         assertThat(players.contains("Pippo")).isEqualTo(true);
         assertThat(players.contains("Pluto")).isEqualTo(true);

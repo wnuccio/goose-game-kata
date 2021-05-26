@@ -29,6 +29,6 @@ public class SwitchPlayersRule {
         );
 
         turn.add(switchMovement);
-        players.setPositionOf(unluckyOpponent, switchMovement.finalPosition());
+        players.addNewPlayerOnPosition(unluckyOpponent, switchMovement.finalPosition());
     }
 }

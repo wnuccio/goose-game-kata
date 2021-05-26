@@ -26,8 +26,12 @@ public class Players {
         return players.get(name);
     }
 
-    public void setPositionOf(String playerName, Position position) {
-        players.put(playerName, new Player(playerName).position(position));
+    public void addNewPlayerOnPosition(String playerName, Position position) {
+        add(new Player(playerName).position(position));
+    }
+
+    public void changePositionOf(String playerName, Position position) {
+        findByName(playerName).position(position);
     }
 
     public void clear() {

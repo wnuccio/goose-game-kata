@@ -17,7 +17,7 @@ public class AddPlayer {
             return;
         }
 
-        players.setPositionOf(player, board.start());
+        players.addNewPlayerOnPosition(player, board.start());
         presenter.presentPlayers(players.all());
     }
 }

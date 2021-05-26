@@ -61,7 +61,7 @@ class PlayerOnTurnTest {
         PlayerOnTurn playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
         playerOnTurn.applyMovement(movement);
 
-        verify(players).setPositionOf("Pippo", finalPosition);
+        verify(players).addNewPlayerOnPosition("Pippo", finalPosition);
         verify(movements).add(movement);
     }
 
@@ -81,10 +81,10 @@ class PlayerOnTurnTest {
     @Test
     void find_any_other_player_on_given_position() {
         Players players = new Players();
-        players.setPositionOf("Pippo", position(15));
-        players.setPositionOf("Pluto", position(15));
-        players.setPositionOf("Topolino", position(15));
-        players.setPositionOf("Paperino", position(10));
+        players.addNewPlayerOnPosition("Pippo", position(15));
+        players.addNewPlayerOnPosition("Pluto", position(15));
+        players.addNewPlayerOnPosition("Topolino", position(15));
+        players.addNewPlayerOnPosition("Paperino", position(10));
 
         playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
 

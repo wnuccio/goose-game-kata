@@ -20,7 +20,7 @@ class RuleProcessorTest {
 
     @Test
     void repeat_movement_on_bouncing() {
-        players.setPositionOf("Pippo", board.position(62));
+        players.addNewPlayerOnPosition("Pippo", board.position(62));
 
         PlayerOnTurn player = playerOnTurn(players, "Pippo", 3, 4);
         ruleProcessor.computeMovementsFor(player);
@@ -32,7 +32,7 @@ class RuleProcessorTest {
 
     @Test
     void repeat_movement_on_the_bridge() {
-        players.setPositionOf("Pippo", board.position(4));
+        players.addNewPlayerOnPosition("Pippo", board.position(4));
         PlayerOnTurn turn = playerOnTurn(players, "Pippo", 1, 1);
 
         ruleProcessor.computeMovementsFor(turn);
@@ -44,7 +44,7 @@ class RuleProcessorTest {
 
     @Test
     void repeat_movement_on_the_goose() {
-        players.setPositionOf("Pippo", board.position(3));
+        players.addNewPlayerOnPosition("Pippo", board.position(3));
 
         PlayerOnTurn turn = playerOnTurn(players, "Pippo", 1, 1);
         ruleProcessor.computeMovementsFor(turn);
@@ -56,8 +56,8 @@ class RuleProcessorTest {
 
     @Test
     void switch_players_on_encounter() {
-        players.setPositionOf("Pippo", board.position(15));
-        players.setPositionOf("Pluto", board.position(17));
+        players.addNewPlayerOnPosition("Pippo", board.position(15));
+        players.addNewPlayerOnPosition("Pluto", board.position(17));
 
         PlayerOnTurn turn = playerOnTurn(players, "Pippo", 1, 1);
         ruleProcessor.computeMovementsFor(turn);
