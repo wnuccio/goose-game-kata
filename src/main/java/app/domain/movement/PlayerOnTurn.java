@@ -36,10 +36,6 @@ public class PlayerOnTurn {
         return dice.total();
     }
 
-    public void add(Movement movement) {
-        movements.add(movement);
-    }
-
     public LinkedList<Movement> movements() {
         return movements;
     }
@@ -54,12 +50,12 @@ public class PlayerOnTurn {
         presenter.writeOutput();
     }
 
-    private Player player() {
-        return player;
+    public Position positionOfPlayer() {
+        return player.position();
     }
 
-    public Position positionOfPlayer() {
-        return player().position();
+    public void add(Movement movement) {
+        movements.add(movement);
     }
 
     public void applyMovement(Movement movement) {
