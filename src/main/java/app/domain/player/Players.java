@@ -1,6 +1,7 @@
 package app.domain.player;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Players {
     private final Map<String, Player> players = new HashMap<>();
@@ -29,5 +30,13 @@ public class Players {
 
     public Set<Player> all() {
         return new HashSet<>(players.values());
+    }
+
+    public List<Player> opponentsOnSamePositionOf(Player player) {
+        return all()
+                .stream()
+                .filter(aPlayer -> aPlayer.position().equals(player.position()))
+                .filter(aPlayer -> aPlayer != player)
+                .collect(Collectors.toList());
     }
 }
