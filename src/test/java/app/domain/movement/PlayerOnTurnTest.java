@@ -17,15 +17,15 @@ import static org.mockito.Mockito.*;
 
 class PlayerOnTurnTest {
 
-    private PlayerOnTurn playerOnTurn;
-    private StringBuilderPresenter presenter;
-    private Players players;
-    private Board board;
-    private LinkedList<Movement> movements;
+    PlayerOnTurn playerOnTurn;
+    StringBuilderPresenter presenter;
+    Players players;
+    Board board = new Board();
+    Player pippo = new Player("Pippo", board.start());
+    LinkedList<Movement> movements;
 
     @BeforeEach
     void setUp() {
-        board = new Board();
         players = mock(Players.class);
         movements = mock(LinkedList.class);
         presenter = mock(StringBuilderPresenter.class);
@@ -34,8 +34,9 @@ class PlayerOnTurnTest {
     @Test
     void return_position_of_player_in_turn() {
         Position position = board.position(10);
-        playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
-        when(players.find("Pippo")).thenReturn(new Player("Pippo", position));
+        pippo.position(position);
+        playerOnTurn = new PlayerOnTurn(pippo, move("Pippo", 3, 4), movements);
+        when(players.find("Pippo")).thenReturn(pippo);
 
         Position actualPosition = playerOnTurn.positionOfPlayer();
 
@@ -45,10 +46,11 @@ class PlayerOnTurnTest {
     @Test
     void return_player_is_on_the_goose() {
         Position position = board.position(5);
+        pippo.position(position);
         assertThat(position.hasTheGoose()).isTrue();
-        when(players.find("Pippo")).thenReturn(new Player("Pippo", position));
+        when(players.find("Pippo")).thenReturn(pippo);
 
-        playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
+        playerOnTurn = new PlayerOnTurn(pippo, move("Pippo", 3, 4), movements);
 
         assertThat(playerOnTurn.isOnTheGoose()).isTrue();
     }
@@ -61,7 +63,7 @@ class PlayerOnTurnTest {
         Player pippo = new Player("Pippo", finalPosition);
         when(players.find("Pippo")).thenReturn(pippo);
 
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, move("Pippo", 3, 4), movements);
         playerOnTurn.applyMovement(movement);
 
         verify(movements).add(movement);
@@ -83,12 +85,13 @@ class PlayerOnTurnTest {
     @Test
     void find_any_other_player_on_given_position() {
         Players players = new Players();
+        pippo.position(board.position(15));
         players.add(new Player("Pippo", position(15)));
         players.add(new Player("Pluto", position(15)));
         players.add(new Player("Topolino", position(15)));
         players.add(new Player("Paperino", position(10)));
 
-        playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
+        playerOnTurn = new PlayerOnTurn(pippo, move("Pippo", 3, 4), movements);
 
         assertThat(playerOnTurn.encounteredOpponents(players).size()).isEqualTo(2);
         assertThat(playerOnTurn.encounteredOpponents(players).containsAll(asList("Pluto", "Topolino"))).isTrue();

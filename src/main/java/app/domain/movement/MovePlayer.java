@@ -1,5 +1,6 @@
 package app.domain.movement;
 
+import app.domain.player.Player;
 import app.domain.player.Players;
 import app.domain.presenter.StringBuilderPresenter;
 import app.domain.rules.RuleProcessor;
@@ -20,8 +21,10 @@ public class MovePlayer {
     public void acceptCommand(MoveCommand command) {
         if ( ! players.contains(command.player())) return;
 
+        Player player = players.find(command.player());
+
         LinkedList<Movement> movements = new LinkedList<>();
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(players, command, movements);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(player, command, movements);
         ruleProcessor.computeMovementsFor(playerOnTurn);
         playerOnTurn.present(presenter);
     }

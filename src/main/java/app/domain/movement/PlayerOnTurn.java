@@ -10,18 +10,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PlayerOnTurn {
-    private final Players players;
+    private final Player player;
     private final MoveCommand command;
     private final LinkedList<Movement> movements;
 
-    public PlayerOnTurn(Players players, MoveCommand command, LinkedList<Movement> movements) {
-        this.players = players;
+    public PlayerOnTurn(Player player, MoveCommand command, LinkedList<Movement> movements) {
+        this.player = player;
         this.command = command;
         this.movements = movements;
     }
 
     public String playerName() {
-        return command.player();
+        return player.name();
     }
 
     public int firstDice() {
@@ -55,7 +55,7 @@ public class PlayerOnTurn {
     }
 
     private Player player() {
-        return players.find(playerName());
+        return player;
     }
 
     public Position positionOfPlayer() {
@@ -63,8 +63,8 @@ public class PlayerOnTurn {
     }
 
     public void applyMovement(Movement movement) {
+        player.position(movement.finalPosition());
         movements.add(movement);
-        players.find(playerName()).position(movement.finalPosition());
     }
 
     public List<String> encounteredOpponents(Players allPlayers) {

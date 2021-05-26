@@ -5,7 +5,7 @@ import app.domain.movement.MoveCommand;
 import app.domain.movement.Movement;
 import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
-import app.domain.player.Players;
+import app.domain.player.Player;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -36,8 +36,8 @@ public class FirstMovementRuleTest {
         assertThat(movement.getValue().finalPosition()).isEqualTo(board.position(17));
     }
 
-    public static PlayerOnTurn playerOnTurn(Players players, String player, int first, int second) {
-        return new PlayerOnTurn(players, new MoveCommand(player, Dice.dice(first, second)), new LinkedList<>());
+    public static PlayerOnTurn playerOnTurn(Player player, String playerName, int first, int second) {
+        return new PlayerOnTurn(player, new MoveCommand(playerName, Dice.dice(first, second)), new LinkedList<>());
     }
 
 }
