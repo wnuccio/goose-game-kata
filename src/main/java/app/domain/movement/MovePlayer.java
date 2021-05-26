@@ -24,7 +24,7 @@ public class MovePlayer {
         Player player = players.find(command.player());
 
         LinkedList<Movement> movements = new LinkedList<>();
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(player, command, movements);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(player, command.dice(), movements);
         ruleProcessor.computeMovementsFor(playerOnTurn);
         playerOnTurn.present(presenter);
     }

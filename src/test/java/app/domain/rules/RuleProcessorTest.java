@@ -11,7 +11,9 @@ import app.domain.rules.goose.GooseMovement;
 import app.domain.rules.switchrule.SwitchMovement;
 import org.junit.jupiter.api.Test;
 
-import static app.domain.rules.first.FirstMovementRuleTest.playerOnTurn;
+import java.util.LinkedList;
+
+import static app.domain.movement.Dice.dice;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RuleProcessorTest {
@@ -24,7 +26,7 @@ class RuleProcessorTest {
         Player pippo = new Player("Pippo", board.position(62));
         players.add(pippo);
 
-        PlayerOnTurn player = playerOnTurn(pippo, "Pippo", 3, 4);
+        PlayerOnTurn player = new PlayerOnTurn(pippo, dice(3, 4), new LinkedList<>());
         ruleProcessor.computeMovementsFor(player);
 
         assertThat(player.movements().size()).isEqualTo(2);
@@ -36,7 +38,7 @@ class RuleProcessorTest {
     void repeat_movement_on_the_bridge() {
         Player pippo = new Player("Pippo", board.position(4));
         players.add(pippo);
-        PlayerOnTurn turn = playerOnTurn(pippo, "Pippo", 1, 1);
+        PlayerOnTurn turn = new PlayerOnTurn(pippo, dice(1, 1), new LinkedList<>());
 
         ruleProcessor.computeMovementsFor(turn);
 
@@ -50,7 +52,7 @@ class RuleProcessorTest {
         Player pippo = new Player("Pippo", board.position(3));
         players.add(pippo);
 
-        PlayerOnTurn turn = playerOnTurn(pippo,"Pippo", 1, 1);
+        PlayerOnTurn turn = new PlayerOnTurn(pippo, dice(1, 1), new LinkedList<>());
         ruleProcessor.computeMovementsFor(turn);
 
         assertThat(turn.movements().size()).isEqualTo(2);
@@ -64,7 +66,7 @@ class RuleProcessorTest {
         players.add(pippo);
         players.add(new Player("Pluto", board.position(17)));
 
-        PlayerOnTurn turn = playerOnTurn(pippo, "Pippo", 1, 1);
+        PlayerOnTurn turn = new PlayerOnTurn(pippo, dice(1, 1), new LinkedList<>());
         ruleProcessor.computeMovementsFor(turn);
 
         assertThat(turn.movements().size()).isEqualTo(2);

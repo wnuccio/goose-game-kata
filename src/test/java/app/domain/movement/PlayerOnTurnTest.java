@@ -11,6 +11,7 @@ import org.mockito.InOrder;
 
 import java.util.LinkedList;
 
+import static app.domain.movement.Dice.dice;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -35,7 +36,7 @@ class PlayerOnTurnTest {
     void return_position_of_player_in_turn() {
         Position position = board.position(10);
         pippo.position(position);
-        playerOnTurn = new PlayerOnTurn(pippo, move("Pippo", 3, 4), movements);
+        playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
         when(players.find("Pippo")).thenReturn(pippo);
 
         Position actualPosition = playerOnTurn.positionOfPlayer();
@@ -50,7 +51,7 @@ class PlayerOnTurnTest {
         assertThat(position.hasTheGoose()).isTrue();
         when(players.find("Pippo")).thenReturn(pippo);
 
-        playerOnTurn = new PlayerOnTurn(pippo, move("Pippo", 3, 4), movements);
+        playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
 
         assertThat(playerOnTurn.isOnTheGoose()).isTrue();
     }
@@ -63,7 +64,7 @@ class PlayerOnTurnTest {
         Player pippo = new Player("Pippo", finalPosition);
         when(players.find("Pippo")).thenReturn(pippo);
 
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, move("Pippo", 3, 4), movements);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
         playerOnTurn.applyMovement(movement);
 
         verify(movements).add(movement);
@@ -71,7 +72,7 @@ class PlayerOnTurnTest {
 
     @Test
     void init_presenter_and_pass_it_to_all_movements() {
-        playerOnTurn = new PlayerOnTurn(null, move("Pippo", 3, 4), movements);
+        playerOnTurn = new PlayerOnTurn(null, dice(3, 4), movements);
 
         playerOnTurn.present(presenter);
 
@@ -91,14 +92,18 @@ class PlayerOnTurnTest {
         players.add(new Player("Topolino", position(15)));
         players.add(new Player("Paperino", position(10)));
 
-        playerOnTurn = new PlayerOnTurn(pippo, move("Pippo", 3, 4), movements);
+        playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
 
         assertThat(playerOnTurn.encounteredOpponents(players).size()).isEqualTo(2);
         assertThat(playerOnTurn.encounteredOpponents(players).containsAll(asList("Pluto", "Topolino"))).isTrue();
     }
 
     private static MoveCommand move(String player, int first, int second) {
-        return new MoveCommand(player, Dice.dice(first, second));
+        return new MoveCommand(player, dices(first, second));
+    }
+
+    private static Dice dices(int first, int second) {
+        return dice(first, second);
     }
 
     private Position position(int i) {

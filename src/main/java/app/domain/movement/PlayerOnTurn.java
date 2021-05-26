@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 
 public class PlayerOnTurn {
     private final Player player;
-    private final MoveCommand command;
+    private final Dice dice;
     private final LinkedList<Movement> movements;
 
-    public PlayerOnTurn(Player player, MoveCommand command, LinkedList<Movement> movements) {
+    public PlayerOnTurn(Player player, Dice dice, LinkedList<Movement> movements) {
         this.player = player;
-        this.command = command;
+        this.dice = dice;
         this.movements = movements;
     }
 
@@ -25,15 +25,15 @@ public class PlayerOnTurn {
     }
 
     public int firstDice() {
-        return command.dice().first();
+        return dice.first();
     }
 
     public int secondDice() {
-        return command.dice().second();
+        return dice.second();
     }
 
     public int diceTotal() {
-        return firstDice() + secondDice();
+        return dice.total();
     }
 
     public void add(Movement movement) {
