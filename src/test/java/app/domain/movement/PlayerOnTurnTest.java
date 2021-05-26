@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import static app.domain.movement.Dice.dice;
 import static java.util.Arrays.asList;
@@ -84,18 +85,16 @@ class PlayerOnTurnTest {
     }
 
     @Test
-    void find_any_other_player_on_given_position() {
-        Players players = new Players();
-        pippo.position(board.position(15));
-        players.add(new Player("Pippo", position(15)));
-        players.add(new Player("Pluto", position(15)));
-        players.add(new Player("Topolino", position(15)));
-        players.add(new Player("Paperino", position(10)));
+    void return_oppponents_on_same_position_of_player_on_turn() {
+        playerOnTurn = new PlayerOnTurn(pippo, null, null);
+        Player aPlayer = mock(Player.class);
+        Player anotherPlayer = mock(Player.class);
+        List<Player> returnedOpponents = asList(aPlayer, anotherPlayer);
+        when(players.opponentsOnSamePositionOf(pippo)).thenReturn(returnedOpponents);
 
-        playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
+        List<Player> encounteredOpponents = playerOnTurn.encounteredOpponents(players);
 
-        assertThat(playerOnTurn.encounteredOpponents(players).size()).isEqualTo(2);
-        assertThat(playerOnTurn.encounteredOpponents(players).containsAll(asList("Pluto", "Topolino"))).isTrue();
+        assertThat(encounteredOpponents).isEqualTo(returnedOpponents);
     }
 
     private static MoveCommand move(String player, int first, int second) {

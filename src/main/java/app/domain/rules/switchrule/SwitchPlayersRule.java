@@ -14,23 +14,21 @@ public class SwitchPlayersRule {
         this.players = players;
     }
 
-    public void apply(PlayerOnTurn turn) {
-        List<String> encounteredOpponents = turn.encounteredOpponents(players);
+    public void apply(PlayerOnTurn playerOnTurn) {
+        List<Player> encounteredOpponents = playerOnTurn.encounteredOpponents(players);
 
         if (encounteredOpponents.isEmpty()) return;
 
-        String unluckyOpponentName = encounteredOpponents.get(0);
-        Player unluckyOpponent = players.find(unluckyOpponentName);
-        Position unluckyOpponentPosition = unluckyOpponent.position();
-        Position playerOnTurnPreviousPosition = turn.previousPosition();
+        Player unluckyOpponent = encounteredOpponents.get(0);
+        Position playerOnTurnPreviousPosition = playerOnTurn.previousPosition();
 
         SwitchMovement switchMovement = new SwitchMovement(
-                unluckyOpponentName,
-                unluckyOpponentPosition,
+                unluckyOpponent.name(),
+                unluckyOpponent.position(),
                 playerOnTurnPreviousPosition
         );
 
-        turn.add(switchMovement);
-        unluckyOpponent.position(switchMovement.finalPosition());
+        playerOnTurn.add(switchMovement);
+        unluckyOpponent.position(playerOnTurnPreviousPosition);
     }
 }

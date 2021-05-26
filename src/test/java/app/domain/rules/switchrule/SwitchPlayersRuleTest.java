@@ -23,11 +23,11 @@ class SwitchPlayersRuleTest {
 
     @Test
     void change_position_of_encountered_player() {
-        Player pluto = new Player("Pluto",board.position(17));
+        Player pluto = new Player("Pluto", board.position(17));
+        Player anotherOpponent = new Player("", null);
 
-        when(playerOnTurn.encounteredOpponents(players)).thenReturn(asList("Pluto"));
-        when(players.find("Pluto")).thenReturn(pluto);
         when(playerOnTurn.previousPosition()).thenReturn(board.position(10));
+        when(playerOnTurn.encounteredOpponents(players)).thenReturn(asList(pluto, anotherOpponent));
 
         rule.apply(playerOnTurn);
 

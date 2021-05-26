@@ -7,7 +7,6 @@ import app.domain.presenter.StringBuilderPresenter;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PlayerOnTurn {
     private final Player player;
@@ -63,16 +62,8 @@ public class PlayerOnTurn {
         movements.add(movement);
     }
 
-    public List<String> encounteredOpponents(Players allPlayers) {
-        List<String> result = allPlayers
-                .all()
-                .stream()
-                .filter(aPlayer -> aPlayer.position().equals(positionOfPlayer()))
-                .map(Player::name)
-                .collect(Collectors.toList());
-
-        result.remove(playerName());
-        return result;
+    public List<Player> encounteredOpponents(Players allPlayers) {
+        return allPlayers.opponentsOnSamePositionOf(player);
     }
 
     public boolean isOnTheGoose() {
