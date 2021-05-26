@@ -20,7 +20,7 @@ public class SwitchPlayersRule {
         if (encounteredOpponents.isEmpty()) return;
 
         String unluckyOpponentName = encounteredOpponents.get(0);
-        Player unluckyOpponent = players.findByName(unluckyOpponentName);
+        Player unluckyOpponent = players.find(unluckyOpponentName);
         Position unluckyOpponentPosition = unluckyOpponent.position();
         Position playerOnTurnPreviousPosition = turn.previousPosition();
 

@@ -35,7 +35,7 @@ class PlayerOnTurnTest {
     void return_position_of_player_in_turn() {
         Position position = board.position(10);
         playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
-        when(players.findByName("Pippo")).thenReturn(new Player("Pippo", position));
+        when(players.find("Pippo")).thenReturn(new Player("Pippo", position));
 
         Position actualPosition = playerOnTurn.positionOfPlayer();
 
@@ -46,7 +46,7 @@ class PlayerOnTurnTest {
     void return_player_is_on_the_goose() {
         Position position = board.position(5);
         assertThat(position.hasTheGoose()).isTrue();
-        when(players.findByName("Pippo")).thenReturn(new Player("Pippo", position));
+        when(players.find("Pippo")).thenReturn(new Player("Pippo", position));
 
         playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
 
@@ -59,7 +59,7 @@ class PlayerOnTurnTest {
         Movement movement = mock(Movement.class);
         when(movement.finalPosition()).thenReturn(finalPosition);
         Player pippo = new Player("Pippo", finalPosition);
-        when(players.findByName("Pippo")).thenReturn(pippo);
+        when(players.find("Pippo")).thenReturn(pippo);
 
         PlayerOnTurn playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
         playerOnTurn.applyMovement(movement);

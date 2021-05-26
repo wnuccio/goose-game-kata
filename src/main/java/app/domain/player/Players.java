@@ -13,7 +13,7 @@ public class Players {
         players.put(player.name(), player);
     }
 
-    public Player findByName(String playerName) {
+    public Player find(String playerName) {
         if (! contains(playerName)) throw new NoSuchElementException("No such player: " + playerName);
 
         return players.get(playerName);

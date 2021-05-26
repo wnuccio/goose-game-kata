@@ -19,7 +19,7 @@ public class PlayersTest {
     void find_player_by_name() {
         players.add(new Player("Pippo", board.position(4)));
 
-        Player player = players.findByName("Pippo");
+        Player player = players.find("Pippo");
 
         assertThat(player.name()).isEqualTo("Pippo");
         assertThat(player.position()).isEqualTo(board.position(4));
@@ -30,7 +30,7 @@ public class PlayersTest {
         assertThrows(NoSuchElementException.class, () -> {
             Players emptyPlayerCollection = new Players();
 
-            emptyPlayerCollection.findByName("anyPlayer");
+            emptyPlayerCollection.find("anyPlayer");
         });
     }
 

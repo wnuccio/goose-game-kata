@@ -55,7 +55,7 @@ public class PlayerOnTurn {
     }
 
     private Player player() {
-        return players.findByName(playerName());
+        return players.find(playerName());
     }
 
     public Position positionOfPlayer() {
@@ -64,7 +64,7 @@ public class PlayerOnTurn {
 
     public void applyMovement(Movement movement) {
         movements.add(movement);
-        players.findByName(playerName()).position(movement.finalPosition());
+        players.find(playerName()).position(movement.finalPosition());
     }
 
     public List<String> encounteredOpponents(Players allPlayers) {
