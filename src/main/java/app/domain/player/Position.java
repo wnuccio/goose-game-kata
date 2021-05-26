@@ -34,17 +34,17 @@ public class Position {
     }
 
     public boolean isWin() {
-        return this.equals(board.winPosition());
+        return this.equals(board.win());
     }
 
     public boolean isBeyondWin() {
-        return value > board.winPosition().value;
+        return value > board.win().value;
     }
 
     public Position bounced() {
         if (! isBeyondWin()) return this;
 
-        int bounced = board.winPosition().value - (value - board.winPosition().value);
+        int bounced = board.win().value - (value - board.win().value);
         return board.position(bounced);
     }
 
@@ -60,7 +60,7 @@ public class Position {
     }
 
     public String name() {
-        if (this.isBeyondWin()) return valueOf(board.winPosition().value);
+        if (this.isBeyondWin()) return valueOf(board.win().value);
         if (this.equals(board.start())) return "Start";
         if (this.equals(board.bridge())) return "The Bridge";
 

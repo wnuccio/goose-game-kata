@@ -24,7 +24,7 @@ class BouncingRuleTest {
 
         verify(playerOnTurn).applyMovement(movement.capture());
 
-        assertThat(movement.getValue().startPosition()).isEqualTo(board.winPosition());
+        assertThat(movement.getValue().startPosition()).isEqualTo(board.win());
         assertThat(movement.getValue().finalPosition()).isEqualTo(board.position(57));
     }
 

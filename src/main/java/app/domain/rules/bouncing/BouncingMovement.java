@@ -8,7 +8,7 @@ import app.domain.presenter.StringBuilderPresenter;
 
 public class BouncingMovement extends PresentableMovement {
 
-    public BouncingMovement(Board board, Position finalPosition) { super(board.winPosition(), finalPosition); }
+    public BouncingMovement(Board board, Position finalPosition) { super(board.win(), finalPosition); }
 
     @Override
     public void present(StringBuilderPresenter presenter, PlayerOnTurn playerOnTurn) {
