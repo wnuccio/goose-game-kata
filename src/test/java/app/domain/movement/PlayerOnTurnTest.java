@@ -96,17 +96,4 @@ class PlayerOnTurnTest {
 
         assertThat(encounteredOpponents).isEqualTo(returnedOpponents);
     }
-
-    private static MoveCommand move(String player, int first, int second) {
-        return new MoveCommand(player, dices(first, second));
-    }
-
-    private static Dice dices(int first, int second) {
-        return dice(first, second);
-    }
-
-    private Position position(int i) {
-        return board.position(i);
-    }
-
 }
