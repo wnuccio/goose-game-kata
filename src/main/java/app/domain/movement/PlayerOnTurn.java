@@ -33,7 +33,7 @@ public class PlayerOnTurn {
     }
 
     public int diceTotal() {
-        return command.diceTotal();
+        return firstDice() + secondDice();
     }
 
     public void add(Movement movement) {
