@@ -2,6 +2,7 @@ package app.domain.rules.switchrule;
 
 import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
+import app.domain.player.Player;
 import app.domain.player.Players;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -22,8 +23,11 @@ class SwitchPlayersRuleTest {
 
     @Test
     void change_position_of_encountered_player() {
+        Player pluto = new Player("Pluto",board.position(17));
+
         when(playerOnTurn.encounteredOpponents(players)).thenReturn(asList("Pluto"));
         when(players.positionOf("Pluto")).thenReturn(board.position(17));
+        when(players.findByName("Pluto")).thenReturn(pluto);
         when(playerOnTurn.previousPosition()).thenReturn(board.position(10));
 
         rule.apply(playerOnTurn);

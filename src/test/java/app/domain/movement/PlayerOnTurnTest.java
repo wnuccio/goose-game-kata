@@ -1,6 +1,7 @@
 package app.domain.movement;
 
 import app.domain.player.Board;
+import app.domain.player.Player;
 import app.domain.player.Players;
 import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
@@ -57,11 +58,12 @@ class PlayerOnTurnTest {
         Position finalPosition = board.position(10);
         Movement movement = mock(Movement.class);
         when(movement.finalPosition()).thenReturn(finalPosition);
+        Player pippo = new Player("Pippo", finalPosition);
+        when(players.findByName("Pippo")).thenReturn(pippo);
 
         PlayerOnTurn playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
         playerOnTurn.applyMovement(movement);
 
-        verify(players).addNewPlayerOnPosition("Pippo", finalPosition);
         verify(movements).add(movement);
     }
 
@@ -81,10 +83,10 @@ class PlayerOnTurnTest {
     @Test
     void find_any_other_player_on_given_position() {
         Players players = new Players();
-        players.addNewPlayerOnPosition("Pippo", position(15));
-        players.addNewPlayerOnPosition("Pluto", position(15));
-        players.addNewPlayerOnPosition("Topolino", position(15));
-        players.addNewPlayerOnPosition("Paperino", position(10));
+        players.add(new Player("Pippo", position(15)));
+        players.add(new Player("Pluto", position(15)));
+        players.add(new Player("Topolino", position(15)));
+        players.add(new Player("Paperino", position(10)));
 
         playerOnTurn = new PlayerOnTurn(players, move("Pippo", 3, 4), movements);
 

@@ -59,7 +59,7 @@ public class PlayerOnTurn {
 
     public void applyMovement(Movement movement) {
         movements.add(movement);
-        players.addNewPlayerOnPosition(player(), movement.finalPosition());
+        players.findByName(player()).position(movement.finalPosition());
     }
 
     public List<String> encounteredOpponents(Players allPlayers) {

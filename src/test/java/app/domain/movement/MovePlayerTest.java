@@ -1,6 +1,7 @@
 package app.domain.movement;
 
 import app.domain.player.Board;
+import app.domain.player.Player;
 import app.domain.player.Players;
 import app.domain.presenter.StringBuilderPresenter;
 import app.domain.rules.RuleProcessor;
@@ -17,7 +18,7 @@ class MovePlayerTest {
 
     @Test
     void computes_a_movement_list_and_present_them_all() {
-        players.addNewPlayerOnPosition("Pippo", new Board().start());
+        players.add(new Player("Pippo", board.start()));
         MoveCommand moveCommand = move("Pippo", 4, 3);
 
         movePlayer.acceptCommand(moveCommand);

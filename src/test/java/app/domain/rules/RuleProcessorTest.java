@@ -2,6 +2,7 @@ package app.domain.rules;
 
 import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
+import app.domain.player.Player;
 import app.domain.player.Players;
 import app.domain.rules.bouncing.BouncingMovement;
 import app.domain.rules.bridge.JumpOnBridgeMovement;
@@ -20,7 +21,7 @@ class RuleProcessorTest {
 
     @Test
     void repeat_movement_on_bouncing() {
-        players.addNewPlayerOnPosition("Pippo", board.position(62));
+        players.add(new Player("Pippo", board.position(62)));
 
         PlayerOnTurn player = playerOnTurn(players, "Pippo", 3, 4);
         ruleProcessor.computeMovementsFor(player);
@@ -32,7 +33,7 @@ class RuleProcessorTest {
 
     @Test
     void repeat_movement_on_the_bridge() {
-        players.addNewPlayerOnPosition("Pippo", board.position(4));
+        players.add(new Player("Pippo", board.position(4)));
         PlayerOnTurn turn = playerOnTurn(players, "Pippo", 1, 1);
 
         ruleProcessor.computeMovementsFor(turn);
@@ -44,7 +45,7 @@ class RuleProcessorTest {
 
     @Test
     void repeat_movement_on_the_goose() {
-        players.addNewPlayerOnPosition("Pippo", board.position(3));
+        players.add(new Player("Pippo", board.position(3)));
 
         PlayerOnTurn turn = playerOnTurn(players, "Pippo", 1, 1);
         ruleProcessor.computeMovementsFor(turn);
@@ -56,8 +57,8 @@ class RuleProcessorTest {
 
     @Test
     void switch_players_on_encounter() {
-        players.addNewPlayerOnPosition("Pippo", board.position(15));
-        players.addNewPlayerOnPosition("Pluto", board.position(17));
+        players.add(new Player("Pippo", board.position(15)));
+        players.add(new Player("Pluto", board.position(17)));
 
         PlayerOnTurn turn = playerOnTurn(players, "Pippo", 1, 1);
         ruleProcessor.computeMovementsFor(turn);
