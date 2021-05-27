@@ -3,7 +3,6 @@ package app.domain.rules.goose;
 import app.domain.movement.Movement;
 import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
-import app.domain.player.Players;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -12,7 +11,6 @@ import static org.mockito.Mockito.*;
 
 class GooseRuleTest {
     Board board = new Board();
-    Players players = new Players();
     GooseRule rule = new GooseRule();
     PlayerOnTurn playerOnTurn = mock(PlayerOnTurn.class);
 
