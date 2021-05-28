@@ -26,4 +26,8 @@ public class MovePlayer {
 
         playerOnTurn.present();
     }
+
+    public void doMove(Player player, Dice dice) {
+        throw new UnsupportedOperationException();
+    }
 }

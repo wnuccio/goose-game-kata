@@ -30,7 +30,7 @@ class MovePlayerTest {
         verify(ruleProcessor).computeMovementsFor(playerOnTurn);
     }
 
-    private MoveCommand move(String player, int first, int second) {
+    public static MoveCommand move(String player, int first, int second) {
         return new MoveCommand(player, Dice.dice(first, second));
     }
 }
