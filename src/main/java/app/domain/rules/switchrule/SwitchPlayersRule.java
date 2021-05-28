@@ -20,15 +20,11 @@ public class SwitchPlayersRule {
         if (encounteredOpponents.isEmpty()) return;
 
         Player unluckyOpponent = encounteredOpponents.get(0);
-        Position playerOnTurnPreviousPosition = playerOnTurn.previousPosition();
+        Position start = unluckyOpponent.position();
+        Position end = playerOnTurn.previousPosition();
 
-        SwitchMovement switchMovement = new SwitchMovement(
-                unluckyOpponent.name(),
-                unluckyOpponent.position(),
-                playerOnTurnPreviousPosition
-        );
+        unluckyOpponent.position(end);
 
-        playerOnTurn.add(switchMovement);
-        unluckyOpponent.position(playerOnTurnPreviousPosition);
+        playerOnTurn.add(new SwitchMovement(unluckyOpponent.name(), start, end));
     }
 }
