@@ -20,14 +20,14 @@ public class MovePlayer {
 
         Player player = players.find(command.player());
 
-        PlayerOnTurn playerOnTurn = playerOnTurnFactory.createPlayerOnTurn(player, command.dice());
-        
-        ruleProcessor.computeMovementsFor(playerOnTurn);
-
-        playerOnTurn.present();
+        doMove(player, command.dice());
     }
 
     public void doMove(Player player, Dice dice) {
-        throw new UnsupportedOperationException();
+        PlayerOnTurn playerOnTurn = playerOnTurnFactory.createPlayerOnTurn(player, dice);
+
+        ruleProcessor.computeMovementsFor(playerOnTurn);
+
+        playerOnTurn.present();
     }
 }

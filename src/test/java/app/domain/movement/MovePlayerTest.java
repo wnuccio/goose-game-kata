@@ -30,6 +30,18 @@ class MovePlayerTest {
         verify(ruleProcessor).computeMovementsFor(playerOnTurn);
     }
 
+    @Test
+    void create_a_new_player_on_turn_and_computes_movement_for_him() {
+        Player pippo = new Player("Pippo", board.start());
+        Dice dice = new Dice(3, 4);
+
+        when(playerOnTurnFactory.createPlayerOnTurn(pippo, dice)).thenReturn(playerOnTurn);
+
+        movePlayer.doMove(pippo, dice);
+
+        verify(ruleProcessor).computeMovementsFor(playerOnTurn);
+    }
+
     public static MoveCommand move(String player, int first, int second) {
         return new MoveCommand(player, Dice.dice(first, second));
     }
