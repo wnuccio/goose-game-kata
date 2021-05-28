@@ -49,6 +49,7 @@ class PlayerOnTurnTest {
     void move_the_player_on_position_reached_by_dice() {
         pippo.position(board.position(10));
         playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
+        playerOnTurn.start();
 
         playerOnTurn.move();
 

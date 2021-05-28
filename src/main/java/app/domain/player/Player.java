@@ -37,6 +37,6 @@ public class Player {
     public void moveByDice(Dice dice) {
         Position start = this.position;
         this.position = this.position.plus(dice);
-        observers.forEach(o -> o.notifyMovement(new FirstMovement(start, this.position)));
+        observers.forEach(o -> o.playerPositionChanged(new FirstMovement(start, this.position)));
     }
 }

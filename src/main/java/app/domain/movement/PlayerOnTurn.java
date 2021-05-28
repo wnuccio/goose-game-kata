@@ -1,13 +1,13 @@
 package app.domain.movement;
 
 import app.domain.player.Player;
+import app.domain.player.PlayerObserver;
 import app.domain.player.Players;
 import app.domain.player.Position;
-import app.domain.rules.first.FirstMovement;
 
 import java.util.List;
 
-public class PlayerOnTurn {
+public class PlayerOnTurn implements PlayerObserver {
     private final Player player;
     private final Dice dice;
     private final Movements movements;
@@ -40,12 +40,22 @@ public class PlayerOnTurn {
         return movements.last().startPosition();
     }
 
-    public void move() {
-        Position startPosition = position();
-        Position finalPosition = startPosition.plus(dice);
+    @Override
+    public void playerPositionChanged(Movement movement) {
+        movements.add(movement);
+    }
 
-        FirstMovement movement = new FirstMovement(startPosition, finalPosition);
-        applyMovement(movement);
+    public void start() {
+        this.player.addObserver(this);
+    }
+
+    public void move() {
+//        Position startPosition = position();
+//        Position finalPosition = startPosition.plus(dice);
+//
+//        FirstMovement movement = new FirstMovement(startPosition, finalPosition);
+//        applyMovement(movement);
+        player.moveByDice(dice);
     }
 
     public void present() {

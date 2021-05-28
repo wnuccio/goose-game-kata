@@ -33,7 +33,7 @@ class PlayerTest {
 
         assertThat(pippo.position()).isEqualTo(board.position(8));
 
-        verify(pippoObserver).notifyMovement(movement.capture());
+        verify(pippoObserver).playerPositionChanged(movement.capture());
 
         assertThat(movement.getValue().startPosition()).isEqualTo(board.position(3));
         assertThat(movement.getValue().finalPosition()).isEqualTo(board.position(8));

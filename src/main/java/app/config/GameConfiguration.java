@@ -16,6 +16,10 @@ import app.domain.rollmove.DiceRoller;
 import app.domain.rollmove.InterpretRollAndMove;
 import app.domain.rollmove.RollAndMove;
 import app.domain.rules.RuleProcessor;
+import app.domain.rules.bouncing.BouncingRule;
+import app.domain.rules.bridge.JumpOnBridgeRule;
+import app.domain.rules.goose.GooseRule;
+import app.domain.rules.switchrule.SwitchPlayersRule;
 
 import java.util.List;
 
@@ -108,7 +112,12 @@ public class GameConfiguration {
     }
 
     private RuleProcessor computeMovement() {
-        return new RuleProcessor(board(), players());
+        BouncingRule bouncingRule = new BouncingRule(board());
+        JumpOnBridgeRule jumpOnBridgeRule = new JumpOnBridgeRule(board());
+        GooseRule gooseRule = new GooseRule();
+        SwitchPlayersRule switchPlayersRule = new SwitchPlayersRule(players);
+
+        return new RuleProcessor(board(), players(), bouncingRule, jumpOnBridgeRule, gooseRule, switchPlayersRule);
     }
 
     private RollAndMove rollAndMove(FindPlayer findPlayer) {
