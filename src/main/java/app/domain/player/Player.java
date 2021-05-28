@@ -46,7 +46,7 @@ public class Player {
 
         if (this.position.isBeyondWin()) {
             this.position = this.position.bounced();
-            observers.forEach(o -> o.playerBounced(new BouncingMovement(this.position.board(), this.position)));
+            observers.forEach(o -> o.playerPositionChanged(new BouncingMovement(this.position.board(), this.position)));
         }
     }
 }

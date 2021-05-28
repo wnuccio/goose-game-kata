@@ -4,7 +4,6 @@ import app.domain.player.Player;
 import app.domain.player.PlayerObserver;
 import app.domain.player.Players;
 import app.domain.player.Position;
-import app.domain.rules.bouncing.BouncingMovement;
 
 import java.util.List;
 
@@ -51,11 +50,6 @@ public class PlayerOnTurn implements PlayerObserver {
 
     @Override
     public void playerPositionChanged(Movement movement) {
-        movements.add(movement);
-    }
-
-    @Override
-    public void playerBounced(BouncingMovement movement) {
         movements.add(movement);
     }
 

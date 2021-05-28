@@ -6,12 +6,9 @@ import app.domain.rules.bouncing.BouncingMovement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.InOrder;
-import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 class PlayerTest {
 
@@ -52,16 +49,13 @@ class PlayerTest {
 
         assertThat(pippo.position()).isEqualTo(board.position(60));
 
-        ArgumentCaptor<BouncingMovement> bouncing = ArgumentCaptor.forClass(BouncingMovement.class);
+        verify(pippoObserver, times(2)).playerPositionChanged(movement.capture());
 
-        InOrder inOrder = Mockito.inOrder(pippoObserver, pippoObserver);
-        inOrder.verify(pippoObserver).playerPositionChanged(movement.capture());
-        inOrder.verify(pippoObserver).playerBounced(bouncing.capture());
-
-        assertThat(movement.getValue().startPosition()).isEqualTo(board.position(61));
-        assertThat(movement.getValue().finalPosition()).isEqualTo(board.position(66));
-        assertThat(bouncing.getValue().startPosition()).isEqualTo(board.position(63));
-        assertThat(bouncing.getValue().finalPosition()).isEqualTo(board.position(60));
+        assertThat(movement.getAllValues().get(0).startPosition()).isEqualTo(board.position(61));
+        assertThat(movement.getAllValues().get(0).finalPosition()).isEqualTo(board.position(66));
+        assertThat(movement.getAllValues().get(1) instanceof BouncingMovement).isTrue();
+        assertThat(movement.getAllValues().get(1).startPosition()).isEqualTo(board.position(63));
+        assertThat(movement.getAllValues().get(1).finalPosition()).isEqualTo(board.position(60));
     }
 
 
