@@ -10,7 +10,7 @@ public class GooseRule {
         if ( !playerOnTurn.isOnTheGoose()) return;
 
         Position position = playerOnTurn.position();
-        Position finalPosition = position.plus(playerOnTurn.diceTotal());
+        Position finalPosition = position.plus(playerOnTurn.dice());
 
         Movement movement = new GooseMovement(position, finalPosition);
         playerOnTurn.applyMovement(movement);

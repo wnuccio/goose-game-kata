@@ -1,5 +1,7 @@
 package app.domain.player;
 
+import app.domain.movement.Dice;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -42,6 +44,10 @@ public class Position {
         return value > board.win().value;
     }
 
+    public Position plus(Dice dice) {
+        return board.position(value + dice.total());
+    }
+
     public Position bounced() {
         if (! isBeyondWin()) return this;
 
@@ -56,12 +62,7 @@ public class Position {
                 '}';
     }
 
-    public Position plus(int i) {
-        return board.position(value + i);
-    }
-
     public String name() {
         return name;
     }
-
 }

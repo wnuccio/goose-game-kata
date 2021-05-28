@@ -22,12 +22,10 @@ public class PlayerOnTurn {
         return player.name();
     }
 
+    public Dice dice() { return this.dice; }
+
     public Position position() {
         return player.position();
-    }
-
-    public int diceTotal() {
-        return dice.total();
     }
 
     public int firstDice() {
@@ -44,7 +42,7 @@ public class PlayerOnTurn {
 
     public void move() {
         Position startPosition = position();
-        Position finalPosition = startPosition.plus(diceTotal());
+        Position finalPosition = startPosition.plus(dice);
 
         FirstMovement movement = new FirstMovement(startPosition, finalPosition);
         applyMovement(movement);

@@ -1,5 +1,6 @@
 package app.domain.rules.goose;
 
+import app.domain.movement.Dice;
 import app.domain.movement.Movement;
 import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
@@ -22,7 +23,7 @@ class GooseRuleTest {
         when(playerOnTurn.isOnTheGoose())
                 .thenReturn(true)
                 .thenReturn(false);
-        when(playerOnTurn.diceTotal()).thenReturn(7);
+        when(playerOnTurn.dice()).thenReturn(new Dice(3, 4));
 
         rule.apply(playerOnTurn);
 
@@ -42,7 +43,7 @@ class GooseRuleTest {
                 .thenReturn(true)
                 .thenReturn(true)
                 .thenReturn(false);
-        when(playerOnTurn.diceTotal()).thenReturn(4);
+        when(playerOnTurn.dice()).thenReturn(new Dice(2, 2));
 
         rule.apply(playerOnTurn);
 

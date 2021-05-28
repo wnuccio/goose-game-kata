@@ -1,5 +1,6 @@
 package app.domain;
 
+import app.domain.movement.Dice;
 import app.domain.player.Board;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,9 +10,9 @@ public class PositionTest {
     Board board = new Board();
 
     @Test
-    void position_plus_number_returns_new_position() {
-        Assertions.assertThat(board.position(0).plus(3)).isEqualTo(board.position(3));
-        Assertions.assertThat(board.position(3).plus(4)).isEqualTo(board.position(7));
+    void position_plus_dice_returns_current_position_value_plus_dice_total() {
+        Assertions.assertThat(board.position(0).plus(new Dice(3, 4))).isEqualTo(board.position(7));
+        Assertions.assertThat(board.position(3).plus(new Dice(2, 4))).isEqualTo(board.position(9));
     }
 
     @Test
