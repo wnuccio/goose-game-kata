@@ -2,18 +2,17 @@ package app.domain.movement;
 
 import app.domain.player.Player;
 import app.domain.player.Players;
-import app.domain.presenter.StringBuilderPresenter;
 import app.domain.rules.RuleProcessor;
 
 public class MovePlayer {
     private final Players players;
+    private final PlayerOnTurnFactory playerOnTurnFactory;
     private final RuleProcessor ruleProcessor;
-    private final StringBuilderPresenter presenter;
 
-    public MovePlayer(Players players, RuleProcessor ruleProcessor, StringBuilderPresenter presenter) {
+    public MovePlayer(Players players, RuleProcessor ruleProcessor, PlayerOnTurnFactory playerOnTurnFactory) {
         this.players = players;
         this.ruleProcessor = ruleProcessor;
-        this.presenter = presenter;
+        this.playerOnTurnFactory = playerOnTurnFactory;
     }
 
     public void acceptCommand(MoveCommand command) {
@@ -21,9 +20,10 @@ public class MovePlayer {
 
         Player player = players.find(command.player());
 
-        Movements movements = new Movements(presenter);
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(player, command.dice(), movements);
+        PlayerOnTurn playerOnTurn = playerOnTurnFactory.createPlayerOnTurn(player, command.dice());
+        
         ruleProcessor.computeMovementsFor(playerOnTurn);
+
         playerOnTurn.present();
     }
 }

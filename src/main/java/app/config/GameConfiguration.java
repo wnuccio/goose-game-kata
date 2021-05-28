@@ -9,8 +9,8 @@ import app.domain.game.StopOrResetGame;
 import app.domain.interpreter.Interpreter;
 import app.domain.movement.InterpretMovePlayer;
 import app.domain.movement.MovePlayer;
+import app.domain.movement.PlayerOnTurnFactory;
 import app.domain.player.*;
-import app.domain.presenter.StringBuilderPresenter;
 import app.domain.rollmove.DiceRoller;
 import app.domain.rollmove.InterpretRollAndMove;
 import app.domain.rollmove.RollAndMove;
@@ -73,8 +73,8 @@ public class GameConfiguration {
         return new PlayerPresenter(inputOutput());
     }
 
-    private StringBuilderPresenter movementPresenter() {
-        return new StringBuilderPresenter(inputOutput());
+    private PlayerOnTurnFactory playerOnTurnFactory() {
+        return new PlayerOnTurnFactory(inputOutput());
     }
 
     private CommandLineProcessor interpreter() {
@@ -99,7 +99,7 @@ public class GameConfiguration {
     }
 
     private MovePlayer movePlayer() {
-        return new MovePlayer(players(), computeMovement(), movementPresenter());
+        return new MovePlayer(players(), computeMovement(), playerOnTurnFactory());
     }
 
     private RuleProcessor computeMovement() {

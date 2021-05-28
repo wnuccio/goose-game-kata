@@ -1,7 +1,4 @@
 ###
-- eliminare MoveCommand, costruendo direttamente il PlayerOnTurn
-  nell'interpreter e passandolo a MovePlayer;
-  in questo modo MovePlayer potrà essere testato con un mock di PlayerOnTurn
 - riscrivere i test di RuleProcessor 
 - spostare la costruzione di Board in configurazione, 
     gestendo il "nome" delle posizioni oltre la 63 come un concetto di presentazione
