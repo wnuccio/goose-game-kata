@@ -1,6 +1,7 @@
 package app.domain.player;
 
 import app.domain.movement.Dice;
+import app.domain.movement.Movement;
 import app.domain.rules.bouncing.BouncingMovement;
 import app.domain.rules.first.FirstMovement;
 
@@ -35,18 +36,27 @@ public class Player {
         this.observers.add(observer);
     }
 
+    public void moveByDiceConsideringBouncing(Dice dice) {
+        moveByDice(dice);
+        correctPositionWithBouncing();
+    }
+
     private void moveByDice(Dice dice) {
         Position start = this.position;
         this.position = this.position.plus(dice);
-        observers.forEach(o -> o.playerPositionChanged(new FirstMovement(start, this.position)));
+        FirstMovement movement = new FirstMovement(start, this.position);
+        notifyMovement(movement);
     }
 
-    public void moveByDiceConsideringBouncing(Dice dice) {
-        moveByDice(dice);
-
+    private void correctPositionWithBouncing() {
         if (this.position.isBeyondWin()) {
             this.position = this.position.bounced();
-            observers.forEach(o -> o.playerPositionChanged(new BouncingMovement(this.position.board(), this.position)));
+            BouncingMovement movement = new BouncingMovement(this.position.board(), this.position);
+            notifyMovement(movement);
         }
+    }
+
+    private void notifyMovement(Movement movement) {
+        observers.forEach(o -> o.playerPositionChanged(movement));
     }
 }
