@@ -7,6 +7,7 @@ import app.domain.game.InterpretResetGame;
 import app.domain.game.InterpretStopGame;
 import app.domain.game.StopOrResetGame;
 import app.domain.interpreter.Interpreter;
+import app.domain.movement.FindPlayer;
 import app.domain.movement.InterpretMovePlayer;
 import app.domain.movement.MovePlayer;
 import app.domain.movement.PlayerOnTurnFactory;
@@ -80,14 +81,18 @@ public class GameConfiguration {
     private CommandLineProcessor interpreter() {
         List<Interpreter> intepreters = asList(
                 new InterpretAddPlayer(addPlayer()),
-                new InterpretMovePlayer(movePlayer()),
-                new InterpretRollAndMove(rollAndMove()),
+                new InterpretMovePlayer(findPlayer(movePlayer())),
+                new InterpretRollAndMove(rollAndMove(findPlayer(movePlayer()))),
                 new InterpretResetGame(resetService()),
                 new InterpretStopGame(resetService()),
                 ignoreUnrecognizedCommands
         );
 
         return new CommandLineProcessor(intepreters);
+    }
+
+    private FindPlayer findPlayer(MovePlayer movePlayer) {
+        return new FindPlayer(players(), movePlayer);
     }
 
     private AddPlayer addPlayer() {
@@ -99,14 +104,14 @@ public class GameConfiguration {
     }
 
     private MovePlayer movePlayer() {
-        return new MovePlayer(players(), computeMovement(), playerOnTurnFactory());
+        return new MovePlayer(computeMovement(), playerOnTurnFactory());
     }
 
     private RuleProcessor computeMovement() {
         return new RuleProcessor(board(), players());
     }
 
-    private RollAndMove rollAndMove() {
-        return new RollAndMove(diceRoller(), movePlayer());
+    private RollAndMove rollAndMove(FindPlayer findPlayer) {
+        return new RollAndMove(diceRoller(), findPlayer);
     }
 }

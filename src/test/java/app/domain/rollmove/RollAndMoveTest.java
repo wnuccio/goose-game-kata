@@ -1,8 +1,8 @@
 package app.domain.rollmove;
 
 import app.domain.movement.Dice;
+import app.domain.movement.FindPlayer;
 import app.domain.movement.MoveCommand;
-import app.domain.movement.MovePlayer;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -11,8 +11,8 @@ import static org.mockito.Mockito.*;
 
 class RollAndMoveTest {
     DiceRoller diceRoller = mock(DiceRoller.class);
-    MovePlayer movePlayer = mock(MovePlayer.class);
-    RollAndMove rollAndMove = new RollAndMove(diceRoller, movePlayer);
+    FindPlayer findPlayer = mock(FindPlayer.class);
+    RollAndMove rollAndMove = new RollAndMove(diceRoller, findPlayer);
     private final ArgumentCaptor<MoveCommand> moveCommand = ArgumentCaptor.forClass(MoveCommand.class);
 
     @Test
@@ -22,7 +22,7 @@ class RollAndMoveTest {
 
         rollAndMove.acceptCommand("Pippo");
 
-        verify(movePlayer).acceptCommand(moveCommand.capture());
+        verify(findPlayer).acceptCommand(moveCommand.capture());
         assertThat(moveCommand.getValue().player()).isEqualTo("Pippo");
         assertThat(moveCommand.getValue().dice()).isEqualTo(rolledDice);
     }

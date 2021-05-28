@@ -4,10 +4,10 @@ import app.domain.interpreter.CommandLine;
 import app.domain.interpreter.Interpreter;
 
 public class InterpretMovePlayer implements Interpreter {
-    private final MovePlayer movePlayer;
+    private final FindPlayer findPlayer;
 
-    public InterpretMovePlayer(MovePlayer movePlayer) {
-        this.movePlayer = movePlayer;
+    public InterpretMovePlayer(FindPlayer findPlayer) {
+        this.findPlayer = findPlayer;
     }
 
     @Override
@@ -17,7 +17,7 @@ public class InterpretMovePlayer implements Interpreter {
             int dice1 = tokens.number(3);
             int dice2 = tokens.number(4);
             MoveCommand command = new MoveCommand(player, new Dice(dice1, dice2));
-            movePlayer.acceptCommand(command);
+            findPlayer.acceptCommand(command);
         });
     }
 }
