@@ -54,7 +54,7 @@ class PlayerOnTurnTest {
 
         PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice, null);
 
-        playerOnTurn.move();
+        playerOnTurn.moveByDice();
 
         verify(pippo).moveByDice(dice);
     }

@@ -4,6 +4,7 @@ import app.domain.player.Player;
 import app.domain.player.PlayerObserver;
 import app.domain.player.Players;
 import app.domain.player.Position;
+import app.domain.rules.bouncing.BouncingMovement;
 
 import java.util.List;
 
@@ -44,17 +45,17 @@ public class PlayerOnTurn implements PlayerObserver {
         this.player.addObserver(this);
     }
 
-    public void move() {
-//        Position startPosition = position();
-//        Position finalPosition = startPosition.plus(dice);
-//
-//        FirstMovement movement = new FirstMovement(startPosition, finalPosition);
-//        applyMovement(movement);
+    public void moveByDice() {
         player.moveByDice(dice);
     }
 
     @Override
     public void playerPositionChanged(Movement movement) {
+        movements.add(movement);
+    }
+
+    @Override
+    public void playerBounced(BouncingMovement movement) {
         movements.add(movement);
     }
 

@@ -25,7 +25,7 @@ public class RuleProcessor {
 
     public void computeMovementsFor(PlayerOnTurn playerOnTurn) {
         playerOnTurn.start();
-        playerOnTurn.move();
+        playerOnTurn.moveByDice();
 
         bouncingRule.apply(playerOnTurn);
         jumpOnBridgeRule.apply(playerOnTurn);

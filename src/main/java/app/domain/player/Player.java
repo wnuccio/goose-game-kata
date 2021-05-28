@@ -1,6 +1,7 @@
 package app.domain.player;
 
 import app.domain.movement.Dice;
+import app.domain.rules.bouncing.BouncingMovement;
 import app.domain.rules.first.FirstMovement;
 
 import java.util.ArrayList;
@@ -38,5 +39,14 @@ public class Player {
         Position start = this.position;
         this.position = this.position.plus(dice);
         observers.forEach(o -> o.playerPositionChanged(new FirstMovement(start, this.position)));
+    }
+
+    public void moveByDiceConsideringBouncing(Dice dice) {
+        moveByDice(dice);
+
+        if (this.position.isBeyondWin()) {
+            this.position = this.position.bounced();
+            observers.forEach(o -> o.playerBounced(new BouncingMovement(this.position.board(), this.position)));
+        }
     }
 }

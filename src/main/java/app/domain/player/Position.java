@@ -65,4 +65,8 @@ public class Position {
     public String name() {
         return name;
     }
+
+    public Board board() {
+        return board;
+    }
 }
