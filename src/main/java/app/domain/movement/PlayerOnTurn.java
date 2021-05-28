@@ -4,6 +4,7 @@ import app.domain.player.Player;
 import app.domain.player.Players;
 import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
+import app.domain.rules.first.FirstMovement;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -47,9 +48,17 @@ public class PlayerOnTurn {
         return movements.getLast().startPosition();
     }
 
+    public void move() {
+        Position startPosition = position();
+        Position finalPosition = startPosition.plus(diceTotal());
+
+        FirstMovement movement = new FirstMovement(startPosition, finalPosition);
+        applyMovement(movement);
+    }
+
     public void present(StringBuilderPresenter presenter) {
         presenter.init();
-        movements.forEach(movement -> movement.present(presenter, this));
+        movements.forEach(movement -> movement.present(this, presenter));
         presenter.writeOutput();
     }
 

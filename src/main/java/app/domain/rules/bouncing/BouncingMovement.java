@@ -11,7 +11,7 @@ public class BouncingMovement extends PresentableMovement {
     public BouncingMovement(Board board, Position finalPosition) { super(board.win(), finalPosition); }
 
     @Override
-    public void present(StringBuilderPresenter presenter, PlayerOnTurn playerOnTurn) {
+    public void present(PlayerOnTurn playerOnTurn, StringBuilderPresenter presenter) {
         new BouncingPresenter().present(this.finalPosition(), presenter, playerOnTurn);
     }
 }

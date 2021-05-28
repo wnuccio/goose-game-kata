@@ -5,7 +5,6 @@ import app.domain.player.Board;
 import app.domain.player.Players;
 import app.domain.rules.bouncing.BouncingRule;
 import app.domain.rules.bridge.JumpOnBridgeRule;
-import app.domain.rules.first.FirstMovementRule;
 import app.domain.rules.goose.GooseRule;
 import app.domain.rules.switchrule.SwitchPlayersRule;
 
@@ -19,7 +18,8 @@ public class RuleProcessor {
     }
 
     public void computeMovementsFor(PlayerOnTurn playerOnTurn) {
-        new FirstMovementRule().apply(playerOnTurn);
+        playerOnTurn.move();
+
         new BouncingRule(board).apply(playerOnTurn);
         new JumpOnBridgeRule(board).apply(playerOnTurn);
         new GooseRule().apply(playerOnTurn);

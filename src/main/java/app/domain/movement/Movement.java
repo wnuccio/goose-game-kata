@@ -8,5 +8,5 @@ public interface Movement {
 
     Position finalPosition();
 
-    void present(StringBuilderPresenter presenter, PlayerOnTurn playerOnTurn);
+    void present(PlayerOnTurn playerOnTurn, StringBuilderPresenter presenter);
 }

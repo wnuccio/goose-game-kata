@@ -5,8 +5,10 @@ import app.domain.player.Player;
 import app.domain.player.Players;
 import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
+import app.domain.rules.first.FirstMovement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 
 import java.util.LinkedList;
@@ -43,6 +45,22 @@ class PlayerOnTurnTest {
         Position actualPosition = playerOnTurn.position();
 
         assertThat(actualPosition).isEqualTo(position);
+    }
+
+    @Test
+    void move_the_player_on_position_reached_by_dice() {
+        pippo.position(board.position(10));
+        playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
+
+        playerOnTurn.move();
+
+        assertThat(playerOnTurn.position()).isEqualTo(board.position(17));
+
+        ArgumentCaptor<FirstMovement> movement = ArgumentCaptor.forClass(FirstMovement.class);
+        verify(movements).add(movement.capture());
+
+        assertThat(movement.getValue().startPosition()).isEqualTo(board.position(10));
+        assertThat(movement.getValue().finalPosition()).isEqualTo(board.position(17));
     }
 
     @Test
@@ -85,7 +103,7 @@ class PlayerOnTurnTest {
     }
 
     @Test
-    void return_oppponents_on_same_position_of_player_on_turn() {
+    void return_opponents_on_same_position_of_player_on_turn() {
         playerOnTurn = new PlayerOnTurn(pippo, null, null);
         Player aPlayer = mock(Player.class);
         Player anotherPlayer = mock(Player.class);

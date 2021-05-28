@@ -10,7 +10,7 @@ public class FirstMovement extends PresentableMovement {
     public FirstMovement(Position startPosition, Position finalPosition) { super(startPosition, finalPosition); }
 
     @Override
-    public void present(StringBuilderPresenter presenter, PlayerOnTurn playerOnTurn) {
+    public void present(PlayerOnTurn playerOnTurn, StringBuilderPresenter presenter) {
         new FirstMovementPresenter().present(this, presenter, playerOnTurn);
     }
 }

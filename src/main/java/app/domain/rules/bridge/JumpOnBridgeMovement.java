@@ -10,7 +10,7 @@ public class JumpOnBridgeMovement extends PresentableMovement {
     public JumpOnBridgeMovement(Board board) { super(board.bridge(), board.bridgeTarget()); }
 
     @Override
-    public void present(StringBuilderPresenter presenter, PlayerOnTurn playerOnTurn) {
+    public void present(PlayerOnTurn playerOnTurn, StringBuilderPresenter presenter) {
         new JumpOnBridgePresenter().present(presenter, playerOnTurn);
     }
 }
