@@ -9,9 +9,7 @@ import app.domain.rules.first.FirstMovement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.InOrder;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import static app.domain.movement.Dice.dice;
@@ -26,12 +24,12 @@ class PlayerOnTurnTest {
     Players players;
     Board board = new Board();
     Player pippo = new Player("Pippo", board.start());
-    LinkedList<Movement> movements;
+    Movements movements;
 
     @BeforeEach
     void setUp() {
         players = mock(Players.class);
-        movements = mock(LinkedList.class);
+        movements = mock(Movements.class);
         presenter = mock(StringBuilderPresenter.class);
     }
 
@@ -93,13 +91,9 @@ class PlayerOnTurnTest {
     void init_presenter_and_pass_it_to_all_movements() {
         playerOnTurn = new PlayerOnTurn(null, dice(3, 4), movements);
 
-        playerOnTurn.present(presenter);
+        playerOnTurn.present();
 
-        InOrder inOrder = inOrder(presenter, movements);
-
-        inOrder.verify(presenter).init();
-        inOrder.verify(movements).forEach(any());
-        inOrder.verify(presenter).writeOutput();
+        verify(movements).present(playerOnTurn);
     }
 
     @Test

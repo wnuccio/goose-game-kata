@@ -3,18 +3,16 @@ package app.domain.movement;
 import app.domain.player.Player;
 import app.domain.player.Players;
 import app.domain.player.Position;
-import app.domain.presenter.StringBuilderPresenter;
 import app.domain.rules.first.FirstMovement;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class PlayerOnTurn {
     private final Player player;
     private final Dice dice;
-    private final LinkedList<Movement> movements;
+    private final Movements movements;
 
-    public PlayerOnTurn(Player player, Dice dice, LinkedList<Movement> movements) {
+    public PlayerOnTurn(Player player, Dice dice, Movements movements) {
         this.player = player;
         this.dice = dice;
         this.movements = movements;
@@ -40,12 +38,8 @@ public class PlayerOnTurn {
         return dice.second();
     }
 
-    public LinkedList<Movement> movements() {
-        return movements;
-    }
-
     public Position previousPosition() {
-        return movements.getLast().startPosition();
+        return movements.last().startPosition();
     }
 
     public void move() {
@@ -56,10 +50,8 @@ public class PlayerOnTurn {
         applyMovement(movement);
     }
 
-    public void present(StringBuilderPresenter presenter) {
-        presenter.init();
-        movements.forEach(movement -> movement.present(this, presenter));
-        presenter.writeOutput();
+    public void present() {
+        movements.present(this);
     }
 
     public void add(Movement movement) {

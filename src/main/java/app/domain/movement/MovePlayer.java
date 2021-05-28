@@ -5,8 +5,6 @@ import app.domain.player.Players;
 import app.domain.presenter.StringBuilderPresenter;
 import app.domain.rules.RuleProcessor;
 
-import java.util.LinkedList;
-
 public class MovePlayer {
     private final Players players;
     private final RuleProcessor ruleProcessor;
@@ -23,9 +21,9 @@ public class MovePlayer {
 
         Player player = players.find(command.player());
 
-        LinkedList<Movement> movements = new LinkedList<>();
+        Movements movements = new Movements(presenter);
         PlayerOnTurn playerOnTurn = new PlayerOnTurn(player, command.dice(), movements);
         ruleProcessor.computeMovementsFor(playerOnTurn);
-        playerOnTurn.present(presenter);
+        playerOnTurn.present();
     }
 }
