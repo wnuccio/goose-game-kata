@@ -40,11 +40,6 @@ public class PlayerOnTurn implements PlayerObserver {
         return movements.last().startPosition();
     }
 
-    @Override
-    public void playerPositionChanged(Movement movement) {
-        movements.add(movement);
-    }
-
     public void start() {
         this.player.addObserver(this);
     }
@@ -56,6 +51,11 @@ public class PlayerOnTurn implements PlayerObserver {
 //        FirstMovement movement = new FirstMovement(startPosition, finalPosition);
 //        applyMovement(movement);
         player.moveByDice(dice);
+    }
+
+    @Override
+    public void playerPositionChanged(Movement movement) {
+        movements.add(movement);
     }
 
     public void present() {

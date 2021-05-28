@@ -5,71 +5,66 @@ import app.domain.player.Player;
 import app.domain.player.Players;
 import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
-import app.domain.rules.first.FirstMovement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static app.domain.movement.Dice.dice;
-import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class PlayerOnTurnTest {
 
-    PlayerOnTurn playerOnTurn;
     StringBuilderPresenter presenter;
-    Players players;
     Board board = new Board();
-    Player pippo = new Player("Pippo", board.start());
+    Player pippo = mock(Player.class);
     Movements movements;
 
     @BeforeEach
     void setUp() {
-        players = mock(Players.class);
         movements = mock(Movements.class);
         presenter = mock(StringBuilderPresenter.class);
     }
 
     @Test
-    void return_position_of_player_in_turn() {
-        Position position = board.position(10);
-        pippo.position(position);
-        playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
-        when(players.find("Pippo")).thenReturn(pippo);
+    void returns_position_of_player() {
+        when(pippo.position()).thenReturn(board.position(10));
+
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null, null);
 
         Position actualPosition = playerOnTurn.position();
 
-        assertThat(actualPosition).isEqualTo(position);
+        assertThat(actualPosition).isEqualTo(board.position(10));
     }
 
     @Test
-    void move_the_player_on_position_reached_by_dice() {
-        pippo.position(board.position(10));
-        playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
+    void add_itself_as_player_observer_on_start() {
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null, null);
+
         playerOnTurn.start();
+
+        verify(pippo).addObserver(playerOnTurn);
+    }
+
+    @Test
+    void delegates_the_movement_to_the_player() {
+        Dice dice = dice(3, 4);
+
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice, null);
 
         playerOnTurn.move();
 
-        assertThat(playerOnTurn.position()).isEqualTo(board.position(17));
-
-        ArgumentCaptor<FirstMovement> movement = ArgumentCaptor.forClass(FirstMovement.class);
-        verify(movements).add(movement.capture());
-
-        assertThat(movement.getValue().startPosition()).isEqualTo(board.position(10));
-        assertThat(movement.getValue().finalPosition()).isEqualTo(board.position(17));
+        verify(pippo).moveByDice(dice);
     }
 
     @Test
     void return_player_is_on_the_goose() {
-        Position position = board.position(5);
-        pippo.position(position);
-        assertThat(position.hasTheGoose()).isTrue();
-        when(players.find("Pippo")).thenReturn(pippo);
+        assertThat(board.position(5).hasTheGoose()).isTrue();
+        when(pippo.position()).thenReturn(board.position(5));
 
-        playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
 
         assertThat(playerOnTurn.isOnTheGoose()).isTrue();
     }
@@ -80,7 +75,6 @@ class PlayerOnTurnTest {
         Movement movement = mock(Movement.class);
         when(movement.finalPosition()).thenReturn(finalPosition);
         Player pippo = new Player("Pippo", finalPosition);
-        when(players.find("Pippo")).thenReturn(pippo);
 
         PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
         playerOnTurn.applyMovement(movement);
@@ -90,7 +84,7 @@ class PlayerOnTurnTest {
 
     @Test
     void init_presenter_and_pass_it_to_all_movements() {
-        playerOnTurn = new PlayerOnTurn(null, dice(3, 4), movements);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(null, dice(3, 4), movements);
 
         playerOnTurn.present();
 
@@ -99,12 +93,12 @@ class PlayerOnTurnTest {
 
     @Test
     void return_opponents_on_same_position_of_player_on_turn() {
-        playerOnTurn = new PlayerOnTurn(pippo, null, null);
-        Player aPlayer = mock(Player.class);
-        Player anotherPlayer = mock(Player.class);
-        List<Player> returnedOpponents = asList(aPlayer, anotherPlayer);
+        List<Player> returnedOpponents = new ArrayList<>();
+
+        Players players = mock(Players.class);
         when(players.opponentsOnSamePositionOf(pippo)).thenReturn(returnedOpponents);
 
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null, null);
         List<Player> encounteredOpponents = playerOnTurn.encounteredOpponents(players);
 
         assertThat(encounteredOpponents).isEqualTo(returnedOpponents);
