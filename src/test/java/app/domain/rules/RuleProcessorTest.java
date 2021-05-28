@@ -22,7 +22,7 @@ class RuleProcessorTest {
     private final JumpOnBridgeRule jumpOnBridgeRule = mock(JumpOnBridgeRule.class);
     private final GooseRule gooseRule = mock(GooseRule.class);
     private final SwitchPlayersRule switchPlayersRule = mock(SwitchPlayersRule.class);
-    RuleProcessor ruleProcessor = new RuleProcessor(board, players, bouncingRule, jumpOnBridgeRule, gooseRule, switchPlayersRule);
+    RuleProcessor ruleProcessor = new RuleProcessor(bouncingRule, jumpOnBridgeRule, gooseRule, switchPlayersRule);
     private ArgumentCaptor<FirstMovement> firstMovement;
     private PlayerOnTurn playerOnTurn;
 
