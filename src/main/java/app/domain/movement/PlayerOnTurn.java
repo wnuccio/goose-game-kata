@@ -46,7 +46,7 @@ public class PlayerOnTurn implements PlayerObserver {
     }
 
     public void moveByDice() {
-        player.moveByDice(dice);
+        player.moveByDiceConsideringBouncing(dice);
     }
 
     @Override

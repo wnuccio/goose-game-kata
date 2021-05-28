@@ -56,7 +56,7 @@ class PlayerOnTurnTest {
 
         playerOnTurn.moveByDice();
 
-        verify(pippo).moveByDice(dice);
+        verify(pippo).moveByDiceConsideringBouncing(dice);
     }
 
     @Test

@@ -33,7 +33,7 @@ class PlayerTest {
         pippo = new Player("Pippo", board.position(3));
         pippo.addObserver(pippoObserver);
 
-        pippo.moveByDice(new Dice(2, 3));
+        pippo.moveByDiceConsideringBouncing(new Dice(2, 3));
 
         assertThat(pippo.position()).isEqualTo(board.position(8));
 
