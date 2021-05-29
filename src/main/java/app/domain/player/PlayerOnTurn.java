@@ -37,6 +37,10 @@ public class PlayerOnTurn implements PlayerObserver {
         this.player.addObserver(this);
     }
 
+    public void start(Movements movements) {
+        this.player.addObserver(movements);
+    }
+
     public void moveByDice() {
         player.moveByDiceConsideringBouncing(dice);
         player.applyRuleOnCurrentPosition(this);

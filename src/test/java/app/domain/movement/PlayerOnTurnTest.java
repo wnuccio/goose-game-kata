@@ -46,6 +46,16 @@ class PlayerOnTurnTest {
     }
 
     @Test
+    void add_the_provided_movements_to_player_observers_on_start() {
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null, null);
+
+        Movements movements = new Movements(null);
+        playerOnTurn.start(movements);
+
+        verify(pippo).addObserver(movements);
+    }
+
+    @Test
     void delegates_the_movement_to_the_player() {
         Dice dice = dice(3, 4);
 
