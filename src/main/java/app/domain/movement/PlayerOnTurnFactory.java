@@ -15,8 +15,11 @@ public class PlayerOnTurnFactory {
     }
 
     public PlayerOnTurn createPlayerOnTurn(Player player, Dice dice) {
+        return new PlayerOnTurn(player, dice, createMovements());
+    }
+
+    public Movements createMovements() {
         StringBuilderPresenter presenter = new StringBuilderPresenter(output);
-        Movements movements = new Movements(presenter);
-        return new PlayerOnTurn(player, dice, movements);
+        return new Movements(presenter);
     }
 }

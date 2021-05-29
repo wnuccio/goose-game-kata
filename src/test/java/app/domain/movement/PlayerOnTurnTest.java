@@ -38,25 +38,6 @@ class PlayerOnTurnTest {
     }
 
     @Test
-    void add_itself_as_player_observer_on_start() {
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null, null);
-
-        playerOnTurn.start();
-
-        verify(pippo).addObserver(playerOnTurn);
-    }
-
-    @Test
-    void add_the_provided_movements_to_player_observers_on_start() {
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null, null);
-
-        Movements movements = new Movements(null);
-        playerOnTurn.start(movements);
-
-        verify(pippo).addObserver(movements);
-    }
-
-    @Test
     void execute_whole_turn_by_registering_provided_movements() {
         Dice dice = new Dice(2, 3);
         PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice, null);
@@ -68,7 +49,7 @@ class PlayerOnTurnTest {
         verify(pippo).addObserver(movements);
         verify(pippo).moveByDiceConsideringBouncing(dice);
         verify(pippo).applyRuleOnCurrentPosition(playerOnTurn);
-        verify(switchPlayersRule).apply(playerOnTurn);
+        verify(switchPlayersRule).apply(playerOnTurn, movements);
         verify(movements).present(playerOnTurn);
     }
 

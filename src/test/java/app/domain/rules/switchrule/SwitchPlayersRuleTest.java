@@ -1,5 +1,6 @@
 package app.domain.rules.switchrule;
 
+import app.domain.movement.Movements;
 import app.domain.player.Board;
 import app.domain.player.Player;
 import app.domain.player.PlayerOnTurn;
@@ -25,13 +26,14 @@ class SwitchPlayersRuleTest {
     void change_position_of_encountered_player() {
         Player pluto = new Player("Pluto", board.position(17));
         Player anotherOpponent = new Player("", null);
+        Movements movements = mock(Movements.class);
 
-        when(playerOnTurn.previousPosition()).thenReturn(board.position(10));
         when(playerOnTurn.opponentsOnSamePosition(players)).thenReturn(asList(pluto, anotherOpponent));
+        when(movements.penultimatePosition()).thenReturn(board.position(10));
 
-        rule.apply(playerOnTurn);
+        rule.apply(playerOnTurn, movements);
 
-        verify(playerOnTurn).add(movement.capture());
+        verify(movements).add(movement.capture());
         assertThat(movement.getValue().switchedPlayer()).isEqualTo("Pluto");
         assertThat(movement.getValue().startPosition()).isEqualTo(board.position(17));
         assertThat(movement.getValue().finalPosition()).isEqualTo(board.position(10));
@@ -41,8 +43,9 @@ class SwitchPlayersRuleTest {
     void do_not_apply_any_switch_if_no_other_player_is_encountered() {
         when(playerOnTurn.opponentsOnSamePosition(players)).thenReturn(emptyList());
 
-        rule.apply(playerOnTurn);
+        Movements movements = mock(Movements.class);
+        rule.apply(playerOnTurn, movements);
 
-        verify(playerOnTurn, never()).applyMovement(any());
+        verify(movements, never()).add(any());
     }
 }

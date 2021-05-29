@@ -34,20 +34,12 @@ public class PlayerOnTurn implements PlayerObserver {
         return dice.second();
     }
 
-    public void start() {
-        this.player.addObserver(this);
-    }
-
-    public void start(Movements movements) {
-        this.player.addObserver(movements);
-    }
-
     public void doTurn(Movements movements, SwitchPlayersRule switchPlayersRule) {
         player.addObserver(this);
         player.addObserver(movements);
         player.moveByDiceConsideringBouncing(dice);
         player.applyRuleOnCurrentPosition(this);
-        switchPlayersRule.apply(this);
+        switchPlayersRule.apply(this, movements);
         movements.present(this);
     }
 
@@ -67,10 +59,6 @@ public class PlayerOnTurn implements PlayerObserver {
 
     public List<Player> opponentsOnSamePosition(Players allPlayers) {
         return allPlayers.opponentsOnSamePositionOf(player);
-    }
-
-    public Position previousPosition() {
-        return movements.penultimatePosition();
     }
 
     @Override

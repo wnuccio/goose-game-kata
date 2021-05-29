@@ -1,17 +1,18 @@
 package app.domain.rules;
 
+import app.domain.movement.Movements;
+import app.domain.movement.PlayerOnTurnFactory;
 import app.domain.player.PlayerOnTurn;
 import app.domain.rules.switchrule.SwitchPlayersRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InOrder;
 
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 class RuleProcessorTest {
     private final SwitchPlayersRule switchPlayersRule = mock(SwitchPlayersRule.class);
-    RuleProcessor ruleProcessor = new RuleProcessor(switchPlayersRule);
+    private PlayerOnTurnFactory playerOnTurnFactory = mock(PlayerOnTurnFactory.class);
+    RuleProcessor ruleProcessor = new RuleProcessor(switchPlayersRule, playerOnTurnFactory);
     private PlayerOnTurn playerOnTurn;
 
     @BeforeEach
@@ -21,12 +22,11 @@ class RuleProcessorTest {
 
     @Test
     void start_the_received_turn_before_any_operation() {
+        Movements movements = new Movements(null);
+        when(playerOnTurnFactory.createMovements()).thenReturn(movements);
+
         ruleProcessor.computeMovementsFor(playerOnTurn);
 
-        InOrder inOrder = inOrder(playerOnTurn, switchPlayersRule);
-        inOrder.verify(playerOnTurn).start();
-        inOrder.verify(playerOnTurn).moveByDice();
-        inOrder.verify(switchPlayersRule).apply(playerOnTurn);
-        inOrder.verify(playerOnTurn).end();
+        verify(playerOnTurn).doTurn(movements, switchPlayersRule);
     }
 }
