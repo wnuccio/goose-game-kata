@@ -10,7 +10,7 @@ import app.domain.interpreter.Interpreter;
 import app.domain.movement.FindPlayer;
 import app.domain.movement.InterpretMovePlayer;
 import app.domain.movement.MovePlayer;
-import app.domain.movement.PlayerOnTurnFactory;
+import app.domain.movement.MovementsFactory;
 import app.domain.player.*;
 import app.domain.rollmove.DiceRoller;
 import app.domain.rollmove.InterpretRollAndMove;
@@ -77,8 +77,8 @@ public class GameConfiguration {
         return new PlayerPresenter(inputOutput());
     }
 
-    private PlayerOnTurnFactory playerOnTurnFactory() {
-        return new PlayerOnTurnFactory(inputOutput());
+    private MovementsFactory movementsFactory() {
+        return new MovementsFactory(inputOutput());
     }
 
     private CommandLineProcessor interpreter() {
@@ -115,7 +115,7 @@ public class GameConfiguration {
         GooseRule gooseRule = new GooseRule();
         SwitchPlayersRule switchPlayersRule = new SwitchPlayersRule(players);
 
-        return new RuleProcessor(switchPlayersRule, playerOnTurnFactory());
+        return new RuleProcessor(switchPlayersRule, movementsFactory());
     }
 
     private RollAndMove rollAndMove(FindPlayer findPlayer) {
