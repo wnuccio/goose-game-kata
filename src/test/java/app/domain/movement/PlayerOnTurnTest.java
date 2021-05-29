@@ -30,7 +30,7 @@ class PlayerOnTurnTest {
     void returns_position_of_player() {
         when(pippo.position()).thenReturn(board.position(10));
 
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null, null);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null);
 
         Position actualPosition = playerOnTurn.position();
 
@@ -40,7 +40,7 @@ class PlayerOnTurnTest {
     @Test
     void execute_whole_turn_by_registering_provided_movements() {
         Dice dice = new Dice(2, 3);
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice, null);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice);
 
         Movements movements = mock(Movements.class);
         SwitchPlayersRule switchPlayersRule = mock(SwitchPlayersRule.class);
@@ -57,7 +57,7 @@ class PlayerOnTurnTest {
     void delegates_the_movement_to_the_player() {
         Dice dice = dice(3, 4);
 
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice, null);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice);
 
         playerOnTurn.moveByDice();
 
@@ -70,20 +70,11 @@ class PlayerOnTurnTest {
         Movement movement = mock(Movement.class);
         Player pippo = mock(Player.class);
 
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null, null);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null);
         playerOnTurn.applyMovement(movement);
 
         verify(pippo).applyMovement(movement);
         verify(pippo).applyRuleOnCurrentPosition(playerOnTurn);
-    }
-
-    @Test
-    void init_presenter_and_pass_it_to_all_movements() {
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(null, dice(3, 4), movements);
-
-        playerOnTurn.end();
-
-        verify(movements).present(playerOnTurn);
     }
 
     @Test
@@ -93,7 +84,7 @@ class PlayerOnTurnTest {
         Players players = mock(Players.class);
         when(players.opponentsOnSamePositionOf(pippo)).thenReturn(returnedOpponents);
 
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null, null);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null);
         List<Player> encounteredOpponents = playerOnTurn.opponentsOnSamePosition(players);
 
         assertThat(encounteredOpponents).isEqualTo(returnedOpponents);

@@ -5,15 +5,13 @@ import app.domain.rules.switchrule.SwitchPlayersRule;
 
 import java.util.List;
 
-public class PlayerOnTurn implements PlayerObserver {
+public class PlayerOnTurn {
     private final Player player;
     private final Dice dice;
-    private final Movements movements;
 
-    public PlayerOnTurn(Player player, Dice dice, Movements movements) {
+    public PlayerOnTurn(Player player, Dice dice) {
         this.player = player;
         this.dice = dice;
-        this.movements = movements;
     }
 
     public String name() {
@@ -35,7 +33,6 @@ public class PlayerOnTurn implements PlayerObserver {
     }
 
     public void doTurn(Movements movements, SwitchPlayersRule switchPlayersRule) {
-        player.addObserver(this);
         player.addObserver(movements);
         player.moveByDiceConsideringBouncing(dice);
         player.applyRuleOnCurrentPosition(this);
@@ -53,20 +50,7 @@ public class PlayerOnTurn implements PlayerObserver {
         player.applyRuleOnCurrentPosition(this);
     }
 
-    public void add(Movement movement) {
-        movements.add(movement);
-    }
-
     public List<Player> opponentsOnSamePosition(Players allPlayers) {
         return allPlayers.opponentsOnSamePositionOf(player);
-    }
-
-    @Override
-    public void playerPositionChanged(Movement movement) {
-        movements.add(movement);
-    }
-
-    public void end() {
-        movements.present(this);
     }
 }

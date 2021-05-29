@@ -15,7 +15,7 @@ public class PlayerOnTurnFactory {
     }
 
     public PlayerOnTurn createPlayerOnTurn(Player player, Dice dice) {
-        return new PlayerOnTurn(player, dice, createMovements());
+        return new PlayerOnTurn(player, dice);
     }
 
     public Movements createMovements() {
