@@ -28,6 +28,11 @@ public class Player {
         return this;
     }
 
+    public void applyMovement(Movement movement) {
+        position = movement.finalPosition();
+        notifyMovement(movement);
+    }
+
     public Position position() {
         return position;
     }
