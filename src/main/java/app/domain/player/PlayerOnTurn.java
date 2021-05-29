@@ -40,11 +40,6 @@ public class PlayerOnTurn {
         movements.present(this);
     }
 
-    public void moveByDice() {
-        player.moveByDiceConsideringBouncing(dice);
-        player.applyRuleOnCurrentPosition(this);
-    }
-
     public void applyMovement(Movement movement) {
         player.applyMovement(movement);
         player.applyRuleOnCurrentPosition(this);

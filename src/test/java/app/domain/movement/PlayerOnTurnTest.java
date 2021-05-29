@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static app.domain.player.Dice.dice;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -51,18 +50,6 @@ class PlayerOnTurnTest {
         verify(pippo).applyRuleOnCurrentPosition(playerOnTurn);
         verify(switchPlayersRule).apply(playerOnTurn, movements);
         verify(movements).present(playerOnTurn);
-    }
-
-    @Test
-    void delegates_the_movement_to_the_player() {
-        Dice dice = dice(3, 4);
-
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice);
-
-        playerOnTurn.moveByDice();
-
-        verify(pippo).moveByDiceConsideringBouncing(dice);
-        verify(pippo).applyRuleOnCurrentPosition(playerOnTurn);
     }
 
     @Test
