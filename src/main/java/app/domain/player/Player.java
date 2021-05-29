@@ -64,4 +64,8 @@ public class Player {
     private void notifyMovement(Movement movement) {
         observers.forEach(o -> o.playerPositionChanged(movement));
     }
+
+    public void applyRuleOnCurrentPosition() {
+        position.applyAttachedRule(this);
+    }
 }

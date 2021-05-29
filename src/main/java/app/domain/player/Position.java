@@ -1,5 +1,6 @@
 package app.domain.player;
 
+import app.domain.PositionRule;
 import app.domain.movement.Dice;
 
 import java.util.List;
@@ -11,11 +12,13 @@ public class Position {
     private final Board board;
     String name;
     final int value;
+    private PositionRule rule;
 
     Position(int value, Board board, String name) {
         this.value = value;
         this.board = board;
         this.name = name;
+        this.rule = player -> {};
     }
 
     public boolean hasTheGoose() {
@@ -68,5 +71,14 @@ public class Position {
 
     public Board board() {
         return board;
+    }
+
+    public void applyAttachedRule(Player player) {
+        this.rule.applyTo(player);
+    }
+
+    public Position attachRule(PositionRule rule) {
+        this.rule = rule;
+        return this;
     }
 }

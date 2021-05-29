@@ -1,5 +1,7 @@
 package app.domain.player;
 
+import app.domain.rules.bridge.JumpOnBridgeRule;
+
 import java.util.HashMap;
 
 public class Board {
@@ -9,7 +11,7 @@ public class Board {
         this.map = new HashMap<>();
         put(new Position(0, this, "Start"));
         put(new Position(5, this, "5, The Goose."));
-        put(new Position(6, this, "The Bridge"));
+        put(new Position(6, this, "The Bridge").attachRule(new JumpOnBridgeRule(this)));
         put(new Position(9, this, "9, The Goose."));
         put(new Position(12, this, "12"));
         put(new Position(14, this, "14, The Goose."));

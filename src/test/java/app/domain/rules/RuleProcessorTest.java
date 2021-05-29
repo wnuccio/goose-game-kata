@@ -14,7 +14,7 @@ class RuleProcessorTest {
     private final JumpOnBridgeRule jumpOnBridgeRule = mock(JumpOnBridgeRule.class);
     private final GooseRule gooseRule = mock(GooseRule.class);
     private final SwitchPlayersRule switchPlayersRule = mock(SwitchPlayersRule.class);
-    RuleProcessor ruleProcessor = new RuleProcessor(jumpOnBridgeRule, gooseRule, switchPlayersRule);
+    RuleProcessor ruleProcessor = new RuleProcessor(gooseRule, switchPlayersRule);
     private PlayerOnTurn playerOnTurn;
 
     @BeforeEach

@@ -2,8 +2,13 @@ package app.domain;
 
 import app.domain.movement.Dice;
 import app.domain.player.Board;
+import app.domain.player.Player;
+import app.domain.player.Position;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class PositionTest {
 
@@ -43,5 +48,17 @@ public class PositionTest {
         Assertions.assertThat(board.position(67).bounced()).isEqualTo(board.position(59));
         Assertions.assertThat(board.position(60).bounced()).isEqualTo(board.position(60));
         Assertions.assertThat(board.position(63).bounced()).isEqualTo(board.position(63));
+    }
+
+    @Test
+    void applies_attached_rule_if_any() {
+        Position position = new Board().position(6);
+        PositionRule positionRule = mock(PositionRule.class);
+        position.attachRule(positionRule);
+
+        Player player = mock(Player.class);
+        position.applyAttachedRule(player);
+
+        verify(positionRule).applyTo(player);
     }
 }

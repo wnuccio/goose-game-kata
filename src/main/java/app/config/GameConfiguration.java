@@ -115,7 +115,7 @@ public class GameConfiguration {
         GooseRule gooseRule = new GooseRule();
         SwitchPlayersRule switchPlayersRule = new SwitchPlayersRule(players);
 
-        return new RuleProcessor(jumpOnBridgeRule, gooseRule, switchPlayersRule);
+        return new RuleProcessor(gooseRule, switchPlayersRule);
     }
 
     private RollAndMove rollAndMove(FindPlayer findPlayer) {

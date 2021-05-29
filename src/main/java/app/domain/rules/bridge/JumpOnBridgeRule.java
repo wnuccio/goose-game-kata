@@ -1,23 +1,20 @@
 package app.domain.rules.bridge;
 
+import app.domain.PositionRule;
 import app.domain.movement.Movement;
-import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
-import app.domain.player.Position;
+import app.domain.player.Player;
 
-public class JumpOnBridgeRule {
+public class JumpOnBridgeRule implements PositionRule {
     private final Board board;
 
     public JumpOnBridgeRule(Board board) {
         this.board = board;
     }
 
-    public void apply(PlayerOnTurn playerOnTurn) {
-        Position lastPosition = playerOnTurn.position();
-
-        if ( ! lastPosition.equals(board.bridge())) return;
-
+    @Override
+    public void applyTo(Player player) {
         Movement movement = new JumpOnBridgeMovement(board);
-        playerOnTurn.applyMovement(movement);
+        player.applyMovement(movement);
     }
 }

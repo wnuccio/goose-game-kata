@@ -71,5 +71,13 @@ class PlayerTest {
         assertThat(movement.getAllValues().get(1).finalPosition()).isEqualTo(board.position(60));
     }
 
+    @Test
+    void apply_rule_on_current_position() {
+        Position position = mock(Position.class);
+        pippo = new Player("Pippo", position); // max 63
 
+        pippo.applyRuleOnCurrentPosition();
+
+        verify(position).applyAttachedRule(pippo);
+    }
 }
