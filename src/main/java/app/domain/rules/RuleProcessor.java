@@ -1,6 +1,6 @@
 package app.domain.rules;
 
-import app.domain.movement.PlayerOnTurn;
+import app.domain.player.PlayerOnTurn;
 import app.domain.rules.switchrule.SwitchPlayersRule;
 
 public class RuleProcessor {

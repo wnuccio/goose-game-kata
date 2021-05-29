@@ -1,5 +1,7 @@
 package app.domain.movement;
 
+import app.domain.player.Movement;
+import app.domain.player.PlayerOnTurn;
 import app.domain.presenter.StringBuilderPresenter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

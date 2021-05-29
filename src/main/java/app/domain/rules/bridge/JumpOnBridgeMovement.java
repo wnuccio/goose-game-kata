@@ -1,8 +1,8 @@
 package app.domain.rules.bridge;
 
-import app.domain.movement.PlayerOnTurn;
 import app.domain.movement.PresentableMovement;
 import app.domain.player.Board;
+import app.domain.player.PlayerOnTurn;
 import app.domain.presenter.StringBuilderPresenter;
 
 public class JumpOnBridgeMovement extends PresentableMovement {

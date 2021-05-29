@@ -1,6 +1,5 @@
-package app.domain.movement;
+package app.domain.player;
 
-import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
 
 public interface Movement {

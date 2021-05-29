@@ -1,9 +1,9 @@
 package app.domain.rules.goose;
 
-import app.domain.PositionRule;
-import app.domain.movement.Movement;
-import app.domain.movement.PlayerOnTurn;
+import app.domain.player.Movement;
+import app.domain.player.PlayerOnTurn;
 import app.domain.player.Position;
+import app.domain.player.PositionRule;
 
 public class GooseRule implements PositionRule {
 

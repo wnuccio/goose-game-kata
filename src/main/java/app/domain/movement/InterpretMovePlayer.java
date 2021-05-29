@@ -2,6 +2,7 @@ package app.domain.movement;
 
 import app.domain.interpreter.CommandLine;
 import app.domain.interpreter.Interpreter;
+import app.domain.player.Dice;
 
 public class InterpretMovePlayer implements Interpreter {
     private final FindPlayer findPlayer;

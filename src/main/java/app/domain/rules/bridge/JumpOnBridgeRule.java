@@ -1,9 +1,9 @@
 package app.domain.rules.bridge;
 
-import app.domain.PositionRule;
-import app.domain.movement.Movement;
-import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
+import app.domain.player.Movement;
+import app.domain.player.PlayerOnTurn;
+import app.domain.player.PositionRule;
 
 public class JumpOnBridgeRule implements PositionRule {
     private final Board board;

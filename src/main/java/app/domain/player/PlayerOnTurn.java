@@ -1,9 +1,6 @@
-package app.domain.movement;
+package app.domain.player;
 
-import app.domain.player.Player;
-import app.domain.player.PlayerObserver;
-import app.domain.player.Players;
-import app.domain.player.Position;
+import app.domain.movement.Movements;
 
 import java.util.List;
 

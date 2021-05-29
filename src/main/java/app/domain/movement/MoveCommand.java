@@ -1,5 +1,7 @@
 package app.domain.movement;
 
+import app.domain.player.Dice;
+
 public class MoveCommand {
     private final String player;
     private final Dice dice;

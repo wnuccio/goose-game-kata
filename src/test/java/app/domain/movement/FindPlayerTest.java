@@ -1,5 +1,6 @@
 package app.domain.movement;
 
+import app.domain.player.Dice;
 import app.domain.player.Player;
 import app.domain.player.Players;
 import org.junit.jupiter.api.BeforeEach;

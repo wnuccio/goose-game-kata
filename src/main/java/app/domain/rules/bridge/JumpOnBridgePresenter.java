@@ -1,6 +1,6 @@
 package app.domain.rules.bridge;
 
-import app.domain.movement.PlayerOnTurn;
+import app.domain.player.PlayerOnTurn;
 import app.domain.presenter.StringBuilderPresenter;
 
 import static java.lang.String.format;

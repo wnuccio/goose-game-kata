@@ -1,6 +1,6 @@
 package app.domain.rollmove;
 
-import app.domain.movement.Dice;
+import app.domain.player.Dice;
 
 public class RandomDiceRoller implements DiceRoller {
     @Override

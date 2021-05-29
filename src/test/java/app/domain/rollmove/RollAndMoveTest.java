@@ -1,8 +1,8 @@
 package app.domain.rollmove;
 
-import app.domain.movement.Dice;
 import app.domain.movement.FindPlayer;
 import app.domain.movement.MoveCommand;
+import app.domain.player.Dice;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 

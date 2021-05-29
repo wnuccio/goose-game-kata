@@ -1,8 +1,8 @@
 package app.domain.rules.goose;
 
-import app.domain.movement.Dice;
-import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
+import app.domain.player.Dice;
+import app.domain.player.PlayerOnTurn;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 

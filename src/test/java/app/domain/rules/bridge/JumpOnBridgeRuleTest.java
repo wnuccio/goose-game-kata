@@ -1,7 +1,7 @@
 package app.domain.rules.bridge;
 
-import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
+import app.domain.player.PlayerOnTurn;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 

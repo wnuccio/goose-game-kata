@@ -1,7 +1,7 @@
 package app.domain.rules.goose;
 
-import app.domain.movement.PlayerOnTurn;
 import app.domain.movement.PresentableMovement;
+import app.domain.player.PlayerOnTurn;
 import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
 

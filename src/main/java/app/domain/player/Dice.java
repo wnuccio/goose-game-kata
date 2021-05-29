@@ -1,4 +1,4 @@
-package app.domain.movement;
+package app.domain.player;
 
 public class Dice {
     private final int first;

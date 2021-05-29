@@ -1,6 +1,6 @@
 package app.domain.rules.bouncing;
 
-import app.domain.movement.PlayerOnTurn;
+import app.domain.player.PlayerOnTurn;
 import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
 

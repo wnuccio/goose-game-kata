@@ -1,5 +1,6 @@
 package app.domain.movement;
 
+import app.domain.player.Movement;
 import app.domain.player.Position;
 
 

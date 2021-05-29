@@ -1,7 +1,9 @@
 package app.domain.movement;
 
 import app.domain.player.Board;
+import app.domain.player.Dice;
 import app.domain.player.Player;
+import app.domain.player.PlayerOnTurn;
 import app.domain.rules.RuleProcessor;
 import org.junit.jupiter.api.Test;
 

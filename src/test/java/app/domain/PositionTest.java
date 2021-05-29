@@ -1,9 +1,6 @@
 package app.domain;
 
-import app.domain.movement.Dice;
-import app.domain.movement.PlayerOnTurn;
-import app.domain.player.Board;
-import app.domain.player.Position;
+import app.domain.player.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

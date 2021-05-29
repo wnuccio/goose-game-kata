@@ -1,9 +1,6 @@
 package app.domain.movement;
 
-import app.domain.player.Board;
-import app.domain.player.Player;
-import app.domain.player.Players;
-import app.domain.player.Position;
+import app.domain.player.*;
 import app.domain.presenter.StringBuilderPresenter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static app.domain.movement.Dice.dice;
+import static app.domain.player.Dice.dice;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 

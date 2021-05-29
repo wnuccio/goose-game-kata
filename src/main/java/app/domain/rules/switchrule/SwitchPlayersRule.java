@@ -1,7 +1,7 @@
 package app.domain.rules.switchrule;
 
-import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Player;
+import app.domain.player.PlayerOnTurn;
 import app.domain.player.Players;
 import app.domain.player.Position;
 

@@ -1,9 +1,5 @@
 package app.domain.player;
 
-import app.domain.PositionRule;
-import app.domain.movement.Dice;
-import app.domain.movement.PlayerOnTurn;
-
 import java.util.Objects;
 
 public class Position {

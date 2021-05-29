@@ -1,6 +1,8 @@
 package app.domain.movement;
 
+import app.domain.player.Dice;
 import app.domain.player.Player;
+import app.domain.player.PlayerOnTurn;
 import app.domain.presenter.Output;
 import app.domain.presenter.StringBuilderPresenter;
 

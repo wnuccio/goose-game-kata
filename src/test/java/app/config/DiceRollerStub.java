@@ -1,6 +1,6 @@
 package app.config;
 
-import app.domain.movement.Dice;
+import app.domain.player.Dice;
 import app.domain.rollmove.DiceRoller;
 
 import java.util.concurrent.BlockingQueue;
