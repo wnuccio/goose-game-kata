@@ -62,8 +62,7 @@ public class PlayerOnTurn implements PlayerObserver {
     }
 
     public void applyMovement(Movement movement) {
-        player.position(movement.finalPosition());
-        movements.add(movement);
+        player.applyMovement(movement);
     }
 
     public List<Player> encounteredOpponents(Players allPlayers) {

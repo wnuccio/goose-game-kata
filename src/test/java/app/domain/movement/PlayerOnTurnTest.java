@@ -70,16 +70,14 @@ class PlayerOnTurnTest {
     }
 
     @Test
-    void apply_a_movement_by_changing_player_position_and_registering_the_movement() {
-        Position finalPosition = board.position(10);
+    void delegates_apply_movement_to_the_player() {
         Movement movement = mock(Movement.class);
-        when(movement.finalPosition()).thenReturn(finalPosition);
-        Player pippo = new Player("Pippo", finalPosition);
+        Player pippo = mock(Player.class);
 
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null, null);
         playerOnTurn.applyMovement(movement);
 
-        verify(movements).add(movement);
+        verify(pippo).applyMovement(movement);
     }
 
     @Test
