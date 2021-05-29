@@ -2,6 +2,7 @@ package app.domain.movement;
 
 import app.domain.player.*;
 import app.domain.presenter.StringBuilderPresenter;
+import app.domain.rules.switchrule.SwitchPlayersRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -53,6 +54,22 @@ class PlayerOnTurnTest {
         playerOnTurn.start(movements);
 
         verify(pippo).addObserver(movements);
+    }
+
+    @Test
+    void execute_whole_turn_by_registering_provided_movements() {
+        Dice dice = new Dice(2, 3);
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice, null);
+
+        Movements movements = mock(Movements.class);
+        SwitchPlayersRule switchPlayersRule = mock(SwitchPlayersRule.class);
+        playerOnTurn.doTurn(movements, switchPlayersRule);
+
+        verify(pippo).addObserver(movements);
+        verify(pippo).moveByDiceConsideringBouncing(dice);
+        verify(pippo).applyRuleOnCurrentPosition(playerOnTurn);
+        verify(switchPlayersRule).apply(playerOnTurn);
+        verify(movements).present(playerOnTurn);
     }
 
     @Test

@@ -1,6 +1,7 @@
 package app.domain.player;
 
 import app.domain.movement.Movements;
+import app.domain.rules.switchrule.SwitchPlayersRule;
 
 import java.util.List;
 
@@ -39,6 +40,15 @@ public class PlayerOnTurn implements PlayerObserver {
 
     public void start(Movements movements) {
         this.player.addObserver(movements);
+    }
+
+    public void doTurn(Movements movements, SwitchPlayersRule switchPlayersRule) {
+        player.addObserver(this);
+        player.addObserver(movements);
+        player.moveByDiceConsideringBouncing(dice);
+        player.applyRuleOnCurrentPosition(this);
+        switchPlayersRule.apply(this);
+        movements.present(this);
     }
 
     public void moveByDice() {
