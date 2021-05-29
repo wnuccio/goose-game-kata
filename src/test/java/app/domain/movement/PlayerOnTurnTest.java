@@ -79,6 +79,7 @@ class PlayerOnTurnTest {
         playerOnTurn.applyMovement(movement);
 
         verify(pippo).applyMovement(movement);
+        verify(pippo).applyRuleOnCurrentPosition(playerOnTurn);
     }
 
     @Test
