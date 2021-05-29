@@ -1,6 +1,7 @@
 package app.domain.player;
 
 import app.domain.rules.bridge.JumpOnBridgeRule;
+import app.domain.rules.goose.GooseRule;
 
 import java.util.HashMap;
 
@@ -10,14 +11,14 @@ public class Board {
     public Board() {
         this.map = new HashMap<>();
         put(new Position(0, this, "Start"));
-        put(new Position(5, this, "5, The Goose."));
+        put(new Position(5, this, "5, The Goose.").attachRule(new GooseRule()));
         put(new Position(6, this, "The Bridge").attachRule(new JumpOnBridgeRule(this)));
-        put(new Position(9, this, "9, The Goose."));
+        put(new Position(9, this, "9, The Goose.").attachRule(new GooseRule()));
         put(new Position(12, this, "12"));
-        put(new Position(14, this, "14, The Goose."));
-        put(new Position(18, this, "18, The Goose."));
-        put(new Position(23, this, "23, The Goose."));
-        put(new Position(27, this, "27, The Goose."));
+        put(new Position(14, this, "14, The Goose.").attachRule(new GooseRule()));
+        put(new Position(18, this, "18, The Goose.").attachRule(new GooseRule()));
+        put(new Position(23, this, "23, The Goose.").attachRule(new GooseRule()));
+        put(new Position(27, this, "27, The Goose.").attachRule(new GooseRule()));
         put(new Position(63, this, "63"));
     }
 
