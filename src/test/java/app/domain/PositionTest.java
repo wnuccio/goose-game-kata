@@ -21,16 +21,6 @@ public class PositionTest {
     }
 
     @Test
-    void positions_having_the_goose() {
-        Assertions.assertThat(board.position(5).hasTheGoose()).isTrue();
-        Assertions.assertThat(board.position(9).hasTheGoose()).isTrue();
-        Assertions.assertThat(board.position(14).hasTheGoose()).isTrue();
-        Assertions.assertThat(board.position(18).hasTheGoose()).isTrue();
-        Assertions.assertThat(board.position(23).hasTheGoose()).isTrue();
-        Assertions.assertThat(board.position(27).hasTheGoose()).isTrue();
-    }
-
-    @Test
     void position_63_is_win_position() {
         Assertions.assertThat(board.position(63).isWin()).isTrue();
     }

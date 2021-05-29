@@ -4,10 +4,7 @@ import app.domain.PositionRule;
 import app.domain.movement.Dice;
 import app.domain.movement.PlayerOnTurn;
 
-import java.util.List;
 import java.util.Objects;
-
-import static java.util.Arrays.asList;
 
 public class Position {
     private final Board board;
@@ -20,24 +17,6 @@ public class Position {
         this.board = board;
         this.name = name;
         this.rule = playerOnTurn -> {};
-    }
-
-    public boolean hasTheGoose() {
-        List<Integer> positionsWithGoose = asList(5, 9, 14, 18, 23, 27);
-        return positionsWithGoose.contains(value);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Position position = (Position) o;
-        return value == position.value;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
     }
 
     public boolean isWin() {
@@ -59,13 +38,6 @@ public class Position {
         return board.position(bounced);
     }
 
-    @Override
-    public String toString() {
-        return "Position{" +
-                "value=" + value +
-                '}';
-    }
-
     public String name() {
         return name;
     }
@@ -81,5 +53,25 @@ public class Position {
     public Position attachRule(PositionRule rule) {
         this.rule = rule;
         return this;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return value == position.value;
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "value=" + value +
+                '}';
     }
 }
