@@ -14,7 +14,7 @@ class MovePlayerTest {
     RuleProcessor ruleProcessor = mock(RuleProcessor.class);
     PlayerOnTurn playerOnTurn = mock(PlayerOnTurn.class);
     PlayerOnTurnFactory playerOnTurnFactory = mock(PlayerOnTurnFactory.class);
-    MovePlayer movePlayer = new MovePlayer(ruleProcessor, playerOnTurnFactory);
+    MovePlayer movePlayer = new MovePlayer(ruleProcessor);
 
     @Test
     void create_a_new_player_on_turn_and_computes_movement_for_him() {
@@ -23,9 +23,10 @@ class MovePlayerTest {
 
         when(playerOnTurnFactory.createPlayerOnTurn(pippo, dice)).thenReturn(playerOnTurn);
 
-        movePlayer.doMove(pippo, dice);
+        movePlayer.doMove(playerOnTurn);
 
         verify(ruleProcessor).computeMovementsFor(playerOnTurn);
+        verify(playerOnTurn).present();
     }
 
 }

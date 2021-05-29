@@ -7,10 +7,12 @@ public class FindPlayer {
 
     private final Players players;
     private final MovePlayer movePlayer;
+    private PlayerOnTurnFactory playerOnTurnFactory;
 
-    public FindPlayer(Players players, MovePlayer movePlayer) {
+    public FindPlayer(Players players, MovePlayer movePlayer, PlayerOnTurnFactory playerOnTurnFactory) {
         this.players = players;
         this.movePlayer = movePlayer;
+        this.playerOnTurnFactory = playerOnTurnFactory;
     }
 
     public void acceptCommand(MoveCommand command) {
@@ -18,6 +20,6 @@ public class FindPlayer {
 
         Player player = players.find(command.player());
 
-        movePlayer.doMove(player, command.dice());
+        movePlayer.doMove(playerOnTurnFactory.createPlayerOnTurn(player, command.dice()));
     }
 }

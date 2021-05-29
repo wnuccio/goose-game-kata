@@ -95,7 +95,7 @@ public class GameConfiguration {
     }
 
     private FindPlayer findPlayer(MovePlayer movePlayer) {
-        return new FindPlayer(players(), movePlayer);
+        return new FindPlayer(players(), movePlayer, playerOnTurnFactory());
     }
 
     private AddPlayer addPlayer() {
@@ -107,7 +107,7 @@ public class GameConfiguration {
     }
 
     private MovePlayer movePlayer() {
-        return new MovePlayer(computeMovement(), playerOnTurnFactory());
+        return new MovePlayer(computeMovement());
     }
 
     private RuleProcessor computeMovement() {
