@@ -1,4 +1,7 @@
 ###
+- separare i Movements da PlayerOnTurn, in modo da renderli
+    un observer distinto di Player; in questo modo si potranno 
+    rimuovere da PlayerOnTurn i metodi relativi alla SwitchRule
 - riscrivere i test di RuleProcessor 
 - spostare la costruzione di Board in configurazione, 
     gestendo il "nome" delle posizioni oltre la 63 come un concetto di presentazione
