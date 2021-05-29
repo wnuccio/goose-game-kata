@@ -61,16 +61,6 @@ class PlayerOnTurnTest {
     }
 
     @Test
-    void return_player_is_on_the_goose() {
-        assertThat(board.position(5).hasTheGoose()).isTrue();
-        when(pippo.position()).thenReturn(board.position(5));
-
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice(3, 4), movements);
-
-        assertThat(playerOnTurn.isOnTheGoose()).isTrue();
-    }
-
-    @Test
     void delegates_apply_movement_to_the_player() {
         Movement movement = mock(Movement.class);
         Player pippo = mock(Player.class);

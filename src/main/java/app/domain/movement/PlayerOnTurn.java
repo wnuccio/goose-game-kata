@@ -70,8 +70,4 @@ public class PlayerOnTurn implements PlayerObserver {
     public List<Player> encounteredOpponents(Players allPlayers) {
         return allPlayers.opponentsOnSamePositionOf(player);
     }
-
-    public boolean isOnTheGoose() {
-        return position().hasTheGoose();
-    }
 }
