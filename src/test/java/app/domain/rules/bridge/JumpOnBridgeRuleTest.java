@@ -1,7 +1,7 @@
 package app.domain.rules.bridge;
 
+import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
-import app.domain.player.Player;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -15,12 +15,12 @@ class JumpOnBridgeRuleTest {
 
     @Test
     void apply_a_movement_towards_position_12_to_the_player() {
-        Player player = mock(Player.class);
+        PlayerOnTurn playerOnTurn = mock(PlayerOnTurn.class);
 
-        rule.applyTo(player);
+        rule.applyTo(playerOnTurn);
 
         ArgumentCaptor<JumpOnBridgeMovement> movement = ArgumentCaptor.forClass(JumpOnBridgeMovement.class);
-        verify(player).applyMovement(movement.capture());
+        verify(playerOnTurn).applyMovement(movement.capture());
 
         assertThat(movement.getValue().startPosition()).isEqualTo(board.position(6));
         assertThat(movement.getValue().finalPosition()).isEqualTo(board.position(12));

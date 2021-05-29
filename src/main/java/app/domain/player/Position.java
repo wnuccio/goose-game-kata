@@ -2,6 +2,7 @@ package app.domain.player;
 
 import app.domain.PositionRule;
 import app.domain.movement.Dice;
+import app.domain.movement.PlayerOnTurn;
 
 import java.util.List;
 import java.util.Objects;
@@ -18,7 +19,7 @@ public class Position {
         this.value = value;
         this.board = board;
         this.name = name;
-        this.rule = player -> {};
+        this.rule = playerOnTurn -> {};
     }
 
     public boolean hasTheGoose() {
@@ -73,8 +74,8 @@ public class Position {
         return board;
     }
 
-    public void applyAttachedRule(Player player) {
-        this.rule.applyTo(player);
+    public void applyAttachedRule(PlayerOnTurn playerOnTurn) {
+        this.rule.applyTo(playerOnTurn);
     }
 
     public Position attachRule(PositionRule rule) {

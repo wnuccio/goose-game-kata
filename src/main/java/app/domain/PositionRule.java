@@ -1,7 +1,7 @@
 package app.domain;
 
-import app.domain.player.Player;
+import app.domain.movement.PlayerOnTurn;
 
 public interface PositionRule {
-    void applyTo(Player player);
+    void applyTo(PlayerOnTurn playerOnTurn);
 }

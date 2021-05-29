@@ -1,8 +1,8 @@
 package app.domain;
 
 import app.domain.movement.Dice;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.player.Board;
-import app.domain.player.Player;
 import app.domain.player.Position;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -56,9 +56,9 @@ public class PositionTest {
         PositionRule positionRule = mock(PositionRule.class);
         position.attachRule(positionRule);
 
-        Player player = mock(Player.class);
-        position.applyAttachedRule(player);
+        PlayerOnTurn playerOnTurn = mock(PlayerOnTurn.class);
+        position.applyAttachedRule(playerOnTurn);
 
-        verify(positionRule).applyTo(player);
+        verify(positionRule).applyTo(playerOnTurn);
     }
 }

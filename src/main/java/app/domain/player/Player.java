@@ -2,6 +2,7 @@ package app.domain.player;
 
 import app.domain.movement.Dice;
 import app.domain.movement.Movement;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.rules.bouncing.BouncingMovement;
 import app.domain.rules.first.FirstMovement;
 
@@ -65,7 +66,7 @@ public class Player {
         observers.forEach(o -> o.playerPositionChanged(movement));
     }
 
-    public void applyRuleOnCurrentPosition() {
-        position.applyAttachedRule(this);
+    public void applyRuleOnCurrentPosition(PlayerOnTurn playerOnTurn) {
+        position.applyAttachedRule(playerOnTurn);
     }
 }

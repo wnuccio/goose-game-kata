@@ -2,6 +2,7 @@ package app.domain.player;
 
 import app.domain.movement.Dice;
 import app.domain.movement.Movement;
+import app.domain.movement.PlayerOnTurn;
 import app.domain.rules.bouncing.BouncingMovement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -76,8 +77,9 @@ class PlayerTest {
         Position position = mock(Position.class);
         pippo = new Player("Pippo", position); // max 63
 
-        pippo.applyRuleOnCurrentPosition();
+        PlayerOnTurn playerOnTurn = mock(PlayerOnTurn.class);
+        pippo.applyRuleOnCurrentPosition(playerOnTurn);
 
-        verify(position).applyAttachedRule(pippo);
+        verify(position).applyAttachedRule(playerOnTurn);
     }
 }
