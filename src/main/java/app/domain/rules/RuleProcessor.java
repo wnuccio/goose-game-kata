@@ -16,5 +16,7 @@ public class RuleProcessor {
         playerOnTurn.moveByDice();
 
         switchPlayersRule.apply(playerOnTurn);
+        playerOnTurn.end();
+
     }
 }

@@ -83,7 +83,7 @@ class PlayerOnTurnTest {
     void init_presenter_and_pass_it_to_all_movements() {
         PlayerOnTurn playerOnTurn = new PlayerOnTurn(null, dice(3, 4), movements);
 
-        playerOnTurn.present();
+        playerOnTurn.end();
 
         verify(movements).present(playerOnTurn);
     }

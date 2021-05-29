@@ -12,7 +12,5 @@ public class MovePlayer {
 
     public void doMove(PlayerOnTurn playerOnTurn) {
         ruleProcessor.computeMovementsFor(playerOnTurn);
-
-        playerOnTurn.present();
     }
 }

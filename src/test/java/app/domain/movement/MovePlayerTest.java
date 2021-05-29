@@ -26,7 +26,6 @@ class MovePlayerTest {
         movePlayer.doMove(playerOnTurn);
 
         verify(ruleProcessor).computeMovementsFor(playerOnTurn);
-        verify(playerOnTurn).present();
     }
 
 }

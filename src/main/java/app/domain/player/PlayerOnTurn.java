@@ -68,7 +68,7 @@ public class PlayerOnTurn implements PlayerObserver {
         movements.add(movement);
     }
 
-    public void present() {
+    public void end() {
         movements.present(this);
     }
 }
