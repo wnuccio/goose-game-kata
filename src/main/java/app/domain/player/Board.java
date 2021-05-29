@@ -14,7 +14,6 @@ public class Board {
         put(new Position(5, this, "5, The Goose.").attachRule(new GooseRule()));
         put(new Position(6, this, "The Bridge").attachRule(new JumpOnBridgeRule(this)));
         put(new Position(9, this, "9, The Goose.").attachRule(new GooseRule()));
-        put(new Position(12, this, "12"));
         put(new Position(14, this, "14, The Goose.").attachRule(new GooseRule()));
         put(new Position(18, this, "18, The Goose.").attachRule(new GooseRule()));
         put(new Position(23, this, "23, The Goose.").attachRule(new GooseRule()));
@@ -31,14 +30,6 @@ public class Board {
 
     public Position start() {
         return position(0);
-    }
-
-    public Position bridge() {
-        return position(6);
-    }
-
-    public Position bridgeTarget() {
-        return position(12);
     }
 
     public Position win() {

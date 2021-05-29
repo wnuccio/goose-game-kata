@@ -7,7 +7,7 @@ import app.domain.presenter.StringBuilderPresenter;
 
 public class JumpOnBridgeMovement extends PresentableMovement {
 
-    public JumpOnBridgeMovement(Board board) { super(board.bridge(), board.bridgeTarget()); }
+    public JumpOnBridgeMovement(Board board) { super(board.position(6), board.position(12)); }
 
     @Override
     public void present(PlayerOnTurn playerOnTurn, StringBuilderPresenter presenter) {
