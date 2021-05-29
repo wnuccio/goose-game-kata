@@ -21,7 +21,7 @@ class FindPlayerTest {
         players = mock(Players.class);
         movePlayer = mock(MovePlayer.class);
         playerOnTurnFactory = mock(PlayerOnTurnFactory.class);
-        findPlayer = new FindPlayer(players, movePlayer, playerOnTurnFactory);
+        findPlayer = new FindPlayer(players, playerOnTurnFactory, movePlayer);
     }
 
     @Test
