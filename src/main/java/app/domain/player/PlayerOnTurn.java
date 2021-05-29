@@ -51,7 +51,7 @@ public class PlayerOnTurn implements PlayerObserver {
         movements.add(movement);
     }
 
-    public List<Player> encounteredOpponents(Players allPlayers) {
+    public List<Player> opponentsOnSamePosition(Players allPlayers) {
         return allPlayers.opponentsOnSamePositionOf(player);
     }
 

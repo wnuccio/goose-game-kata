@@ -27,7 +27,7 @@ class SwitchPlayersRuleTest {
         Player anotherOpponent = new Player("", null);
 
         when(playerOnTurn.previousPosition()).thenReturn(board.position(10));
-        when(playerOnTurn.encounteredOpponents(players)).thenReturn(asList(pluto, anotherOpponent));
+        when(playerOnTurn.opponentsOnSamePosition(players)).thenReturn(asList(pluto, anotherOpponent));
 
         rule.apply(playerOnTurn);
 
@@ -39,7 +39,7 @@ class SwitchPlayersRuleTest {
 
     @Test
     void do_not_apply_any_switch_if_no_other_player_is_encountered() {
-        when(playerOnTurn.encounteredOpponents(players)).thenReturn(emptyList());
+        when(playerOnTurn.opponentsOnSamePosition(players)).thenReturn(emptyList());
 
         rule.apply(playerOnTurn);
 

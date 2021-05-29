@@ -86,7 +86,7 @@ class PlayerOnTurnTest {
         when(players.opponentsOnSamePositionOf(pippo)).thenReturn(returnedOpponents);
 
         PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null, null);
-        List<Player> encounteredOpponents = playerOnTurn.encounteredOpponents(players);
+        List<Player> encounteredOpponents = playerOnTurn.opponentsOnSamePosition(players);
 
         assertThat(encounteredOpponents).isEqualTo(returnedOpponents);
     }

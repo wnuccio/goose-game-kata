@@ -15,7 +15,7 @@ public class SwitchPlayersRule {
     }
 
     public void apply(PlayerOnTurn playerOnTurn) {
-        List<Player> encounteredOpponents = playerOnTurn.encounteredOpponents(players);
+        List<Player> encounteredOpponents = playerOnTurn.opponentsOnSamePosition(players);
 
         if (encounteredOpponents.isEmpty()) return;
 
