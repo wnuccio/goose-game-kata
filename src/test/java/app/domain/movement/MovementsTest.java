@@ -2,14 +2,14 @@ package app.domain.movement;
 
 import app.domain.player.Movement;
 import app.domain.player.PlayerOnTurn;
+import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 class MovementsTest {
 
@@ -31,13 +31,16 @@ class MovementsTest {
     }
 
     @Test
-    void return_the_last_added_movement() {
+    void return_the_last_position_of_all_movements() {
         movements.add(movement1);
         movements.add(movement2);
 
-        Movement movement = movements.last();
+        Position startPositionOfLastMovement = mock(Position.class);
+        when(movement2.startPosition()).thenReturn(startPositionOfLastMovement);
 
-        assertThat(movement).isSameAs(movement2);
+        Position lastPosition = movements.penultimatePosition();
+
+        assertThat(lastPosition).isEqualTo(startPositionOfLastMovement);
     }
 
     @Test

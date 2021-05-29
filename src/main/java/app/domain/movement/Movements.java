@@ -2,6 +2,7 @@ package app.domain.movement;
 
 import app.domain.player.Movement;
 import app.domain.player.PlayerOnTurn;
+import app.domain.player.Position;
 import app.domain.presenter.StringBuilderPresenter;
 
 import java.util.LinkedList;
@@ -25,7 +26,7 @@ public class Movements {
         presenter.writeOutput();
     }
 
-    public Movement last() {
-        return movements.getLast();
+    public Position penultimatePosition() {
+        return movements.getLast().startPosition();
     }
 }

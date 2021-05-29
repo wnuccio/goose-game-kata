@@ -56,7 +56,7 @@ public class PlayerOnTurn implements PlayerObserver {
     }
 
     public Position previousPosition() {
-        return movements.last().startPosition();
+        return movements.penultimatePosition();
     }
 
     @Override
