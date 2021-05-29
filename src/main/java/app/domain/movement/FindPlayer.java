@@ -7,12 +7,10 @@ import app.domain.player.Players;
 public class FindPlayer {
 
     private final Players players;
-    private PlayerOnTurnFactory playerOnTurnFactory;
     private final MovePlayer movePlayer;
 
-    public FindPlayer(Players players, PlayerOnTurnFactory playerOnTurnFactory, MovePlayer movePlayer) {
+    public FindPlayer(Players players, MovePlayer movePlayer) {
         this.players = players;
-        this.playerOnTurnFactory = playerOnTurnFactory;
         this.movePlayer = movePlayer;
     }
 
@@ -21,7 +19,7 @@ public class FindPlayer {
 
         Player player = players.find(command.player());
 
-        PlayerOnTurn playerOnTurn = playerOnTurnFactory.createPlayerOnTurn(player, command.dice());
+        PlayerOnTurn playerOnTurn = new PlayerOnTurn(player, command.dice());
 
         movePlayer.doMove(playerOnTurn);
     }
