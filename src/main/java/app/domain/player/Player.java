@@ -44,6 +44,10 @@ public class Player {
         correctPositionWithBouncing();
     }
 
+    public void applyRuleOnCurrentPosition(PlayerOnTurn playerOnTurn) {
+        position.applyAttachedRule(playerOnTurn);
+    }
+
     private void moveByDice(Dice dice) {
         Position start = this.position;
         this.position = this.position.plus(dice);
@@ -61,9 +65,5 @@ public class Player {
 
     private void notifyMovement(Movement movement) {
         observers.forEach(o -> o.playerPositionChanged(movement));
-    }
-
-    public void applyRuleOnCurrentPosition(PlayerOnTurn playerOnTurn) {
-        position.applyAttachedRule(playerOnTurn);
     }
 }
