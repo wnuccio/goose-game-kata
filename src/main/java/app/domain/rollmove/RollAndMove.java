@@ -1,7 +1,7 @@
 package app.domain.rollmove;
 
 import app.domain.movement.FindPlayer;
-import app.domain.movement.MoveCommand;
+import app.domain.player.Dice;
 
 public class RollAndMove {
     private final DiceRoller diceRoller;
@@ -12,8 +12,8 @@ public class RollAndMove {
         this.findPlayer = findPlayer;
     }
 
-    public void acceptCommand(String player) {
-        MoveCommand commandWithDice = new MoveCommand(player, diceRoller.roll());
-        findPlayer.acceptCommand(commandWithDice);
+    public void acceptCommand(String playerName) {
+        Dice dice = diceRoller.roll();
+        findPlayer.acceptCommand(playerName, dice);
     }
 }

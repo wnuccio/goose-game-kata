@@ -17,8 +17,7 @@ public class InterpretMovePlayer implements Interpreter {
             String player = tokens.name(2);
             int dice1 = tokens.number(3);
             int dice2 = tokens.number(4);
-            MoveCommand command = new MoveCommand(player, new Dice(dice1, dice2));
-            findPlayer.acceptCommand(command);
+            findPlayer.acceptCommand(player, new Dice(dice1, dice2));
         });
     }
 }
