@@ -6,9 +6,6 @@ import app.domain.rules.switchrule.SwitchPlayersRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -48,7 +45,7 @@ class PlayerOnTurnTest {
         verify(pippo).addObserver(movements);
         verify(pippo).moveByDiceConsideringBouncing(dice);
         verify(pippo).applyRuleOnCurrentPosition(playerOnTurn);
-        verify(switchPlayersRule).apply(playerOnTurn, movements);
+        verify(switchPlayersRule).apply(pippo, movements);
         verify(movements).present(playerOnTurn);
     }
 
@@ -62,18 +59,5 @@ class PlayerOnTurnTest {
 
         verify(pippo).applyMovement(movement);
         verify(pippo).applyRuleOnCurrentPosition(playerOnTurn);
-    }
-
-    @Test
-    void return_opponents_on_same_position_of_player_on_turn() {
-        List<Player> returnedOpponents = new ArrayList<>();
-
-        Players players = mock(Players.class);
-        when(players.opponentsOnSamePositionOf(pippo)).thenReturn(returnedOpponents);
-
-        PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null);
-        List<Player> encounteredOpponents = playerOnTurn.opponentsOnSamePosition(players);
-
-        assertThat(encounteredOpponents).isEqualTo(returnedOpponents);
     }
 }

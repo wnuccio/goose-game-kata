@@ -2,7 +2,6 @@ package app.domain.rules.switchrule;
 
 import app.domain.movement.Movements;
 import app.domain.player.Player;
-import app.domain.player.PlayerOnTurn;
 import app.domain.player.Players;
 import app.domain.player.Position;
 
@@ -15,8 +14,8 @@ public class SwitchPlayersRule {
         this.players = players;
     }
 
-    public void apply(PlayerOnTurn playerOnTurn, Movements movements) {
-        List<Player> encounteredOpponents = playerOnTurn.opponentsOnSamePosition(players);
+    public void apply(Player player, Movements movements) {
+        List<Player> encounteredOpponents = players.opponentsOnSamePositionOf(player);
 
         if (encounteredOpponents.isEmpty()) return;
 

@@ -3,8 +3,6 @@ package app.domain.player;
 import app.domain.movement.Movements;
 import app.domain.rules.switchrule.SwitchPlayersRule;
 
-import java.util.List;
-
 public class PlayerOnTurn {
     private final Player player;
     private final Dice dice;
@@ -36,16 +34,12 @@ public class PlayerOnTurn {
         player.addObserver(movements);
         player.moveByDiceConsideringBouncing(dice);
         player.applyRuleOnCurrentPosition(this);
-        switchPlayersRule.apply(this, movements);
+        switchPlayersRule.apply(player, movements);
         movements.present(this);
     }
 
     public void applyMovement(Movement movement) {
         player.applyMovement(movement);
         player.applyRuleOnCurrentPosition(this);
-    }
-
-    public List<Player> opponentsOnSamePosition(Players allPlayers) {
-        return allPlayers.opponentsOnSamePositionOf(player);
     }
 }

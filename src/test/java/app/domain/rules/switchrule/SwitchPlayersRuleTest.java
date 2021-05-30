@@ -24,14 +24,16 @@ class SwitchPlayersRuleTest {
 
     @Test
     void change_position_of_encountered_player() {
-        Player pluto = new Player("Pluto", board.position(17));
+        Player pluto = mock(Player.class);
         Player anotherOpponent = new Player("", null);
+        when(players.opponentsOnSamePositionOf(any())).thenReturn(asList(pluto, anotherOpponent));
+        when(pluto.name()).thenReturn("Pluto");
+        when(pluto.position()).thenReturn(board.position(17));
+
+        Player pippo = mock(Player.class);
         Movements movements = mock(Movements.class);
-
-        when(playerOnTurn.opponentsOnSamePosition(players)).thenReturn(asList(pluto, anotherOpponent));
         when(movements.penultimatePosition()).thenReturn(board.position(10));
-
-        rule.apply(playerOnTurn, movements);
+        rule.apply(pippo, movements);
 
         verify(movements).add(movement.capture());
         assertThat(movement.getValue().switchedPlayer()).isEqualTo("Pluto");
@@ -41,10 +43,10 @@ class SwitchPlayersRuleTest {
 
     @Test
     void do_not_apply_any_switch_if_no_other_player_is_encountered() {
-        when(playerOnTurn.opponentsOnSamePosition(players)).thenReturn(emptyList());
+        when(players.opponentsOnSamePositionOf(any())).thenReturn(emptyList());
 
         Movements movements = mock(Movements.class);
-        rule.apply(playerOnTurn, movements);
+        rule.apply(null, movements);
 
         verify(movements, never()).add(any());
     }
