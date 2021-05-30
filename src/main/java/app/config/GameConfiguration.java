@@ -15,9 +15,6 @@ import app.domain.player.*;
 import app.domain.rollmove.DiceRoller;
 import app.domain.rollmove.InterpretRollAndMove;
 import app.domain.rollmove.RollAndMove;
-import app.domain.rules.RuleProcessor;
-import app.domain.rules.bridge.JumpOnBridgeRule;
-import app.domain.rules.goose.GooseRule;
 import app.domain.rules.switchrule.SwitchPlayersRule;
 
 import java.util.List;
@@ -107,15 +104,11 @@ public class GameConfiguration {
     }
 
     private MovePlayer movePlayer() {
-        return new MovePlayer(computeMovement());
+        return new MovePlayer(movementsFactory(), switchPlayersRule());
     }
 
-    private RuleProcessor computeMovement() {
-        JumpOnBridgeRule jumpOnBridgeRule = new JumpOnBridgeRule(board());
-        GooseRule gooseRule = new GooseRule();
-        SwitchPlayersRule switchPlayersRule = new SwitchPlayersRule(players);
-
-        return new RuleProcessor(switchPlayersRule, movementsFactory());
+    private SwitchPlayersRule switchPlayersRule() {
+        return new SwitchPlayersRule(players());
     }
 
     private RollAndMove rollAndMove(FindPlayer findPlayer) {

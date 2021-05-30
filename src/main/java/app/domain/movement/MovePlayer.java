@@ -1,16 +1,19 @@
 package app.domain.movement;
 
 import app.domain.player.PlayerOnTurn;
-import app.domain.rules.RuleProcessor;
+import app.domain.rules.switchrule.SwitchPlayersRule;
 
 public class MovePlayer {
-    private final RuleProcessor ruleProcessor;
+    private MovementsFactory movementsFactory;
+    private SwitchPlayersRule switchPlayersRule;
 
-    public MovePlayer(RuleProcessor ruleProcessor) {
-        this.ruleProcessor = ruleProcessor;
+    public MovePlayer(MovementsFactory movementsFactory, SwitchPlayersRule switchPlayersRule) {
+        this.movementsFactory = movementsFactory;
+        this.switchPlayersRule = switchPlayersRule;
     }
 
     public void doMove(PlayerOnTurn playerOnTurn) {
-        ruleProcessor.computeMovementsFor(playerOnTurn);
+        Movements movements = movementsFactory.createMovements();
+        playerOnTurn.doTurn(movements, switchPlayersRule);
     }
 }
