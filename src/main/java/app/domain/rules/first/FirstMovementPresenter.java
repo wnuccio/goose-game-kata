@@ -15,8 +15,7 @@ public class FirstMovementPresenter {
         Position start = movement.startPosition();
         Position end = movement.finalPosition();
         String playerMoves = format("%s moves from %s to %s", player, start.name(), end.name());
-        String playerWins = end.isWin() ? format(". %s Wins!!", player) : "";
 
-        presenter.append(playerRolls + playerMoves + playerWins);
+        presenter.append(playerRolls + playerMoves);
     }
 }

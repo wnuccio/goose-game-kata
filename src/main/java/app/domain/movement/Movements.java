@@ -8,6 +8,8 @@ import app.domain.presenter.StringBuilderPresenter;
 
 import java.util.LinkedList;
 
+import static java.lang.String.format;
+
 public class Movements implements PlayerObserver {
 
     private final LinkedList<Movement> movements = new LinkedList<>();
@@ -24,7 +26,15 @@ public class Movements implements PlayerObserver {
     public void present(PlayerOnTurn playerOnTurn) {
         presenter.init();
         movements.forEach(movement -> movement.present(playerOnTurn, presenter));
+        presentEventualVictory(playerOnTurn);
         presenter.writeOutput();
+    }
+
+    private void presentEventualVictory(PlayerOnTurn playerOnTurn) {
+        if (playerOnTurn.hasWon()) {
+            String playerWins = format(". %s Wins!!", playerOnTurn.name());
+            presenter.append(playerWins);
+        }
     }
 
     public Position penultimatePosition() {

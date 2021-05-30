@@ -40,24 +40,20 @@ public class Player {
     }
 
     public void moveByDiceConsideringBouncing(Dice dice) {
-        moveByDice(dice);
-        correctPositionWithBouncing();
+        Position candidatePosition = position.plus(dice);
+        boolean bouncing = candidatePosition.isBeyondWin();
+        Position firstFinalPosition = bouncing ? position.board().win() : candidatePosition;
+
+        applyMovement(new FirstMovement(position, firstFinalPosition));
+
+        if (bouncing) {
+            BouncingMovement bouncingMovement = new BouncingMovement(position.board(), candidatePosition.bounced());
+            applyMovement(bouncingMovement);
+        }
     }
 
     public void applyRuleOnCurrentPosition(PlayerOnTurn playerOnTurn) {
         position.applyAttachedRule(playerOnTurn);
-    }
-
-    private void moveByDice(Dice dice) {
-        FirstMovement movement = new FirstMovement(position, position.plus(dice));
-        applyMovement(movement);
-    }
-
-    private void correctPositionWithBouncing() {
-        if (!this.position.isBeyondWin()) return;
-
-        BouncingMovement movement = new BouncingMovement(this.position.board(), this.position.bounced());
-        applyMovement(movement);
     }
 
     private void notifyMovement(Movement movement) {

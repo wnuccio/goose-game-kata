@@ -42,4 +42,8 @@ public class PlayerOnTurn {
         player.applyMovement(movement);
         player.applyRuleOnCurrentPosition(this);
     }
+
+    public boolean hasWon() {
+        return player.position().isWin();
+    }
 }

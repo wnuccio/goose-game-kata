@@ -63,7 +63,7 @@ class PlayerTest {
         verify(pippoObserver, times(2)).playerPositionChanged(movement.capture());
 
         assertThat(movement.getAllValues().get(0).startPosition()).isEqualTo(board.position(61));
-        assertThat(movement.getAllValues().get(0).finalPosition()).isEqualTo(board.position(66));
+        assertThat(movement.getAllValues().get(0).finalPosition()).isEqualTo(board.position(63));
         assertThat(movement.getAllValues().get(1) instanceof BouncingMovement).isTrue();
         assertThat(movement.getAllValues().get(1).startPosition()).isEqualTo(board.position(63));
         assertThat(movement.getAllValues().get(1).finalPosition()).isEqualTo(board.position(60));
