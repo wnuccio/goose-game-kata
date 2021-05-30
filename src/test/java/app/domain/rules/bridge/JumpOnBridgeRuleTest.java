@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 class JumpOnBridgeRuleTest {
     Board board = new Board();
@@ -16,6 +15,7 @@ class JumpOnBridgeRuleTest {
     @Test
     void apply_a_movement_towards_position_12_to_the_player() {
         PlayerOnTurn playerOnTurn = mock(PlayerOnTurn.class);
+        when(playerOnTurn.position()).thenReturn(board.position(6));
 
         rule.applyTo(playerOnTurn);
 

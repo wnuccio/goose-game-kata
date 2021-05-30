@@ -1,9 +1,6 @@
 package app.domain.rules.bridge;
 
-import app.domain.player.Board;
-import app.domain.player.Movement;
-import app.domain.player.PlayerOnTurn;
-import app.domain.player.PositionRule;
+import app.domain.player.*;
 
 public class JumpOnBridgeRule implements PositionRule {
     private final Board board;
@@ -14,7 +11,9 @@ public class JumpOnBridgeRule implements PositionRule {
 
     @Override
     public void applyTo(PlayerOnTurn playerOnTurn) {
-        Movement movement = new JumpOnBridgeMovement(board);
+        Position position = playerOnTurn.position();
+        Position finalPosition = board.position(12);
+        Movement movement = new JumpOnBridgeMovement(position, finalPosition);
         playerOnTurn.applyMovement(movement);
     }
 }
