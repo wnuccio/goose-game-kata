@@ -10,20 +10,20 @@ public class Board {
 
     public Board() {
         this.map = new HashMap<>();
-        put(new Position(0, this, "Start"));
-        put(new Position(5, this, "5, The Goose.").attachRule(new GooseRule()));
-        put(new Position(6, this, "The Bridge").attachRule(new JumpOnBridgeRule(this)));
-        put(new Position(9, this, "9, The Goose.").attachRule(new GooseRule()));
-        put(new Position(14, this, "14, The Goose.").attachRule(new GooseRule()));
-        put(new Position(18, this, "18, The Goose.").attachRule(new GooseRule()));
-        put(new Position(23, this, "23, The Goose.").attachRule(new GooseRule()));
-        put(new Position(27, this, "27, The Goose.").attachRule(new GooseRule()));
-        put(new Position(63, this, "63"));
+        put(new Position(this, 0, "Start"));
+        put(new Position(this, 5, "5, The Goose.").attachRule(new GooseRule()));
+        put(new Position(this, 6, "The Bridge").attachRule(new JumpOnBridgeRule(this)));
+        put(new Position(this, 9, "9, The Goose.").attachRule(new GooseRule()));
+        put(new Position(this, 14, "14, The Goose.").attachRule(new GooseRule()));
+        put(new Position(this, 18, "18, The Goose.").attachRule(new GooseRule()));
+        put(new Position(this, 23, "23, The Goose.").attachRule(new GooseRule()));
+        put(new Position(this, 27, "27, The Goose.").attachRule(new GooseRule()));
+        put(new Position(this, 63, "63"));
     }
 
     public Position position(int value) {
         if ( ! map.containsKey(value)) {
-            put(new Position(value, this, String.valueOf(value)));
+            put(new Position(this, value, String.valueOf(value)));
         }
         return map.get(value);
     }
