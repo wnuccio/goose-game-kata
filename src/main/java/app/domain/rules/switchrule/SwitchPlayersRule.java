@@ -3,7 +3,6 @@ package app.domain.rules.switchrule;
 import app.domain.movement.Movements;
 import app.domain.player.Player;
 import app.domain.player.Players;
-import app.domain.player.Position;
 
 import java.util.List;
 
@@ -20,11 +19,18 @@ public class SwitchPlayersRule {
         if (encounteredOpponents.isEmpty()) return;
 
         Player unluckyOpponent = encounteredOpponents.get(0);
-        Position start = unluckyOpponent.position();
-        Position end = movements.penultimatePosition();
 
-        unluckyOpponent.position(end);
+        moveBack(unluckyOpponent, movements);
+    }
 
-        movements.add(new SwitchMovement(unluckyOpponent.name(), start, end));
+    private void moveBack(Player unluckyOpponent, Movements movements) {
+        unluckyOpponent.addObserver(movements);
+
+        SwitchMovement movement = new SwitchMovement(
+                unluckyOpponent.name(),
+                unluckyOpponent.position(),
+                movements.penultimatePosition());
+
+        unluckyOpponent.applyMovement(movement);
     }
 }

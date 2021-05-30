@@ -33,9 +33,11 @@ class SwitchPlayersRuleTest {
         Player pippo = mock(Player.class);
         Movements movements = mock(Movements.class);
         when(movements.penultimatePosition()).thenReturn(board.position(10));
+
         rule.apply(pippo, movements);
 
-        verify(movements).add(movement.capture());
+        verify(pluto).addObserver(movements);
+        verify(pluto).applyMovement(movement.capture());
         assertThat(movement.getValue().switchedPlayer()).isEqualTo("Pluto");
         assertThat(movement.getValue().startPosition()).isEqualTo(board.position(17));
         assertThat(movement.getValue().finalPosition()).isEqualTo(board.position(10));
