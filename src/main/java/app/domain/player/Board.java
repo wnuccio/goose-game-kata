@@ -22,9 +22,9 @@ public class Board {
     }
 
     public Position position(int value) {
-        if (map.containsKey(value)) return map.get(value);
-        String name = value <= 63 ? String.valueOf(value) : "63";
-        put(new Position(value, this, name));
+        if ( ! map.containsKey(value)) {
+            put(new Position(value, this, String.valueOf(value)));
+        }
         return map.get(value);
     }
 
@@ -37,6 +37,6 @@ public class Board {
     }
 
     private void put(Position position) {
-        this.map.putIfAbsent(position.value, position);
+        this.map.put(position.value, position);
     }
 }
