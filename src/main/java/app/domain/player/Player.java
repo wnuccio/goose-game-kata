@@ -49,18 +49,15 @@ public class Player {
     }
 
     private void moveByDice(Dice dice) {
-        Position start = this.position;
-        this.position = this.position.plus(dice);
-        FirstMovement movement = new FirstMovement(start, this.position);
-        notifyMovement(movement);
+        FirstMovement movement = new FirstMovement(position, position.plus(dice));
+        applyMovement(movement);
     }
 
     private void correctPositionWithBouncing() {
-        if (this.position.isBeyondWin()) {
-            this.position = this.position.bounced();
-            BouncingMovement movement = new BouncingMovement(this.position.board(), this.position);
-            notifyMovement(movement);
-        }
+        if (!this.position.isBeyondWin()) return;
+
+        BouncingMovement movement = new BouncingMovement(this.position.board(), this.position.bounced());
+        applyMovement(movement);
     }
 
     private void notifyMovement(Movement movement) {

@@ -25,11 +25,11 @@ class PlayerTest {
 
     @Test
     void on_apply_movement_move_to_the_final_position_and_notify_movement() {
-        Movement movement = mock(Movement.class);
-        when(movement.finalPosition()).thenReturn(board.position(7));
-
         pippo = new Player("Pippo", board.position(3));
         pippo.addObserver(pippoObserver);
+
+        Movement movement = mock(Movement.class);
+        when(movement.finalPosition()).thenReturn(board.position(7));
         pippo.applyMovement(movement);
 
         assertThat(pippo.position()).isEqualTo(board.position(7));
