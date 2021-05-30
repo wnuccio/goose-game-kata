@@ -19,7 +19,7 @@ class MovePlayerTest {
     void create_a_new_player_on_turn_and_computes_movement_for_him() {
         movePlayer.doMove(playerOnTurn);
 
-        verify(playerOnTurn).doTurn(any(), eq(switchPlayersRule));
+        verify(playerOnTurn).performTurn(any(), eq(switchPlayersRule));
     }
 
 }

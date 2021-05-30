@@ -32,7 +32,7 @@ public class PlayerOnTurn {
         return dice.second();
     }
 
-    public void doTurn(Movements movements, SwitchPlayersRule switchPlayersRule) {
+    public void performTurn(Movements movements, SwitchPlayersRule switchPlayersRule) {
         player.addObserver(movements);
         player.moveByDiceConsideringBouncing(dice);
         player.applyRuleOnCurrentPosition(this);

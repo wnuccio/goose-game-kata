@@ -43,7 +43,7 @@ class PlayerOnTurnTest {
 
         Movements movements = mock(Movements.class);
         SwitchPlayersRule switchPlayersRule = mock(SwitchPlayersRule.class);
-        playerOnTurn.doTurn(movements, switchPlayersRule);
+        playerOnTurn.performTurn(movements, switchPlayersRule);
 
         verify(pippo).addObserver(movements);
         verify(pippo).moveByDiceConsideringBouncing(dice);

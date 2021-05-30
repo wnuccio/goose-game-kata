@@ -14,6 +14,6 @@ public class MovePlayer {
 
     public void doMove(PlayerOnTurn playerOnTurn) {
         Movements movements = movementsFactory.createMovements();
-        playerOnTurn.doTurn(movements, switchPlayersRule);
+        playerOnTurn.performTurn(movements, switchPlayersRule);
     }
 }
