@@ -11,15 +11,15 @@ public class Game {
         this.players = players;
     }
 
-    public void turnOff() {
-        isOn = false;
-    }
-
     public boolean isOn() {
         return isOn;
     }
 
     public void reset() {
         players.clear();
+    }
+
+    public void stop() {
+        isOn = false;
     }
 }

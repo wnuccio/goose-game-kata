@@ -13,6 +13,6 @@ public class InterpretStopGame implements Interpreter {
 
     @Override
     public boolean interpret(CommandLine commandLine) {
-        return commandLine.interpret("stop game", tokens -> game.turnOff());
+        return commandLine.interpret("stop game", tokens -> game.stop());
     }
 }

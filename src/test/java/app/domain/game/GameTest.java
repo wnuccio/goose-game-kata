@@ -15,7 +15,7 @@ class GameTest {
     void turn_off_the_game() {
         assertThat(game.isOn()).isTrue();
 
-        game.turnOff();
+        game.stop();
 
         assertThat(game.isOn()).isFalse();
     }
