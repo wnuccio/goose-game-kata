@@ -41,7 +41,7 @@ public class Player {
 
     public void moveByDiceConsideringBouncing(Dice dice) {
         Position candidatePosition = position.plus(dice);
-        boolean bouncing = candidatePosition.isBeyondWin();
+        boolean bouncing = position.isBeyondWinFor(dice);
         Position firstFinalPosition = bouncing ? position.board().win() : candidatePosition;
 
         applyMovement(new FirstMovement(position, firstFinalPosition));

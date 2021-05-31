@@ -24,7 +24,22 @@ public class Position {
     }
 
     public Position plus(Dice dice) {
-        return board.position(value + dice.total());
+        int newValue = value + dice.total();
+        int winValue = board().win().value;
+        if (newValue > winValue) {
+            newValue = winValue - (newValue - winValue);
+        }
+        return board.position(newValue);
+    }
+
+    public boolean isBeyondWinFor(Dice dice) {
+        return residualMovementFor(dice) > 0;
+    }
+
+    public int residualMovementFor(Dice dice) {
+        int newValue = value + dice.total();
+        int maxValue = board.win().value ;
+        return newValue > maxValue ? newValue - maxValue : 0;
     }
 
     public Position bounced() {
@@ -32,10 +47,6 @@ public class Position {
 
         int bounced = board.win().value - (value - board.win().value);
         return board.position(bounced);
-    }
-
-    public boolean isBeyondWinFor(Dice dice) {
-        return this.value + dice.total() > board.win().value;
     }
 
     public String name() {
