@@ -5,14 +5,14 @@ import app.domain.interpreter.Interpreter;
 
 public class InterpretStopGame implements Interpreter {
 
-    private final StopOrResetGame stopOrResetGame;
+    private Game game;
 
-    public InterpretStopGame(StopOrResetGame stopOrResetGame) {
-        this.stopOrResetGame = stopOrResetGame;
+    public InterpretStopGame(Game game) {
+        this.game = game;
     }
 
     @Override
     public boolean interpret(CommandLine commandLine) {
-        return commandLine.interpret("stop game", tokens -> stopOrResetGame.doStop());
+        return commandLine.interpret("stop game", tokens -> game.turnOff());
     }
 }
