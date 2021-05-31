@@ -5,7 +5,6 @@ import app.console.GameController;
 import app.domain.game.Game;
 import app.domain.game.InterpretResetGame;
 import app.domain.game.InterpretStopGame;
-import app.domain.game.StopOrResetGame;
 import app.domain.interpreter.Interpreter;
 import app.domain.movement.FindPlayer;
 import app.domain.movement.InterpretMovePlayer;
@@ -97,10 +96,6 @@ public class GameConfiguration {
 
     private AddPlayer addPlayer() {
         return new AddPlayer(board(), players(), presenter());
-    }
-
-    private StopOrResetGame resetService() {
-        return new StopOrResetGame(game(), players());
     }
 
     private MovePlayer movePlayer() {
