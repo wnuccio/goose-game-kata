@@ -22,7 +22,7 @@ public class Position {
 
     public Position plus(Dice dice) {
         int newValue = value + dice.total();
-        int winValue = board().win().value;
+        int winValue = board.win().value;
         return board.position(min(newValue, winValue));
     }
 
