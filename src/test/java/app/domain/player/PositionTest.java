@@ -21,6 +21,14 @@ public class PositionTest {
     }
 
     @Test
+    void position_is_beyond_win_when_added_to_given_dice() {
+        when(board.win()).thenReturn(position(10));
+
+        assertThat(position(7).isBeyondWinFor(new Dice(1, 2))).isFalse();
+        assertThat(position(7).isBeyondWinFor(new Dice(2, 2))).isTrue();
+    }
+
+    @Test
     void position_63_is_win_position() {
         when(board.win()).thenReturn(position(63));
 

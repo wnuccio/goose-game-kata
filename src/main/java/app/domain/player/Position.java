@@ -34,6 +34,10 @@ public class Position {
         return board.position(bounced);
     }
 
+    public boolean isBeyondWinFor(Dice dice) {
+        return this.value + dice.total() > board.win().value;
+    }
+
     public String name() {
         return name;
     }
