@@ -10,7 +10,7 @@ public class GooseRule implements PositionRule {
     @Override
     public void applyTo(PlayerOnTurn playerOnTurn) {
         Position position = playerOnTurn.position();
-        Position finalPosition = position.plusTruncatedToWin(playerOnTurn.dice());
+        Position finalPosition = position.plus(playerOnTurn.dice());
         Movement movement = new GooseMovement(position, finalPosition);
         playerOnTurn.applyMovement(movement);
     }

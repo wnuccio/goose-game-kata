@@ -40,7 +40,7 @@ public class Player {
     }
 
     public void moveByDiceConsideringBouncing(Dice dice) {
-        Position finalPosition = position.plusTruncatedToWin(dice);
+        Position finalPosition = position.plus(dice);
         int residualMovement = position.residualMovementFor(dice);
         applyMovement(new FirstMovement(position, finalPosition));
 
