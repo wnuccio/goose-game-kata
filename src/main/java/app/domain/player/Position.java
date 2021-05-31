@@ -1,5 +1,6 @@
 package app.domain.player;
 
+import static java.lang.Math.min;
 import static java.lang.String.format;
 
 public class Position {
@@ -30,6 +31,12 @@ public class Position {
             newValue = winValue - (newValue - winValue);
         }
         return board.position(newValue);
+    }
+
+    public Position plusTruncatedToWin(Dice dice) {
+        int newValue = value + dice.total();
+        int winValue = board().win().value;
+        return board.position(min(newValue, winValue));
     }
 
     public int residualMovementFor(Dice dice) {
