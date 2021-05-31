@@ -6,7 +6,7 @@ import static java.lang.String.format;
 
 public class Position {
     private final Board board;
-    private String name;
+    private final String name;
     private final int value;
     private PositionRule rule;
 
