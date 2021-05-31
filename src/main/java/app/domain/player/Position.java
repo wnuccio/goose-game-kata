@@ -32,10 +32,6 @@ public class Position {
         return board.position(newValue);
     }
 
-    public boolean isBeyondWinFor(Dice dice) {
-        return residualMovementFor(dice) > 0;
-    }
-
     public int residualMovementFor(Dice dice) {
         int newValue = value + dice.total();
         int maxValue = board.win().value ;
