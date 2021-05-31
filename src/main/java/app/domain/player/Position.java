@@ -1,5 +1,6 @@
 package app.domain.player;
 
+import static app.domain.player.PositionRule.NO_RULE;
 import static java.lang.Math.min;
 import static java.lang.String.format;
 
@@ -13,7 +14,7 @@ public class Position {
         this.value = value;
         this.board = board;
         this.name = name;
-        this.rule = playerOnTurn -> {};
+        this.rule = NO_RULE;
     }
 
     public boolean isWin() {
