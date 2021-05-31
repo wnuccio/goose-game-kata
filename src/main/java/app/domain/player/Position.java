@@ -1,6 +1,6 @@
 package app.domain.player;
 
-import java.util.Objects;
+import static java.lang.String.format;
 
 public class Position {
     private final Board board;
@@ -52,22 +52,7 @@ public class Position {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(value);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Position position = (Position) o;
-        return value == position.value;
-    }
-
-    @Override
     public String toString() {
-        return "Position{" +
-                "value=" + value +
-                '}';
+        return format("Position(%s)", value);
     }
 }
