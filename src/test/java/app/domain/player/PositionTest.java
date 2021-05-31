@@ -51,6 +51,15 @@ public class PositionTest {
     }
 
     @Test
+    void returns_current_position_value_minus_given_value() {
+        when(board.position(7)).thenReturn(position(7));
+        assertThat(position(7).minus(0).value).isEqualTo(7);
+
+        when(board.position(4)).thenReturn(position(4));
+        assertThat(position(7).minus(3).value).isEqualTo(4);
+    }
+
+    @Test
     void position_63_is_win_position() {
         when(board.win()).thenReturn(position(63));
 

@@ -39,6 +39,10 @@ public class Position {
         return board.position(min(newValue, winValue));
     }
 
+    public Position minus(int i) {
+        return board.position(value - i);
+    }
+
     public int residualMovementFor(Dice dice) {
         int newValue = value + dice.total();
         int maxValue = board.win().value ;
