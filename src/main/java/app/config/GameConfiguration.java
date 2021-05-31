@@ -83,8 +83,8 @@ public class GameConfiguration {
                 new InterpretAddPlayer(addPlayer()),
                 new InterpretMovePlayer(findPlayer(movePlayer())),
                 new InterpretRollAndMove(rollAndMove(findPlayer(movePlayer()))),
-                new InterpretResetGame(resetService()),
-                new InterpretStopGame(resetService()),
+                new InterpretResetGame(game()),
+                new InterpretStopGame(resetService()) ,
                 ignoreUnrecognizedCommands
         );
 
