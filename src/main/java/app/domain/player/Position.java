@@ -20,10 +20,6 @@ public class Position {
         return value == (board.win().value);
     }
 
-    public boolean isBeyondWin() {
-        return value > board.win().value;
-    }
-
     public Position plus(Dice dice) {
         int newValue = value + dice.total();
         int winValue = board().win().value;

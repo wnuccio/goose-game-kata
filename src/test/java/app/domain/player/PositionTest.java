@@ -53,15 +53,6 @@ public class PositionTest {
     }
 
     @Test
-    void a_position_is_over_the_victory_when_has_a_value_greater_than_63() {
-        when(board.win()).thenReturn(position(63));
-
-        assertThat(position(67).isBeyondWin()).isTrue();
-        assertThat(position(60).isBeyondWin()).isFalse();
-        assertThat(position(63).isBeyondWin()).isFalse();
-    }
-
-    @Test
     void applies_attached_rule_if_any() {
         Position position = position(6);
         PositionRule positionRule = mock(PositionRule.class);
