@@ -14,20 +14,6 @@ public class PositionTest {
     }
 
     @Test
-    void returns_current_position_value_plus_dice_total_bounced_if_beyond_win() {
-        when(board.win()).thenReturn(position(10));
-
-        when(board.position(9)).thenReturn(position(9));
-        assertThat(position(3).plus(new Dice(2, 4)).value).isEqualTo(9);
-
-        when(board.position(10)).thenReturn(position(10));
-        assertThat(position(3).plus(new Dice(3, 4)).value).isEqualTo(10);
-
-        when(board.position(8)).thenReturn(position(8));
-        assertThat(position(3).plus(new Dice(3, 6)).value).isEqualTo(8);
-    }
-
-    @Test
     void returns_current_position_value_plus_dice_total_truncated_to_win_value_as_max() {
         when(board.win()).thenReturn(position(10));
 

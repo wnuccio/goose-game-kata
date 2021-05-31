@@ -40,14 +40,14 @@ public class Player {
     }
 
     public void moveByDiceConsideringBouncing(Dice dice) {
-        Position candidatePosition = position.plus(dice);
-        boolean bouncing = position.residualMovementFor(dice) > 0;
-        Position firstFinalPosition = bouncing ? position.board().win() : candidatePosition;
+        Position finalPosition = position.plusTruncatedToWin(dice);
+        int residualMovement = position.residualMovementFor(dice);
+        applyMovement(new FirstMovement(position, finalPosition));
 
-        applyMovement(new FirstMovement(position, firstFinalPosition));
-
-        if (bouncing) {
-            BouncingMovement bouncingMovement = new BouncingMovement(position.board(), candidatePosition.bounced());
+        if (residualMovement > 0) {
+            BouncingMovement bouncingMovement = new BouncingMovement(
+                    position.board(),
+                    finalPosition.minus(residualMovement));
             applyMovement(bouncingMovement);
         }
     }

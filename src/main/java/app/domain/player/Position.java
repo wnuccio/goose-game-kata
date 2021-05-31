@@ -24,15 +24,6 @@ public class Position {
         return value > board.win().value;
     }
 
-    public Position plus(Dice dice) {
-        int newValue = value + dice.total();
-        int winValue = board().win().value;
-        if (newValue > winValue) {
-            newValue = winValue - (newValue - winValue);
-        }
-        return board.position(newValue);
-    }
-
     public Position plusTruncatedToWin(Dice dice) {
         int newValue = value + dice.total();
         int winValue = board().win().value;
