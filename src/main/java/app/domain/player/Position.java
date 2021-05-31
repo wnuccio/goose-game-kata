@@ -16,7 +16,7 @@ public class Position {
     }
 
     public boolean isWin() {
-        return this.equals(board.win());
+        return value == (board.win().value);
     }
 
     public boolean isBeyondWin() {
