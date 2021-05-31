@@ -12,7 +12,6 @@ import static org.mockito.Mockito.*;
 class PlayerOnTurnTest {
 
     StringBuilderPresenter presenter;
-    Board board = new Board();
     Player pippo = mock(Player.class);
     Movements movements;
 
@@ -24,13 +23,14 @@ class PlayerOnTurnTest {
 
     @Test
     void returns_position_of_player() {
-        when(pippo.position()).thenReturn(board.position(10));
+        Position anyPosition = new Position(null, 3, "");
+        when(pippo.position()).thenReturn(anyPosition);
 
         PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, null);
 
         Position actualPosition = playerOnTurn.position();
 
-        assertThat(actualPosition).isEqualTo(board.position(10));
+        assertThat(actualPosition).isEqualTo(anyPosition);
     }
 
     @Test
