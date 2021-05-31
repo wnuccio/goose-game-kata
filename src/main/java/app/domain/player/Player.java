@@ -46,7 +46,7 @@ public class Player {
 
         if (residualMovement > 0) {
             BouncingMovement bouncingMovement = new BouncingMovement(
-                    position.board(),
+                    finalPosition,
                     finalPosition.minus(residualMovement));
             applyMovement(bouncingMovement);
         }
