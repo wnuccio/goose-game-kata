@@ -5,20 +5,26 @@ import app.domain.rules.goose.GooseRule;
 
 import java.util.HashMap;
 
+import static app.domain.player.PositionRule.NO_RULE;
+
 public class Board {
     private final HashMap<Integer, Position> map;
 
     public Board() {
         this.map = new HashMap<>();
-        put(new Position(this, 0, "Start"));
-        put(new Position(this, 5, "5, The Goose.").attachRule(new GooseRule()));
-        put(new Position(this, 6, "The Bridge").attachRule(new JumpOnBridgeRule(this)));
-        put(new Position(this, 9, "9, The Goose.").attachRule(new GooseRule()));
-        put(new Position(this, 14, "14, The Goose.").attachRule(new GooseRule()));
-        put(new Position(this, 18, "18, The Goose.").attachRule(new GooseRule()));
-        put(new Position(this, 23, "23, The Goose.").attachRule(new GooseRule()));
-        put(new Position(this, 27, "27, The Goose.").attachRule(new GooseRule()));
-        put(new Position(this, 63, "63"));
+        position( 0, "Start", NO_RULE);
+        position(5, "5, The Goose.", new GooseRule());
+        position(6, "The Bridge", new JumpOnBridgeRule(this));
+        position(9, "9, The Goose.", new GooseRule());
+        position(14, "14, The Goose.", new GooseRule());
+        position(18, "18, The Goose.", new GooseRule());
+        position(23, "23, The Goose.", new GooseRule());
+        position(27, "27, The Goose.", new GooseRule());
+        position(63, "63", NO_RULE);
+    }
+
+    private void position(int value, String name, PositionRule rule) {
+        put(new Position(this, value, name).attachRule(rule));
     }
 
     public Position position(int value) {
