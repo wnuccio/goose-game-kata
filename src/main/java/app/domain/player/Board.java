@@ -24,12 +24,12 @@ public class Board {
     }
 
     private void position(int value, String name, PositionRule rule) {
-        put(new Position(this, value, name).attachRule(rule));
+        put(value, new Position(this, value, name).attachRule(rule));
     }
 
     public Position position(int value) {
         if ( ! map.containsKey(value)) {
-            put(new Position(this, value, String.valueOf(value)));
+            put(value, new Position(this, value, String.valueOf(value)));
         }
         return map.get(value);
     }
@@ -42,7 +42,7 @@ public class Board {
         return position(63);
     }
 
-    private void put(Position position) {
-        this.map.put(position.value, position);
+    private void put(int value, Position position) {
+        this.map.put(value, position);
     }
 }
