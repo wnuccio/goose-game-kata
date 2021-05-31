@@ -40,13 +40,6 @@ public class Position {
         return newValue > maxValue ? newValue - maxValue : 0;
     }
 
-    public Position bounced() {
-        if (! isBeyondWin()) return this;
-
-        int bounced = board.win().value - (value - board.win().value);
-        return board.position(bounced);
-    }
-
     public String name() {
         return name;
     }
