@@ -5,7 +5,7 @@ import static java.lang.String.format;
 
 public class Position {
     private final Board board;
-    String name;
+    private String name;
     final int value;
     private PositionRule rule;
 
@@ -38,10 +38,6 @@ public class Position {
 
     public String name() {
         return name;
-    }
-
-    public Board board() {
-        return board;
     }
 
     public void applyAttachedRule(PlayerOnTurn playerOnTurn) {
