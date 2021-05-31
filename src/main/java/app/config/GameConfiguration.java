@@ -41,12 +41,12 @@ public class GameConfiguration {
     }
 
     private GameController gooseGameApp() {
-        if (gameController == null) gameController = new GameController(applicationSwitch(), inputOutput(), interpreter());
+        if (gameController == null) gameController = new GameController(game(), inputOutput(), interpreter());
         return gameController;
     }
 
-    private Game applicationSwitch() {
-        if (game == null) game = new Game();
+    private Game game() {
+        if (game == null) game = new Game(players());
         return game;
     }
 
@@ -100,7 +100,7 @@ public class GameConfiguration {
     }
 
     private StopOrResetGame resetService() {
-        return new StopOrResetGame(applicationSwitch(), players());
+        return new StopOrResetGame(game(), players());
     }
 
     private MovePlayer movePlayer() {
