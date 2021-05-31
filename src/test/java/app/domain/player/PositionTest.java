@@ -15,16 +15,17 @@ public class PositionTest {
 
     @Test
     void returns_current_position_value_plus_dice_total_truncated_to_win_value_as_max() {
-        when(board.win()).thenReturn(position(10));
+        Position position3 = position(3);
+        Position position9 = position(9);
+        Position position10 = position(10);
+        when(board.win()).thenReturn(position10);
 
-        when(board.position(9)).thenReturn(position(9));
-        assertThat(position(3).plus(new Dice(2, 4)).value).isEqualTo(9);
+        when(board.position(9)).thenReturn(position9);
+        when(board.position(10)).thenReturn(position10);
 
-        when(board.position(10)).thenReturn(position(10));
-        assertThat(position(3).plus(new Dice(3, 4)).value).isEqualTo(10);
-
-        when(board.position(8)).thenReturn(position(8));
-        assertThat(position(3).plus(new Dice(3, 6)).value).isEqualTo(10);
+        assertThat(position3.plus(new Dice(2, 4))).isEqualTo(position9);
+        assertThat(position3.plus(new Dice(3, 4))).isEqualTo(position10);
+        assertThat(position3.plus(new Dice(3, 6))).isEqualTo(position10);
     }
 
     @Test
