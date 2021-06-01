@@ -50,7 +50,7 @@ public class GameConfiguration {
     }
 
     private Board board() {
-        if (board == null) board = new Board();
+        if (board == null) board = new BoardConfiguration().buildBoard();
         return board;
     }
 
