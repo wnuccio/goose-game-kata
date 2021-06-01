@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
-    private Map<Integer, Position> map;
+    Map<Integer, Position> map;
 
     public Board() {
         this.map = new HashMap<>();

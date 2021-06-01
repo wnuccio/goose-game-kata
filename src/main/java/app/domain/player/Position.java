@@ -8,7 +8,7 @@ public class Position {
     private final Board board;
     private final String name;
     private final int value;
-    private PositionRule rule;
+    PositionRule rule;
 
     public Position(Board board, int value, String name) {
         this.value = value;

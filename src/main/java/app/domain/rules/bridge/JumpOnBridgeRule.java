@@ -3,7 +3,7 @@ package app.domain.rules.bridge;
 import app.domain.player.*;
 
 public class JumpOnBridgeRule implements PositionRule {
-    private final Board board;
+    public Board board;
 
     public JumpOnBridgeRule(Board board) {
         this.board = board;
