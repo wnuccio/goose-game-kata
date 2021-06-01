@@ -12,22 +12,10 @@ public class PlayerOnTurn {
         this.dice = dice;
     }
 
-    public String name() {
-        return player.name();
-    }
-
     public Dice dice() { return this.dice; }
 
     public Position position() {
         return player.position();
-    }
-
-    public int firstDice() {
-        return dice.first();
-    }
-
-    public int secondDice() {
-        return dice.second();
     }
 
     public void performTurn(Movements movements, SwitchPlayersRule switchPlayersRule) {
@@ -41,6 +29,16 @@ public class PlayerOnTurn {
     public void applyMovement(Movement movement) {
         player.applyMovement(movement);
         player.applyRuleOnCurrentPosition(this);
+    }
+
+    public String name() { return player.name(); }
+
+    public int firstDice() {
+        return dice.first();
+    }
+
+    public int secondDice() {
+        return dice.second();
     }
 
     public boolean hasWon() {
