@@ -10,13 +10,12 @@ import static app.domain.player.PositionRule.NO_RULE;
 public class BoardConfiguration {
 
     public Board buildBoard() {
-        JumpOnBridgeRule jumpOnBridgeRule = new JumpOnBridgeRule(null);
         Board board = BoardBuilder
                 .board()
                 .sized(0, 63)
                 .position( 0, "Start", NO_RULE)
                 .position(5, "5, The Goose.", new GooseRule())
-                .position(6, "The Bridge", jumpOnBridgeRule)
+                .position(6, "The Bridge")
                 .position(9, "9, The Goose.", new GooseRule())
                 .position(14, "14, The Goose.", new GooseRule())
                 .position(18, "18, The Goose.", new GooseRule())
@@ -25,7 +24,9 @@ public class BoardConfiguration {
                 .position(63, "63", NO_RULE)
                 .build();
 
-        jumpOnBridgeRule.board = board;
+        JumpOnBridgeRule jumpOnBridgeRule = new JumpOnBridgeRule(board.position(12));
+        board.position(6).attachRule(jumpOnBridgeRule);
+
         return board;
     }
 

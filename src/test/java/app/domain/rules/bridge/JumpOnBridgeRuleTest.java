@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 
 class JumpOnBridgeRuleTest {
     Board board = new Board();
-    JumpOnBridgeRule rule = new JumpOnBridgeRule(board);
+    JumpOnBridgeRule rule = new JumpOnBridgeRule(board.position(12));
 
     @Test
     void apply_a_movement_towards_position_12_to_the_player() {
