@@ -3,7 +3,6 @@ package app.domain.player;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.String.format;
 import static java.lang.String.valueOf;
 
 public class BoardBuilder {
@@ -22,17 +21,8 @@ public class BoardBuilder {
 
     public static Board standardBoard() {
         return board()
-                .withWinPosition(63)
+                .withPosition(63)
                 .build();
-    }
-
-    public BoardBuilder withWinPosition(int winPosition) {
-        if (winPosition < 0) throw new IllegalArgumentException(format("Invalid end position: %s", winPosition));
-
-        for (int i = 0; i <= winPosition; i++) {
-            withPosition(i);
-        }
-        return this;
     }
 
     public BoardBuilder withPosition(int value) {

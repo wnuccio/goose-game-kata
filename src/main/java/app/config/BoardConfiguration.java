@@ -11,7 +11,6 @@ public class BoardConfiguration {
 
     public Board buildBoard() {
         Board board = board()
-                .withWinPosition(63)
                 .withPosition( 0, "Start", NO_RULE)
                 .withPosition(5, "5, The Goose.", new GooseRule())
                 .withPosition(6, "The Bridge")

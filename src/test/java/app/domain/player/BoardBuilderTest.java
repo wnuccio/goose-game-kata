@@ -1,27 +1,23 @@
 package app.domain.player;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
+import static app.domain.player.BoardBuilder.board;
+import static app.domain.player.BoardBuilder.standardBoard;
 import static app.domain.player.PositionRule.NO_RULE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
 class BoardBuilderTest {
 
-    private BoardBuilder boardWith;
 
-    @BeforeEach
-    void setUp() {
-        boardWith = BoardBuilder.board().withWinPosition(1);
-    }
 
     @Test
     void creates_a_board_with_just_zero_position_as_default() {
-        Board board = BoardBuilder.board().build();
+        Board board = board().build();
 
         assertThat(board.hasPosition(0)).isTrue();
         assertThat(board.start()).isEqualTo(board.position(0));
@@ -30,7 +26,7 @@ class BoardBuilderTest {
 
     @Test
     void add_automatically_all_positions_between_0_and_the_maximum_value_specified_position() {
-        Board board = BoardBuilder.board()
+        Board board = board()
                 .withPosition(2)
                 .build();
 
@@ -42,7 +38,7 @@ class BoardBuilderTest {
 
     @Test
     void creates_a_standard_board_with_positions_0_63() {
-        Board board = BoardBuilder.standardBoard();
+        Board board = standardBoard();
 
         for (int i=0; i<=63; i++) {
             assertThat(board.hasPosition(i)).isTrue();
@@ -51,14 +47,14 @@ class BoardBuilderTest {
 
     @Test
     void throws_an_exception_when_asked_for_a_not_configured_position() {
-        Board board = BoardBuilder.board().withPosition(2).build();
+        Board board = board().withPosition(2).build();
 
         Assertions.assertThrows(NoSuchElementException.class, () -> board.position(3));
     }
 
     @Test
     void when_adds_a_position_gives_it_a_default_name_after_its_value() {
-        Board board = boardWith
+        Board board = board()
                 .withPosition(1)
                 .build();
 
@@ -69,7 +65,7 @@ class BoardBuilderTest {
     @Test
     void build_a_board_with_position_having_special_name_and_rule() {
         PositionRule aRule = mock(PositionRule.class);
-        Board board = boardWith
+        Board board = board()
                 .withPosition(0, "start", aRule)
                 .build();
 
