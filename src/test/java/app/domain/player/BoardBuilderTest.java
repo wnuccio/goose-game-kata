@@ -13,8 +13,6 @@ import static org.mockito.Mockito.mock;
 
 class BoardBuilderTest {
 
-
-
     @Test
     void creates_a_board_with_just_zero_position_as_default() {
         Board board = board().build();
