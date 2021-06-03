@@ -48,7 +48,7 @@ public class PlayersTest {
 
     @Test
     void find_any_other_player_on_the_same_position_of_a_give_player() {
-        Board board = new Board();
+        Board board = BoardBuilder.standardBoard();
         Player pippo = new Player("Pippo", board.position(15));
         Player pluto = new Player("Pluto", board.position(15));
         Player topolino = new Player("Topolino", board.position(15));

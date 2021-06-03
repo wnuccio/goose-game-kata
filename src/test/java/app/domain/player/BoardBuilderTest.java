@@ -22,7 +22,7 @@ class BoardBuilderTest {
 
         assertThat(board.hasPosition(0)).isTrue();
         assertThat(board.start()).isEqualTo(board.position(0));
-        assertThat(board.position(0)).isEqualTo(board.winPosition());
+        assertThat(board.position(0)).isEqualTo(board.win());
     }
 
     @Test
@@ -32,9 +32,18 @@ class BoardBuilderTest {
                 .build();
 
         assertThat(board.hasPosition(0)).isTrue();
-//        assertThat(board.hasPosition(1)).isTrue();
+        assertThat(board.hasPosition(1)).isTrue();
         assertThat(board.hasPosition(2)).isTrue();
-//        assertThat(board.hasPosition(3)).isFalse();
+        assertThat(board.hasPosition(3)).isFalse();
+    }
+
+    @Test
+    void creates_a_standard_board_with_positions_0_63() {
+        Board board = BoardBuilder.standardBoard();
+
+        for (int i=0; i<=63; i++) {
+            assertThat(board.hasPosition(i)).isTrue();
+        }
     }
 
     @Test

@@ -1,6 +1,7 @@
 package app.domain.rules.bridge;
 
 import app.domain.player.Board;
+import app.domain.player.BoardBuilder;
 import app.domain.player.PlayerOnTurn;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -9,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class JumpOnBridgeRuleTest {
-    Board board = new Board();
+    Board board = BoardBuilder.standardBoard();
     JumpOnBridgeRule rule = new JumpOnBridgeRule(board.position(12));
 
     @Test

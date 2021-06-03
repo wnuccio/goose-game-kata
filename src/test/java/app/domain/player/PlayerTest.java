@@ -17,7 +17,7 @@ class PlayerTest {
 
     @BeforeEach
     void setUp() {
-        board = new Board();
+        board = BoardBuilder.standardBoard();
         pippoObserver = mock(PlayerObserver.class);
 
         movement = ArgumentCaptor.forClass(Movement.class);

@@ -1,10 +1,7 @@
 package app.domain.rules.switchrule;
 
 import app.domain.movement.Movements;
-import app.domain.player.Board;
-import app.domain.player.Player;
-import app.domain.player.PlayerOnTurn;
-import app.domain.player.Players;
+import app.domain.player.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -14,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class SwitchPlayersRuleTest {
-    Board board = new Board();
+    Board board = BoardBuilder.standardBoard();
     Players players = mock(Players.class);
     SwitchPlayersRule rule = new SwitchPlayersRule(players);
 

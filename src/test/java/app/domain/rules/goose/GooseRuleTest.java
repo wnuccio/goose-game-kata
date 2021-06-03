@@ -1,8 +1,10 @@
 package app.domain.rules.goose;
 
 import app.domain.player.Board;
+import app.domain.player.BoardBuilder;
 import app.domain.player.Dice;
 import app.domain.player.PlayerOnTurn;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -10,8 +12,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class GooseRuleTest {
-    Board board = new Board();
+    Board board;
     GooseRule rule = new GooseRule();
+
+    @BeforeEach
+    void setUp() {
+        board = BoardBuilder.standardBoard();
+    }
 
     @Test
     void apply_a_movement_based_on_dice_to_the_player() {

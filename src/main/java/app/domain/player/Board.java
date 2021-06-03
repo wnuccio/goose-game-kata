@@ -22,10 +22,6 @@ public class Board {
     }
 
     public Position win() {
-        return position(63);
-    }
-
-    public Position winPosition() {
         int maxValue = map
                 .keySet()
                 .stream()

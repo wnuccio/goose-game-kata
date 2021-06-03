@@ -20,6 +20,12 @@ public class BoardBuilder {
         return new BoardBuilder();
     }
 
+    public static Board standardBoard() {
+        return board()
+                .withWinPosition(63)
+                .build();
+    }
+
     public BoardBuilder withWinPosition(int winPosition) {
         if (winPosition < 0) throw new IllegalArgumentException(format("Invalid end position: %s", winPosition));
 
