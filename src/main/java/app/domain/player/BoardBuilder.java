@@ -44,15 +44,19 @@ public class BoardBuilder {
     }
 
     public Board build() {
-        if (!board.hasPosition(0)) this.withPosition(0);
-        int max = values.stream()
-                .mapToInt(v -> v)
-                .max()
-                .getAsInt();
-
-        for (int i = 0; i < max; i++) {
-            if (!board.hasPosition(i)) this.withPosition(i);
-        }
+        addAllPositionsBetweenZeroAndMax();
         return board;
+    }
+
+    private void addAllPositionsBetweenZeroAndMax() {
+        for (int i = 0; i <= board.maxPositionValue(); i++) {
+            addPositionIfAbsent(i);
+        }
+    }
+
+    private void addPositionIfAbsent(int i) {
+        if (board.hasPosition(i)) return;
+
+        this.withPosition(i);
     }
 }

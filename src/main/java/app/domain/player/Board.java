@@ -24,14 +24,16 @@ public class Board {
     }
 
     public Position win() {
-        int max = map
+        return position(maxPositionValue());
+    }
+
+    int maxPositionValue() {
+        return map
                 .keySet()
                 .stream()
                 .mapToInt(i -> i)
                 .max()
-                .orElseThrow(() -> new IllegalStateException("Empty board"));
-
-        return position(max);
+                .orElse(0 );
     }
 
     void addPosition(int value, Position position) {
