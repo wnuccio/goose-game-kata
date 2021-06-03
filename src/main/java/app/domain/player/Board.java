@@ -10,10 +10,6 @@ public class Board {
         this.map = new HashMap<>();
     }
 
-    public void setPositions(Map<Integer, Position> map) {
-        this.map = map;
-    }
-
     public Position position(int value) {
         if ( ! map.containsKey(value)) {
             put(value, new Position(this, value, String.valueOf(value)));
