@@ -15,26 +15,26 @@ public class BoardBuilder {
         return new BoardBuilder();
     }
 
-    public BoardBuilder winPosition(int winPosition) {
+    public BoardBuilder withWinPosition(int winPosition) {
         if (winPosition < 0) throw new IllegalArgumentException(format("Invalid end position: %s", winPosition));
 
         for (int i = 0; i <= winPosition; i++) {
-            position(i);
+            withPosition(i);
         }
         return this;
     }
 
-    public BoardBuilder position(int value) {
+    public BoardBuilder withPosition(int value) {
         board.addPosition(value, new Position(board, value, valueOf(value)));
         return this;
     }
 
-    public BoardBuilder position(int value, String name) {
+    public BoardBuilder withPosition(int value, String name) {
         board.addPosition(value, new Position(board, value, name));
         return this;
     }
 
-    public BoardBuilder position(int value, String name, PositionRule rule) {
+    public BoardBuilder withPosition(int value, String name, PositionRule rule) {
         board.addPosition(value, new Position(board, value, name).attachRule(rule));
         return this;
     }

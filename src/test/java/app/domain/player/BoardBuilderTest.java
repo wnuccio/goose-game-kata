@@ -13,7 +13,7 @@ class BoardBuilderTest {
 
     @BeforeEach
     void setUp() {
-        boardWith = BoardBuilder.board().winPosition(1);
+        boardWith = BoardBuilder.board().withWinPosition(1);
     }
 
     @Test
@@ -27,7 +27,7 @@ class BoardBuilderTest {
     @Test
     void when_adds_a_position_gives_it_a_default_name_after_its_value() {
         Board board = boardWith
-                .position(1)
+                .withPosition(1)
                 .build();
 
         assertThat(board.position(1).name()).isEqualTo("1");
@@ -38,7 +38,7 @@ class BoardBuilderTest {
     void build_a_board_with_position_having_special_name_and_rule() {
         PositionRule aRule = mock(PositionRule.class);
         Board board = boardWith
-                .position(0, "start", aRule)
+                .withPosition(0, "start", aRule)
                 .build();
 
         assertThat(board.position(0).name()).isEqualTo("start");
