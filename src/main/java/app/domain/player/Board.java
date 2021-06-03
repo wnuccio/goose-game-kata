@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
-    Map<Integer, Position> map;
+    private Map<Integer, Position> map;
 
     public Board() {
         this.map = new HashMap<>();
@@ -12,7 +12,7 @@ public class Board {
 
     public Position position(int value) {
         if ( ! map.containsKey(value)) {
-            put(value, new Position(this, value, String.valueOf(value)));
+            addPosition(value, new Position(this, value, String.valueOf(value)));
         }
         return map.get(value);
     }
@@ -25,7 +25,7 @@ public class Board {
         return position(63);
     }
 
-    private void put(int value, Position position) {
+    void addPosition(int value, Position position) {
         this.map.put(value, position);
     }
 }

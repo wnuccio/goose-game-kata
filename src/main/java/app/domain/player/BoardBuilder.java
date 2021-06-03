@@ -25,17 +25,17 @@ public class BoardBuilder {
     }
 
     public BoardBuilder position(int value) {
-        board.map.put(value, new Position(board, value, valueOf(value)));
+        board.addPosition(value, new Position(board, value, valueOf(value)));
         return this;
     }
 
     public BoardBuilder position(int value, String name) {
-        board.map.put(value, new Position(board, value, name));
+        board.addPosition(value, new Position(board, value, name));
         return this;
     }
 
     public BoardBuilder position(int value, String name, PositionRule rule) {
-        board.map.put(value, new Position(board, value, name).attachRule(rule));
+        board.addPosition(value, new Position(board, value, name).attachRule(rule));
         return this;
     }
 
