@@ -12,7 +12,7 @@ public class BoardConfiguration {
     public Board buildBoard() {
         Board board = BoardBuilder
                 .board()
-                .sized(0, 63)
+                .winPosition(63)
                 .position( 0, "Start", NO_RULE)
                 .position(5, "5, The Goose.", new GooseRule())
                 .position(6, "The Bridge")

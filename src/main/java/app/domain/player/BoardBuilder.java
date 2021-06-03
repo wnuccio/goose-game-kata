@@ -15,10 +15,10 @@ public class BoardBuilder {
         return new BoardBuilder();
     }
 
-    public BoardBuilder sized(int start, int end) {
-        if (start < 0 || start > end) throw new IllegalArgumentException(format("Invalid size: %s, %s", start, end));
+    public BoardBuilder winPosition(int winPosition) {
+        if (winPosition < 0) throw new IllegalArgumentException(format("Invalid end position: %s", winPosition));
 
-        for (int i=start; i <= end; i++) {
+        for (int i = 0; i <= winPosition; i++) {
             position(i);
         }
         return this;
