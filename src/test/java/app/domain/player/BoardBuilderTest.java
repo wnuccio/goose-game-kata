@@ -1,7 +1,10 @@
 package app.domain.player;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.NoSuchElementException;
 
 import static app.domain.player.PositionRule.NO_RULE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -44,6 +47,13 @@ class BoardBuilderTest {
         for (int i=0; i<=63; i++) {
             assertThat(board.hasPosition(i)).isTrue();
         }
+    }
+
+    @Test
+    void throws_an_exception_when_asked_for_a_not_configured_position() {
+        Board board = BoardBuilder.board().withPosition(2).build();
+
+        Assertions.assertThrows(NoSuchElementException.class, () -> board.position(3));
     }
 
     @Test

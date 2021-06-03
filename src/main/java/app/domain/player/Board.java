@@ -2,6 +2,9 @@ package app.domain.player;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
+
+import static java.lang.String.format;
 
 public class Board {
     private Map<Integer, Position> map;
@@ -11,9 +14,8 @@ public class Board {
     }
 
     public Position position(int value) {
-        if ( ! map.containsKey(value)) {
-            addPosition(value, new Position(this, value, String.valueOf(value)));
-        }
+        if (! hasPosition(value)) throw new NoSuchElementException(format("Invalid position: %s", value));
+
         return map.get(value);
     }
 
@@ -22,14 +24,14 @@ public class Board {
     }
 
     public Position win() {
-        int maxValue = map
+        int max = map
                 .keySet()
                 .stream()
                 .mapToInt(i -> i)
                 .max()
-                .getAsInt();
+                .orElseThrow(() -> new IllegalStateException("Empty board"));
 
-        return position(maxValue);
+        return position(max);
     }
 
     void addPosition(int value, Position position) {
