@@ -13,8 +13,15 @@ class BoardBuilderTest {
 
     @BeforeEach
     void setUp() {
-        boardWith = BoardBuilder.board()
-                .sized(0, 1);
+        boardWith = BoardBuilder.board().winPosition(1);
+    }
+
+    @Test
+    void creates_a_board_with_just_zero_position_as_default() {
+        Board board = BoardBuilder.board().build();
+
+        assertThat(board.start()).isEqualTo(board.position(0));
+        assertThat(board.position(0)).isEqualTo(board.winPosition());
     }
 
     @Test

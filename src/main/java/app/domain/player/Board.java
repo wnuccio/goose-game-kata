@@ -25,6 +25,17 @@ public class Board {
         return position(63);
     }
 
+    public Position winPosition() {
+        int maxValue = map
+                .keySet()
+                .stream()
+                .mapToInt(i -> i)
+                .max()
+                .getAsInt();
+
+        return position(maxValue);
+    }
+
     void addPosition(int value, Position position) {
         this.map.put(value, position);
     }
