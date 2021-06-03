@@ -20,8 +20,21 @@ class BoardBuilderTest {
     void creates_a_board_with_just_zero_position_as_default() {
         Board board = BoardBuilder.board().build();
 
+        assertThat(board.hasPosition(0)).isTrue();
         assertThat(board.start()).isEqualTo(board.position(0));
         assertThat(board.position(0)).isEqualTo(board.winPosition());
+    }
+
+    @Test
+    void add_automatically_all_positions_between_0_and_the_maximum_value_specified_position() {
+        Board board = BoardBuilder.board()
+                .withPosition(2)
+                .build();
+
+        assertThat(board.hasPosition(0)).isTrue();
+//        assertThat(board.hasPosition(1)).isTrue();
+        assertThat(board.hasPosition(2)).isTrue();
+//        assertThat(board.hasPosition(3)).isFalse();
     }
 
     @Test

@@ -39,4 +39,8 @@ public class Board {
     void addPosition(int value, Position position) {
         this.map.put(value, position);
     }
+
+    public boolean hasPosition(int value) {
+        return map.containsKey(value);
+    }
 }
