@@ -39,4 +39,13 @@ class PositionBuilderTest {
 
         assertThat(position.isEqualTo(new Position(board, 0,"0").attachRule(NO_RULE))).isTrue();
     }
+
+    @Test
+    void build_a_position_with_a_stringified_value_as_name() {
+        Position position = positionBuilder
+                .withValue(5)
+                .build();
+
+        assertThat(position.name()).isEqualTo("5");
+    }
 }

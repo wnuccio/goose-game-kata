@@ -1,6 +1,7 @@
 package app.domain.player;
 
 import static app.domain.player.PositionRule.NO_RULE;
+import static java.lang.String.valueOf;
 
 public class PositionBuilder {
     private int value;
@@ -17,7 +18,7 @@ public class PositionBuilder {
 
     public PositionBuilder withValue(int value) {
         this.value = value;
-        return this;
+        return this.withName(valueOf(value));
     }
 
     public PositionBuilder withName(String name) {
