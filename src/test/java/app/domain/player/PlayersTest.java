@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static app.domain.player.BoardForTests.standardBoard;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -48,7 +49,7 @@ public class PlayersTest {
 
     @Test
     void find_any_other_player_on_the_same_position_of_a_give_player() {
-        Board board = BoardBuilder.standardBoard();
+        Board board = standardBoard();
         Player pippo = new Player("Pippo", board.position(15));
         Player pluto = new Player("Pluto", board.position(15));
         Player topolino = new Player("Topolino", board.position(15));

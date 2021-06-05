@@ -1,13 +1,13 @@
 package app.domain.rules.goose;
 
 import app.domain.player.Board;
-import app.domain.player.BoardBuilder;
 import app.domain.player.Dice;
 import app.domain.player.PlayerOnTurn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
+import static app.domain.player.BoardForTests.standardBoard;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -17,7 +17,7 @@ class GooseRuleTest {
 
     @BeforeEach
     void setUp() {
-        board = BoardBuilder.standardBoard();
+        board = standardBoard();
     }
 
     @Test

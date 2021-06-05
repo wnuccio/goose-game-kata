@@ -14,10 +14,8 @@ public class BoardBuilder {
         return new BoardBuilder();
     }
 
-    public static Board standardBoard() {
-        return board()
-                .withPosition(63)
-                .build();
+    public PositionBuilder addPosition() {
+        return new PositionBuilder(this, this.board);
     }
 
     public BoardBuilder withPosition(PositionBuilder positionBuilder) {
@@ -42,13 +40,9 @@ public class BoardBuilder {
         }
     }
 
-    private void addPositionIfAbsent(int i) {
-        if (board.hasPosition(i)) return;
+    private void addPositionIfAbsent(int value) {
+        if (board.hasPosition(value)) return;
 
-        this.withPosition(i);
-    }
-
-    public PositionBuilder addPosition() {
-        return new PositionBuilder(this, this.board);
+        board.addPosition(value, new Position(board, value, valueOf(value)));
     }
 }

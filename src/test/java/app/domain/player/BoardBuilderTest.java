@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
+import static app.domain.player.BoardForTests.standardBoard;
 import static app.domain.player.PositionRule.NO_RULE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -37,7 +38,7 @@ class BoardBuilderTest {
 
     @Test
     void creates_a_standard_board_with_positions_0_63() {
-        Board board = BoardBuilder.standardBoard();
+        Board board = standardBoard();
 
         for (int i=0; i<=63; i++) {
             assertThat(board.hasPosition(i)).isTrue();

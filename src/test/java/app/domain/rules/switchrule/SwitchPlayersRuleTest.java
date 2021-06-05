@@ -1,17 +1,21 @@
 package app.domain.rules.switchrule;
 
 import app.domain.movement.Movements;
-import app.domain.player.*;
+import app.domain.player.Board;
+import app.domain.player.Player;
+import app.domain.player.PlayerOnTurn;
+import app.domain.player.Players;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
+import static app.domain.player.BoardForTests.standardBoard;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class SwitchPlayersRuleTest {
-    Board board = BoardBuilder.standardBoard();
+    Board board = standardBoard();
     Players players = mock(Players.class);
     SwitchPlayersRule rule = new SwitchPlayersRule(players);
 

@@ -1,16 +1,16 @@
 package app.domain.rules.bridge;
 
 import app.domain.player.Board;
-import app.domain.player.BoardBuilder;
 import app.domain.player.PlayerOnTurn;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
+import static app.domain.player.BoardForTests.standardBoard;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class JumpOnBridgeRuleTest {
-    Board board = BoardBuilder.standardBoard();
+    Board board = standardBoard();
     JumpOnBridgeRule rule = new JumpOnBridgeRule(board.position(12));
 
     @Test

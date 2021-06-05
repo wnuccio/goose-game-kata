@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
+import static app.domain.player.BoardForTests.standardBoard;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -17,7 +18,7 @@ class PlayerTest {
 
     @BeforeEach
     void setUp() {
-        board = BoardBuilder.standardBoard();
+        board = standardBoard();
         pippoObserver = mock(PlayerObserver.class);
 
         movement = ArgumentCaptor.forClass(Movement.class);
