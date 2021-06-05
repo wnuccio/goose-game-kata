@@ -54,4 +54,11 @@ public class Position {
     public String toString() {
         return format("Position(%s)", value);
     }
+
+    public boolean isEqualTo(Position otherPosition) {
+        return this.board == otherPosition.board
+                && this.value == otherPosition.value
+                && this.name.equals(otherPosition.name)
+                && this.rule == otherPosition.rule;
+    }
 }
