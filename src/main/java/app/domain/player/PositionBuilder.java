@@ -8,8 +8,10 @@ public class PositionBuilder {
     private String name;
     private PositionRule rule;
     private Board board;
+    private BoardBuilder boardBuilder;
 
-    public PositionBuilder(Board board) {
+    public PositionBuilder(BoardBuilder boardBuilder, Board board) {
+        this.boardBuilder = boardBuilder;
         this.board = board;
         this.value = 0;
         this.name = "0";
@@ -31,8 +33,13 @@ public class PositionBuilder {
         return this;
     }
 
+    public BoardBuilder andRule(PositionRule rule) {
+        this.withRule(rule);
+        this.boardBuilder.withPosition(this);
+        return this.boardBuilder;
+    }
+
     public Position build() {
         return new Position(board, value, name).attachRule(rule);
-//        this.boardBuilder.addPosition(value, position);
     }
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static app.domain.player.PositionRule.NO_RULE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class PositionBuilderTest {
 
@@ -15,7 +16,7 @@ class PositionBuilderTest {
     @BeforeEach
     void setUp() {
         board = new Board();
-        positionBuilder = new PositionBuilder(board);
+        positionBuilder = new PositionBuilder(null, board);
     }
 
     @Test
@@ -31,6 +32,17 @@ class PositionBuilderTest {
                 .build();
 
         assertThat(position.isEqualTo(new Position(board, aValue, aName).attachRule(aRule))).isTrue();
+    }
+
+    @Test
+    void adds_the_position_to_the_board_builder_after_a_rule_is_specified() {
+        BoardBuilder boardBuilder = mock(BoardBuilder.class);
+        PositionRule anyRule = mock(PositionRule.class);
+        positionBuilder = new PositionBuilder(boardBuilder, board);
+
+        positionBuilder.andRule(anyRule);
+
+        verify(boardBuilder).withPosition(positionBuilder);
     }
 
     @Test
