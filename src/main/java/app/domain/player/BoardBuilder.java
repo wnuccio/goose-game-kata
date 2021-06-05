@@ -14,8 +14,10 @@ public class BoardBuilder {
         return new BoardBuilder();
     }
 
-    public PositionBuilder addPosition() {
-        return new PositionBuilder(this, this.board);
+    public PositionBuilder addPosition(int value) {
+        PositionBuilder positionBuilder = new PositionBuilder(this, this.board);
+        positionBuilder.withValue(value);
+        return positionBuilder;
     }
 
     public BoardBuilder withPosition(PositionBuilder positionBuilder) {
