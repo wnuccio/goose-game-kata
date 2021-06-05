@@ -72,15 +72,4 @@ class BoardBuilderTest {
         assertThat(board.position(1).name()).isEqualTo("1");
         assertThat(board.position(0).rule).isEqualTo(NO_RULE);
     }
-
-    @Test
-    void build_a_board_with_position_having_special_name_and_rule() {
-        PositionRule aRule = mock(PositionRule.class);
-        Board board = board()
-                .withPosition(0, "start", aRule)
-                .build();
-
-        assertThat(board.position(0).name()).isEqualTo("start");
-        assertThat(board.position(0).rule).isEqualTo(aRule);
-    }
 }

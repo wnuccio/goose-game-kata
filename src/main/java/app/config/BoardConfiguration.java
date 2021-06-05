@@ -11,15 +11,15 @@ public class BoardConfiguration {
 
     public Board buildBoard() {
         Board board = board()
-                .withPosition( 0, "Start", NO_RULE)
-                .withPosition(5, "5, The Goose.", new GooseRule())
-                .withPosition(6, "The Bridge")
-                .withPosition(9, "9, The Goose.", new GooseRule())
-                .withPosition(14, "14, The Goose.", new GooseRule())
-                .withPosition(18, "18, The Goose.", new GooseRule())
-                .withPosition(23, "23, The Goose.", new GooseRule())
-                .withPosition(27, "27, The Goose.", new GooseRule())
-                .withPosition(63, "63", NO_RULE)
+                .addPosition().withValue(0).withName("Start").andRule(NO_RULE)
+                .addPosition().withValue(5).withName("5, The Goose.").andRule(new GooseRule())
+                .addPosition().withValue(6).withName("The Bridge").andRule(NO_RULE)
+                .addPosition().withValue(9).withName("9, The Goose.").andRule(new GooseRule())
+                .addPosition().withValue(14).withName("14, The Goose.").andRule(new GooseRule())
+                .addPosition().withValue(18).withName("18, The Goose.").andRule(new GooseRule())
+                .addPosition().withValue(23).withName("23, The Goose.").andRule(new GooseRule())
+                .addPosition().withValue(27).withName("27, The Goose.").andRule(new GooseRule())
+                .addPosition().withValue(63).andRule(NO_RULE)
                 .build();
 
         JumpOnBridgeRule jumpOnBridgeRule = new JumpOnBridgeRule(board.position(12));

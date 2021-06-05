@@ -37,18 +37,6 @@ public class BoardBuilder {
         return this;
     }
 
-    public BoardBuilder withPosition(int value, String name) {
-        values.add(value);
-        board.addPosition(value, new Position(board, value, name));
-        return this;
-    }
-
-    public BoardBuilder withPosition(int value, String name, PositionRule rule) {
-        values.add(value);
-        board.addPosition(value, new Position(board, value, name).attachRule(rule));
-        return this;
-    }
-
     public Board build() {
         addAllPositionsBetweenZeroAndMax();
         return board;
