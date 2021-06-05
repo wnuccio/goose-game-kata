@@ -8,7 +8,7 @@ import static java.lang.String.format;
 
 public class GoosePresenter {
     public void present(Position finalPosition, StringBuilderPresenter presenter, PlayerOnTurn playerOnTurn) {
-        String playerMovesAgain = format(" %s moves again and goes to %s",
+        String playerMovesAgain = format(". %s moves again and goes to %s",
                 playerOnTurn.name(),
                 finalPosition.name());
 
