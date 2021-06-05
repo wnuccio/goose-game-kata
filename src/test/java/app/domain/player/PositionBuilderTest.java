@@ -1,5 +1,6 @@
 package app.domain.player;
 
+import app.domain.rules.goose.GooseRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -69,5 +70,31 @@ class PositionBuilderTest {
                 .build();
 
         assertThat(position.name()).isEqualTo("5, The Goose");
+    }
+
+    @Test
+    void builds_a_position_with_a_goose_suffix_in_the_name() {
+        BoardBuilder boardBuilder = mock(BoardBuilder.class);
+        positionBuilder = new PositionBuilder(boardBuilder, board);
+
+        Position position = positionBuilder
+                .withValue(5)
+                .withGoose()
+                .build();
+
+        assertThat(position.name()).isEqualTo("5, The Goose");
+        assertThat(position.rule()).isInstanceOf(GooseRule.class);
+    }
+
+    @Test
+    void adds_the_position_to_the_board_after_having_goose_is_specified() {
+        BoardBuilder boardBuilder = mock(BoardBuilder.class);
+        positionBuilder = new PositionBuilder(boardBuilder, board);
+
+         positionBuilder
+                 .withValue(5)
+                .havingGoose();
+
+        verify(boardBuilder).withPosition(positionBuilder);
     }
 }

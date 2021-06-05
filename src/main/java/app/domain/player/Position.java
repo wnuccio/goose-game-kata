@@ -65,4 +65,8 @@ public class Position {
     public int value() {
         return value;
     }
+
+    public PositionRule rule() {
+        return this.rule;
+    }
 }

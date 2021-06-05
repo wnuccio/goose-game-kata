@@ -1,5 +1,7 @@
 package app.domain.player;
 
+import app.domain.rules.goose.GooseRule;
+
 import static app.domain.player.PositionRule.NO_RULE;
 import static java.lang.String.valueOf;
 
@@ -45,5 +47,15 @@ public class PositionBuilder {
 
     public Position build() {
         return new Position(board, value, name).attachRule(rule);
+    }
+
+    public PositionBuilder withGoose() {
+        return this
+            .withName(value + ", The Goose")
+            .withRule(new GooseRule());
+    }
+
+    public BoardBuilder havingGoose() {
+        return boardBuilder.withPosition(this.withGoose());
     }
 }
