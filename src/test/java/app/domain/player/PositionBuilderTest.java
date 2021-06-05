@@ -48,4 +48,14 @@ class PositionBuilderTest {
 
         assertThat(position.name()).isEqualTo("5");
     }
+
+    @Test
+    void build_a_position_by_overriding_the_default_name() {
+        Position position = positionBuilder
+                .withValue(5)
+                .withName("5, The Goose")
+                .build();
+
+        assertThat(position.name()).isEqualTo("5, The Goose");
+    }
 }
