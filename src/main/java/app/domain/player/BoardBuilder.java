@@ -1,18 +1,13 @@
 package app.domain.player;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static java.lang.String.valueOf;
 
 public class BoardBuilder {
 
-    private List<Integer> values;
     private Board board;
 
     public BoardBuilder() {
         this.board = new Board();
-        this.values = new ArrayList<>();
     }
 
     public static BoardBuilder board() {
@@ -32,7 +27,6 @@ public class BoardBuilder {
     }
 
     public BoardBuilder withPosition(int value) {
-        values.add(value);
         board.addPosition(value, new Position(board, value, valueOf(value)));
         return this;
     }
