@@ -26,11 +26,6 @@ public class BoardBuilder {
         return this;
     }
 
-    public BoardBuilder withPosition(int value) {
-        board.addPosition(value, new Position(board, value, valueOf(value)));
-        return this;
-    }
-
     public Board build() {
         addAllPositionsBetweenZeroAndMax();
         return board;

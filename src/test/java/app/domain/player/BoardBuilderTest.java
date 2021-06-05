@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
+import static app.domain.player.BoardForTests.boardEndingOn;
 import static app.domain.player.BoardForTests.standardBoard;
 import static app.domain.player.PositionRule.NO_RULE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,9 +27,7 @@ class BoardBuilderTest {
 
     @Test
     void add_automatically_all_positions_between_0_and_the_maximum_value_specified_position() {
-        Board board = boardBuilder
-                .withPosition(2)
-                .build();
+        Board board = boardEndingOn(2);
 
         assertThat(board.hasPosition(0)).isTrue();
         assertThat(board.hasPosition(1)).isTrue();
@@ -47,7 +46,7 @@ class BoardBuilderTest {
 
     @Test
     void throws_an_exception_when_asked_for_a_not_configured_position() {
-        Board board = boardBuilder.withPosition(2).build();
+        Board board = boardEndingOn(2);
 
         Assertions.assertThrows(NoSuchElementException.class, () -> board.position(3));
     }
@@ -66,9 +65,7 @@ class BoardBuilderTest {
 
     @Test
     void when_adds_a_position_gives_it_a_default_name_after_its_value() {
-        Board board = boardBuilder
-                .withPosition(1)
-                .build();
+        Board board = boardEndingOn(1);
 
         assertThat(board.position(1).name()).isEqualTo("1");
         assertThat(board.position(0).rule).isEqualTo(NO_RULE);
