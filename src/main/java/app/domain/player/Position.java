@@ -61,4 +61,8 @@ public class Position {
                 && this.name.equals(otherPosition.name)
                 && this.rule == otherPosition.rule;
     }
+
+    public int value() {
+        return value;
+    }
 }

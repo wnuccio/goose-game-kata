@@ -10,6 +10,7 @@ import static app.domain.player.BoardBuilder.standardBoard;
 import static app.domain.player.PositionRule.NO_RULE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class BoardBuilderTest {
 
@@ -48,6 +49,18 @@ class BoardBuilderTest {
         Board board = board().withPosition(2).build();
 
         Assertions.assertThrows(NoSuchElementException.class, () -> board.position(3));
+    }
+
+    @Test
+    void adds_a_position_from_a_position_builder() {
+        PositionBuilder positionBuilder = mock(PositionBuilder.class);
+        when(positionBuilder.build()).thenReturn(new Position(null, 3, ""));
+
+        Board board = board()
+                .withPosition(positionBuilder)
+                .build();
+
+        assertThat(board.hasPosition(3)).isTrue();
     }
 
     @Test

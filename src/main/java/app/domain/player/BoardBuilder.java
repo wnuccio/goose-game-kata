@@ -25,6 +25,12 @@ public class BoardBuilder {
                 .build();
     }
 
+    public BoardBuilder withPosition(PositionBuilder positionBuilder) {
+        Position position = positionBuilder.build();
+        board.addPosition(position.value(), position);
+        return this;
+    }
+
     public BoardBuilder withPosition(int value) {
         values.add(value);
         board.addPosition(value, new Position(board, value, valueOf(value)));
@@ -59,4 +65,8 @@ public class BoardBuilder {
 
         this.withPosition(i);
     }
+//
+//    public void addPosition(int value, Position position) {
+//        this.board.addPosition(value, position);
+//    }
 }
