@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static app.domain.player.BoardBuilder.board;
-import static app.domain.player.BoardBuilder.standardBoard;
 import static app.domain.player.PositionRule.NO_RULE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -14,9 +12,11 @@ import static org.mockito.Mockito.when;
 
 class BoardBuilderTest {
 
+    private BoardBuilder boardBuilder = new BoardBuilder();
+
     @Test
     void creates_a_board_with_just_zero_position_as_default() {
-        Board board = board().build();
+        Board board = boardBuilder.build();
 
         assertThat(board.hasPosition(0)).isTrue();
         assertThat(board.start()).isEqualTo(board.position(0));
@@ -25,7 +25,7 @@ class BoardBuilderTest {
 
     @Test
     void add_automatically_all_positions_between_0_and_the_maximum_value_specified_position() {
-        Board board = board()
+        Board board = boardBuilder
                 .withPosition(2)
                 .build();
 
@@ -37,7 +37,7 @@ class BoardBuilderTest {
 
     @Test
     void creates_a_standard_board_with_positions_0_63() {
-        Board board = standardBoard();
+        Board board = BoardBuilder.standardBoard();
 
         for (int i=0; i<=63; i++) {
             assertThat(board.hasPosition(i)).isTrue();
@@ -46,7 +46,7 @@ class BoardBuilderTest {
 
     @Test
     void throws_an_exception_when_asked_for_a_not_configured_position() {
-        Board board = board().withPosition(2).build();
+        Board board = boardBuilder.withPosition(2).build();
 
         Assertions.assertThrows(NoSuchElementException.class, () -> board.position(3));
     }
@@ -56,7 +56,7 @@ class BoardBuilderTest {
         PositionBuilder positionBuilder = mock(PositionBuilder.class);
         when(positionBuilder.build()).thenReturn(new Position(null, 3, ""));
 
-        Board board = board()
+        Board board = boardBuilder
                 .withPosition(positionBuilder)
                 .build();
 
@@ -65,7 +65,7 @@ class BoardBuilderTest {
 
     @Test
     void when_adds_a_position_gives_it_a_default_name_after_its_value() {
-        Board board = board()
+        Board board = boardBuilder
                 .withPosition(1)
                 .build();
 
