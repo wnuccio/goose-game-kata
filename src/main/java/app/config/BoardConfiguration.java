@@ -2,7 +2,6 @@ package app.config;
 
 import app.domain.player.Board;
 import app.domain.rules.bridge.JumpOnBridgeRule;
-import app.domain.rules.goose.GooseRule;
 
 import static app.domain.player.BoardBuilder.board;
 
@@ -11,13 +10,13 @@ public class BoardConfiguration {
     public Board buildBoard() {
         Board board = board()
                 .addPosition(0).withName("Start").andNoRule()
-                .addPosition(5).withName("5, The Goose").andRule(new GooseRule())
+                .addPosition(5).havingGoose()
                 .addPosition(6).withName("The Bridge").andNoRule()
-                .addPosition(9).withName("9, The Goose").andRule(new GooseRule())
-                .addPosition(14).withName("14, The Goose").andRule(new GooseRule())
-                .addPosition(18).withName("18, The Goose").andRule(new GooseRule())
-                .addPosition(23).withName("23, The Goose").andRule(new GooseRule())
-                .addPosition(27).withName("27, The Goose").andRule(new GooseRule())
+                .addPosition(9).havingGoose()
+                .addPosition(14).havingGoose()
+                .addPosition(18).havingGoose()
+                .addPosition(23).havingGoose()
+                .addPosition(27).havingGoose()
                 .addPosition(63).andNoRule()
                 .build();
 
