@@ -39,6 +39,10 @@ public class PositionBuilder {
         return this.boardBuilder;
     }
 
+    public BoardBuilder andNoRule() {
+        return this.andRule(NO_RULE);
+    }
+
     public Position build() {
         return new Position(board, value, name).attachRule(rule);
     }
