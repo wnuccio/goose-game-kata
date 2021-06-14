@@ -1,6 +1,8 @@
 ###
-- spostare la costruzione di Board in configurazione
-- estrarre un'interfaccia di PlayerOnTurn dedicata alla presentazione
+- estrarre da PlayerOnTurn un'interfaccia PlayerOnTurnView con i soli metodi usati in presentazione,
+    e usare quella nei vari presenter
+- estrarre dal MovementsRecorder (registra e restituisce la lista dei movimenti registrati)
+    un MovementsPresenter (presenta la lista dei movimenti iterando su di essa);
 
 ### Provare il packaging 'by feature' ricordando che 
 - una feature non è uno use case ma è un concetto più generico che può essere
