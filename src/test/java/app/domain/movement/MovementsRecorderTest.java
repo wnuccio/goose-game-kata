@@ -11,10 +11,10 @@ import org.mockito.InOrder;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
 
-class MovementsTest {
+class MovementsRecorderTest {
 
     private StringBuilderPresenter presenter;
-    private Movements movements;
+    private MovementsRecorder movementsRecorder;
     private PlayerOnTurn playerOnTurn;
     private Movement movement1;
     private Movement movement2;
@@ -22,7 +22,7 @@ class MovementsTest {
     @BeforeEach
     void setUp() {
         presenter = mock(StringBuilderPresenter.class);
-        movements = new Movements(presenter);
+        movementsRecorder = new MovementsRecorder(presenter);
 
         playerOnTurn = mock(PlayerOnTurn.class);
 
@@ -32,23 +32,23 @@ class MovementsTest {
 
     @Test
     void return_the_last_position_of_all_movements() {
-        movements.playerPositionChanged(movement1);
-        movements.playerPositionChanged(movement2);
+        movementsRecorder.playerPositionChanged(movement1);
+        movementsRecorder.playerPositionChanged(movement2);
 
         Position startPositionOfLastMovement = mock(Position.class);
         when(movement2.startPosition()).thenReturn(startPositionOfLastMovement);
 
-        Position lastPosition = movements.penultimatePosition();
+        Position lastPosition = movementsRecorder.penultimatePosition();
 
         assertThat(lastPosition).isEqualTo(startPositionOfLastMovement);
     }
 
     @Test
     void present_all_movements_in_order() {
-        movements.playerPositionChanged(movement1);
-        movements.playerPositionChanged(movement2);
+        movementsRecorder.playerPositionChanged(movement1);
+        movementsRecorder.playerPositionChanged(movement2);
 
-        movements.present(playerOnTurn);
+        movementsRecorder.present(playerOnTurn);
 
         InOrder inOrder = inOrder(presenter, movement1, movement2);
         inOrder.verify(presenter).init();

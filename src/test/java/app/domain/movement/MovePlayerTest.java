@@ -11,9 +11,9 @@ import static org.mockito.Mockito.verify;
 
 class MovePlayerTest {
     PlayerOnTurn playerOnTurn = mock(PlayerOnTurn.class);
-    private MovementsFactory movementsFactory = mock(MovementsFactory.class);
+    private MovementsRecorderFactory movementsRecorderFactory = mock(MovementsRecorderFactory.class);
     private SwitchPlayersRule switchPlayersRule = mock(SwitchPlayersRule.class);
-    MovePlayer movePlayer = new MovePlayer(movementsFactory, switchPlayersRule);
+    MovePlayer movePlayer = new MovePlayer(movementsRecorderFactory, switchPlayersRule);
 
     @Test
     void create_a_new_player_on_turn_and_computes_movement_for_him() {

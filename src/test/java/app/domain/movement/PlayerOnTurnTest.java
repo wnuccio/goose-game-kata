@@ -13,11 +13,11 @@ class PlayerOnTurnTest {
 
     StringBuilderPresenter presenter;
     Player pippo = mock(Player.class);
-    Movements movements;
+    MovementsRecorder movementsRecorder;
 
     @BeforeEach
     void setUp() {
-        movements = mock(Movements.class);
+        movementsRecorder = mock(MovementsRecorder.class);
         presenter = mock(StringBuilderPresenter.class);
     }
 
@@ -38,15 +38,15 @@ class PlayerOnTurnTest {
         Dice dice = new Dice(2, 3);
         PlayerOnTurn playerOnTurn = new PlayerOnTurn(pippo, dice);
 
-        Movements movements = mock(Movements.class);
+        MovementsRecorder movementsRecorder = mock(MovementsRecorder.class);
         SwitchPlayersRule switchPlayersRule = mock(SwitchPlayersRule.class);
-        playerOnTurn.performTurn(movements, switchPlayersRule);
+        playerOnTurn.performTurn(movementsRecorder, switchPlayersRule);
 
-        verify(pippo).addObserver(movements);
+        verify(pippo).addObserver(movementsRecorder);
         verify(pippo).moveByDiceConsideringBouncing(dice);
         verify(pippo).applyRuleOnCurrentPosition(playerOnTurn);
-        verify(switchPlayersRule).apply(pippo, movements);
-        verify(movements).present(playerOnTurn);
+        verify(switchPlayersRule).apply(pippo, movementsRecorder);
+        verify(movementsRecorder).present(playerOnTurn);
     }
 
     @Test

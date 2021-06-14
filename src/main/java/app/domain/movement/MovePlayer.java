@@ -4,16 +4,16 @@ import app.domain.player.PlayerOnTurn;
 import app.domain.rules.switchrule.SwitchPlayersRule;
 
 public class MovePlayer {
-    private MovementsFactory movementsFactory;
+    private MovementsRecorderFactory movementsRecorderFactory;
     private SwitchPlayersRule switchPlayersRule;
 
-    public MovePlayer(MovementsFactory movementsFactory, SwitchPlayersRule switchPlayersRule) {
-        this.movementsFactory = movementsFactory;
+    public MovePlayer(MovementsRecorderFactory movementsRecorderFactory, SwitchPlayersRule switchPlayersRule) {
+        this.movementsRecorderFactory = movementsRecorderFactory;
         this.switchPlayersRule = switchPlayersRule;
     }
 
     public void doMove(PlayerOnTurn playerOnTurn) {
-        Movements movements = movementsFactory.createMovements();
-        playerOnTurn.performTurn(movements, switchPlayersRule);
+        MovementsRecorder movementsRecorder = movementsRecorderFactory.createMovementsRecorder();
+        playerOnTurn.performTurn(movementsRecorder, switchPlayersRule);
     }
 }

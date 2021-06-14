@@ -1,6 +1,6 @@
 package app.domain.rules.switchrule;
 
-import app.domain.movement.Movements;
+import app.domain.movement.MovementsRecorder;
 import app.domain.player.Board;
 import app.domain.player.Player;
 import app.domain.player.PlayerOnTurn;
@@ -32,12 +32,12 @@ class SwitchPlayersRuleTest {
         when(pluto.position()).thenReturn(board.position(17));
 
         Player pippo = mock(Player.class);
-        Movements movements = mock(Movements.class);
-        when(movements.penultimatePosition()).thenReturn(board.position(10));
+        MovementsRecorder movementsRecorder = mock(MovementsRecorder.class);
+        when(movementsRecorder.penultimatePosition()).thenReturn(board.position(10));
 
-        rule.apply(pippo, movements);
+        rule.apply(pippo, movementsRecorder);
 
-        verify(pluto).addObserver(movements);
+        verify(pluto).addObserver(movementsRecorder);
         verify(pluto).applyMovement(movement.capture());
         assertThat(movement.getValue().switchedPlayer()).isEqualTo("Pluto");
         assertThat(movement.getValue().startPosition()).isEqualTo(board.position(17));
@@ -48,9 +48,9 @@ class SwitchPlayersRuleTest {
     void do_not_apply_any_switch_if_no_other_player_is_encountered() {
         when(players.opponentsOnSamePositionOf(any())).thenReturn(emptyList());
 
-        Movements movements = mock(Movements.class);
-        rule.apply(null, movements);
+        MovementsRecorder movementsRecorder = mock(MovementsRecorder.class);
+        rule.apply(null, movementsRecorder);
 
-        verify(movements, never()).playerPositionChanged(any());
+        verify(movementsRecorder, never()).playerPositionChanged(any());
     }
 }

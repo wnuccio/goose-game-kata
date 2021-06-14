@@ -9,7 +9,7 @@ import app.domain.interpreter.Interpreter;
 import app.domain.movement.FindPlayer;
 import app.domain.movement.InterpretMovePlayer;
 import app.domain.movement.MovePlayer;
-import app.domain.movement.MovementsFactory;
+import app.domain.movement.MovementsRecorderFactory;
 import app.domain.player.*;
 import app.domain.rollmove.DiceRoller;
 import app.domain.rollmove.InterpretRollAndMove;
@@ -73,8 +73,8 @@ public class GameConfiguration {
         return new PlayerPresenter(inputOutput());
     }
 
-    private MovementsFactory movementsFactory() {
-        return new MovementsFactory(inputOutput());
+    private MovementsRecorderFactory movementsFactory() {
+        return new MovementsRecorderFactory(inputOutput());
     }
 
     private CommandLineProcessor interpreter() {

@@ -10,12 +10,12 @@ import java.util.LinkedList;
 
 import static java.lang.String.format;
 
-public class Movements implements PlayerObserver {
+public class MovementsRecorder implements PlayerObserver {
 
     private final LinkedList<Movement> movements = new LinkedList<>();
     private final StringBuilderPresenter presenter;
 
-    public Movements(StringBuilderPresenter presenter) {
+    public MovementsRecorder(StringBuilderPresenter presenter) {
         this.presenter = presenter;
     }
 

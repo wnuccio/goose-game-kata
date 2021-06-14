@@ -1,6 +1,6 @@
 package app.domain.rules.switchrule;
 
-import app.domain.movement.Movements;
+import app.domain.movement.MovementsRecorder;
 import app.domain.player.Player;
 import app.domain.player.Players;
 
@@ -13,23 +13,23 @@ public class SwitchPlayersRule {
         this.players = players;
     }
 
-    public void apply(Player player, Movements movements) {
+    public void apply(Player player, MovementsRecorder movementsRecorder) {
         List<Player> encounteredOpponents = players.opponentsOnSamePositionOf(player);
 
         if (encounteredOpponents.isEmpty()) return;
 
         Player unluckyOpponent = encounteredOpponents.get(0);
 
-        moveBack(unluckyOpponent, movements);
+        moveBack(unluckyOpponent, movementsRecorder);
     }
 
-    private void moveBack(Player unluckyOpponent, Movements movements) {
-        unluckyOpponent.addObserver(movements);
+    private void moveBack(Player unluckyOpponent, MovementsRecorder movementsRecorder) {
+        unluckyOpponent.addObserver(movementsRecorder);
 
         SwitchMovement movement = new SwitchMovement(
                 unluckyOpponent.name(),
                 unluckyOpponent.position(),
-                movements.penultimatePosition());
+                movementsRecorder.penultimatePosition());
 
         unluckyOpponent.applyMovement(movement);
     }

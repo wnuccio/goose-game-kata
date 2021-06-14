@@ -3,16 +3,16 @@ package app.domain.movement;
 import app.domain.presenter.Output;
 import app.domain.presenter.StringBuilderPresenter;
 
-public class MovementsFactory {
+public class MovementsRecorderFactory {
 
     private final Output output;
 
-    public MovementsFactory(Output output) {
+    public MovementsRecorderFactory(Output output) {
         this.output = output;
     }
 
-    public Movements createMovements() {
+    public MovementsRecorder createMovementsRecorder() {
         StringBuilderPresenter presenter = new StringBuilderPresenter(output);
-        return new Movements(presenter);
+        return new MovementsRecorder(presenter);
     }
 }

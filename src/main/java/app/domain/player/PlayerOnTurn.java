@@ -1,6 +1,6 @@
 package app.domain.player;
 
-import app.domain.movement.Movements;
+import app.domain.movement.MovementsRecorder;
 import app.domain.rules.switchrule.SwitchPlayersRule;
 
 public class PlayerOnTurn {
@@ -18,12 +18,12 @@ public class PlayerOnTurn {
         return player.position();
     }
 
-    public void performTurn(Movements movements, SwitchPlayersRule switchPlayersRule) {
-        player.addObserver(movements);
+    public void performTurn(MovementsRecorder movementsRecorder, SwitchPlayersRule switchPlayersRule) {
+        player.addObserver(movementsRecorder);
         player.moveByDiceConsideringBouncing(dice);
         player.applyRuleOnCurrentPosition(this);
-        switchPlayersRule.apply(player, movements);
-        movements.present(this);
+        switchPlayersRule.apply(player, movementsRecorder);
+        movementsRecorder.present(this);
     }
 
     public void applyMovement(Movement movement) {
