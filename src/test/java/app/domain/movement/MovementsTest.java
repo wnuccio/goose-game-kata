@@ -32,8 +32,8 @@ class MovementsTest {
 
     @Test
     void return_the_last_position_of_all_movements() {
-        movements.add(movement1);
-        movements.add(movement2);
+        movements.playerPositionChanged(movement1);
+        movements.playerPositionChanged(movement2);
 
         Position startPositionOfLastMovement = mock(Position.class);
         when(movement2.startPosition()).thenReturn(startPositionOfLastMovement);
@@ -45,8 +45,8 @@ class MovementsTest {
 
     @Test
     void present_all_movements_in_order() {
-        movements.add(movement1);
-        movements.add(movement2);
+        movements.playerPositionChanged(movement1);
+        movements.playerPositionChanged(movement2);
 
         movements.present(playerOnTurn);
 

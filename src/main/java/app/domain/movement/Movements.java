@@ -19,10 +19,6 @@ public class Movements implements PlayerObserver {
         this.presenter = presenter;
     }
 
-    public void add(Movement movement) {
-        movements.add(movement);
-    }
-
     public void present(PlayerOnTurn playerOnTurn) {
         presenter.init();
         movements.forEach(movement -> movement.present(playerOnTurn, presenter));

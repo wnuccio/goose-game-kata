@@ -51,6 +51,6 @@ class SwitchPlayersRuleTest {
         Movements movements = mock(Movements.class);
         rule.apply(null, movements);
 
-        verify(movements, never()).add(any());
+        verify(movements, never()).playerPositionChanged(any());
     }
 }
